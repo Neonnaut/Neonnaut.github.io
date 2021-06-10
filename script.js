@@ -20,21 +20,8 @@ var origExplanations = ["First Person (speaker)","Second person (adrressee)","Th
 "Second person singular","Second person dual","Second person paucal","Second person plural","Second person trial","Second person genitive (your)","Third person singular","Third person dual","Third person paucal","Third person plural","Third person trial","Third person genitive (theirs)","Third person singular feminine (she)","Third person singular masculine (he)",
 "agent-like argument of canonical transitive verb","abessive case","ablative case (from)","absolutive case","absolute (free - non-incorporated form of noun)","accusative case","accompanier","accomplishment","actor role","addressive","adessive case (at)","adelative","adjective","adjectivizer","admonitive mood (warning)","adverb(ial); adverbial case","adversative","adverbializer","actor/agent focus - agent voice","affirmative","affective case","away from water","agent nominalization","agreement affix","allative case","allocutive agreement","animate gender","animate gender","anaphoric demonstrative","anaphoric demonstrative","andative (going towards)","in front of","antessive case (before)","anticausative","antipassive","anticausative","antipassive voice","agent-orientated verb","aorist (= PFV or PST.PFV )","applicative","apprehensive mood (lest)","approximative","approximative","near - in the vicinity of","argumentative","article","assertive mood","assumptive mood - assumed","agent trigger","attenuative","attributive","auditory evidential","auxiliary","augmentative","avertive","aversative","ablative","absolutive","accusative","adjective","adverb(ial)","agreement","allative","antipassive","applicative","article","auxiliary",
 "benefactive","causative","classifier","comitative","complementizer","completive","conditional","copula","converb","dative","declarative","definite","demonstrative","determiner","distal","distributive","dual","durative","ergative","exclusive","feminine","focus","future","genitive","imperative","inclusive","indicative","indefinite","infinitive","instrumental","intransitive","imperfective","irrealis","locative","masculine","neuter","negation - negative","nominalizer/nominalization","nominative","object","oblique","patient-like argument of canonical transitive verb","passive","perfective","plural","possessive","predicative","perfect","present","progressive","prohibitive","proximal/proximate","past","participle","purposive","question particle/marker","quotative","reciprocal","reflexive","relative","resultative","single argument of canonical intransitive verb","subject","subjunctive","singular","topic","transitive","vocative","zero (null) morpheme"];
-var abbreviations = ["what?"];
-var explanations = ["this"];
-
-var url = "/abbreviations.csv";
-var request = new XMLHttpRequest();
-request.open("GET", url, false);
-request.send(null);
-var csvData = new Array();
-var jsonObject = request.responseText.split(/\r?\n|\r/);
-for (var i = 0; i < jsonObject.length; i++) {
-  csvData.push(jsonObject[i].split(','));
-}
-// Retrived data from csv file content
-alert(csvData);
-
+var abbreviations = [];
+var explanations = [];
 var abbrvInput = $("#abbrvInput").val().split("\n");
 for (var i = 0; i < abbrvInput.length; i++) {
   var temp = abbrvInput[i].split(",");
