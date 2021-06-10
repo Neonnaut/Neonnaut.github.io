@@ -1,16 +1,38 @@
-<img src="icon.png" align="right" />
+# Gloss My Gloss
 
-# Awesome README
-> A curated list of awesome READMEs
+> A generator for interlinear glosses
 
-Elements in beautiful READMEs include, but are not limited to: images, screenshots, GIFs, text formatting, etc.
+Boop!
 
 ## Use
 
+Do stuff!
 
+### Plain text
+
+⟨p⟩
+
+### HTML tables
+
+⟨Table⟩
+⟨tr class="first-row"⟩ ⟨td⟩
+
+### Interlinear div
+
+⟨div⟩
+
+### Latex
+
+gll
+
+### CWS
+
+gll
+
+### Wiki table
+
+|
 
 ## License
 
 As is.
-
- 
