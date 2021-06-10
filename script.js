@@ -84,7 +84,7 @@ function convert(conv) {
 				var glossLine = lines[i].split(" ").map($.trim).filter(function (x) { return !(x === ""); });
 				for (let j = 0; j < normLine.length; j++) {
 					if ((typeof normLine !== "undefined") || (typeof glossLine !== "undefined")) {
-						gloss += "[gloss=" + normLine[j] + "]" + glossLine[j] + "[/gloss]";
+						gloss += "[gloss=" + glossLine[j] + "]" + normLine[j] + "[/gloss]";
 					} else {
 						alert("Not matched");
 					}
