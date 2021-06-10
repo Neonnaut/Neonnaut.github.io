@@ -1,1 +1,97 @@
-success
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<title>Glosser</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="script.js"></script>
+<style>
+  body {
+	padding: 2px 20px 2px 20px;
+}
+h2 {
+  margin-bottom: 0;
+  margin-top: 6px;
+}
+#input, #output {
+	height: 6em;
+  width: 100%;
+}
+#abbrvInput {
+	height: 5em;
+}
+.gloss-abbr {
+	cursor: help;
+}
+.gloss-abbr-caps {
+	font-variant: small-caps; font-variant-numeric: oldstyle-nums; text-transform: lowercase; cursor: help;
+}
+.small-caps {
+  font-variant: small-caps; font-variant-numeric: oldstyle-nums; text-transform: lowercase;
+}
+table tr {
+  white-space:nowrap;
+}
+</style>
+</head>
+
+
+<body>
+
+<h2>Enter text to be glossed</h2>
+<textarea class="box" id="input" name="inputA">
+太陽が東の空に昇る
+taiyō ga higashi no sora ni noboru
+/taijoː ŋa çiŋaɕi no soɾa nʲi noboɾɯᵝ/
+sun SUBJECT east POSS.1S.wa sky LOCATIVE rise
+"The sun rises in the eastern sky."</textarea><br>
+
+<h2>Markup</h2>
+<div class="switch-field">
+  <input type="radio" id="PlainText" value="PlainText" name="markupButton"/>
+  <label for="PlainText">PlainText</label>
+  <input type="radio" id="HTMLTableoption" value="HTMLTableoption" name="markupButton" checked/>
+  <label for="HTMLTableoption">HTMLTableoption</label>
+  <input type="radio" id="Interlinear" value="Interlinear" name="markupButton"/>
+  <label for="Interlinear">Interlinear Div</label>
+  <br>
+  <input type="radio" id="LatexTable" value="LatexTable" name="markupButton"/>
+  <label for="LatexTable">LatexTable</label>
+  <input type="radio" id="CWS" value="CWS" name="markupButton"/>
+  <label for="CWS">CWS</label>
+  <input type="radio" id="WikiTable" value="WikiTable" name="markupButton"/>
+  <label for="WikiTable">WikiTable</label>
+</div>
+
+<h2>Single lines (seperate by comma, always the last line)</h2>
+<input id="notInterlinear" name="notInterlinear" value="1"></input>
+<br><br>
+
+<h2>Use small caps on gloss line?</h2>
+<input type="checkbox" id="useSmallCaps" name="useSmallCaps" checked />
+<label for="useSmallCaps">Yes</label>
+
+<h2>Use abbreviations?</h2>
+<input type="checkbox" id="useAbbrv" name="useAbbrv" checked  onclick="checkIfUseAbbrv();" />
+<label for="useAbbrv">Yes</label><br>
+
+<h2>Enter abbreviations</h2>
+<textarea id="abbrvInput" name="abbrvInput">
+1S,Iwaweewa
+PL,plural
+POSS,possesive
+</textarea>
+<br>
+
+<h2>Enter delimiters</h2>
+<textarea id="abbrvDelimiterInput" name="abbrvDelimiterInput">.,-,=,›</textarea>
+<br><br>
+
+<input type="submit" id="glossarize">
+<br><br>
+
+<div id="out"></div>
+
+</body>
+
+</html>
