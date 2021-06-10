@@ -13,8 +13,12 @@ h2 {
   margin-bottom: 0;
   margin-top: 6px;
 }
-#input, #output {
+#input {
 	height: 6em;
+  width: 100%;
+}
+#output {
+  height: 12em;
   width: 100%;
 }
 #abbrvInput {
@@ -35,6 +39,13 @@ table tr {
 table tr td {
   padding-right: 3px;
 }
+input[type=submit] {
+  font-weight:bold;
+	font-size: 18px;
+	text-align: center;
+	padding: 8px 24px;
+  cursor: pointer;
+}
 
 </style>
 </head>
@@ -42,34 +53,41 @@ table tr td {
 
 <body>
 
+<h2>Markup</h2>
+<div class="switch-field">
+  <input type="radio" id="HTMLTableoption" value="HTMLTableOption" name="markupButton" checked />
+  <label for="HTMLTableoption">HTMLTableoption</label>
+  <input type="radio" id="ZBBgloss" value="ZBBgloss" name="markupButton"/>
+  <label for="Interlinear">ZBB Gloss</label>
+  <br>
+  <input type="radio" id="PlainText" value="PlainText" name="markupButton" disabled />
+  <label for="PlainText">PlainText</label>
+  <input type="radio" id="Interlinear" value="Interlinear" name="markupButton" disabled />
+  <label for="Interlinear">Interlinear Div</label>
+  <input type="radio" id="LatexTable" value="LatexTable" name="markupButton"disabled />
+  <label for="LatexTable">LatexTable</label>
+  <input type="radio" id="CWS" value="CWS" name="markupButton"disabled />
+  <label for="CWS">CWS</label>
+  <input type="radio" id="WikiTable" value="WikiTable" name="markupButton"disabled />
+  <label for="WikiTable">WikiTable</label>
+</div>
+
 <h2>Enter text to be glossed</h2>
 <textarea class="box" id="input" name="inputA">
 太陽が東の空に昇る
 taiyō ga higashi no sora ni noboru
 /taijoː ŋa çiŋaɕi no soɾa nʲi noboɾɯᵝ/
 sun SUBJECT east POSS.1S.wa sky LOCATIVE rise
-"The sun rises in the eastern sky."</textarea><br>
+"The sun rises in the eastern sky."</textarea><br><br>
 
-<h2>Markup</h2>
-<div class="switch-field">
-  <input type="radio" id="PlainText" value="PlainText" name="markupButton"/>
-  <label for="PlainText">PlainText</label>
-  <input type="radio" id="HTMLTableoption" value="HTMLTableoption" name="markupButton" checked/>
-  <label for="HTMLTableoption">HTMLTableoption</label>
-  <input type="radio" id="Interlinear" value="Interlinear" name="markupButton"/>
-  <label for="Interlinear">Interlinear Div</label>
-  <br>
-  <input type="radio" id="LatexTable" value="LatexTable" name="markupButton"/>
-  <label for="LatexTable">LatexTable</label>
-  <input type="radio" id="CWS" value="CWS" name="markupButton"/>
-  <label for="CWS">CWS</label>
-  <input type="radio" id="WikiTable" value="WikiTable" name="markupButton"/>
-  <label for="WikiTable">WikiTable</label>
-</div>
+<input type="submit" id="glossarize" value="Glossarize">
+<br><br>
+<div id="out"></div>
+<br><hr>
 
 <h2>Single lines (seperate by comma, always the last line)</h2>
 <input id="notInterlinear" name="notInterlinear" value="1"></input>
-<br><br>
+<br>
 
 <h2>Use small caps on gloss line?</h2>
 <input type="checkbox" id="useSmallCaps" name="useSmallCaps" checked />
@@ -90,12 +108,6 @@ POSS,possesive
 <h2>Enter delimiters</h2>
 <textarea id="abbrvDelimiterInput" name="abbrvDelimiterInput">.,-,=,›</textarea>
 <br><br>
-
-<input type="submit" id="glossarize">
-<br><br>
-
-<div id="out"></div>
-
 </body>
 
 </html>

@@ -56,58 +56,92 @@ useSmallCaps
 );
 
 convert(conv);
-$("#out").html(conv.table);
+$("#out").html(conv.output);
 }
 
 function convert(conv) {
 var nonInterlinear = conv.nonInterlinear;
 var useAbbrv = conv.useAbbrv;
 var useSmallCaps = conv.useSmallCaps;
+var markup = conv.markup;
 
 var lines = $("#input").val().split("\n").map($.trim).filter(function(x) { return !(x === ""); });
 
-//lines = I am dogs, 1S be.PRS.IND dogs
-for (let i = 0; i < lines.length; i++) {
-  var skipline = false;
-  var a = 0;
-  var parsedEntry = "";
-	while (a < nonInterlinear[a] ) {
-	if (nonInterlinear[a] == i + 1) {
-	  skipline = true;
-	  a == nonInterlinear[a] - 5;
-	}
-	a++
-  }
-  var entries = lines[i].split(" ").map($.trim).filter(function(x) { return !(x === ""); });
-  // Do something if is the second last iteration of the array
-  if ((i + 1 == lines.length - 1) && (useAbbrv || useSmallCaps)) {
-	for (let b = 0; b < entries.length; b++) {
-	  parsedEntry += "<td>" + splitEntryGloss(entries[b],conv) + "</td>";
-	}
-	conv.addLine(parsedEntry);
-  //Do something if skip line or last line
-  } else if (skipline || i + 1 == lines.length) {
-	var maxLines = 0;
-	for (let m = 0; m < lines.length; m++) {
-	  var entriesZ = lines[m].split(" ").map($.trim).filter(function(x) { return !(x === ""); });
-	  for (let n = 0; n < entriesZ.length; n++) {
-		if (maxLines <= entriesZ.length) {
-		  maxLines = entriesZ.length;
+if (markup == "ZBBgloss") {
+	zbbMarkup();
+} else if (markup == "HTMLTableOption"){
+	htmlTableMarkup();
+}
+
+function zbbMarkup() {
+	var gloss = "";
+	let i = 0;
+	while (i < lines.length){
+		//Third last line or if there are only two lines
+		if ((i + 3 == lines.length) || (lines.length == 2)) {
+			var normLine = lines[i].split(" ").map($.trim).filter(function(x) { return !(x === ""); });
+			i++;
+			var glossLine = lines[i].split(" ").map($.trim).filter(function(x) { return !(x === ""); });
+			for (let j = 0; j < normLine.length; j++) {
+				if((typeof normLine !== "undefined") || (typeof glossLine !== "undefined")) {
+					gloss += "[gloss=" + normLine[j] + "]" + glossLine[j] + "[/gloss]";
+				} else {
+					alert("Not matched");
+				}
+			}
+			gloss += "\n"
+		} else {
+			gloss += lines[i] + "\n";
 		}
-	  }
+		i++;
 	}
-	conv.addSingleLineEntry(lines[i],maxLines);
-  //Else do normal line
-  } else {
-	for (let c = 0; c < entries.length; c++) {
-	  parsedEntry += "<td>" + entries[c] + "</td>";
+	conv.finishZbb(gloss);
+}
+
+function htmlTableMarkup() {
+	for (let i = 0; i < lines.length; i++) {
+		var skipline = false;
+		var a = 0;
+		var parsedEntry = "";
+		while (a < nonInterlinear[a] ) {
+		if (nonInterlinear[a] == i + 1) {
+			skipline = true;
+			a == nonInterlinear[a] - 5;
+		}
+		a++
+		}
+		var entries = lines[i].split(" ").map($.trim).filter(function(x) { return !(x === ""); });
+		// Do something if is the second last iteration of the array
+		if ((i + 2 == lines.length) && (useAbbrv || useSmallCaps)) {
+		for (let b = 0; b < entries.length; b++) {
+			parsedEntry += "<td>" + splitEntryGloss(entries[b],conv) + "</td>";
+		}
+		conv.addLine(parsedEntry);
+		//Do something if skip line or last line
+		} else if (skipline || i + 1 == lines.length) {
+		var maxLines = 0;
+		for (let m = 0; m < lines.length; m++) {
+			var entriesZ = lines[m].split(" ").map($.trim).filter(function(x) { return !(x === ""); });
+			for (let n = 0; n < entriesZ.length; n++) {
+			if (maxLines <= entriesZ.length) {
+				maxLines = entriesZ.length;
+			}
+			}
+		}
+		conv.addSingleLineEntry(lines[i],maxLines);
+		//Else do normal line
+		} else {
+		for (let c = 0; c < entries.length; c++) {
+			parsedEntry += "<td>" + entries[c] + "</td>";
+		}
+		conv.addLine(parsedEntry);
+		}
+		parsedEntry = "";
 	}
-	conv.addLine(parsedEntry);
-  }
-  parsedEntry = "";
+	conv.finish();
+	}
 }
-conv.finish();
-}
+
 
 function splitEntryGloss(entry,conv) {
 var result = "";
@@ -148,13 +182,13 @@ function setEntryGloss() {
 	  result = result.concat(word);
 	}
   } else if (useAbbrv){
-	  if (word == word.toUpperCase) {
+	  if (word == word.toUpperCase() && useSmallCaps) {
 		result = result.concat("<abbr class='",useSmallCaps,"' title='", glossexpl,"'>", word, "</abbr>");
 	  } else {
 		result = result.concat("<abbr class='gloss-abbr' title='", glossexpl,"'>", word, "</abbr>");  
 	  }
   } else {
-	result = result.concat("a class='small-caps'>", word, "</a>");
+	result = result.concat("<a class='small-caps'>", word, "</a>");
   }
 }
 return result;
@@ -163,7 +197,7 @@ var Converter = function (markup, nonInterlinear, useAbbrv, abbreviations, expla
 this.orig = "";
 this.gloss = "";
 this.lines = "";
-this.table = "";
+this.output = "";
 
 this.markup = markup;
 
@@ -187,8 +221,13 @@ Converter.prototype.addSingleLineEntry = function(input,maxLines) {
 this.orig += "<tr><td colspan=" + maxLines + ">" + input + "</td></tr>" + "\n";
 };
 Converter.prototype.finish = function() {
-this.table = "<table>" + this.orig + "</table>";
+this.output = "<table>" + "\n" + this.orig + "\n" + "</table><br>" + "<textarea id='output'>"
++ "\n" + "<table>" + "\n" + this.orig +"</table>" + "</textarea>";
 };
+Converter.prototype.finishZbb = function(input) {
+	this.output = "<textarea id='output'>" + input + "</textarea>";
+}
+
 // Set these inputs to disabled if user has selected not to use abbreviations.
 function checkIfUseAbbrv() {
 if($("#useAbbrv").is(':checked')) {
