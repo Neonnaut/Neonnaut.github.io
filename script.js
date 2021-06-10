@@ -148,7 +148,11 @@ function setEntryGloss() {
 	  result = result.concat(word);
 	}
   } else if (useAbbrv){
-	result = result.concat("<abbr class='",useSmallCaps,"' title='", glossexpl,"'>", word, "</abbr>");
+	  if (word == word.toUpperCase) {
+		result = result.concat("<abbr class='",useSmallCaps,"' title='", glossexpl,"'>", word, "</abbr>");
+	  } else {
+		result = result.concat("<abbr class='gloss-abbr' title='", glossexpl,"'>", word, "</abbr>");  
+	  }
   } else {
 	result = result.concat("a class='small-caps'>", word, "</a>");
   }
