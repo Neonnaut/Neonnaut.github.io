@@ -22,6 +22,19 @@ var origExplanations = ["First Person (speaker)","Second person (adrressee)","Th
 "benefactive","causative","classifier","comitative","complementizer","completive","conditional","copula","converb","dative","declarative","definite","demonstrative","determiner","distal","distributive","dual","durative","ergative","exclusive","feminine","focus","future","genitive","imperative","inclusive","indicative","indefinite","infinitive","instrumental","intransitive","imperfective","irrealis","locative","masculine","neuter","negation - negative","nominalizer/nominalization","nominative","object","oblique","patient-like argument of canonical transitive verb","passive","perfective","plural","possessive","predicative","perfect","present","progressive","prohibitive","proximal/proximate","past","participle","purposive","question particle/marker","quotative","reciprocal","reflexive","relative","resultative","single argument of canonical intransitive verb","subject","subjunctive","singular","topic","transitive","vocative","zero (null) morpheme"];
 var abbreviations = ["what?"];
 var explanations = ["this"];
+
+var url = "/abbreviations.csv";
+var request = new XMLHttpRequest();
+request.open("GET", url, false);
+request.send(null);
+var csvData = new Array();
+var jsonObject = request.responseText.split(/\r?\n|\r/);
+for (var i = 0; i < jsonObject.length; i++) {
+  csvData.push(jsonObject[i].split(','));
+}
+// Retrived data from csv file content
+alert(csvData);
+
 var abbrvInput = $("#abbrvInput").val().split("\n");
 for (var i = 0; i < abbrvInput.length; i++) {
   var temp = abbrvInput[i].split(",");

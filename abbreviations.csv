@@ -1,0 +1,171 @@
+1,First Person (speaker)
+2,Second person (adrressee)
+3,Third person (referent)
+4,Fourth person (oviative or generic)
+12,First person inclusive
+1E,First person exclusive
+1S,First person singular
+1DU,First person dual
+1PAU,First person paucal
+1P,First person plural
+1T,First person trial
+12S,First person inclusive singular
+12DU,First person inclusive dual
+12PAU,First person inclusive paucal
+12P,First person inclusive plural
+12T,First person inclusive trial
+1GEN,First person genitive (my or our)
+1ES,First person inclusive singular
+1EDU,First person exclusive dual
+1EPAU,First person exclusive paucal
+1EP,First person exclusive plural
+2S,Second person singular
+2DU,Second person dual
+2PAU,Second person paucal
+2P,Second person plural
+2T,Second person trial
+2GEN,Second person genitive (your)
+3S,Third person singular
+3DU,Third person dual
+3PAU,Third person paucal
+3P,Third person plural
+3T,Third person trial
+3GEN,Third person genitive (theirs)
+3SF,Third person singular feminine (she)
+3SM,Third person singular masculine (he)
+A,agent-like argument of canonical transitive verb
+ABESS,abessive case
+ABL,ablative case (from)
+ABS,absolutive case
+ABSL,absolute (free - non-incorporated form of noun)
+ACC,accusative case
+ACCOM,accompanier
+ACP,accomplishment
+ACR,actor role
+ADDR,addressive
+ADESS,adessive case (at)
+ADEL,adelative
+ADJ,adjective
+ADJZ,adjectivizer
+ADM,admonitive mood (warning)
+ADV,adverb(ial); adverbial case
+ADVS,adversative
+ADVZ,adverbializer
+AF,actor/agent focus - agent voice
+AFF,affirmative
+AFFT,affective case
+AFW,away from water
+AGN,agent nominalization
+AGR,agreement affix
+ALL,allative case
+ALLOC,allocutive agreement
+AN,animate gender
+ANIM,animate gender
+ANA,anaphoric demonstrative
+ANAPH,anaphoric demonstrative
+AND,andative (going towards)
+ANTE,in front of
+ANTESS,antessive case (before)
+ANTIC,anticausative
+ANTIP,antipassive
+AC,anticausative
+AP,antipassive voice
+AO,agent-orientated verb
+AOR,aorist (= PFV or PST.PFV )
+APPL,applicative
+APPR,apprehensive mood (lest)
+APRX,approximative
+APPR,approximative
+APUD,near - in the vicinity of
+ARG,argumentative
+ART,article
+ASRT,assertive mood
+ASSUM,assumptive mood - assumed
+AT,agent trigger
+ATTEN,attenuative
+ATR,attributive
+AUD,auditory evidential
+AUX,auxiliary
+AUG,augmentative
+AVERT,avertive
+AVR,aversative
+ABL,ablative
+ABS,absolutive
+ACC,accusative
+ADJ,adjective
+ADV,adverb(ial)
+AGR,agreement
+ALL,allative
+ANTIP,antipassive
+APPL,applicative
+ART,article
+AUX,auxiliary
+BEN,benefactive
+CAUS,causative
+CLF,classifier
+COM,comitative
+COMP,complementizer
+COMPL,completive
+COND,conditional
+COP,copula
+CVB,converb
+DAT,dative
+DECL,declarative
+DEF,definite
+DEM,demonstrative
+DET,determiner
+DIST,distal
+DISTR,distributive
+DU,dual
+DUR,durative
+ERG,ergative
+EXCL,exclusive
+F,feminine
+FOC,focus
+FUT,future
+GEN,genitive
+IMP,imperative
+INCL,inclusive
+IND,indicative
+INDF,indefinite
+INF,infinitive
+INS,instrumental
+INTR,intransitive
+IPFV,imperfective
+IRR,irrealis
+LOC,locative
+M,masculine
+N,neuter
+NEG,negation - negative
+NMLZ,nominalizer/nominalization
+NOM,nominative
+OBJ,object
+OBL,oblique
+P,patient-like argument of canonical transitive verb
+PASS,passive
+PFV,perfective
+PL,plural
+POSS,possessive
+PRED,predicative
+PRF,perfect
+PRS,present
+PROG,progressive
+PROH,prohibitive
+PROX,proximal/proximate
+PST,past
+PTCP,participle
+PURP,purposive
+Q,question particle/marker
+QUOT,quotative
+RECP,reciprocal
+REFL,reflexive
+REL,relative
+RES,resultative
+S,single argument of canonical intransitive verb
+SBJ,subject
+SBJV,subjunctive
+SG,singular
+TOP,topic
+TR,transitive
+VOC,vocative
+?,zero (null) morpheme
