@@ -35,18 +35,11 @@
       height: 5em;
     }
 
-    .gloss-abbr {
+    .abbrv {
       cursor: help;
     }
 
-    .gloss-abbr-caps {
-      font-variant: small-caps;
-      font-variant-numeric: oldstyle-nums;
-      text-transform: lowercase;
-      cursor: help;
-    }
-
-    .small-caps {
+    .sc {
       font-variant: small-caps;
       font-variant-numeric: oldstyle-nums;
       text-transform: lowercase;
@@ -70,9 +63,7 @@
   </style>
 </head>
 
-
 <body>
-
   <h2>Markup</h2>
   <div class="switch-field">
     <input type="radio" id="HTMLTableoption" value="HTMLTableOption" name="markupButton" checked />
@@ -94,11 +85,10 @@
 
   <h2>Enter text to be glossed</h2>
   <textarea class="box" id="input" name="inputA">
-太陽が東の空に昇る
-taiyō ga higashi no sora ni noboru
-/taijoː ŋa çiŋaɕi no soɾa nʲi noboɾɯᵝ/
-sun SUBJECT east POSS.1S.wa sky LOC rise
-"The sun rises in the eastern sky."</textarea><br><br>
+Astra inclinant, sed non obligant.
+/astra inkliːnant sed non obligant/
+star.ACC.PL incline.PRS.PTCP but NEG bind.3PL.PRS.ACT.IND
+"The stars incline us, they do not bind us."</textarea><br><br>
 
   <input type="submit" id="glossarize" value="Glossarize">
   <br><br>
@@ -106,8 +96,8 @@ sun SUBJECT east POSS.1S.wa sky LOC rise
   <br>
   <hr>
 
-  <h2>Single lines (seperate by comma, always the last line)</h2>
-  <input id="notInterlinear" name="notInterlinear" value="1"></input>
+  <h2>Non allignable lines (ie: the translation line), separated by commas</h2>
+  <input id="notInterlinear" name="notInterlinear"></input>
   <br>
 
   <h2>Use small caps on gloss line?</h2>
@@ -120,12 +110,16 @@ sun SUBJECT east POSS.1S.wa sky LOC rise
 
   <h2>Enter abbreviations</h2>
   <textarea id="abbrvInput" name="abbrvInput">
-1S,I am overwriting first person singular
-sky,The outer atmosphere
+ACT,Actor voice
+CNS,Construct state
 </textarea>
   <br>
 
-  <h2>Enter delimiters</h2>
+  <h2>Only use the above above abbreviations instead of the default?</h2>
+  <input type="checkbox" id="useInputAbbrv" name="useInputAbbrv" />
+  <label for="useInputAbbrv">Yes</label><br>
+
+  <h2>Enter delimiters, separated by a comma</h2>
   <textarea id="abbrvDelimiterInput" name="abbrvDelimiterInput">.,-,=,›</textarea>
   <br><br>
 </body>

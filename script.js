@@ -30,8 +30,10 @@ function glossarize() {
 			explanations.push(temp[1]);
 		}
 	}
-	abbreviations = abbreviations.concat(origAbbreviations);
-	explanations = explanations.concat(origExplanations);
+	if (!$("#useInputAbbrv").is(":checked")) {
+		abbreviations = abbreviations.concat(origAbbreviations);
+		explanations = explanations.concat(origExplanations);
+	}
 
 	//Get delimiters and concat to original
 	var abbrvDelimiterInput = $("#abbrvDelimiterInput").val().split(",");
@@ -39,9 +41,9 @@ function glossarize() {
 	//Get if use caps
 	var useSmallCaps = $("#useSmallCaps").is(":checked");
 	if (useSmallCaps == true) {
-		useSmallCaps = "gloss-abbr-caps";
+		useSmallCaps = "abbrv sc";
 	} else {
-		useSmallCaps = "gloss-abbr";
+		useSmallCaps = "abbrv";
 	}
 
 	//CONVERT
@@ -121,8 +123,8 @@ function convert(conv) {
 			} else if (skipline || i + 1 == lines.length) {
 				var maxLines = 0;
 				for (let m = 0; m < lines.length; m++) {
-					var entriesZ = lines[m].split(" ").map($.trim).filter(function (x) { return !(x === ""); });
-					for (let n = 0; n < entriesZ.length; n++) {
+					if (m != i) {
+						var entriesZ = lines[m].split(" ").map($.trim).filter(function (x) { return !(x === ""); });
 						if (maxLines <= entriesZ.length) {
 							maxLines = entriesZ.length;
 						}
@@ -177,7 +179,7 @@ function splitEntryGloss(entry, conv) {
 		}
 		if (glossexpl == "") {
 			if (word == word.toUpperCase()) {
-				result = result.concat("<a class='small-caps'>", word, "</a>");
+				result = result.concat("<a class='sc'>", word, "</a>");
 			} else {
 				result = result.concat(word);
 			}
@@ -185,10 +187,10 @@ function splitEntryGloss(entry, conv) {
 			if (word == word.toUpperCase() && useSmallCaps) {
 				result = result.concat("<abbr class='", useSmallCaps, "' title='", glossexpl, "'>", word, "</abbr>");
 			} else {
-				result = result.concat("<abbr class='gloss-abbr' title='", glossexpl, "'>", word, "</abbr>");
+				result = result.concat("<abbr class='abbrv' title='", glossexpl, "'>", word, "</abbr>");
 			}
 		} else {
-			result = result.concat("<a class='small-caps'>", word, "</a>");
+			result = result.concat("<a class='sc'>", word, "</a>");
 		}
 	}
 	return result;
@@ -233,9 +235,11 @@ function checkIfUseAbbrv() {
 	if ($("#useAbbrv").is(':checked')) {
 		$("#abbrvInput").prop('disabled', false);
 		$("#abbrvDelimiterInput").prop('disabled', false);
+		$("#useInputAbbrv").prop('disabled', false);
 	} else {
 		$("#abbrvInput").prop('disabled', true);
 		$("#abbrvDelimiterInput").prop('disabled', true);
+		$("#useInputAbbrv").prop('disabled', false);
 	}
 }
 $(window).load(function () {
