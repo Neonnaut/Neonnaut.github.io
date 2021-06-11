@@ -276,19 +276,19 @@ Converter.prototype.addSingleLineEntry = function (input, maxLines) {
 	this.orig += "<tr><td colspan=" + maxLines + ">" + input + "</td></tr>" + "\n";
 };
 Converter.prototype.finish = function () {
-	if (this.output == "") {
-		this.output = "<textarea id='output'>"
+	if (this.orig == "") {
+		this.output = "<textarea id='output' readonly>"
 			+ "\n" + "</textarea>";
 	} else {
-		this.output = "<table>" + "\n" + this.orig + "\n" + "</table><br>" + "<textarea id='output'>"
+		this.output = "<table>" + "\n" + this.orig + "\n" + "</table><br>" + "<textarea id='output' readonly>"
 			+ "\n" + "<table>" + "\n" + this.orig + "</table>" + "</textarea>";
 	}
 };
 Converter.prototype.finishZbb = function (input) {
-	this.output = "<textarea id='output'>" + input + "</textarea>";
+	this.output = "<textarea id='output' readonly>" + input + "</textarea>";
 }
 Converter.prototype.finishPlainText = function (input) {
-	this.output = "<textarea id='output'>" + input + "</textarea>";
+	this.output = "<textarea id='output' readonly>" + input + "</textarea>";
 }
 
 // Set these inputs to disabled if user has selected not to use abbreviations.
