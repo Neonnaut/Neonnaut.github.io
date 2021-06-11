@@ -239,7 +239,7 @@ function checkIfUseAbbrv() {
 	} else {
 		$("#abbrvInput").prop('disabled', true);
 		$("#abbrvDelimiterInput").prop('disabled', true);
-		$("#useInputAbbrv").prop('disabled', false);
+		$("#useInputAbbrv").prop('disabled', true);
 	}
 }
 $(window).load(function () {
