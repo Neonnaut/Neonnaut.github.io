@@ -14,6 +14,7 @@
     h2 {
       margin-bottom: 0;
       margin-top: 6px;
+      font-size: 18px;
     }
 
     #input {
@@ -60,6 +61,48 @@
       padding: 8px 24px;
       cursor: pointer;
     }
+
+    .switch-field {
+      display: flex;
+      overflow: hidden;
+    }
+
+    .switch-field input {
+      position: absolute !important;
+      clip: rect(0, 0, 0, 0);
+      height: 1px;
+      width: 1px;
+      border: 0;
+      overflow: hidden;
+    }
+
+    .switch-field label {
+      background-color: #e4e4e4;
+      color: rgba(0, 0, 0, 0.9);
+      font-weight: 18;
+      font-size: 14px;
+      line-height: 1;
+      text-align: center;
+      padding: 8px 16px;
+      margin-right: -1px;
+      border: 1px solid rgba(0, 0, 0, 0.2);
+      box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);
+      transition: all 0.1s ease-in-out;
+      user-select: none;
+    }
+
+    .switch-field label:hover {
+      cursor: pointer;
+    }
+
+    .switch-field input:checked+label {
+      background-color: #00d9d9;
+      box-shadow: none;
+    }
+
+    .switch-field input:disabled+label {
+      background-color: #868686;
+    }
   </style>
 </head>
 
@@ -67,20 +110,20 @@
   <h2>Markup</h2>
   <div class="switch-field">
     <input type="radio" id="HTMLTableoption" value="HTMLTableOption" name="markupButton" checked />
-    <label for="HTMLTableoption">HTMLTable option</label>
+    <label for="HTMLTableoption">HTML Table</label>
     <input type="radio" id="ZBBgloss" value="ZBBgloss" name="markupButton" />
     <label for="ZBBgloss">ZBB Gloss</label>
     <br>
     <input type="radio" id="PlainText" value="PlainText" name="markupButton" />
-    <label for="PlainText">PlainText</label>
+    <label for="PlainText">Plain Text</label>
     <input type="radio" id="Interlinear" value="Interlinear" name="markupButton" disabled />
     <label for="Interlinear">Interlinear Div</label>
     <input type="radio" id="LatexTable" value="LatexTable" name="markupButton" disabled />
-    <label for="LatexTable">LatexTable</label>
+    <label for="LatexTable">Latex Gloss</label>
     <input type="radio" id="CWS" value="CWS" name="markupButton" disabled />
-    <label for="CWS">CWS</label>
+    <label for="CWS">CWS Gloss</label>
     <input type="radio" id="WikiTable" value="WikiTable" name="markupButton" disabled />
-    <label for="WikiTable">WikiTable</label>
+    <label for="WikiTable">Wiki Table</label>
   </div>
 
   <h2>Enter text to be glossed</h2>
@@ -93,20 +136,20 @@ star.ACC.PL incline.PRS.PTCP but NEG bind.3P.PRS.ACT.IND
   <input type="submit" id="glossarize" value="Glossarize">
   <br><br>
   <div id="out"></div>
-  <br>
-  <hr>
+  <hr><br>
 
-  <h2>Non allignable lines (ie: the translation line), separated by commas</h2>
+  <div class="switch-field">
+    <input type="checkbox" id="useSmallCaps" name="useSmallCaps" checked />
+    <label for="useSmallCaps">Use small caps on gloss line</label>
+    <input type="checkbox" id="useAbbrv" name="useAbbrv" checked onclick="checkIfUseAbbrv();" />
+    <label for="useAbbrv">Use abbreviations</label><br>
+    <input type="checkbox" id="useInputAbbrv" name="useInputAbbrv" checked />
+    <label for="useInputAbbrv">Use default abbreviations</label><br>
+  </div>
+
+  <h2>Non alignable lines (ie: the translation line), separated by commas, e.g: 1,2</h2>
   <input id="notInterlinear" name="notInterlinear"></input>
   <br>
-
-  <h2>Use small caps on gloss line?</h2>
-  <input type="checkbox" id="useSmallCaps" name="useSmallCaps" checked />
-  <label for="useSmallCaps">Yes</label>
-
-  <h2>Use abbreviations?</h2>
-  <input type="checkbox" id="useAbbrv" name="useAbbrv" checked onclick="checkIfUseAbbrv();" />
-  <label for="useAbbrv">Yes</label><br>
 
   <h2>Enter abbreviations</h2>
   <textarea id="abbrvInput" name="abbrvInput">
@@ -114,10 +157,6 @@ ACT,Actor voice
 CNS,Construct state
 </textarea>
   <br>
-
-  <h2>Only use the above above abbreviations instead of the default?</h2>
-  <input type="checkbox" id="useInputAbbrv" name="useInputAbbrv" />
-  <label for="useInputAbbrv">Yes</label><br>
 
   <h2>Enter delimiters, separated by a comma</h2>
   <textarea id="abbrvDelimiterInput" name="abbrvDelimiterInput">.,-,=,›</textarea>

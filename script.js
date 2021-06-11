@@ -30,7 +30,7 @@ function glossarize() {
 			explanations.push(temp[1]);
 		}
 	}
-	if (!$("#useInputAbbrv").is(":checked")) {
+	if ($("#useInputAbbrv").is(":checked")) {
 		abbreviations = abbreviations.concat(origAbbreviations);
 		explanations = explanations.concat(origExplanations);
 	}
