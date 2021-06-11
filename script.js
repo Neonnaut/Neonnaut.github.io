@@ -73,6 +73,8 @@ function convert(conv) {
 		zbbMarkup();
 	} else if (markup == "HTMLTableOption") {
 		htmlTableMarkup();
+	} else if (markup == "PlainText") {
+		plainTextMarkup();
 	}
 
 	function zbbMarkup() {
@@ -100,6 +102,44 @@ function convert(conv) {
 		conv.finishZbb(gloss);
 	}
 
+	function plainTextMarkup() {
+		var wordLength = [];
+		var gloss = "";
+		for (let m = 0; m < lines.length; m++) {
+			var entriesZ = lines[m].split(" ").map($.trim).filter(function (x) { return !(x === ""); });
+			for (let n = 0; n < entriesZ.length; n++) {
+				if (typeof wordLength[n] === "undefined") {
+					wordLength.push(entriesZ[n].length);
+				}
+				if (wordLength[n] <= entriesZ[n].length) {
+					wordLength[n] = entriesZ[n].length;
+				}
+			}
+		}
+		for (let i = 0; i < lines.length; i++) {
+			// Find out if the line is non allignable
+			var skipline = false;
+			var a = 0;
+			while (a < nonInterlinear[a]) {
+				if (nonInterlinear[a] == i + 1) {
+					skipline = true;
+					a == nonInterlinear[a] - 5;
+				}
+				a++
+			}
+			var line = lines[i].split(" ").map($.trim).filter(function (x) { return !(x === ""); });
+			for (let j = 0; j < line.length; j++) {
+				//alert(skipline);
+				if (!skipline && i + 1 != lines.length) {
+					while (line[j].length < wordLength[j] && j != line.length - 1) {
+						line[j] += " ";
+					}
+				}
+			}
+			gloss += line.join(" ") + "\n";
+		}
+		conv.finishPlainText(gloss);
+	}
 	function htmlTableMarkup() {
 		for (let i = 0; i < lines.length; i++) {
 			var skipline = false;
@@ -227,6 +267,9 @@ Converter.prototype.finish = function () {
 		+ "\n" + "<table>" + "\n" + this.orig + "</table>" + "</textarea>";
 };
 Converter.prototype.finishZbb = function (input) {
+	this.output = "<textarea id='output'>" + input + "</textarea>";
+}
+Converter.prototype.finishPlainText = function (input) {
 	this.output = "<textarea id='output'>" + input + "</textarea>";
 }
 
