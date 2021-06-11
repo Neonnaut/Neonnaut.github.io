@@ -276,8 +276,13 @@ Converter.prototype.addSingleLineEntry = function (input, maxLines) {
 	this.orig += "<tr><td colspan=" + maxLines + ">" + input + "</td></tr>" + "\n";
 };
 Converter.prototype.finish = function () {
-	this.output = "<table>" + "\n" + this.orig + "\n" + "</table><br>" + "<textarea id='output'>"
-		+ "\n" + "<table>" + "\n" + this.orig + "</table>" + "</textarea>";
+	if (this.output == "") {
+		this.output = "<textarea id='output'>"
+			+ "\n" + "</textarea>";
+	} else {
+		this.output = "<table>" + "\n" + this.orig + "\n" + "</table><br>" + "<textarea id='output'>"
+			+ "\n" + "<table>" + "\n" + this.orig + "</table>" + "</textarea>";
+	}
 };
 Converter.prototype.finishZbb = function (input) {
 	this.output = "<textarea id='output'>" + input + "</textarea>";
