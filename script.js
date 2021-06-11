@@ -89,6 +89,9 @@ function convert(conv) {
 				var glossLine = lines[i].split(" ").map($.trim).filter(function (x) { return !(x === ""); });
 				for (let j = 0; j < normLine.length; j++) {
 					if ((typeof normLine !== "undefined") || (typeof glossLine !== "undefined")) {
+						if (useSmallCaps == "abbrv sc") {
+							glossLine[j] = toSmallCaps(glossLine[j]);
+						}
 						gloss += "[gloss=" + glossLine[j] + "]" + normLine[j] + "[/gloss]";
 					} else {
 						alert("Not matched");
@@ -248,6 +251,50 @@ function splitEntryGloss(entry, conv) {
 	}
 	return result;
 }
+
+function toSmallCaps(input) {
+	var table = [];
+	table["A"] = "ᴀ";
+	table["B"] = "ʙ";
+	table["C"] = "ᴄ";
+	table["D"] = "ᴅ";
+	table["E"] = "ᴇ";
+	table["F"] = "ꜰ";
+	table["G"] = "ɢ";
+	table["H"] = "ʜ";
+	table["I"] = "ɪ";
+	table["J"] = "ᴊ";
+	table["K"] = "ᴋ";
+	table["L"] = "ʟ";
+	table["M"] = "ᴍ";
+	table["N"] = "ɴ";
+	table["O"] = "ᴏ";
+	table["P"] = "ᴘ";
+	table["Q"] = "ǫ";
+	table["R"] = "ʀ";
+	table["S"] = "ꜱ";
+	table["T"] = "ᴛ";
+	table["U"] = "ᴜ";
+	table["V"] = "ᴠ";
+	table["W"] = "ᴡ";
+	table["X"] = "x";
+	table["Y"] = "ʏ";
+	table["Z"] = "ᴢ";
+
+	var result = "";
+
+	for (var i = 0; i < input.length; i++) {
+		var c = input[i];
+		if (c in table) {
+			result += table[c];
+		} else {
+			result += c;
+		}
+	}
+	return result;
+}
+
+
 var Converter = function (markup, nonInterlinear, useAbbrv, abbreviations, explanations, abbrvDelimiterInput, useSmallCaps) {
 	this.orig = "";
 	this.gloss = "";
