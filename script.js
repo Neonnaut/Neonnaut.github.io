@@ -106,13 +106,25 @@ function convert(conv) {
 		var wordLength = [];
 		var gloss = "";
 		for (let m = 0; m < lines.length; m++) {
+			// Find out if the line is non allignable
+			var skipline = false;
+			var a = 0;
+			while (a < nonInterlinear[a]) {
+				if (nonInterlinear[a] == m + 1) {
+					skipline = true;
+					a == nonInterlinear[a] - 5;
+				}
+				a++
+			}
 			var entriesZ = lines[m].split(" ").map($.trim).filter(function (x) { return !(x === ""); });
 			for (let n = 0; n < entriesZ.length; n++) {
-				if (typeof wordLength[n] === "undefined") {
-					wordLength.push(entriesZ[n].length);
-				}
-				if (wordLength[n] <= entriesZ[n].length) {
-					wordLength[n] = entriesZ[n].length;
+				if (!skipline && m + 1 != lines.length) {
+					if (typeof wordLength[n] === "undefined") {
+						wordLength.push(entriesZ[n].length);
+					}
+					if (wordLength[n] <= entriesZ[n].length) {
+						wordLength[n] = entriesZ[n].length;
+					}
 				}
 			}
 		}
