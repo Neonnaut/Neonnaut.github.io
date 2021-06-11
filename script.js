@@ -59,6 +59,7 @@ function glossarize() {
 
 	convert(conv);
 	$("#out").html(conv.output);
+	$("#output").select();
 }
 
 function convert(conv) {
