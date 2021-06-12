@@ -73,6 +73,7 @@ table tr {white-space: nowrap;}
 - [ ] accept abbreviation input with delimiters in them e.g: "Q.WH, Interogative question particle"
 - [ ] Latex small caps
 - [ ] fix ZBB small caps (Right now it small caps ANY capital on gloss line)
+- [ ] Read built-in abbreviations from a csv file (tricky? unnecessary?)
 
 ## License
 
