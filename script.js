@@ -162,7 +162,7 @@ function convert(conv) {
 				gloss += "|";
 			}
 		}
-		gloss = "<gbl=" + maxColumns + ">" + gloss + "</gbl>\n";
+		gloss = "<gbl=" + noOfLines + ">" + gloss + "</gbl>\n";
 		var lastLine = lines[noOfLines].split(" ").map($.trim).filter(function (x) { return !(x === ""); });
 		gloss += lastLine.join(" ");
 

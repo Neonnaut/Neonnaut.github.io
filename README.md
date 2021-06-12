@@ -65,12 +65,14 @@ table tr {white-space: nowrap;}
 
 - [ ] Interlinear div markup
 - [x] Latex gloss markup
-- [ ] CWS gloss markup
+- [x] CWS gloss markup
 - [ ] Wiki Table markup
 - [x] Some sort of save/load/remember for options, either using local storage or some other method. Note: saving checkbox state was too much trouble and effort.
 - [ ] An option to bold the first line
 - [ ] An option to bold all linguistic abbreviations
 - [ ] accept abbreviation input with delimiters in them e.g: "Q.WH, Interogative question particle"
+- [ ] Latex small caps
+- [ ] fix ZBB small caps (Right now it small caps ANY capital on gloss line)
 
 ## License
 
