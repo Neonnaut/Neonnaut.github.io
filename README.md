@@ -57,18 +57,19 @@ table tr {white-space: nowrap;}
 ## TODO
 
 - [ ] Interlinear div markup
-- [ ] Latex gloss markup
+- [x] Latex gloss markup
 - [ ] CWS gloss markup
 - [ ] Wiki Table markup
 - [ ] Some sort of save/load/remember for options, either using local storage or some other method
 - [ ] An option to bold the first line
+- [ ] An option to bold all linguistic abbreviations
 - [ ] accept abbreviation input with delimiters in them e.g: "Q.WH, Interogative question particle"
 
 ## License
 
 MIT License
 
-Copyright (c) 2021 Neonnaut
+Copyright (c) 2021
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

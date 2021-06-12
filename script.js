@@ -58,6 +58,7 @@ function glossarize(markup) {
 	convert(conv);
 	$("#out").html(conv.output);
 	$("#output").select();
+	setLocalStorage();
 }
 
 function convert(conv) {
@@ -76,6 +77,10 @@ function convert(conv) {
 		plainTextMarkup();
 	} else if (markup == "latexGloss") {
 		latexMarkup();
+	} else if (markup == "cwsGloss") {
+		cwsMarkup();
+	} else if (markup == "wikiTable") {
+		wikiMarkup();
 	}
 
 	function zbbMarkup() {
@@ -103,7 +108,7 @@ function convert(conv) {
 			}
 			i++;
 		}
-		conv.finishZbb(gloss);
+		conv.finish(gloss);
 	}
 	function latexMarkup() {
 		gloss = "";
@@ -121,7 +126,28 @@ function convert(conv) {
 				gloss += "\\trans " + lines[m] + "\n\\end{exe}"
 			}
 		}
-		conv.finishLatex(gloss);
+		conv.finish(gloss);
+	}
+	function cwsMarkup() {
+		// <gbl=3>Emunn//Emunn//jaba|<b>cosa</b>//TOP.ADD|balui//rock//jaba|ana//by//jaba</gbl>
+		gloss = "";
+		noOfLines = lines.length - 1;
+		for (let a = 0; a < lines.length; a++) {
+			// If last line
+			if (a + 1 == lines.length) {
+				gloss += lines[a]
+			} else {
+				var line = lines[a].split(" ").map($.trim).filter(function (x) { return !(x === ""); });
+				for (let b = 0; b < line.length; b++) {
+					alert(line[b]);
+				}
+			}
+		}
+		conv.finish(gloss);
+	}
+	function wikiMarkup() {
+		gloss = "";
+		conv.finish(gloss);
 	}
 	function plainTextMarkup() {
 		var wordLength = [];
@@ -171,7 +197,7 @@ function convert(conv) {
 			}
 			gloss += line.join(" ") + "\n";
 		}
-		conv.finishPlainText(gloss);
+		conv.finish(gloss);
 	}
 	function htmlTableMarkup() {
 		for (let i = 0; i < lines.length; i++) {
@@ -213,7 +239,7 @@ function convert(conv) {
 			}
 			parsedEntry = "";
 		}
-		conv.finish();
+		conv.finishTable();
 	}
 }
 
@@ -338,7 +364,7 @@ Converter.prototype.addLine = function (input) {
 Converter.prototype.addSingleLineEntry = function (input, maxLines) {
 	this.orig += "<tr><td colspan=" + maxLines + ">" + input + "</td></tr>" + "\n";
 };
-Converter.prototype.finish = function () {
+Converter.prototype.finishTable = function () {
 	if (this.orig == "") {
 		this.output = "<textarea id='output' spellcheck='false' readonly>"
 			+ "\n" + "</textarea>";
@@ -347,27 +373,18 @@ Converter.prototype.finish = function () {
 			+ "\n" + "<table>" + "\n" + this.orig + "</table>" + "</textarea>";
 	}
 };
-Converter.prototype.finishZbb = function (input) {
-	this.output = "<textarea id='output' spellcheck='false' readonly>" + input + "</textarea>";
-}
-Converter.prototype.finishPlainText = function (input) {
-	this.output = "<textarea id='output' spellcheck='false' readonly>" + input + "</textarea>";
-}
-Converter.prototype.finishLatex = function (input) {
+Converter.prototype.finish = function (input) {
 	this.output = "<textarea id='output' spellcheck='false' readonly>" + input + "</textarea>";
 }
 
-// Set these inputs to disabled if user has selected not to use abbreviations.
-function checkIfUseAbbrv() {
-	if ($("#useAbbrv").is(':checked')) {
-		$("#abbrvInput").prop('disabled', false);
-		$("#abbrvDelimiterInput").prop('disabled', false);
-		$("#useInputAbbrv").prop('disabled', false);
-	} else {
-		$("#abbrvInput").prop('disabled', true);
-		$("#abbrvDelimiterInput").prop('disabled', true);
-		$("#useInputAbbrv").prop('disabled', true);
-	}
+function setLocalStorage() {
+	localStorage.setItem('notInterlinear', $('#notInterlinear').val);
+	localStorage.setItem('useSmallCaps', $('#useSmallCaps').val);
+	localStorage.setItem('useAbbrv', $('#useAbbrv').val);
+	localStorage.setItem('useInputAbbrv', $('#useInputAbbrv').val);
+	localStorage.setItem('abbrvInput', $('#abbrvInput').val);
+	localStorage.setItem('abbrvDelimiterInput', $('#abbrvDelimiterInput').val);
+
 }
 $(window).load(function () {
 	$("[name='markupButton']").click(function () {
@@ -378,4 +395,25 @@ $(window).load(function () {
 		}
 		$(id = $(this)).addClass("checked");
 	});
+	$("#useAbbrv").click(function () {
+		if ($("#useAbbrv").is(':checked')) {
+			$("#abbrvInput").prop('disabled', false);
+			$("#abbrvDelimiterInput").prop('disabled', false);
+			$("#useInputAbbrv").prop('disabled', false);
+		} else {
+			$("#abbrvInput").prop('disabled', true);
+			$("#abbrvDelimiterInput").prop('disabled', true);
+			$("#useInputAbbrv").prop('disabled', true);
+		}
+	});
+});
+$(window).onload(function () {
+	if (localStorage.hasOwnProperty('notInterlinear')) {
+		$('#notInterlinear').val(localStorage.getItem('notInterlinear'));
+		$('#useSmallCaps').val(localStorage.getItem('useSmallCaps'));
+		$('#useAbbrv').val(localStorage.getItem('useAbbrv'));
+		$('#useInputAbbrv').val(localStorage.getItem('useInputAbbrv'));
+		$('#abbrvInput').val(localStorage.getItem('abbrvInput'));
+		$('#abbrvDelimiterInput').val(localStorage.getItem('abbrvDelimiterInput'));
+	}
 });
