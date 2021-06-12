@@ -54,29 +54,20 @@
       padding-right: 3px;
     }
 
-    input[type=submit] {
+    /*input[type=submit] {
       font-weight: bold;
       font-size: 18px;
       text-align: center;
       padding: 8px 24px;
       cursor: pointer;
-    }
+    }*/
 
-    .switch-field {
+    #switch-field {
       display: flex;
       overflow: hidden;
     }
 
-    .switch-field input {
-      position: absolute !important;
-      clip: rect(0, 0, 0, 0);
-      height: 1px;
-      width: 1px;
-      border: 0;
-      overflow: hidden;
-    }
-
-    .switch-field label {
+    #switch-field input {
       background-color: #e4e4e4;
       color: rgba(0, 0, 0, 0.9);
       font-weight: 18;
@@ -91,16 +82,16 @@
       user-select: none;
     }
 
-    .switch-field label:hover {
+    #switch-field input:hover {
       cursor: pointer;
     }
 
-    .switch-field input:checked+label {
+    #switch-field .checked {
       background-color: #00d9d9;
       box-shadow: none;
     }
 
-    .switch-field input:disabled+label {
+    #switch-field input:disabled {
       background-color: #868686;
     }
   </style>
@@ -108,48 +99,38 @@
 
 <body>
   <a href="https://github.com/Neonnaut/Neonnaut.github.io">For instructions</a>
-  <h2>Markup</h2>
-  <div class="switch-field">
-    <input type="radio" id="HTMLTableoption" value="HTMLTableOption" name="markupButton" />
-    <label for="HTMLTableoption">HTML Table</label>
-    <input type="radio" id="ZBBgloss" value="ZBBgloss" name="markupButton" />
-    <label for="ZBBgloss">ZBB Gloss</label>
-    <br>
-    <input type="radio" id="PlainText" value="PlainText" name="markupButton" checked />
-    <label for="PlainText">Plain Text</label>
-    <input type="radio" id="Interlinear" value="Interlinear" name="markupButton" disabled />
-    <label for="Interlinear">Interlinear Div</label>
-    <input type="radio" id="LatexTable" value="LatexTable" name="markupButton" disabled />
-    <label for="LatexTable">Latex Gloss</label>
-    <input type="radio" id="CWS" value="CWS" name="markupButton" disabled />
-    <label for="CWS">CWS Gloss</label>
-    <input type="radio" id="WikiTable" value="WikiTable" name="markupButton" disabled />
-    <label for="WikiTable">Wiki Table</label>
-  </div>
 
   <h2>Enter text to be glossed (last line must be the translation, second last is gloss)</h2>
-  <textarea class="box" id="input" name="inputA" placeholder="Astra inclinant, sed non obligant.
+  <textarea class="box" id="input" name="inputA" spellcheck="false" placeholder="Astra inclinant, sed non obligant.
 /astra inkliːnant sed non obligant/
 star.ACC.PL incline.PRS.PTCP but NEG bind.3P.PRS.ACT.IND
 'The stars incline us, they do not bind us.'">
-</textarea><br><br>
+</textarea><br>
 
-  <input type="submit" id="glossarize" value="Glossarize">
-  <br><br>
+  <h2>Markup</h2>
+  <div id="switch-field">
+    <input type="submit" id="htmlTable" value="HTML table" name="markupButton">
+    <input type="submit" id="zbbGloss" value="ZBB gloss" name="markupButton">
+    <input type="submit" id="plainText" value="Plain text" name="markupButton">
+    <input type="submit" id="latexGloss" value="Latex gloss" name="markupButton">
+    <input type="submit" id="interlinear" value="Interlinear div" name="markupButton" disabled>
+    <input type="submit" id="cws" value="CWS gloss" name="markupButton" disabled>
+    <input type="submit" id="wikiTable" value="Wiki table" name="markupButton" disabled>
+  </div>
+
+  <br>
   <div id="out"></div>
-  <hr><br>
+  <hr>
 
   <h2>Non alignable lines (e.g: scriptio continua), separated by commas (e.g: 1,2)</h2>
   <input id="notInterlinear" name="notInterlinear"></input><br><br>
 
-  <div class="switch-field">
-    <input type="checkbox" id="useSmallCaps" name="useSmallCaps" />
-    <label for="useSmallCaps">Use small caps on gloss line</label>
-    <input type="checkbox" id="useAbbrv" name="useAbbrv" checked onclick="checkIfUseAbbrv();" />
-    <label for="useAbbrv">Use abbreviations</label><br>
-    <input type="checkbox" id="useInputAbbrv" name="useInputAbbrv" checked />
-    <label for="useInputAbbrv">Use default abbreviations</label><br>
-  </div><br>
+  <input type="checkbox" id="useSmallCaps" name="useSmallCaps" />
+  <label for="useSmallCaps">Use small caps on gloss line</label><br>
+  <input type="checkbox" id="useAbbrv" name="useAbbrv" checked onclick="checkIfUseAbbrv();" />
+  <label for="useAbbrv">Use abbreviations</label><br>
+  <input type="checkbox" id="useInputAbbrv" name="useInputAbbrv" checked />
+  <label for="useInputAbbrv">Use in-built abbreviations</label><br>
 
   <h2>Enter abbreviations</h2>
   <textarea id="abbrvInput" name="abbrvInput">

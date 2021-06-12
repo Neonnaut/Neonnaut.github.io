@@ -1,6 +1,4 @@
-function glossarize() {
-	//Search radiobuttons for markup
-	var markup = $("input[name=markupButton]").filter(":checked").val();
+function glossarize(markup) {
 
 	//Get noninterlinear lines
 	var notInterlinear = $("#notInterlinear").val().split(",");
@@ -70,12 +68,14 @@ function convert(conv) {
 
 	var lines = $("#input").val().split("\n").map($.trim).filter(function (x) { return !(x === ""); });
 
-	if (markup == "ZBBgloss") {
+	if (markup == "zbbGloss") {
 		zbbMarkup();
-	} else if (markup == "HTMLTableOption") {
+	} else if (markup == "htmlTable") {
 		htmlTableMarkup();
-	} else if (markup == "PlainText") {
+	} else if (markup == "plainText") {
 		plainTextMarkup();
+	} else if (markup == "latexGloss") {
+		latexMarkup();
 	}
 
 	function zbbMarkup() {
@@ -105,7 +105,24 @@ function convert(conv) {
 		}
 		conv.finishZbb(gloss);
 	}
-
+	function latexMarkup() {
+		gloss = "";
+		for (let m = 0; m < lines.length; m++) {
+			// Third last line
+			if (m + 3 == lines.length) {
+				gloss += "\\begin{exe}\n\\ex\n\\gll " + lines[m] + "\\\\\n";
+			}
+			// Second last line
+			if (m + 2 == lines.length) {
+				gloss += lines[m] + "\\\\\n";
+			}
+			// Last line
+			if (m + 1 == lines.length) {
+				gloss += "\\trans " + lines[m] + "\n\\end{exe}"
+			}
+		}
+		conv.finishLatex(gloss);
+	}
 	function plainTextMarkup() {
 		var wordLength = [];
 		var gloss = "";
@@ -294,7 +311,6 @@ function toSmallCaps(input) {
 	return result;
 }
 
-
 var Converter = function (markup, nonInterlinear, useAbbrv, abbreviations, explanations, abbrvDelimiterInput, useSmallCaps) {
 	this.orig = "";
 	this.gloss = "";
@@ -324,18 +340,21 @@ Converter.prototype.addSingleLineEntry = function (input, maxLines) {
 };
 Converter.prototype.finish = function () {
 	if (this.orig == "") {
-		this.output = "<textarea id='output' readonly>"
+		this.output = "<textarea id='output' spellcheck='false' readonly>"
 			+ "\n" + "</textarea>";
 	} else {
-		this.output = "<table>" + "\n" + this.orig + "\n" + "</table><br>" + "<textarea id='output' readonly>"
+		this.output = "<table>" + "\n" + this.orig + "\n" + "</table><br>" + "<textarea id='output' spellcheck='false' readonly>"
 			+ "\n" + "<table>" + "\n" + this.orig + "</table>" + "</textarea>";
 	}
 };
 Converter.prototype.finishZbb = function (input) {
-	this.output = "<textarea id='output' readonly>" + input + "</textarea>";
+	this.output = "<textarea id='output' spellcheck='false' readonly>" + input + "</textarea>";
 }
 Converter.prototype.finishPlainText = function (input) {
-	this.output = "<textarea id='output' readonly>" + input + "</textarea>";
+	this.output = "<textarea id='output' spellcheck='false' readonly>" + input + "</textarea>";
+}
+Converter.prototype.finishLatex = function (input) {
+	this.output = "<textarea id='output' spellcheck='false' readonly>" + input + "</textarea>";
 }
 
 // Set these inputs to disabled if user has selected not to use abbreviations.
@@ -351,5 +370,12 @@ function checkIfUseAbbrv() {
 	}
 }
 $(window).load(function () {
-	$("#glossarize").click(glossarize);
+	$("[name='markupButton']").click(function () {
+		glossarize($(this).attr('id'));
+		var selection = document.querySelectorAll("#switch-field input");
+		for (i = 0; i < selection.length; i++) {
+			selection[i].classList.remove('checked');
+		}
+		$(id = $(this)).addClass("checked");
+	});
 });
