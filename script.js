@@ -68,6 +68,9 @@ function convert(conv) {
 	var markup = conv.markup;
 
 	var lines = $("#input").val().split("\n").map($.trim).filter(function (x) { return !(x === ""); });
+	if (lines == "") {
+		lines = $("#input").attr('placeholder').split("\n").map($.trim).filter(function (x) { return !(x === ""); });
+	}
 
 	if (markup == "zbbGloss") {
 		zbbMarkup();
