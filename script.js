@@ -116,36 +116,78 @@ function convert(conv) {
 			// Third last line
 			if (m + 3 == lines.length) {
 				gloss += "\\begin{exe}\n\\ex\n\\gll " + lines[m] + "\\\\\n";
-			}
-			// Second last line
-			if (m + 2 == lines.length) {
+			} else if (m + 2 == lines.length) {
 				gloss += lines[m] + "\\\\\n";
-			}
-			// Last line
-			if (m + 1 == lines.length) {
-				gloss += "\\trans " + lines[m] + "\n\\end{exe}"
+			} else if (m + 1 == lines.length) {
+				gloss += "\\trans " + lines[m] + "\n\\end{exe}";
+			} else {
+				gloss += lines[m] + "\n";
 			}
 		}
 		conv.finish(gloss);
 	}
 	function cwsMarkup() {
-		// <gbl=3>Emunn//Emunn//jaba|<b>cosa</b>//TOP.ADD|balui//rock//jaba|ana//by//jaba</gbl>
 		gloss = "";
+		table = new Array();
+		maxColumns = 0;
+
 		noOfLines = lines.length - 1;
 		for (let a = 0; a < lines.length; a++) {
 			// If last line
 			if (a + 1 == lines.length) {
-				gloss += lines[a]
+
 			} else {
 				var line = lines[a].split(" ").map($.trim).filter(function (x) { return !(x === ""); });
+				if (maxColumns <= line.length) {
+					maxColumns = line.length;
+				}
+				table[a] = new Array();
 				for (let b = 0; b < line.length; b++) {
-					alert(line[b]);
+					table[a].push(line[b]);
 				}
 			}
 		}
+		for (let j = 0; j < maxColumns; j++) {
+			for (let i = 0; i < noOfLines; i++) {
+				if (table[i][j] != null) {
+					gloss += table[i][j];
+				} else {
+					gloss += "?"
+				}
+				if (i != noOfLines - 1) {
+					gloss += "//";
+				}
+			}
+			if (j != maxColumns - 1) {
+				gloss += "|";
+			}
+		}
+		gloss = "<gbl=" + maxColumns + ">" + gloss + "</gbl>\n";
+		var lastLine = lines[noOfLines].split(" ").map($.trim).filter(function (x) { return !(x === ""); });
+		gloss += lastLine.join(" ");
+
 		conv.finish(gloss);
 	}
 	function wikiMarkup() {
+		/*
+		{| class="wikitable"
+		|mujhe
+		|apne
+		|sabhī
+		|rishtedār
+		|pasand
+		|hɛ̄
+		|-
+		|I. {{abbr|{{sc|DAT}}|Mean Sea Level Pressure}}
+		|{{sc|REFL}}.{{sc|MASC}}.{{sc|PL}}
+		|all.{{sc|nom}}
+		|relatives.{{sc|masc}}.{{sc|PL}}
+		|like
+		|be.{{sc|prs}}.{{sc|masc}}.{{sc|PL}}
+		|-
+		| colspan="6" |'I like all my relatives'
+		|}
+		*/
 		gloss = "";
 		conv.finish(gloss);
 	}
@@ -382,6 +424,13 @@ function setLocalStorage() {
 	localStorage.setItem('abbrvInput', $('#abbrvInput').val());
 	localStorage.setItem('abbrvDelimiterInput', $('#abbrvDelimiterInput').val());
 }
+window.onload = function () {
+	if (localStorage.hasOwnProperty('notInterlinear')) {
+		$('#notInterlinear').val(localStorage.getItem('notInterlinear'));
+		$('#abbrvInput').val(localStorage.getItem('abbrvInput'));
+		$('#abbrvDelimiterInput').val(localStorage.getItem('abbrvDelimiterInput'));
+	}
+};
 $(window).load(function () {
 	$("[name='markupButton']").click(function () {
 		glossarize($(this).attr('id'));
@@ -403,10 +452,3 @@ $(window).load(function () {
 		}
 	});
 });
-window.onload = function () {
-	if (localStorage.hasOwnProperty('notInterlinear')) {
-		$('#notInterlinear').val(localStorage.getItem('notInterlinear'));
-		$('#abbrvInput').val(localStorage.getItem('abbrvInput'));
-		$('#abbrvDelimiterInput').val(localStorage.getItem('abbrvDelimiterInput'));
-	}
-};
