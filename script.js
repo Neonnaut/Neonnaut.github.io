@@ -378,13 +378,9 @@ Converter.prototype.finish = function (input) {
 }
 
 function setLocalStorage() {
-	localStorage.setItem('notInterlinear', $('#notInterlinear').val);
-	localStorage.setItem('useSmallCaps', $('#useSmallCaps').val);
-	localStorage.setItem('useAbbrv', $('#useAbbrv').val);
-	localStorage.setItem('useInputAbbrv', $('#useInputAbbrv').val);
-	localStorage.setItem('abbrvInput', $('#abbrvInput').val);
-	localStorage.setItem('abbrvDelimiterInput', $('#abbrvDelimiterInput').val);
-
+	localStorage.setItem('notInterlinear', $('#notInterlinear').val());
+	localStorage.setItem('abbrvInput', $('#abbrvInput').val());
+	localStorage.setItem('abbrvDelimiterInput', $('#abbrvDelimiterInput').val());
 }
 $(window).load(function () {
 	$("[name='markupButton']").click(function () {
@@ -407,13 +403,10 @@ $(window).load(function () {
 		}
 	});
 });
-$(window).onload(function () {
+window.onload = function () {
 	if (localStorage.hasOwnProperty('notInterlinear')) {
 		$('#notInterlinear').val(localStorage.getItem('notInterlinear'));
-		$('#useSmallCaps').val(localStorage.getItem('useSmallCaps'));
-		$('#useAbbrv').val(localStorage.getItem('useAbbrv'));
-		$('#useInputAbbrv').val(localStorage.getItem('useInputAbbrv'));
 		$('#abbrvInput').val(localStorage.getItem('abbrvInput'));
 		$('#abbrvDelimiterInput').val(localStorage.getItem('abbrvDelimiterInput'));
 	}
-});
+};
