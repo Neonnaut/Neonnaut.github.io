@@ -217,63 +217,69 @@ function convert(conv) {
 	}
 	function wikiMarkup() {
 		var output = "";
-		var skipline = false;
-		var maxLines = 0;
-		for (let x = 0; x < lines.length; x++) {
-			var a = 0;
-			while (a < nonInterlinear[a]) {
-				if (nonInterlinear[a] == i + 1) {
+		///////
+		maxColumns = 0;
+		for (let a = 0; a < lines.length; a++) {
+			skipline = false;
+			let k = 0;
+			while (k < nonInterlinear[k]) {
+				if (nonInterlinear[k] == a + 1) {
 					skipline = true;
-					a == nonInterlinear[a] - 5;
+					k += 5;
 				}
-				a++
+				k++
 			}
-			alert(skipline);
-			if (skipline || x + 1 == lines.length) {
-				for (let y = 0; y < lines.length; y++) {
-					if (x != y) {
-						var entriesZ = lines[y].split(" ").map($.trim).filter(function (x) { return !(x === ""); });
-						if (maxLines <= entriesZ.length) {
-							maxLines = entriesZ.length;
-						}
-					}
+
+			// If last line
+			if (a + 1 == lines.length) {
+
+			} else if (skipline) {
+
+			} else {
+				var line = lines[a].split(" ").map($.trim).filter(function (x) { return !(x === ""); });
+				if (maxColumns <= line.length) {
+					maxColumns = line.length;
 				}
 			}
 		}
+		/////
 
 		for (let i = 0; i < lines.length; i++) {
 			var a = 0;
 			var parsedEntry = "";
-
+			skipline = false;
 			while (a < nonInterlinear[a]) {
 				if (nonInterlinear[a] == i + 1) {
 					skipline = true;
-					a == nonInterlinear[a] - 5;
+					a += 5;
 				}
 				a++
 			}
 			var entries = lines[i].split(" ").map($.trim).filter(function (x) { return !(x === ""); });
 			// Do something if is the second last iteration of the array
 			if ((i + 2 == lines.length) && (useAbbrv || useSmallCaps)) {
-				for (let b = 0; b < entries.length; b++) {
-					parsedEntry += "|" + splitEntryGlossWiki(entries[b], conv) + "\n";
-				}
-				output += parsedEntry;
-				//Do something if skip line or last line
-			} else if (skipline || i + 1 == lines.length) {
-				for (let m = 0; m < lines.length; m++) {
-					if (m != i) {
-						var entriesZ = lines[m].split(" ").map($.trim).filter(function (x) { return !(x === ""); });
-						if (maxLines <= entriesZ.length) {
-							maxLines = entriesZ.length;
-						}
+				for (let b = 0; b < maxColumns; b++) {
+					if (entries[b] == null) {
+						parsedEntry += "|?\n";
+					} else {
+						parsedEntry += "|" + splitEntryGlossWiki(entries[b], conv) + "\n";
 					}
 				}
-				output += "|-\n| colspan='" + maxLines + "' |" + lines[i] + "\n";
+				output += parsedEntry;
+				//Do something if skip line 
+			} else if (skipline) {
+				output += "| colspan='" + maxColumns + "'|" + lines[i] + "\n|-\n";
+				//Else or last line
+			} else if (i + 1 == lines.length) {
+				output += "|-\n| colspan='" + maxColumns + "'|" + lines[i];
 				//Else do normal line
 			} else {
-				for (let c = 0; c < entries.length; c++) {
-					parsedEntry += "|" + entries[c] + "\n";
+				for (let c = 0; c < maxColumns; c++) {
+					if (entries[c] == null) {
+						parsedEntry += "|" + "?" + "\n";
+					} else {
+						parsedEntry += "|" + entries[c] + "\n";
+					}
 				}
 				parsedEntry += "|-\n";
 				output += parsedEntry;
@@ -321,7 +327,6 @@ function convert(conv) {
 			}
 			var line = lines[i].split(" ").map($.trim).filter(function (x) { return !(x === ""); });
 			for (let j = 0; j < line.length; j++) {
-				//alert(skipline);
 				if (!skipline && i + 1 != lines.length) {
 					while (line[j].length < wordLength[j] && j != line.length - 1) {
 						line[j] += " ";
@@ -558,7 +563,7 @@ Converter.prototype.finishTable = function () {
 		+ "\n" + "<table>" + "\n" + this.orig + "</table>" + "</textarea>";
 };
 Converter.prototype.finishWiki = function (input) {
-	this.output = "<textarea id='output' spellcheck='false' readonly>{| class='wikitable'\n" + input + "\n|}</textarea>";
+	this.output = "<textarea id='output' spellcheck='false' readonly>{| class='wikitable'\n|-\n" + input + "\n|}</textarea>";
 };
 Converter.prototype.finish = function (input) {
 	this.output = "<textarea id='output' spellcheck='false' readonly>" + input + "</textarea>";

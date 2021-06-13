@@ -87,7 +87,7 @@ And after saving, if your wiki asks for documentation link here: https://en.wiki
 - [ ] fix ZBB small caps (Right now it small caps ANY capital on gloss line)
 - [ ] Latex small caps
 - [x] CWS
-- [ ] Wiki table skiplines do not work
+- [x] Wiki table skiplines
 - [ ] accept abbreviation input with delimiters in them e.g: "Q.WH, Interogative question particle"
 - [ ] An option to bold the first line
 - [ ] An option to bold all linguistic abbreviations
