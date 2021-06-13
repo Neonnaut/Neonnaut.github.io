@@ -84,6 +84,8 @@ function convert(conv) {
 		cwsMarkup();
 	} else if (markup == "wikiTable") {
 		wikiMarkup();
+	} else if (markup == "interlinear") {
+		interlinearMarkup();
 	}
 
 	function zbbMarkup() {
@@ -171,28 +173,92 @@ function convert(conv) {
 
 		conv.finish(gloss);
 	}
-	function wikiMarkup() {
-		/*
-		{| class="wikitable"
-		|mujhe
-		|apne
-		|sabhī
-		|rishtedār
-		|pasand
-		|hɛ̄
-		|-
-		|I. {{abbr|{{sc|DAT}}|Mean Sea Level Pressure}}
-		|{{sc|REFL}}.{{sc|MASC}}.{{sc|PL}}
-		|all.{{sc|nom}}
-		|relatives.{{sc|masc}}.{{sc|PL}}
-		|like
-		|be.{{sc|prs}}.{{sc|masc}}.{{sc|PL}}
-		|-
-		| colspan="6" |'I like all my relatives'
-		|}
-		*/
+	function interlinearMarkup() {
 		gloss = "";
-		conv.finish(gloss);
+		table = new Array();
+		maxColumns = 0;
+
+		noOfLines = lines.length - 1;
+		for (let a = 0; a < lines.length; a++) {
+			// If last line
+			if (a + 1 == lines.length) {
+
+			} else {
+				var line = lines[a].split(" ").map($.trim).filter(function (x) { return !(x === ""); });
+				if (maxColumns <= line.length) {
+					maxColumns = line.length;
+				}
+				table[a] = new Array();
+				for (let b = 0; b < line.length; b++) {
+					table[a].push(line[b]);
+				}
+			}
+		}
+		for (let j = 0; j < maxColumns; j++) {
+			gloss += "  <div class='gll'>";
+			for (let i = 0; i < noOfLines; i++) {
+				if (table[i][j] != null) {
+					gloss += table[i][j];
+				} else {
+					gloss += "?"
+				}
+				if (i != noOfLines - 1) {
+					gloss += "<br/>";
+				}
+			}
+			gloss += "</div>\n";
+
+		}
+		var lastLine = lines[noOfLines].split(" ").map($.trim).filter(function (x) { return !(x === ""); });
+		gloss += "  <div>" + lastLine.join(" ") + "</div>\n";
+		gloss = "<div>\n" + gloss + "</div>";
+
+		conv.finishInterlinear(gloss);
+	}
+	function wikiMarkup() {
+		var output = "";
+		var skipline = false;
+		for (let i = 0; i < lines.length; i++) {
+			var a = 0;
+			var parsedEntry = "";
+
+			while (a < nonInterlinear[a]) {
+				if (nonInterlinear[a] == i + 1) {
+					skipline = true;
+					a == nonInterlinear[a] - 5;
+				}
+				a++
+			}
+			var entries = lines[i].split(" ").map($.trim).filter(function (x) { return !(x === ""); });
+			// Do something if is the second last iteration of the array
+			if ((i + 2 == lines.length) && (useAbbrv || useSmallCaps)) {
+				for (let b = 0; b < entries.length; b++) {
+					parsedEntry += "|" + splitEntryGlossWiki(entries[b], conv) + "\n";
+				}
+				output += parsedEntry;
+				//Do something if skip line or last line
+			} else if (skipline || i + 1 == lines.length) {
+				var maxLines = 0;
+				for (let m = 0; m < lines.length; m++) {
+					if (m != i) {
+						var entriesZ = lines[m].split(" ").map($.trim).filter(function (x) { return !(x === ""); });
+						if (maxLines <= entriesZ.length) {
+							maxLines = entriesZ.length;
+						}
+					}
+				}
+				output += "|-\n| colspan='" + maxLines + "' |" + lines[i];
+				//Else do normal line
+			} else {
+				for (let c = 0; c < entries.length; c++) {
+					parsedEntry += "|" + entries[c] + "\n";
+				}
+				parsedEntry += "|-\n";
+				output += parsedEntry;
+			}
+			parsedEntry = "";
+		}
+		conv.finishWiki(output);
 	}
 	function plainTextMarkup() {
 		var wordLength = [];
@@ -288,7 +354,6 @@ function convert(conv) {
 	}
 }
 
-
 function splitEntryGloss(entry, conv) {
 	var result = "";
 	var word = "";
@@ -328,13 +393,70 @@ function splitEntryGloss(entry, conv) {
 				result = result.concat(word);
 			}
 		} else if (useAbbrv) {
-			if (word == word.toUpperCase() && useSmallCaps) {
+			if (word == word.toUpperCase() && useSmallCaps == "abbrv sc") {
 				result = result.concat("<abbr class='", useSmallCaps, "' title='", glossexpl, "'>", word, "</abbr>");
 			} else {
 				result = result.concat("<abbr class='abbrv' title='", glossexpl, "'>", word, "</abbr>");
 			}
 		} else {
 			result = result.concat("<a class='sc'>", word, "</a>");
+		}
+	}
+	return result;
+}
+
+function splitEntryGlossWiki(entry, conv) {
+	var result = "";
+	var word = "";
+	abbrvDelimiterInput = conv.abbrvDelimiterInput;
+	useSmallCaps = conv.useSmallCaps;
+	var smallCapsPrefix = "";
+	var smallCapsSuffix = "";
+	if (useSmallCaps == "abbrv sc") {
+		smallCapsPrefix = "{{sc|";
+		smallCapsSuffix = "}}";
+	}
+	useAbbrv = conv.useAbbrv;
+	abbreviations = conv.abbreviations;
+	explanations = conv.explanations;
+	for (var i = 0; i < entry.length; i++) {
+		if (abbrvDelimiterInput.indexOf(entry[i]) != -1) {
+			if (!(word === "")) {
+				setEntryGloss();
+			}
+			word = "";
+			result = result.concat(entry[i]);
+		} else {
+			word += entry[i];
+		}
+	}
+	if (!(word === "")) {
+		setEntryGloss();
+	}
+	function setEntryGloss() {
+		var glossexpl = "";
+		let j = 0;
+		while (j < abbreviations.length) {
+			if (word == abbreviations[j]) {
+				glossexpl = explanations[j];
+				break;
+			}
+			j++
+		}
+		if (glossexpl == "") {
+			if (word == word.toUpperCase()) {
+				result = result.concat("{{sc|", word, "}}");
+			} else {
+				result = result.concat(word);
+			}
+		} else if (useAbbrv) {
+			if (word == word.toUpperCase() && useSmallCaps) {
+				result = result.concat("{{abbr", "|", smallCapsPrefix, word, smallCapsSuffix, "|", glossexpl, "}}");
+			} else {
+				result = result.concat("{{abbr|", word, "|", glossexpl, "}}");
+			}
+		} else {
+			result = result.concat("{{sc|", word, "}}");
 		}
 	}
 	return result;
@@ -410,16 +532,17 @@ Converter.prototype.addSingleLineEntry = function (input, maxLines) {
 	this.orig += "<tr><td colspan=" + maxLines + ">" + input + "</td></tr>" + "\n";
 };
 Converter.prototype.finishTable = function () {
-	if (this.orig == "") {
-		this.output = "<textarea id='output' spellcheck='false' readonly>"
-			+ "\n" + "</textarea>";
-	} else {
-		this.output = "<table>" + "\n" + this.orig + "\n" + "</table><br>" + "<textarea id='output' spellcheck='false' readonly>"
-			+ "\n" + "<table>" + "\n" + this.orig + "</table>" + "</textarea>";
-	}
+	this.output = "<table>" + "\n" + this.orig + "\n" + "</table><br>" + "<textarea id='output' spellcheck='false' readonly>"
+		+ "\n" + "<table>" + "\n" + this.orig + "</table>" + "</textarea>";
+};
+Converter.prototype.finishWiki = function (input) {
+	this.output = "<textarea id='output' spellcheck='false' readonly>{| class='wikitable'\n" + input + "\n|}</textarea>";
 };
 Converter.prototype.finish = function (input) {
 	this.output = "<textarea id='output' spellcheck='false' readonly>" + input + "</textarea>";
+}
+Converter.prototype.finishInterlinear = function (input) {
+	this.output = input + "<br><textarea id='output' spellcheck='false' readonly>" + input + "</textarea>";
 }
 
 function setLocalStorage() {

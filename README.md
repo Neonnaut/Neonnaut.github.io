@@ -54,19 +54,34 @@ table tr td {
 table tr {white-space: nowrap;}
 ```
 
+### Interlinear div
+
+When using the HTML interlinear div method, provide the following CSS on your website to get the desired output:
+
+```
+div .gll {
+  display: inline-table;
+  padding-right: 10px;
+}
+```
+
 ### Wiki tables
+
+If your wiki does not have the abbr template, you will need to start a page called template:abbr and put the following code in it:
 
 ```
 <abbr {{#if:{{{class|}}}|class="{{{class}}}"}} {{#if:{{{id|}}}|id="{{{id}}}"}} {{#if:{{{style|}}}|style="{{{style}}}"}} title="{{#tag:nowiki|{{#invoke:String|replace|{{{2|}}}|"|&quot;}}}}">{{{1|}}}</abbr><noinclude>{{Documentation}}
 </noinclude>
 ```
 
+And a link to it's documentation: https://en.wikipedia.org/wiki/Template:Abbr
+
 ## TODO
 
-- [ ] Interlinear div markup
+- [x] Interlinear div markup
 - [x] Latex gloss markup
 - [x] CWS gloss markup
-- [ ] Wiki Table markup
+- [x] Wiki Table markup
 - [x] Some sort of save/load/remember for options, either using local storage or some other method. Note: saving checkbox state was too much trouble and effort.
 - [ ] An option to bold the first line
 - [ ] An option to bold all linguistic abbreviations
@@ -74,27 +89,3 @@ table tr {white-space: nowrap;}
 - [ ] Latex small caps
 - [ ] fix ZBB small caps (Right now it small caps ANY capital on gloss line)
 - [ ] Read built-in abbreviations from a csv file (tricky? unnecessary?)
-
-## License
-
-MIT License
-
-Copyright (c) 2021
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
