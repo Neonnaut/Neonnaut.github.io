@@ -218,6 +218,29 @@ function convert(conv) {
 	function wikiMarkup() {
 		var output = "";
 		var skipline = false;
+		var maxLines = 0;
+		for (let x = 0; x < lines.length; x++) {
+			var a = 0;
+			while (a < nonInterlinear[a]) {
+				if (nonInterlinear[a] == i + 1) {
+					skipline = true;
+					a == nonInterlinear[a] - 5;
+				}
+				a++
+			}
+			alert(skipline);
+			if (skipline || x + 1 == lines.length) {
+				for (let y = 0; y < lines.length; y++) {
+					if (x != y) {
+						var entriesZ = lines[y].split(" ").map($.trim).filter(function (x) { return !(x === ""); });
+						if (maxLines <= entriesZ.length) {
+							maxLines = entriesZ.length;
+						}
+					}
+				}
+			}
+		}
+
 		for (let i = 0; i < lines.length; i++) {
 			var a = 0;
 			var parsedEntry = "";
@@ -238,7 +261,6 @@ function convert(conv) {
 				output += parsedEntry;
 				//Do something if skip line or last line
 			} else if (skipline || i + 1 == lines.length) {
-				var maxLines = 0;
 				for (let m = 0; m < lines.length; m++) {
 					if (m != i) {
 						var entriesZ = lines[m].split(" ").map($.trim).filter(function (x) { return !(x === ""); });
@@ -247,7 +269,7 @@ function convert(conv) {
 						}
 					}
 				}
-				output += "|-\n| colspan='" + maxLines + "' |" + lines[i];
+				output += "|-\n| colspan='" + maxLines + "' |" + lines[i] + "\n";
 				//Else do normal line
 			} else {
 				for (let c = 0; c < entries.length; c++) {

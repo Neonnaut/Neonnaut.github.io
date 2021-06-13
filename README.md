@@ -78,18 +78,17 @@ If your wiki does not have the abbr template, you will need to start a page call
 </noinclude>
 ```
 
-And a link to it's documentation: https://en.wikipedia.org/wiki/Template:Abbr
+And after saving, if your wiki asks for documentation link here: https://en.wikipedia.org/wiki/Template:Abbr
 
 ## TODO
 
-- [x] Interlinear div markup
-- [x] Latex gloss markup
-- [x] CWS gloss markup
-- [x] Wiki Table markup
-- [x] Some sort of save/load/remember for options, either using local storage or some other method. Note: saving checkbox state was too much trouble and effort.
+- [ ] Interlinear small caps and abbr
+- [ ] Plaintext small caps
+- [ ] fix ZBB small caps (Right now it small caps ANY capital on gloss line)
+- [ ] Latex small caps
+- [x] CWS
+- [ ] Wiki table skiplines do not work
+- [ ] accept abbreviation input with delimiters in them e.g: "Q.WH, Interogative question particle"
 - [ ] An option to bold the first line
 - [ ] An option to bold all linguistic abbreviations
-- [ ] accept abbreviation input with delimiters in them e.g: "Q.WH, Interogative question particle"
-- [ ] Latex small caps
-- [ ] fix ZBB small caps (Right now it small caps ANY capital on gloss line)
 - [ ] Read built-in abbreviations from a csv file (tricky? unnecessary?)
