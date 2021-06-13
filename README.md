@@ -65,6 +65,10 @@ div .gll {
 }
 ```
 
+### Plain Text
+
+Make sure to display the text in a fixed-width font, such as including the text in a `<pre>` element.
+
 ### Wiki tables
 
 If your wiki does not have the abbr template, you will need to start a page called template:abbr and put the following code in it:

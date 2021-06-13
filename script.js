@@ -308,7 +308,7 @@ function convert(conv) {
 			}
 			gloss += line.join(" ") + "\n";
 		}
-		conv.finish(gloss);
+		conv.finishPlainText(gloss);
 	}
 	function htmlTableMarkup() {
 		for (let i = 0; i < lines.length; i++) {
@@ -526,10 +526,10 @@ var Converter = function (markup, nonInterlinear, useAbbrv, abbreviations, expla
 };
 
 Converter.prototype.addLine = function (input) {
-	this.orig += "<tr>" + input + "</tr>" + "\n";
+	this.orig += "  <tr>" + input + "</tr>" + "\n";
 };
 Converter.prototype.addSingleLineEntry = function (input, maxLines) {
-	this.orig += "<tr><td colspan=" + maxLines + ">" + input + "</td></tr>" + "\n";
+	this.orig += "  <tr><td colspan=" + maxLines + ">" + input + "</td></tr>" + "\n";
 };
 Converter.prototype.finishTable = function () {
 	this.output = "<table>" + "\n" + this.orig + "\n" + "</table><br>" + "<textarea id='output' spellcheck='false' readonly>"
@@ -543,6 +543,9 @@ Converter.prototype.finish = function (input) {
 }
 Converter.prototype.finishInterlinear = function (input) {
 	this.output = input + "<br><textarea id='output' spellcheck='false' readonly>" + input + "</textarea>";
+}
+Converter.prototype.finishPlainText = function (input) {
+	this.output = "<pre>" + input + "</pre><textarea id='output' spellcheck='false' readonly>" + input + "</textarea>";
 }
 
 function setLocalStorage() {
