@@ -122,7 +122,18 @@ function convert(conv) {
 			if (m + 3 == lines.length) {
 				gloss += "\\begin{exe}\n\\ex\n\\gll " + lines[m] + "\\\\\n";
 			} else if (m + 2 == lines.length) {
-				gloss += lines[m] + "\\\\\n";
+				if (useSmallCaps == "abbrv sc") {
+					var entries = lines[m].split(" ").map($.trim).filter(function (x) { return !(x === ""); });
+					for (let o = 0; o < entries.length; o++) {
+						gloss += splitEntryGlossLatex(entries[o], conv);
+						if (o + 1 != entries.length) {
+							gloss += " ";
+						}
+					}
+					gloss += "\\\\\n";
+				} else {
+					gloss += lines[m] + "\\\\\n";
+				}
 			} else if (m + 1 == lines.length) {
 				gloss += "\\trans " + lines[m] + "\n\\end{exe}";
 			} else {
@@ -449,7 +460,7 @@ function splitEntryGlossWiki(entry, conv) {
 	for (var i = 0; i < entry.length; i++) {
 		if (abbrvDelimiterInput.indexOf(entry[i]) != -1) {
 			if (!(word === "")) {
-				setEntryGloss();
+				setEntryGlossWiki();
 			}
 			word = "";
 			result = result.concat(entry[i]);
@@ -458,9 +469,9 @@ function splitEntryGlossWiki(entry, conv) {
 		}
 	}
 	if (!(word === "")) {
-		setEntryGloss();
+		setEntryGlossWiki();
 	}
-	function setEntryGloss() {
+	function setEntryGlossWiki() {
 		var glossexpl = "";
 		let j = 0;
 		while (j < abbreviations.length) {
@@ -484,6 +495,40 @@ function splitEntryGlossWiki(entry, conv) {
 			}
 		} else {
 			result = result.concat("{{sc|", word, "}}");
+		}
+	}
+	return result;
+}
+
+
+// \textsc{...}
+function splitEntryGlossLatex(entry, conv) {
+	var result = "";
+	var word = "";
+	abbrvDelimiterInput = conv.abbrvDelimiterInput;
+	useSmallCaps = conv.useSmallCaps;
+	useAbbrv = conv.useAbbrv;
+	abbreviations = conv.abbreviations;
+	explanations = conv.explanations;
+	for (var i = 0; i < entry.length; i++) {
+		if (abbrvDelimiterInput.indexOf(entry[i]) != -1) {
+			if (!(word === "")) {
+				setEntryGlossLatex();
+			}
+			word = "";
+			result = result.concat(entry[i]);
+		} else {
+			word += entry[i];
+		}
+	}
+	if (!(word === "")) {
+		setEntryGlossLatex();
+	}
+	function setEntryGlossLatex() {
+		if (word.toUpperCase() == word) {
+			result = result.concat("\\textsc{", word.toLowerCase(), "}");
+		} else {
+			result = result.concat(word);
 		}
 	}
 	return result;

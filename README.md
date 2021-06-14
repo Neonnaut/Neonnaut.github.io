@@ -85,7 +85,7 @@ And after saving, if your wiki asks for documentation link here: https://en.wiki
 - [ ] Interlinear small caps and abbr
 - [ ] Plaintext small caps
 - [ ] fix ZBB small caps (Right now it small caps ANY capital on gloss line)
-- [ ] Latex small caps
+- [x] Latex small caps
 - [x] CWS
 - [x] Wiki table skiplines
 - [ ] accept abbreviation input with delimiters in them e.g: "Q.WH, Interogative question particle"
