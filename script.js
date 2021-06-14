@@ -94,9 +94,9 @@ function convert(conv) {
 		while (i < lines.length) {
 			//Third last line or if there are only two lines
 			if ((i + 3 == lines.length) || (lines.length == 2)) {
-				var normLine = lines[i].split(" ").map($.trim).filter(function (x) { return !(x === ""); });
+				var normLine = lines[i].split(/[ \t]+/).map($.trim).filter(function (x) { return !(x === ""); });
 				i++;
-				var glossLine = lines[i].split(" ").map($.trim).filter(function (x) { return !(x === ""); });
+				var glossLine = lines[i].split(/[ \t]+/).map($.trim).filter(function (x) { return !(x === ""); });
 				for (let j = 0; j < glossLine.length; j++) {
 					if ((typeof normLine !== "undefined") || (typeof glossLine !== "undefined")) {
 						if (useSmallCaps == "abbrv sc") {
@@ -125,7 +125,7 @@ function convert(conv) {
 				gloss += "\\begin{exe}\n\\ex\n\\gll " + lines[m] + "\\\\\n";
 			} else if (m + 2 == lines.length) {
 				if (useSmallCaps == "abbrv sc") {
-					var entries = lines[m].split(" ").map($.trim).filter(function (x) { return !(x === ""); });
+					var entries = lines[m].split(/[ \t]+/).map($.trim).filter(function (x) { return !(x === ""); });
 					for (let o = 0; o < entries.length; o++) {
 						gloss += splitEntryGlossLatex(entries[o], conv);
 						if (o + 1 != entries.length) {
@@ -155,7 +155,7 @@ function convert(conv) {
 			if (a + 1 == lines.length) {
 
 			} else {
-				var line = lines[a].split(" ").map($.trim).filter(function (x) { return !(x === ""); });
+				var line = lines[a].split(/[ \t]+/).map($.trim).filter(function (x) { return !(x === ""); });
 				if (maxColumns <= line.length) {
 					maxColumns = line.length;
 				}
@@ -181,7 +181,7 @@ function convert(conv) {
 			}
 		}
 		gloss = "<gbl=" + noOfLines + ">" + gloss + "</gbl>\n";
-		var lastLine = lines[noOfLines].split(" ").map($.trim).filter(function (x) { return !(x === ""); });
+		var lastLine = lines[noOfLines].split(/[ \t]+/).map($.trim).filter(function (x) { return !(x === ""); });
 		gloss += lastLine.join(" ");
 
 		conv.finish(gloss);
@@ -197,7 +197,7 @@ function convert(conv) {
 			if (a + 1 == lines.length) {
 
 			} else {
-				var line = lines[a].split(" ").map($.trim).filter(function (x) { return !(x === ""); });
+				var line = lines[a].split(/[ \t]+/).map($.trim).filter(function (x) { return !(x === ""); });
 				if (maxColumns <= line.length) {
 					maxColumns = line.length;
 				}
@@ -226,7 +226,7 @@ function convert(conv) {
 			gloss += "</div>\n";
 
 		}
-		var lastLine = lines[noOfLines].split(" ").map($.trim).filter(function (x) { return !(x === ""); });
+		var lastLine = lines[noOfLines].split(/[ \t]+/).map($.trim).filter(function (x) { return !(x === ""); });
 		gloss += "  <div>" + lastLine.join(" ") + "</div>\n";
 		gloss = "<div>\n" + gloss + "</div>";
 
@@ -253,7 +253,7 @@ function convert(conv) {
 			} else if (skipline) {
 
 			} else {
-				var line = lines[a].split(" ").map($.trim).filter(function (x) { return !(x === ""); });
+				var line = lines[a].split(/[ \t]+/).map($.trim).filter(function (x) { return !(x === ""); });
 				if (maxColumns <= line.length) {
 					maxColumns = line.length;
 				}
@@ -272,7 +272,7 @@ function convert(conv) {
 				}
 				a++
 			}
-			var entries = lines[i].split(" ").map($.trim).filter(function (x) { return !(x === ""); });
+			var entries = lines[i].split(/[ \t]+/).map($.trim).filter(function (x) { return !(x === ""); });
 			// Do something if is the second last iteration of the array
 			if ((i + 2 == lines.length) && (useAbbrv || useSmallCaps)) {
 				for (let b = 0; b < maxColumns; b++) {
@@ -319,7 +319,7 @@ function convert(conv) {
 				}
 				a++
 			}
-			var entriesZ = lines[m].split(" ").map($.trim).filter(function (x) { return !(x === ""); });
+			var entriesZ = lines[m].split(/[ \t]+/).map($.trim).filter(function (x) { return !(x === ""); });
 			for (let n = 0; n < entriesZ.length; n++) {
 				if (!skipline && m + 1 != lines.length) {
 					if (typeof wordLength[n] === "undefined") {
@@ -342,7 +342,7 @@ function convert(conv) {
 				}
 				a++
 			}
-			var line = lines[i].split(" ").map($.trim).filter(function (x) { return !(x === ""); });
+			var line = lines[i].split(/[ \t]+/).map($.trim).filter(function (x) { return !(x === ""); });
 			for (let j = 0; j < line.length; j++) {
 				if (useSmallCaps == "abbrv sc") {
 					///////////////////
@@ -371,7 +371,7 @@ function convert(conv) {
 				}
 				a++
 			}
-			var entries = lines[i].split(" ").map($.trim).filter(function (x) { return !(x === ""); });
+			var entries = lines[i].split(/[ \t]+/).map($.trim).filter(function (x) { return !(x === ""); });
 			// Do something if is the second last iteration of the array
 			if ((i + 2 == lines.length) && (useAbbrv || useSmallCaps)) {
 				for (let b = 0; b < entries.length; b++) {
@@ -383,7 +383,7 @@ function convert(conv) {
 				var maxLines = 0;
 				for (let m = 0; m < lines.length; m++) {
 					if (m != i) {
-						var entriesZ = lines[m].split(" ").map($.trim).filter(function (x) { return !(x === ""); });
+						var entriesZ = lines[m].split(/[ \t]+/).map($.trim).filter(function (x) { return !(x === ""); });
 						if (maxLines <= entriesZ.length) {
 							maxLines = entriesZ.length;
 						}
