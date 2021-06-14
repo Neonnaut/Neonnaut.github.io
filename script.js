@@ -436,7 +436,7 @@ function splitEntryGloss(entry, conv) {
 			j++
 		}
 		if (glossexpl == "") {
-			if (word == word.toUpperCase()) {
+			if (word == word.toUpperCase() && useSmallCaps == "abbrv sc") {
 				result = result.concat("<a class='sc'>", word, "</a>");
 			} else {
 				result = result.concat(word);

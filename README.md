@@ -67,7 +67,7 @@ div .gll {
 
 ### Plain Text
 
-Make sure to display the text in a fixed-width font, such as including the text in a `<pre>` element.
+Make sure to display the text in a fixed-width font, such as including the text in a `<pre>` element. Be careful when using the small caps option, as the characters may not display correctly on all devices, especially F, S, X, and Q.
 
 ### Wiki tables
 
