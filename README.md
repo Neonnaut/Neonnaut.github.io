@@ -2,7 +2,7 @@
 
 > A generator for interlinear glosses
 
-This is an input/output gnerator for alligning linguistic interlinear gloss, for the purposes of conlanging.
+This is an input/output generator for aligning linguistic interlinear gloss, for the purposes of conlanging.
 There are several markup options for displaying on different websites.
 
 Refer to the following documents:
@@ -33,9 +33,9 @@ sun SUBJECT east POSSESSIVE sky LOCATIVE rise
 "The sun rises in the eastern sky."
 ```
 
-Then "Non alignable lines" should have a "1" to indicate not to allign the first line.
+Then "Non alignable lines" should have a "1" to indicate not to align the first line.
 
-### HTML table
+#### HTML table
 
 When using the HTML markup method, provide the following CSS on your website to get the desired output:
 
@@ -73,14 +73,14 @@ Make sure to display the text in a fixed-width font, such as including the text 
 
 #### Wiki tables
 
-If your wiki does not have the abbr template, you will need to start a page called template:abbr and put the following code in it:
+If your wiki does not have the abbr template, you will need to start a page called template:abbr, and put the following code in it:
 
 ```
 <abbr {{#if:{{{class|}}}|class="{{{class}}}"}} {{#if:{{{id|}}}|id="{{{id}}}"}} {{#if:{{{style|}}}|style="{{{style}}}"}} title="{{#tag:nowiki|{{#invoke:String|replace|{{{2|}}}|"|&quot;}}}}">{{{1|}}}</abbr><noinclude>{{Documentation}}
 </noinclude>
 ```
 
-And after saving, if your wiki asks for documentation provide this link: https://en.wikipedia.org/wiki/Template:Abbr
+And after saving, if your wiki asks for documentation, provide this link: https://en.wikipedia.org/wiki/Template:Abbr
 
 ## TODO
 
