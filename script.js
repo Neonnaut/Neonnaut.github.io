@@ -97,10 +97,12 @@ function convert(conv) {
 				var normLine = lines[i].split(" ").map($.trim).filter(function (x) { return !(x === ""); });
 				i++;
 				var glossLine = lines[i].split(" ").map($.trim).filter(function (x) { return !(x === ""); });
-				for (let j = 0; j < normLine.length; j++) {
+				for (let j = 0; j < glossLine.length; j++) {
 					if ((typeof normLine !== "undefined") || (typeof glossLine !== "undefined")) {
 						if (useSmallCaps == "abbrv sc") {
-							glossLine[j] = toSmallCaps(glossLine[j]);
+							///////////////////
+							glossLine[j] = splitEntryGlossZbb(glossLine[j], conv);
+							//////////////////
 						}
 						gloss += "[gloss=" + glossLine[j] + "]" + normLine[j] + "[/gloss]";
 					} else {
@@ -201,7 +203,11 @@ function convert(conv) {
 				}
 				table[a] = new Array();
 				for (let b = 0; b < line.length; b++) {
-					table[a].push(line[b]);
+					if (a + 2 == lines.length) {
+						table[a].push(splitEntryGloss(line[b], conv));
+					} else {
+						table[a].push(line[b]);
+					}
 				}
 			}
 		}
@@ -338,6 +344,11 @@ function convert(conv) {
 			}
 			var line = lines[i].split(" ").map($.trim).filter(function (x) { return !(x === ""); });
 			for (let j = 0; j < line.length; j++) {
+				if (useSmallCaps == "abbrv sc") {
+					///////////////////
+					line[j] = splitEntryGlossZbb(line[j], conv);
+					//////////////////
+				}
 				if (!skipline && i + 1 != lines.length) {
 					while (line[j].length < wordLength[j] && j != line.length - 1) {
 						line[j] += " ";
@@ -534,6 +545,35 @@ function splitEntryGlossLatex(entry, conv) {
 	return result;
 }
 
+function splitEntryGlossZbb(entry, conv) {
+	var result = "";
+	var word = "";
+	abbrvDelimiterInput = conv.abbrvDelimiterInput;
+	useSmallCaps = conv.useSmallCaps;
+	for (var i = 0; i < entry.length; i++) {
+		if (abbrvDelimiterInput.indexOf(entry[i]) != -1) {
+			if (!(word === "")) {
+				setEntryGlossZbb();
+			}
+			word = "";
+			result = result.concat(entry[i]);
+		} else {
+			word += entry[i];
+		}
+	}
+	if (!(word === "")) {
+		setEntryGlossZbb();
+	}
+	function setEntryGlossZbb() {
+		if (word == word.toUpperCase()) {
+			result += toSmallCaps(word);
+		} else {
+			result += word;
+		}
+	}
+	return result;
+}
+
 function toSmallCaps(input) {
 	var table = [];
 	table["A"] = "ᴀ";
@@ -541,7 +581,7 @@ function toSmallCaps(input) {
 	table["C"] = "ᴄ";
 	table["D"] = "ᴅ";
 	table["E"] = "ᴇ";
-	table["F"] = "ꜰ";
+	table["F"] = "ғ";
 	table["G"] = "ɢ";
 	table["H"] = "ʜ";
 	table["I"] = "ɪ";
@@ -554,7 +594,7 @@ function toSmallCaps(input) {
 	table["P"] = "ᴘ";
 	table["Q"] = "ǫ";
 	table["R"] = "ʀ";
-	table["S"] = "ꜱ";
+	table["S"] = "s";
 	table["T"] = "ᴛ";
 	table["U"] = "ᴜ";
 	table["V"] = "ᴠ";
