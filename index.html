@@ -8,7 +8,21 @@
   <script src="script.js"></script>
   <style>
     body {
-      padding: 2px 20px 2px 20px;
+      background-color: #f6f8fa;
+      margin: 0;
+    }
+
+    #top-content,
+    #bottom-content {
+      padding: 5px 30px 5px 30px;
+    }
+
+    #top-content {
+      background-color: #fff;
+    }
+
+    #bottom-content {
+      background-color: #f6f8fa;
     }
 
     h2 {
@@ -18,7 +32,7 @@
     }
 
     #input {
-      height: 6em;
+      height: 8em;
       width: 100%;
     }
 
@@ -95,50 +109,51 @@
 </head>
 
 <body>
-  <a href="https://github.com/Neonnaut/Neonnaut.github.io">For instructions</a>
+  <div id="top-content">
+    <a href="https://github.com/Neonnaut/Neonnaut.github.io">For instructions</a>
 
-  <h2>Enter text to be glossed (last line must be the translation, second last is gloss)</h2>
-  <textarea class="box" id="input" name="inputA" spellcheck="false" placeholder="Astra inclinant, sed non obligant.
+    <h2>Enter text to be glossed (last line must be the translation, second last is gloss)</h2>
+    <textarea class="box" id="input" name="inputA" spellcheck="false" placeholder="Astra inclinant, sed non obligant.
 [astra inkliːnant sed non obligant]
 star.ACC.PL incline.PRS.PTCP but NEG bind.3P.PRS.ACT.IND
 'The stars incline us, they do not bind us.'">
 </textarea><br>
 
-  <h2>Markup</h2>
-  <div id="switch-field">
-    <input type="submit" id="htmlTable" value="HTML table" name="markupButton">
-    <input type="submit" id="interlinear" value="Interlinear div" name="markupButton">
-    <input type="submit" id="plainText" value="Plain text" name="markupButton">
-    <input type="submit" id="zbbGloss" value="ZBB gloss" name="markupButton">
-    <input type="submit" id="latexGloss" value="Latex gloss" name="markupButton">
-    <input type="submit" id="cwsGloss" value="CWS gloss" name="markupButton">
-    <input type="submit" id="wikiTable" value="Wiki table" name="markupButton">
+    <h2>Markup</h2>
+    <div id="switch-field">
+      <input type="submit" id="htmlTable" value="HTML table" name="markupButton">
+      <input type="submit" id="interlinear" value="Interlinear div" name="markupButton">
+      <input type="submit" id="plainText" value="Plain text" name="markupButton">
+      <input type="submit" id="zbbGloss" value="ZBB gloss" name="markupButton">
+      <input type="submit" id="latexGloss" value="Latex gloss" name="markupButton">
+      <input type="submit" id="cwsGloss" value="CWS gloss" name="markupButton">
+      <input type="submit" id="wikiTable" value="Wiki table" name="markupButton">
+    </div>
+
+    <br>
+    <div id="out"></div><br>
   </div>
+  <div id="bottom-content">
+    <h2>Non alignable lines (e.g: scriptio continua), separated by commas (e.g: 1,2)</h2>
+    <input id="notInterlinear" name="notInterlinear"></input><br><br>
 
-  <br>
-  <div id="out"></div>
-  <hr>
+    <input type="checkbox" id="useSmallCaps" name="useSmallCaps" />
+    <label for="useSmallCaps">Use small caps on gloss line</label><br>
+    <input type="checkbox" id="useAbbrv" name="useAbbrv" checked />
+    <label for="useAbbrv">Use abbreviations</label><br>
+    <input type="checkbox" id="useInputAbbrv" name="useInputAbbrv" checked />
+    <label for="useInputAbbrv">Use in-built abbreviations</label><br>
 
-  <h2>Non alignable lines (e.g: scriptio continua), separated by commas (e.g: 1,2)</h2>
-  <input id="notInterlinear" name="notInterlinear"></input><br><br>
-
-  <input type="checkbox" id="useSmallCaps" name="useSmallCaps" />
-  <label for="useSmallCaps">Use small caps on gloss line</label><br>
-  <input type="checkbox" id="useAbbrv" name="useAbbrv" checked />
-  <label for="useAbbrv">Use abbreviations</label><br>
-  <input type="checkbox" id="useInputAbbrv" name="useInputAbbrv" checked />
-  <label for="useInputAbbrv">Use in-built abbreviations</label><br>
-
-  <h2>Enter abbreviations</h2>
-  <textarea id="abbrvInput" name="abbrvInput">
+    <h2>Enter abbreviations</h2>
+    <textarea id="abbrvInput" name="abbrvInput">
 ACT,Actor voice
 CNS,Construct state
 </textarea>
-  <br>
+    <br>
 
-  <h2>Enter delimiters, separated by a comma</h2>
-  <textarea id="abbrvDelimiterInput" name="abbrvDelimiterInput">.,-,=,›</textarea>
-  <br><br>
+    <h2>Enter delimiters, separated by a comma</h2>
+    <textarea id="abbrvDelimiterInput" name="abbrvDelimiterInput">.,-,=,›</textarea>
+  </div>
 </body>
 
 </html>

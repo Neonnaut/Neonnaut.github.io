@@ -15,7 +15,7 @@ https://bdchauvette.net/leipzig.js/
 
 ## Use
 
-Make sure to provide at least three lines in the input, with your gloss on the second last line and your translation on the last. In this case your input would look like this:
+Make sure to provide at least three lines in the input, with your gloss on the second last line and your translation on the last. (ZBB can work with two). In this case your input would look like this:
 
 ```
 Astra inclinant, sed non obligant.
@@ -35,7 +35,7 @@ sun SUBJECT east POSSESSIVE sky LOCATIVE rise
 
 Then "Non alignable lines" should have a "1" to indicate not to allign the first line.
 
-### HTML
+### HTML table
 
 When using the HTML markup method, provide the following CSS on your website to get the desired output:
 
@@ -54,7 +54,9 @@ table tr td {
 table tr {white-space: nowrap;}
 ```
 
-### Interlinear div
+If you wish to style anything, such as use italics or bold, you may enter HTML tags on an individual word. If you wish to style an entire line, the best way is to add a class to the `<tr>` and add styles with CSS.
+
+#### HTML Interlinear div
 
 When using the HTML interlinear div method, provide the following CSS on your website to get the desired output:
 
@@ -65,11 +67,11 @@ div .gll {
 }
 ```
 
-### Plain Text
+#### Plain Text
 
-Make sure to display the text in a fixed-width font, such as including the text in a `<pre>` element. Be careful when using the small caps option, as the characters may not display correctly on all devices, especially F, S, X, and Q.
+Make sure to display the text in a fixed-width font, such as including the text in a `<pre>` element. Be careful when using the small caps option, as the characters may not display correctly on all devices, especially F, S, X, and Q. My advice is to not use this characters in WYSIWYG editors, but the option is there.
 
-### Wiki tables
+#### Wiki tables
 
 If your wiki does not have the abbr template, you will need to start a page called template:abbr and put the following code in it:
 
@@ -78,8 +80,10 @@ If your wiki does not have the abbr template, you will need to start a page call
 </noinclude>
 ```
 
-And after saving, if your wiki asks for documentation link here: https://en.wikipedia.org/wiki/Template:Abbr
+And after saving, if your wiki asks for documentation provide this link: https://en.wikipedia.org/wiki/Template:Abbr
 
 ## TODO
 
-- [ ] accept abbreviation input with delimiters in them e.g: "Q.WH, Interogative question particle"
+- [ ] Accept abbreviation input with delimiters in them e.g: "Q.WH, Interogative question particle"
+- [ ] Get in-built abbreviations from csv file (difficult)
+- [ ] Style lines bold or italics option
