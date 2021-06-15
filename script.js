@@ -326,12 +326,13 @@ function convert(conv) {
 			}
 			var entriesZ = lines[m].split(/[ \t]+/).map($.trim).filter(function (x) { return !(x === ""); });
 			for (let n = 0; n < entriesZ.length; n++) {
+				var noDiacriticsEntry = entriesZ[n].normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 				if (!skipline && m + 1 != lines.length) {
 					if (typeof wordLength[n] === "undefined") {
-						wordLength.push(entriesZ[n].length);
+						wordLength.push(noDiacriticsEntry.length);
 					}
-					if (wordLength[n] <= entriesZ[n].length) {
-						wordLength[n] = entriesZ[n].length;
+					if (wordLength[n] <= noDiacriticsEntry.length) {
+						wordLength[n] = noDiacriticsEntry.length;
 					}
 				}
 			}
@@ -349,14 +350,18 @@ function convert(conv) {
 			}
 			var line = lines[i].split(/[ \t]+/).map($.trim).filter(function (x) { return !(x === ""); });
 			for (let j = 0; j < line.length; j++) {
+				// If small caps, turn each glossing abbreviation to small caps if abbreviation is all caps.
 				if (useSmallCaps == "abbrv sc") {
 					///////////////////
 					line[j] = splitEntryGlossZbb(line[j], conv);
 					//////////////////
 				}
 				if (!skipline && i + 1 != lines.length) {
-					while (line[j].length < wordLength[j] && j != line.length - 1) {
+					// breack diacritical characters to get true length of entry
+					var noDiacritics = line[j].normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+					while (noDiacritics.length < wordLength[j] && j != line.length - 1) {
 						line[j] += " ";
+						noDiacritics += " ";
 					}
 				}
 			}
