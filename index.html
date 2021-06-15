@@ -12,17 +12,14 @@
       margin: 0;
     }
 
-    #top-content,
-    #bottom-content {
-      padding: 5px 30px 40px 30px;
-    }
-
     #top-content {
       background-color: #fff;
+      padding: 8px 30px 0px 30px;
     }
 
     #bottom-content {
       background-color: #f6f8fa;
+      padding: 8px 30px 38px 30px;
     }
 
     h2 {
@@ -42,8 +39,11 @@
     }
 
     #abbrvDelimiterInput,
-    #abbrvInput {
-      width: 50%;
+    #abbrvInput,
+    #abbrvDelimiterInput,
+    #notInterlinear {
+      width: 90%;
+      max-width: 40em;
     }
 
     #abbrvInput {
@@ -110,14 +110,13 @@
 
 <body>
   <div id="top-content">
-    <a href="https://github.com/Neonnaut/Neonnaut.github.io">For instructions</a>
+    <a href="https://github.com/Neonnaut/Neonnaut.github.io">Click here for instructions</a>
 
-    <h2>Enter text to be glossed (last line must be the translation, second last is gloss)</h2>
-    <textarea class="box" id="input" name="inputA" spellcheck="false" placeholder="Astra inclinant, sed non obligant.
+    <h2>Text to be glossed (last line must be the translation, second last must be gloss)</h2>
+    <textarea id="input" name="input" spellcheck="false" placeholder="Astra inclinant, sed non obligant.
 [astra inkliːnant sed non obligant]
 star.ACC.PL incline.PRS.PTCP but NEG bind.3P.PRS.ACT.IND
-'The stars incline us, they do not bind us.'">
-</textarea><br>
+'The stars incline us, they do not bind us.'"></textarea><br>
 
     <h2>Markup</h2>
     <div id="switch-field">
@@ -128,32 +127,32 @@ star.ACC.PL incline.PRS.PTCP but NEG bind.3P.PRS.ACT.IND
       <input type="submit" id="latexGloss" value="Latex gloss" name="markupButton">
       <input type="submit" id="cwsGloss" value="CWS gloss" name="markupButton">
       <input type="submit" id="wikiTable" value="Wiki table" name="markupButton">
-    </div>
+    </div><br>
 
-    <br>
     <div id="out"></div><br>
   </div>
-  <div id="bottom-content">
-    <h2>Non alignable lines (e.g: scriptio continua), separated by commas (e.g: 1,2)</h2>
-    <input id="notInterlinear" name="notInterlinear"></input><br><br>
+  
+    <div id="bottom-content">
+      <h2>Single column lines, comma delimited (e.g: 1,2)</h2>
+      <input id="notInterlinear" name="notInterlinear" spellcheck="false"></input><br><br>
 
-    <input type="checkbox" id="useSmallCaps" name="useSmallCaps" />
-    <label for="useSmallCaps">Use small caps on gloss line</label><br>
-    <input type="checkbox" id="useAbbrv" name="useAbbrv" checked />
-    <label for="useAbbrv">Use abbreviations</label><br>
-    <input type="checkbox" id="useInputAbbrv" name="useInputAbbrv" checked />
-    <label for="useInputAbbrv">Use in-built abbreviations</label><br>
+      <input type="checkbox" id="useSmallCaps" name="useSmallCaps" />
+      <label for="useSmallCaps"><b>Use small caps on gloss line</b></label><br>
+      <input type="checkbox" id="useAbbrv" name="useAbbrv" checked />
+      <label for="useAbbrv"><b>Use abbreviations</b></label><br>
+      <input type="checkbox" id="useInputAbbrv" name="useInputAbbrv" checked />
+      <label for="useInputAbbrv"><b>Use in-built abbreviations</b></label><br><br>
 
-    <h2>Enter abbreviations</h2>
-    <textarea id="abbrvInput" name="abbrvInput">
+      <h2>Glossing abbreviations, comma and line delimited</h2>
+      <textarea id="abbrvInput" name="abbrvInput" spellcheck="false">
 ACT,Actor voice
-CNS,Construct state
-</textarea>
-    <br>
+YABRV,Your abbreviation
+  </textarea>
+      <br>
 
-    <h2>Enter delimiters, separated by a comma</h2>
-    <textarea id="abbrvDelimiterInput" name="abbrvDelimiterInput">.,-,=,›</textarea>
-  </div>
-</body>
+      <h2>Glossing delimiters, comma delimited</h2>
+      <input id="abbrvDelimiterInput" name="abbrvDelimiterInput" value=".,-,=,›" spellcheck="false"></input>
+    </div>
+  </body>
 
 </html>
