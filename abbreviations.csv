@@ -6,6 +6,7 @@
 ACC,Accusative case
 AN,Animate gender
 ANIM,Animate gender
+C,Common gender
 CLF,Classifier
 DAT,Dative case
 ERG,Ergative case
@@ -61,6 +62,18 @@ SG,Singular
 3SF,Third person singular feminine (she)
 3SM,Third person singular masculine (he)
 3T,Third person trial
+1p,First person plural (we)
+1pl,First person plural (we)
+1s,First person singular (I)
+1sg,First person singular (I)
+2p,Second person plural (you all)
+2pl,Second person plural (you all)
+2s,Second person singular (you)
+2sg,Second person singular (you)
+3p,Third person plural (they)
+3pl,Third person plural (they)
+3s,Third person singular (he she it)
+3sg,Third person singular (he she it)
 A,Agent-like argument of canonical transitive verb
 ABESS,Abessive case
 ABL,Ablative case (from)
@@ -135,6 +148,7 @@ COMPUL,Compulsional
 CONC,Concessive
 COND,Conditional mood
 CONF,Confirmational
+CONJC,Conjectural (evidential)
 CONN,Connective particle
 CONR,Connector
 CONT,Continuous aspect; continuative aspect
@@ -308,6 +322,7 @@ IPFV,Imperfective
 IRR,Irrealis
 ITER,Iterative aspect
 JUS,Jussive mood
+KIN,Kinship affix
 LIM,Limitative
 MASC,Masculine gender
 MID,Middle voice; medio-passive
@@ -361,6 +376,8 @@ REFL,Reflexive ( reflexive pronoun; reflexive voice )
 REL,Relative clause marker
 REM,Remote
 REP,Repetitive aspect
+RES,Resultative
+RESP,Respect
 RPRT,Reported evidential
 RQ,Rhetorical question
 S,Single argument of canonical intransitive verb
@@ -370,12 +387,14 @@ SEM,Semelfactive aspect (once)
 SENS,Sensory evidential mood
 SIM,Simultaneous aspect; simultaneity
 SJV,Subjunctive mood
+SPECL,Speculative mood
 STAT,Stative aspect
 SUB,Sublocative (under)
 SUBL,Sublative case (onto; down onto)
 SUG,Suggestive mood
 SUPEL,Superelative case (on)
 SUPL,Superlative
+TENT,Tentative
 TOP,Topic marker
 TRI,Trial number
 UF,Uncertain future
@@ -390,6 +409,7 @@ VEN,Venitive (coming towards; andative)
 VENT,Ventive; ventitive
 VERT,Vertical
 VIA,Vialis case
+VN,Verbal noun
 VOC,Vocative case
 VOL,Volitive mood; volitional
 WH,Interrogative pronoun
