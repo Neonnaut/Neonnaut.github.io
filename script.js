@@ -91,6 +91,8 @@ function convert(conv) {
 		wikiMarkup();
 	} else if (markup == "interlinear") {
 		interlinearMarkup();
+	} else if (markup == "reddit") {
+		redditMarkup();
 	}
 
 	function zbbMarkup() {
@@ -410,6 +412,70 @@ function convert(conv) {
 			parsedEntry = "";
 		}
 		conv.finishTable();
+	}
+	function redditMarkup() {
+		var wordLength = [];
+		var gloss = "";
+		for (let m = 0; m < lines.length; m++) {
+			// Find out if the line is non allignable
+			var skipline = false;
+			var a = 0;
+			while (a < nonInterlinear[a]) {
+				if (nonInterlinear[a] == m + 1) {
+					skipline = true;
+					a == nonInterlinear[a] - 5;
+				}
+				a++
+			}
+			var entriesZ = lines[m].split(/[ \t]+/).map($.trim).filter(function (x) { return !(x === ""); });
+			for (let n = 0; n < entriesZ.length; n++) {
+				var noDiacriticsEntry = entriesZ[n].normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+				if (!skipline && m + 1 != lines.length) {
+					if (typeof wordLength[n] === "undefined") {
+						wordLength.push(noDiacriticsEntry.length);
+					}
+					if (wordLength[n] <= noDiacriticsEntry.length) {
+						wordLength[n] = noDiacriticsEntry.length;
+					}
+				}
+			}
+		}
+		for (let i = 0; i < lines.length; i++) {
+			// Find out if the line is non allignable
+			var skipline = false;
+			var a = 0;
+			while (a < nonInterlinear[a]) {
+				if (nonInterlinear[a] == i + 1) {
+					skipline = true;
+					a == nonInterlinear[a] - 5;
+				}
+				a++
+			}
+			var line = lines[i].split(/[ \t]+/).map($.trim).filter(function (x) { return !(x === ""); });
+			for (let j = 0; j < line.length; j++) {
+				// If small caps, turn each glossing abbreviation to small caps if abbreviation is all caps.
+				if (useSmallCaps == "abbrv sc") {
+					///////////////////
+					line[j] = splitEntryGlossZbb(line[j], conv);
+					//////////////////
+				}
+				if (!skipline && i + 1 != lines.length) {
+					// breack diacritical characters to get true length of entry
+					var noDiacritics = line[j].normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+					while (noDiacritics.length < wordLength[j] && j != line.length - 1) {
+						line[j] += " ";
+						noDiacritics += " ";
+					}
+				}
+			}
+			// Last line or first line
+			if (i + 1 == lines.length && lines.length != 2) {
+				gloss += line.join(" ") + "\n";
+			} else {
+				gloss += "    " + line.join(" ") + "\n";
+			}
+		}
+		conv.finish(gloss);
 	}
 }
 

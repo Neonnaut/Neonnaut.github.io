@@ -22,10 +22,21 @@
       padding: 8px 30px 38px 30px;
     }
 
+    h1 {
+      margin-bottom: 2px;
+      margin-top: 6px;
+      font-size: 19px;
+    }
+
     h2 {
       margin-bottom: 2px;
       margin-top: 6px;
       font-size: 18px;
+    }
+
+    .bottom-content label, h2 {
+      
+      color: #333333;
     }
 
     #input {
@@ -60,6 +71,10 @@
       text-transform: lowercase;
     }
 
+    table, pre {
+      overflow: auto;
+    }
+
     table tr {
       white-space: nowrap;
     }
@@ -70,7 +85,7 @@
 
     #switch-field {
       display: flex;
-      overflow: hidden;
+      overflow: auto;
     }
 
     #switch-field input {
@@ -112,21 +127,22 @@
   <div id="top-content">
     <a href="https://github.com/Neonnaut/Neonnaut.github.io">Click here for instructions</a>
 
-    <h2>Text to be glossed (last line must be the translation, second last must be gloss)</h2>
+    <h1>Text to be glossed (last line must be the translation, second last must be gloss)</h1>
     <textarea id="input" name="input" spellcheck="false" placeholder="Astra inclinant, sed non obligant.
 [astra inkliːnant sed non obligant]
 star.ACC.PL incline.PRS.PTCP but NEG bind.3P.PRS.ACT.IND
 'The stars incline us, they do not bind us.'"></textarea><br>
 
-    <h2>Markup</h2>
+    <h1>Markup</h1>
     <div id="switch-field">
       <input type="submit" id="htmlTable" value="HTML table" name="markupButton">
-      <input type="submit" id="interlinear" value="Interlinear div" name="markupButton">
+      <input type="submit" id="interlinear" value="HTML divs" name="markupButton">
       <input type="submit" id="plainText" value="Plain text" name="markupButton">
-      <input type="submit" id="zbbGloss" value="ZBB gloss" name="markupButton">
-      <input type="submit" id="latexGloss" value="Latex gloss" name="markupButton">
-      <input type="submit" id="cwsGloss" value="CWS gloss" name="markupButton">
-      <input type="submit" id="wikiTable" value="Wiki table" name="markupButton">
+      <input type="submit" id="zbbGloss" value="ZBB" name="markupButton">
+      <input type="submit" id="latexGloss" value="Latex" name="markupButton">
+      <input type="submit" id="cwsGloss" value="CWS" name="markupButton">
+      <input type="submit" id="reddit" value="Reddit" name="markupButton">
+      <input type="submit" id="wikiTable" value="Wiki" name="markupButton">
     </div><br>
 
     <div id="out"></div><br>
@@ -137,11 +153,11 @@ star.ACC.PL incline.PRS.PTCP but NEG bind.3P.PRS.ACT.IND
       <input id="notInterlinear" name="notInterlinear" spellcheck="false"></input><br><br>
 
       <input type="checkbox" id="useSmallCaps" name="useSmallCaps" />
-      <label for="useSmallCaps"><b>Use small caps on gloss line</b></label><br>
+      <label for="useSmallCaps">Use small caps on gloss line</label><br>
       <input type="checkbox" id="useAbbrv" name="useAbbrv" checked />
-      <label for="useAbbrv"><b>Use abbreviations</b></label><br>
+      <label for="useAbbrv">Use abbreviations</label><br>
       <input type="checkbox" id="useInputAbbrv" name="useInputAbbrv" checked />
-      <label for="useInputAbbrv"><b>Use in-built abbreviations</b></label><br><br>
+      <label for="useInputAbbrv">Use in-built abbreviations</label><br>
 
       <h2>Glossing abbreviations, comma and line delimited</h2>
       <textarea id="abbrvInput" name="abbrvInput" spellcheck="false">

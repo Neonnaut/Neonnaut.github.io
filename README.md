@@ -48,10 +48,16 @@ When using the HTML markup method, provide the following CSS on your website to 
   font-variant-numeric: oldstyle-nums;
   text-transform: lowercase;
 }
+table {
+  overflow: auto;
+}
+table tr {
+  white-space: nowrap;
+}
 table tr td {
   padding-right: 3px;
 }
-table tr {white-space: nowrap;}
+
 ```
 
 If you wish to style anything, such as use italics or bold, you may enter HTML tags on an individual word. If you wish to style an entire line, the best way is to add a class to the `<tr>` and add styles with CSS.
