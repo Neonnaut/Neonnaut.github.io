@@ -270,10 +270,8 @@ function convert(conv) {
 		var output = "";
 		///////
 		maxColumns = 0;
-		for (let a = 0; a < lines.length; a++) {
-			let k = 0;
-			while (k < nonInterlinear[k].length) {
-				
+		for (let k = 0; k < nonInterlinear.length; k++) {
+			for (let a = 0; a < lines.length; a++) {
 				// If last line
 				if (a + 1 == lines.length) {
 
@@ -285,7 +283,6 @@ function convert(conv) {
 						maxColumns = line.length;
 					}
 				}
-				k++
 			}
 		}
 
@@ -399,10 +396,8 @@ function convert(conv) {
 	}
 	function htmlTableMarkup() {
 		maxColumns = 0;
-		for (let a = 0; a < lines.length; a++) {
-			let k = 0;
-			while (k < nonInterlinear[k].length) {
-				
+		for (let k = 0; k < nonInterlinear.length; k++) {
+			for (let a = 0; a < lines.length; a++) {
 				// If last line
 				if (a + 1 == lines.length) {
 
@@ -414,7 +409,6 @@ function convert(conv) {
 						maxColumns = line.length;
 					}
 				}
-				k++
 			}
 		}
 
