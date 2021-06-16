@@ -271,29 +271,23 @@ function convert(conv) {
 		///////
 		maxColumns = 0;
 		for (let a = 0; a < lines.length; a++) {
-			skipline = false;
 			let k = 0;
-			while (k < nonInterlinear[k]) {
-				if (nonInterlinear[k] == a + 1) {
-					skipline = true;
-					k += 5;
+			while (k < nonInterlinear[k].length) {
+				
+				// If last line
+				if (a + 1 == lines.length) {
+
+				} else if (nonInterlinear[k] == a + 1) {
+
+				} else {
+					var line = lines[a].split(/[ \t]+/).map($.trim).filter(function (x) { return !(x === ""); });
+					if (maxColumns <= line.length) {
+						maxColumns = line.length;
+					}
 				}
 				k++
 			}
-
-			// If last line
-			if (a + 1 == lines.length) {
-
-			} else if (skipline) {
-
-			} else {
-				var line = lines[a].split(/[ \t]+/).map($.trim).filter(function (x) { return !(x === ""); });
-				if (maxColumns <= line.length) {
-					maxColumns = line.length;
-				}
-			}
 		}
-		/////
 
 		for (let i = 0; i < lines.length; i++) {
 			var a = 0;
@@ -404,6 +398,26 @@ function convert(conv) {
 		conv.finishPlainText(gloss);
 	}
 	function htmlTableMarkup() {
+		maxColumns = 0;
+		for (let a = 0; a < lines.length; a++) {
+			let k = 0;
+			while (k < nonInterlinear[k].length) {
+				
+				// If last line
+				if (a + 1 == lines.length) {
+
+				} else if (nonInterlinear[k] == a + 1) {
+
+				} else {
+					var line = lines[a].split(/[ \t]+/).map($.trim).filter(function (x) { return !(x === ""); });
+					if (maxColumns <= line.length) {
+						maxColumns = line.length;
+					}
+				}
+				k++
+			}
+		}
+
 		for (let i = 0; i < lines.length; i++) {
 			var skipline = false;
 			var a = 0;
@@ -411,7 +425,6 @@ function convert(conv) {
 			while (a < nonInterlinear[a]) {
 				if (nonInterlinear[a] == i + 1) {
 					skipline = true;
-					a == nonInterlinear[a] - 5;
 				}
 				a++
 			}
@@ -424,27 +437,9 @@ function convert(conv) {
 				conv.addLine(parsedEntry);
 				//Do something if skip line or last line
 			} else if (lines[i] == "$&N;") {
-				var maxLines = 0;
-				for (let m = 0; m < lines.length; m++) {
-					if (m != i) {
-						var entriesZ = lines[m].split(/[ \t]+/).map($.trim).filter(function (x) { return !(x === ""); });
-						if (maxLines <= entriesZ.length) {
-							maxLines = entriesZ.length;
-						}
-					}
-				}
-				conv.addSingleLineEntry("<br/>", maxLines);
+				conv.addSingleLineEntry("<br/>", maxColumns);
 			} else if (skipline || i + 1 == lines.length) {
-				var maxLines = 0;
-				for (let m = 0; m < lines.length; m++) {
-					if (m != i) {
-						var entriesZ = lines[m].split(/[ \t]+/).map($.trim).filter(function (x) { return !(x === ""); });
-						if (maxLines <= entriesZ.length) {
-							maxLines = entriesZ.length;
-						}
-					}
-				}
-				conv.addSingleLineEntry(lines[i], maxLines);
+				conv.addSingleLineEntry(lines[i], maxColumns);
 				//Else do normal line
 			} else {
 				for (let c = 0; c < entries.length; c++) {
