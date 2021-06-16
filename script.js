@@ -72,10 +72,23 @@ function convert(conv) {
 	var useSmallCaps = conv.useSmallCaps;
 	var markup = conv.markup;
 
-	var lines = $("#input").val().split("\n").map($.trim).filter(function (x) { return !(x === ""); });
+	var lines = $("#input").val().trim();
 	if (lines == "") {
-		lines = $("#input").attr('placeholder').split("\n").map($.trim).filter(function (x) { return !(x === ""); });
+		lines = $("#input").attr('placeholder');
 	}
+
+	lines = lines.split("\n");
+
+	for (let i = 0; i < lines.length; i++) {
+		if (lines[i] == "") {
+			if (lines[i+1] != "") {
+				lines[i] = "$&N;";
+			}
+		}
+		lines[i] = lines[i].replace(/ +(?= )/g,'');
+	}
+
+	lines = lines.map($.trim).filter(function (x) { return !(x === ""); });
 
 	if (markup == "zbbGloss") {
 		zbbMarkup();
@@ -99,10 +112,16 @@ function convert(conv) {
 		var gloss = "";
 		let i = 0;
 		while (i < lines.length) {
+			if (lines[i] == "$&N;") {
+				lines[i] = "";
+			}
 			//Third last line or if there are only two lines
 			if ((i + 3 == lines.length) || (lines.length == 2)) {
 				var normLine = lines[i].split(/[ \t]+/).map($.trim).filter(function (x) { return !(x === ""); });
 				i++;
+				if (lines[i] == "$&N;") {
+					lines[i] = "";
+				}
 				var glossLine = lines[i].split(/[ \t]+/).map($.trim).filter(function (x) { return !(x === ""); });
 				for (let j = 0; j < glossLine.length; j++) {
 					if ((typeof normLine !== "undefined") || (typeof glossLine !== "undefined")) {
@@ -127,8 +146,11 @@ function convert(conv) {
 	function latexMarkup() {
 		gloss = "";
 		for (let m = 0; m < lines.length; m++) {
+			if (lines[m] == "$&N;") {
+				lines[m] = "";
+			}
 			// Third last line
-			if (m + 3 == lines.length) {
+		  if (m + 3 == lines.length) {
 				gloss += "\\begin{exe}\n\\ex\n\\gll " + lines[m] + "\\\\\n";
 			} else if (m + 2 == lines.length) {
 				if (useSmallCaps == "abbrv sc") {
@@ -168,6 +190,9 @@ function convert(conv) {
 				}
 				table[a] = new Array();
 				for (let b = 0; b < line.length; b++) {
+					if (line[b] == "$&N;") {
+						line[b] = "";
+					}
 					table[a].push(line[b]);
 				}
 			}
@@ -221,7 +246,9 @@ function convert(conv) {
 		for (let j = 0; j < maxColumns; j++) {
 			gloss += "  <div class='gll'>";
 			for (let i = 0; i < noOfLines; i++) {
-				if (table[i][j] != null) {
+				if (table[i][0] == "$&N;") {
+					gloss += "";
+				} else if (table[i][j] != null) {
 					gloss += table[i][j];
 				} else {
 					gloss += "?"
@@ -283,7 +310,7 @@ function convert(conv) {
 			// Do something if is the second last iteration of the array
 			if ((i + 2 == lines.length) && (useAbbrv || useSmallCaps)) {
 				for (let b = 0; b < maxColumns; b++) {
-					if (entries[b] == null) {
+					if (entries[b] == null || entries[b] == "$&N;") {
 						parsedEntry += "|?\n";
 					} else {
 						parsedEntry += "|" + splitEntryGlossWiki(entries[b], conv) + "\n";
@@ -293,6 +320,9 @@ function convert(conv) {
 				//Do something if skip line 
 			} else if (skipline) {
 				output += "| colspan='" + maxColumns + "'|" + lines[i] + "\n|-\n";
+				//Blank line
+			} else if (lines[i] == "$&N;") {
+				output += "| colspan='" + maxColumns + "'|" + "\n|-\n";
 				//Else or last line
 			} else if (i + 1 == lines.length) {
 				output += "|-\n| colspan='" + maxColumns + "'|" + lines[i];
@@ -358,7 +388,9 @@ function convert(conv) {
 					line[j] = splitEntryGlossZbb(line[j], conv);
 					//////////////////
 				}
-				if (!skipline && i + 1 != lines.length) {
+				if (line[j] == "$&N;") {
+					line[j] = ""
+				} else if (!skipline && i + 1 != lines.length) {
 					// breack diacritical characters to get true length of entry
 					var noDiacritics = line[j].normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 					while (noDiacritics.length < wordLength[j] && j != line.length - 1) {
@@ -391,6 +423,17 @@ function convert(conv) {
 				}
 				conv.addLine(parsedEntry);
 				//Do something if skip line or last line
+			} else if (lines[i] == "$&N;") {
+				var maxLines = 0;
+				for (let m = 0; m < lines.length; m++) {
+					if (m != i) {
+						var entriesZ = lines[m].split(/[ \t]+/).map($.trim).filter(function (x) { return !(x === ""); });
+						if (maxLines <= entriesZ.length) {
+							maxLines = entriesZ.length;
+						}
+					}
+				}
+				conv.addSingleLineEntry("<br/>", maxLines);
 			} else if (skipline || i + 1 == lines.length) {
 				var maxLines = 0;
 				for (let m = 0; m < lines.length; m++) {
@@ -459,7 +502,9 @@ function convert(conv) {
 					line[j] = splitEntryGlossZbb(line[j], conv);
 					//////////////////
 				}
-				if (!skipline && i + 1 != lines.length) {
+				if (line[j] == "$&N;") {
+					line[j] = ""
+				} else if (!skipline && i + 1 != lines.length) {
 					// breack diacritical characters to get true length of entry
 					var noDiacritics = line[j].normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 					while (noDiacritics.length < wordLength[j] && j != line.length - 1) {
