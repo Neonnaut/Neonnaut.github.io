@@ -270,33 +270,34 @@ function convert(conv) {
 		var output = "";
 		///////
 		maxColumns = 0;
-		for (let k = 0; k < nonInterlinear.length; k++) {
-			for (let a = 0; a < lines.length; a++) {
-				// If last line
-				if (a + 1 == lines.length) {
+		for (let a = 0; a < lines.length; a++) {
+			var line = lines[a].split(/[ \t]+/).map($.trim).filter(function (x) { return !(x === ""); });
 
-				} else if (nonInterlinear[k] == a + 1) {
+			var toMatch = a + 1;
+			toMatch.toString();
+			stringInterlinear = nonInterlinear.join(',');
+  		var includes = stringInterlinear.indexOf(toMatch);
+			if (includes != -1) {
+				skipline = true;
+			} else if (a + 1 == lines.length) {
 
-				} else {
-					var line = lines[a].split(/[ \t]+/).map($.trim).filter(function (x) { return !(x === ""); });
-					if (maxColumns <= line.length) {
-						maxColumns = line.length;
-					}
-				}
+			} else if (maxColumns <= line.length) {
+				maxColumns = line.length;
 			}
 		}
 
 		for (let i = 0; i < lines.length; i++) {
-			var a = 0;
 			var parsedEntry = "";
 			skipline = false;
-			while (a < nonInterlinear[a]) {
-				if (nonInterlinear[a] == i + 1) {
-					skipline = true;
-					a += 5;
-				}
-				a++
+			
+			var toMatch = i + 1;
+			toMatch.toString();
+			stringInterlinear = nonInterlinear.join(',');
+  		var includes = stringInterlinear.indexOf(toMatch);
+			if (includes != -1) {
+				skipline = true;
 			}
+			//////
 			var entries = lines[i].split(/[ \t]+/).map($.trim).filter(function (x) { return !(x === ""); });
 			// Do something if is the second last iteration of the array
 			if ((i + 2 == lines.length) && (useAbbrv || useSmallCaps)) {
