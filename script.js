@@ -202,7 +202,7 @@ function convert(conv) {
 				if (table[i][j] != null) {
 					gloss += table[i][j];
 				} else {
-					gloss += "?"
+					gloss += ""
 				}
 				if (i != noOfLines - 1) {
 					gloss += "//";
@@ -246,19 +246,34 @@ function convert(conv) {
 		for (let j = 0; j < maxColumns; j++) {
 			gloss += "  <div class='gll'>";
 			for (let i = 0; i < noOfLines; i++) {
+				////
+				var skipline = false;
+				var toMatch = i + 1;
+				toMatch.toString();
+				stringInterlinear = nonInterlinear.join(',');
+				var includes = stringInterlinear.indexOf(toMatch);
+				if (includes != -1) {
+					skipline = true;
+				}
+				////
+
 				if (table[i][0] == "$&N;") {
 					gloss += "";
+				} else if (skipline) {
+					gloss += ""
 				} else if (table[i][j] != null) {
 					gloss += table[i][j];
 				} else {
-					gloss += "?"
+					gloss += ""
 				}
-				if (i != noOfLines - 1) {
+				if (i != noOfLines - 1 && skipline == false && table[i][0] != "$&N;") {
 					gloss += "<br/>";
 				}
 			}
+			if (skipline) {
+				gloss += table[i];
+			}
 			gloss += "</div>\n";
-
 		}
 		var lastLine = lines[noOfLines].split(/[ \t]+/).map($.trim).filter(function (x) { return !(x === ""); });
 		gloss += "  <div>" + lastLine.join(" ") + "</div>\n";
@@ -560,8 +575,10 @@ function splitEntryGloss(entry, conv) {
 			} else {
 				result = result.concat("<abbr class='abbrv' title='", glossexpl, "'>", word, "</abbr>");
 			}
-		} else {
+		} else if (useSmallCaps == "abbrv sc") {
 			result = result.concat("<a class='sc'>", word, "</a>");
+		} else {
+			result = result.concat(word);
 		}
 	}
 	return result;
@@ -617,13 +634,14 @@ function splitEntryGlossWiki(entry, conv) {
 			} else {
 				result = result.concat("{{abbr|", word, "|", glossexpl, "}}");
 			}
-		} else {
+		} else if (useSmallCaps == "abbrv sc") {
 			result = result.concat("{{sc|", word, "}}");
+		} else {
+			result = result.concat(word);
 		}
 	}
 	return result;
 }
-
 
 // \textsc{...}
 function splitEntryGlossLatex(entry, conv) {
