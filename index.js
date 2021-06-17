@@ -259,21 +259,17 @@ function convert(conv) {
 
 				if (table[i][0] == "$&N;") {
 					gloss += "";
-				} else if (skipline) {
-					gloss += ""
 				} else if (table[i][j] != null) {
 					gloss += table[i][j];
 				} else {
-					gloss += ""
+					gloss += "?"
 				}
-				if (i != noOfLines - 1 && skipline == false && table[i][0] != "$&N;") {
+				if (i != noOfLines - 1) {
 					gloss += "<br/>";
 				}
 			}
-			if (skipline) {
-				gloss += table[i];
-			}
 			gloss += "</div>\n";
+
 		}
 		var lastLine = lines[noOfLines].split(/[ \t]+/).map($.trim).filter(function (x) { return !(x === ""); });
 		gloss += "  <div>" + lastLine.join(" ") + "</div>\n";
@@ -643,7 +639,6 @@ function splitEntryGlossWiki(entry, conv) {
 	return result;
 }
 
-// \textsc{...}
 function splitEntryGlossLatex(entry, conv) {
 	var result = "";
 	var word = "";
@@ -749,8 +744,6 @@ function toSmallCaps(input) {
 
 var Converter = function (markup, nonInterlinear, useAbbrv, abbreviations, explanations, abbrvDelimiterInput, useSmallCaps) {
 	this.orig = "";
-	this.gloss = "";
-	this.lines = "";
 	this.output = "";
 
 	this.markup = markup;
@@ -791,12 +784,14 @@ Converter.prototype.finishPlainText = function (input) {
 	this.output = "<pre>" + input + "</pre><textarea id='output' spellcheck='false' readonly>" + input + "</textarea>";
 }
 
+// Save input text in user's localstorage for next session
 function setLocalStorage() {
 	localStorage.setItem('input', $('#input').val());
 	localStorage.setItem('notInterlinear', $('#notInterlinear').val());
 	localStorage.setItem('abbrvInput', $('#abbrvInput').val());
 	localStorage.setItem('abbrvDelimiterInput', $('#abbrvDelimiterInput').val());
 }
+// Populate input fields with data in local storage on window load if it exists
 window.onload = function () {
 	if (localStorage.hasOwnProperty('notInterlinear')) {
 		$('#input').val(localStorage.getItem('input'));
@@ -805,6 +800,7 @@ window.onload = function () {
 		$('#abbrvDelimiterInput').val(localStorage.getItem('abbrvDelimiterInput'));
 	}
 };
+// Check for markup submit button and colour it blue
 $(window).load(function () {
 	$("[name='markupButton']").click(function () {
 		glossarize($(this).attr('id'));
@@ -814,6 +810,7 @@ $(window).load(function () {
 		}
 		$(id = $(this)).addClass("checked");
 	});
+	// Check if use abbreviations has been unchecked and disable abbreviation input
 	$("#useAbbrv").click(function () {
 		if ($("#useAbbrv").is(':checked')) {
 			$("#abbrvInput").prop('disabled', false);
