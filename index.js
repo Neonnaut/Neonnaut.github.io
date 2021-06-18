@@ -62,6 +62,7 @@ function glossarize(markup) {
 
 	convert(conv);
 	$("#out").html(conv.output);
+	$("#output").focus();
 	$("#output").select();
 	setLocalStorage();
 }
@@ -768,20 +769,20 @@ Converter.prototype.addSingleLineEntry = function (input, maxLines) {
 	this.orig += "  <tr><td colspan=" + maxLines + ">" + input + "</td></tr>" + "\n";
 };
 Converter.prototype.finishTable = function () {
-	this.output = "<table>" + "\n" + this.orig + "\n" + "</table><br>" + "<textarea id='output' spellcheck='false' readonly>"
+	this.output = "<table>" + "\n" + this.orig + "\n" + "</table><br>" + "<textarea id='output' spellcheck='false'>"
 		+ "\n" + "<table>" + "\n" + this.orig + "</table>" + "</textarea>";
 };
 Converter.prototype.finishWiki = function (input) {
-	this.output = "<textarea id='output' spellcheck='false' readonly>{| class='wikitable'\n|-\n" + input + "\n|}</textarea>";
+	this.output = "<textarea id='output' spellcheck='false'>{| class='wikitable'\n|-\n" + input + "\n|}</textarea>";
 };
 Converter.prototype.finish = function (input) {
-	this.output = "<textarea id='output' spellcheck='false' readonly>" + input + "</textarea>";
+	this.output = "<textarea id='output' spellcheck='false'>" + input + "</textarea>";
 }
 Converter.prototype.finishInterlinear = function (input) {
-	this.output = input + "<br><textarea id='output' spellcheck='false' readonly>" + input + "</textarea>";
+	this.output = input + "<br><textarea id='output' spellcheck='false'>" + input + "</textarea>";
 }
 Converter.prototype.finishPlainText = function (input) {
-	this.output = "<pre><code>" + input + "</code></pre><textarea id='output' spellcheck='false' readonly>" + input + "</textarea>";
+	this.output = "<pre><code>" + input + "</code></pre><textarea id='output' spellcheck='false'>" + input + "</textarea>";
 }
 
 // Save input text in user's localstorage for next session
