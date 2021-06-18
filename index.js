@@ -781,7 +781,7 @@ Converter.prototype.finishInterlinear = function (input) {
 	this.output = input + "<br><textarea id='output' spellcheck='false' readonly>" + input + "</textarea>";
 }
 Converter.prototype.finishPlainText = function (input) {
-	this.output = "<pre>" + input + "</pre><textarea id='output' spellcheck='false' readonly>" + input + "</textarea>";
+	this.output = "<pre><code>" + input + "</code></pre><textarea id='output' spellcheck='false' readonly>" + input + "</textarea>";
 }
 
 // Save input text in user's localstorage for next session
