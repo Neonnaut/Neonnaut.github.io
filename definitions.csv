@@ -58,7 +58,7 @@ SG,Singular
 3GEN,Third person genitive (their)
 3P,Third person plural (they)
 3PAU,Third person paucal
-3S,Third person singular (they)
+3S,Third person singular (he; she; it)
 3SF,Third person singular feminine (she)
 3SM,Third person singular masculine (he)
 3T,Third person trial
@@ -72,8 +72,8 @@ SG,Singular
 2sg,Second person singular (you)
 3p,Third person plural (they)
 3pl,Third person plural (they)
-3s,Third person singular (he she it)
-3sg,Third person singular (he she it)
+3s,Third person singular (he; she; it)
+3sg,Third person singular (he; she; it)
 A,Agent-like argument of canonical transitive verb
 ABESS,Abessive case
 ABL,Ablative case (from)
@@ -179,8 +179,8 @@ DEO,Deontic mood
 DEOBJ,Deobjective
 DEONT,Deontic mood
 DEP,Dependent
-DER,Derivation - derivational
-DERIV,Derivation - derivational
+DER,Derivation; derivational
+DERIV,Derivation; derivational
 DES,Desiderative mood
 DET,Determiner
 DETR,Detransitivizer; detransitive
