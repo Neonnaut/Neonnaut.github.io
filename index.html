@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <title>Gloss My Gloss</title>
@@ -47,21 +47,25 @@
     #abbrvInput,
     #abbrvDelimiterInput,
     #notInterlinear {
-      width: 90%;
+      width: 95%;
       max-width: 40em;
     }
     #abbrvInput {
       height: 5em;
     }
+    #switch-field {
+      display: flex;
+    }
     #switch-field input {
+      -webkit-appearance: none;
       background-color: #e4e4e4;
       color: rgba(0, 0, 0, 0.9);
-      font-weight: 18;
+      font-weight: 500;
       font-size: 14px;
       line-height: 1;
       margin-bottom: 3px;
       text-align: center;
-      padding: 8px 16px;
+      padding: 8px 14px;
       border: 1px solid rgba(0, 0, 0, 0.2);
       box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);
       transition: all 0.1s ease-in-out;
@@ -107,6 +111,9 @@
       #bottom-content {
         padding: 8px 10px 38px 10px;
       }
+      #switch-field {
+        display: inline;
+      }
     }
   </style>
 </head>
@@ -115,7 +122,7 @@
   <div id="top-content">
     <a href="https://github.com/Neonnaut/Neonnaut.github.io/blob/main/README.md">Click here for instructions</a>
 
-    <h1>Text to be glossed (last line must be the translation, second last must be gloss)</h1>
+    <h1>Text to be glossed (last line must be translation, second last must be gloss)</h1>
     <textarea id="input" name="input" spellcheck="false" placeholder="Astra inclinant, sed non obligant.
 [astra inkliːnant sed non obligant]
 star.ACC.PL incline.PRS.PTCP but NEG bind.3P.PRS.ACT.IND
@@ -138,7 +145,7 @@ star.ACC.PL incline.PRS.PTCP but NEG bind.3P.PRS.ACT.IND
   
     <div id="bottom-content">
       <h2>Single column lines, comma delimited (e.g: 1,2)</h2>
-      <input id="notInterlinear" name="notInterlinear" spellcheck="false"></input><br><br>
+      <input id="notInterlinear" name="notInterlinear" spellcheck="false"><br><br>
 
       <input type="checkbox" id="useSmallCaps" name="useSmallCaps" />
       <label for="useSmallCaps">Use small caps on gloss line</label><br>
@@ -155,7 +162,7 @@ YABRV,Your abbreviation
       <br>
 
       <h2>Glossing delimiters, comma delimited</h2>
-      <input id="abbrvDelimiterInput" name="abbrvDelimiterInput" value=".,-,=,›" spellcheck="false"></input>
+      <input id="abbrvDelimiterInput" name="abbrvDelimiterInput" value=".,-,=,›" spellcheck="false">
     </div>
   </body>
 
