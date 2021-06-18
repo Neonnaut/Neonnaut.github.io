@@ -67,7 +67,6 @@ function glossarize(markup) {
 	convert(conv);
 	$("#out").html(conv.output);
 	$("#output").select();
-	$("#output").setSelectionRange(0, $("#output").value.length); //Mobile
 	setLocalStorage();
 }
 
