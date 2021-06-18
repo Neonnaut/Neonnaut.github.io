@@ -1,7 +1,7 @@
 1,First person (speaker)
 2,Second person (listener)
 3,Third person (referent)
-4,Fourth person (oviative or generic)
+4,Fourth person (obviative or generic)
 12,First person inclusive
 ACC,Accusative case
 AN,Animate gender
@@ -106,7 +106,7 @@ ANTESS,Antessive case (before)
 ANTIC,Anticausative
 ANTIP,Antipassive
 AO,Agent-orientated verb
-AOR,Aorist (= pfv or pst.pfv )
+AOR,Aorist
 AP,Antipassive voice
 APPL,Applicative
 APRX,Approximative
@@ -126,7 +126,7 @@ AVR,Aversative
 BEN,Benefactive case (for)
 BF,Beneficiary focus
 CAR,Caritive case
-CARD,Cardinal numeral (morpheme or grammatical feature)
+CARD,Cardinal numeral
 CAUS,Causative
 CENT,Centric case
 CERT,Certainty (evidential)
@@ -252,7 +252,7 @@ HBL,Habilitive
 HES,Hesitation; hesitation particle
 HEST,Hesternal tense (yesterday)
 HIST,Historic(al) tense
-HML,Humiliative (humble/low-status register )
+HML,Humiliative (humble/low-status register)
 HOD,Hodiernal tense
 HON,Honorific
 HORT,Hortative
@@ -353,7 +353,7 @@ PLUP,Pluperfect
 PLUR,Pluractional
 POL,Polite register
 POSB,Possible; modal possibility
-PPFV,Past perfective (= perfect)
+PPFV,Past perfective
 PQP,Polar question particle
 PREC,Precative mood (requests)
 PRED,Predicative affix; predicative
@@ -372,7 +372,7 @@ RECP,Reciprocal voice
 RED,Reduplication
 REDUP,Reduplication
 REF,Referential
-REFL,Reflexive ( reflexive pronoun; reflexive voice )
+REFL,Reflexive (reflexive pronoun; reflexive voice)
 REL,Relative clause marker
 REM,Remote
 REP,Repetitive aspect
@@ -417,4 +417,4 @@ WHQ,Wh- question
 WIT,Witnessed evidential
 WP,Witnessed past
 WPST,Witnessed past
-YNQ,Yes–no question
+YNQ,Yes-no question
