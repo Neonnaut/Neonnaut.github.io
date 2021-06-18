@@ -53,10 +53,6 @@
     #abbrvInput {
       height: 5em;
     }
-    #switch-field {
-      
-      overflow: auto;
-    }
     #switch-field input {
       background-color: #e4e4e4;
       color: rgba(0, 0, 0, 0.9);
@@ -66,7 +62,6 @@
       margin-bottom: 3px;
       text-align: center;
       padding: 8px 16px;
-      
       border: 1px solid rgba(0, 0, 0, 0.2);
       box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);
       transition: all 0.1s ease-in-out;
@@ -88,8 +83,12 @@
       font-variant-numeric: oldstyle-nums;
       text-transform: lowercase;
     }
-    table, pre {
+    pre {
       overflow: auto;
+    }
+    table {
+      display: block;
+      overflow-x: auto;
     }
     table tr {
       white-space: nowrap;
