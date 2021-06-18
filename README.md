@@ -90,7 +90,7 @@ This generator outputs the ZBB Board's gloss markup, if you provide more than tw
 
 #### Reddit
 
-You must ue Reddit's "Markdown" mode and not it's "Fancy pants editor". This will output your text into a so-called fixed-width-font in it's codeblock, and the last line out of the codeblock. Reddit's codeblock doesn't seem to have a fixed width font for all chaacters, at least on the devices I tested on. So if you use certain IPA characters such as `ɨ`, your columns will come out of arrqangement and there is nothing you can do about it.
+You must ue Reddit's "Markdown" mode and not it's "Fancy pants editor". This will output your text into a so-called fixed-width-font in it's codeblock, and the last line out of the codeblock. Reddit's codeblock doesn't seem to have a fixed width font for all chaacters, at least on the devices I tested on. So if you use certain IPA characters such as `ɨ`, your columns will come out of alignment and there is nothing you can do about it.
 
 #### Wiki tables
 
