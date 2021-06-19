@@ -47,11 +47,6 @@ function glossarize(markup) {
 
 	//Get if use caps
 	var useSmallCaps = $("#useSmallCaps").is(":checked");
-	if (useSmallCaps == true) {
-		useSmallCaps = "abbrv sc";
-	} else {
-		useSmallCaps = "abbrv";
-	}
 
 	//CONVERT
 	var conv = new Converter(
@@ -66,6 +61,7 @@ function glossarize(markup) {
 
 	convert(conv);
 	$("#out").html(conv.output);
+	$("#output").focus();
 	$("#output").select();
 	setLocalStorage();
 }
@@ -80,9 +76,7 @@ function convert(conv) {
 	if (lines == "") {
 		lines = $("#input").attr('placeholder');
 	}
-
 	lines = lines.split("\n");
-
 	for (let i = 0; i < lines.length; i++) {
 		if (lines[i] == "") {
 			if (lines[i+1] != "") {
@@ -90,9 +84,14 @@ function convert(conv) {
 			}
 		}
 		lines[i] = lines[i].replace(/ +(?= )/g,'');
+		lines[i] = lines[i].trim();
 	}
-
 	lines = lines.map($.trim).filter(function (x) { return !(x === ""); });
+	for (let i = 0; i < lines.length; i++) {
+		if (lines[i] == "$&N;") {
+			lines[i] = "";
+		}
+	}
 
 	if (markup == "zbbGloss") {
 		zbbMarkup();
@@ -112,246 +111,108 @@ function convert(conv) {
 		redditMarkup();
 	}
 
-	function zbbMarkup() {
-		var gloss = "";
-		let i = 0;
-		while (i < lines.length) {
-			if (lines[i] == "$&N;") {
-				lines[i] = "";
-			}
-			//Third last line or if there are only two lines
-			if ((i + 3 == lines.length) || (lines.length == 2)) {
-				var normLine = lines[i].split(/[ \t]+/).map($.trim).filter(function (x) { return !(x === ""); });
-				i++;
-				if (lines[i] == "$&N;") {
-					lines[i] = "";
-				}
-				var glossLine = lines[i].split(/[ \t]+/).map($.trim).filter(function (x) { return !(x === ""); });
-				for (let j = 0; j < glossLine.length; j++) {
-					if ((typeof normLine !== "undefined") || (typeof glossLine !== "undefined")) {
-						if (useSmallCaps == "abbrv sc") {
-							///////////////////
-							glossLine[j] = splitEntryGlossZbb(glossLine[j], conv);
-							//////////////////
-						}
-						gloss += "[gloss=" + glossLine[j] + "]" + normLine[j] + "[/gloss]";
-					} else {
-						alert("Gloss and above line do not line up");
-					}
-				}
-				gloss += "\n"
-			} else {
-				gloss += lines[i] + "\n";
-			}
-			i++;
-		}
-		conv.finish(gloss);
-	}
-	function latexMarkup() {
-		gloss = "";
-		for (let m = 0; m < lines.length; m++) {
-			if (lines[m] == "$&N;") {
-				lines[m] = "";
-			}
-			// Third last line
-		  if (m + 3 == lines.length) {
-				gloss += "\\begin{exe}\n\\ex\n\\gll " + lines[m] + "\\\\\n";
-			} else if (m + 2 == lines.length) {
-				if (useSmallCaps == "abbrv sc") {
-					var entries = lines[m].split(/[ \t]+/).map($.trim).filter(function (x) { return !(x === ""); });
-					for (let o = 0; o < entries.length; o++) {
-						gloss += splitEntryGlossLatex(entries[o], conv);
-						if (o + 1 != entries.length) {
-							gloss += " ";
-						}
-					}
-					gloss += "\\\\\n";
-				} else {
-					gloss += lines[m] + "\\\\\n";
-				}
-			} else if (m + 1 == lines.length) {
-				gloss += "\\trans " + lines[m] + "\n\\end{exe}";
-			} else {
-				gloss += lines[m] + "\n";
-			}
-		}
-		conv.finish(gloss);
-	}
-	function cwsMarkup() {
-		gloss = "";
-		table = new Array();
+	function htmlTableMarkup() {
 		maxColumns = 0;
+		for (let col_num = 0; col_num < lines.length; col_num++) {
+			var line = lines[col_num].split(/[ \t]+/);
 
-		noOfLines = lines.length - 1;
-		for (let a = 0; a < lines.length; a++) {
-			// If last line
-			if (a + 1 == lines.length) {
-
-			} else {
-				var line = lines[a].split(/[ \t]+/).map($.trim).filter(function (x) { return !(x === ""); });
-				if (maxColumns <= line.length) {
-					maxColumns = line.length;
-				}
-				table[a] = new Array();
-				for (let b = 0; b < line.length; b++) {
-					if (line[b] == "$&N;") {
-						line[b] = "";
-					}
-					table[a].push(line[b]);
-				}
-			}
-		}
-		for (let j = 0; j < maxColumns; j++) {
-			for (let i = 0; i < noOfLines; i++) {
-				if (table[i][j] != null) {
-					gloss += table[i][j];
-				} else {
-					gloss += ""
-				}
-				if (i != noOfLines - 1) {
-					gloss += "//";
-				}
-			}
-			if (j != maxColumns - 1) {
-				gloss += "|";
-			}
-		}
-		gloss = "<gbl=" + noOfLines + ">" + gloss + "</gbl>\n";
-		var lastLine = lines[noOfLines].split(/[ \t]+/).map($.trim).filter(function (x) { return !(x === ""); });
-		gloss += lastLine.join(" ");
-
-		conv.finish(gloss);
-	}
-	function interlinearMarkup() {
-		gloss = "";
-		table = new Array();
-		maxColumns = 0;
-
-		noOfLines = lines.length - 1;
-		for (let a = 0; a < lines.length; a++) {
-			// If last line
-			if (a + 1 == lines.length) {
-
-			} else {
-				var line = lines[a].split(/[ \t]+/).map($.trim).filter(function (x) { return !(x === ""); });
-				if (maxColumns <= line.length) {
-					maxColumns = line.length;
-				}
-				table[a] = new Array();
-				for (let b = 0; b < line.length; b++) {
-					if (a + 2 == lines.length) {
-						table[a].push(splitEntryGloss(line[b], conv));
-					} else {
-						table[a].push(line[b]);
-					}
-				}
-			}
-		}
-		for (let j = 0; j < maxColumns; j++) {
-			gloss += "  <div class='gll'>";
-			for (let i = 0; i < noOfLines; i++) {
-				////
-				var skipline = false;
-				var toMatch = i + 1;
-				toMatch.toString();
-				stringInterlinear = nonInterlinear.join(',');
-				var includes = stringInterlinear.indexOf(toMatch);
-				if (includes != -1) {
-					skipline = true;
-				}
-				////
-
-				if (table[i][0] == "$&N;") {
-					gloss += "";
-				} else if (table[i][j] != null) {
-					gloss += table[i][j];
-				} else {
-					gloss += "?"
-				}
-				if (i != noOfLines - 1) {
-					gloss += "<br/>";
-				}
-			}
-			gloss += "</div>\n";
-
-		}
-		var lastLine = lines[noOfLines].split(/[ \t]+/).map($.trim).filter(function (x) { return !(x === ""); });
-		gloss += "  <div>" + lastLine.join(" ") + "</div>\n";
-		gloss = "<div>\n" + gloss + "</div>";
-
-		conv.finishInterlinear(gloss);
-	}
-	function wikiMarkup() {
-		var output = "";
-		///////
-		maxColumns = 0;
-		for (let a = 0; a < lines.length; a++) {
-			var line = lines[a].split(/[ \t]+/).map($.trim).filter(function (x) { return !(x === ""); });
-
-			var toMatch = a + 1;
+			var toMatch = col_num + 1;
 			toMatch.toString();
 			stringInterlinear = nonInterlinear.join(',');
   		var includes = stringInterlinear.indexOf(toMatch);
 			if (includes != -1) {
 				skipline = true;
-			} else if (a + 1 == lines.length) {
+			} else if (col_num + 1 == lines.length) {
 
 			} else if (maxColumns <= line.length) {
 				maxColumns = line.length;
 			}
 		}
 
-		for (let i = 0; i < lines.length; i++) {
+		for (let col_num = 0; col_num < lines.length; col_num++) {
+			var skipline = false;
 			var parsedEntry = "";
-			skipline = false;
-			
-			var toMatch = i + 1;
+
+			var toMatch = col_num + 1;
 			toMatch.toString();
 			stringInterlinear = nonInterlinear.join(',');
   		var includes = stringInterlinear.indexOf(toMatch);
 			if (includes != -1) {
 				skipline = true;
 			}
-			//////
-			var entries = lines[i].split(/[ \t]+/).map($.trim).filter(function (x) { return !(x === ""); });
+
+			var entries = lines[col_num].split(/[ \t]+/);
 			// Do something if is the second last iteration of the array
-			if ((i + 2 == lines.length) && (useAbbrv || useSmallCaps)) {
-				for (let b = 0; b < maxColumns; b++) {
-					if (entries[b] == null || entries[b] == "$&N;") {
-						parsedEntry += "|?\n";
-					} else {
-						parsedEntry += "|" + splitEntryGlossWiki(entries[b], conv) + "\n";
-					}
+			if ((col_num + 2 == lines.length) && (useAbbrv || useSmallCaps)) {
+				for (let row_num = 0; row_num < entries.length; row_num++) {
+					parsedEntry += "<td>" + splitEntryGloss(entries[row_num], conv) + "</td>";
 				}
-				output += parsedEntry;
-				//Do something if skip line 
-			} else if (skipline) {
-				output += "| colspan='" + maxColumns + "'|" + lines[i] + "\n|-\n";
-				//Blank line
-			} else if (lines[i] == "$&N;") {
-				output += "| colspan='" + maxColumns + "'|" + "\n|-\n";
-				//Else or last line
-			} else if (i + 1 == lines.length) {
-				output += "|-\n| colspan='" + maxColumns + "'|" + lines[i];
+				conv.addLine(parsedEntry);
+				//Do something if skip line or last line
+			} else if (lines[col_num] == "") {
+				conv.addSingleLineEntry("<br/>", maxColumns);
+			} else if (skipline || col_num + 1 == lines.length) {
+				conv.addSingleLineEntry(lines[col_num], maxColumns);
 				//Else do normal line
 			} else {
-				for (let c = 0; c < maxColumns; c++) {
-					if (entries[c] == null) {
-						parsedEntry += "|" + "?" + "\n";
-					} else {
-						parsedEntry += "| " + entries[c] + "\n";
-					}
+				for (let row_num = 0; row_num < entries.length; row_num++) {
+					parsedEntry += "<td>" + entries[row_num] + "</td>";
 				}
-				parsedEntry += "|-\n";
-				output += parsedEntry;
+				conv.addLine(parsedEntry);
 			}
 			parsedEntry = "";
 		}
-		conv.finishWiki(output);
+		conv.finishTable();
+	}
+	function interlinearMarkup() {
+		interOutput = "";
+		table = new Array();
+		maxColumns = 0;
+		noOfLines = lines.length - 1;
+
+		for (let col_num = 0; col_num < lines.length; col_num++) {
+			// If last line
+			if (col_num + 1 == lines.length) {
+
+			} else {
+				var line = lines[col_num].split(/[ \t]+/);
+				if (maxColumns <= line.length) {
+					maxColumns = line.length;
+				}
+				table[col_num] = new Array();
+				for (let row_num = 0; row_num < line.length; row_num++) {
+					if (col_num + 2 == lines.length) {
+						table[col_num].push(splitEntryGloss(line[row_num], conv));
+					} else {
+						table[col_num].push(line[row_num]);
+					}
+				}
+			}
+		}
+		for (let col_num = 0; col_num < maxColumns; col_num++) {
+			interOutput += "  <div class='gll'>";
+			for (let row_num = 0; row_num < noOfLines; row_num++) {
+				if (table[row_num][col_num] != null) {
+					interOutput += table[row_num][col_num];
+				} else {
+					interOutput += ""
+				}
+				if (row_num != noOfLines - 1) {
+					interOutput += "<br/>";
+				}
+			}
+			interOutput += "</div>\n";
+		}
+		var lastLine = lines[noOfLines].split(/[ \t]+/);
+		interOutput += "  <div>" + lastLine.join(" ") + "</div>\n";
+		interOutput = "<div>\n" + interOutput + "</div>";
+
+		conv.finishInterlinear(interOutput);
 	}
 	function plainTextMarkup() {
 		var wordLength = [];
 		var gloss = "";
+
 		for (let m = 0; m < lines.length; m++) {
 			// Find out if the line is non allignable
 			var skipline = false;
@@ -363,7 +224,7 @@ function convert(conv) {
 				}
 				a++
 			}
-			var entriesZ = lines[m].split(/[ \t]+/).map($.trim).filter(function (x) { return !(x === ""); });
+			var entriesZ = lines[m].split(/[ \t]+/);
 			for (let n = 0; n < entriesZ.length; n++) {
 				var noDiacriticsEntry = entriesZ[n].normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 				if (!skipline && m + 1 != lines.length) {
@@ -387,17 +248,15 @@ function convert(conv) {
 				}
 				a++
 			}
-			var line = lines[i].split(/[ \t]+/).map($.trim).filter(function (x) { return !(x === ""); });
+			var line = lines[i].split(/[ \t]+/);
 			for (let j = 0; j < line.length; j++) {
 				// If small caps, turn each glossing abbreviation to small caps if abbreviation is all caps.
-				if (useSmallCaps == "abbrv sc") {
+				if (useSmallCaps) {
 					///////////////////
 					line[j] = splitEntryGlossZbb(line[j], conv);
 					//////////////////
 				}
-				if (line[j] == "$&N;") {
-					line[j] = ""
-				} else if (!skipline && i + 1 != lines.length) {
+				if (!skipline && i + 1 != lines.length) {
 					// breack diacritical characters to get true length of entry
 					var noDiacritics = line[j].normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 					while (noDiacritics.length < wordLength[j] && j != line.length - 1) {
@@ -410,58 +269,101 @@ function convert(conv) {
 		}
 		conv.finishPlainText(gloss);
 	}
-	function htmlTableMarkup() {
-		maxColumns = 0;
-		for (let a = 0; a < lines.length; a++) {
-			var line = lines[a].split(/[ \t]+/).map($.trim).filter(function (x) { return !(x === ""); });
-
-			var toMatch = a + 1;
-			toMatch.toString();
-			stringInterlinear = nonInterlinear.join(',');
-  		var includes = stringInterlinear.indexOf(toMatch);
-			if (includes != -1) {
-				skipline = true;
-			} else if (a + 1 == lines.length) {
-
-			} else if (maxColumns <= line.length) {
-				maxColumns = line.length;
-			}
-		}
-
-		for (let i = 0; i < lines.length; i++) {
-			var skipline = false;
-			var parsedEntry = "";
-
-			var toMatch = i + 1;
-			toMatch.toString();
-			stringInterlinear = nonInterlinear.join(',');
-  		var includes = stringInterlinear.indexOf(toMatch);
-			if (includes != -1) {
-				skipline = true;
-			}
-
-			var entries = lines[i].split(/[ \t]+/).map($.trim).filter(function (x) { return !(x === ""); });
-			// Do something if is the second last iteration of the array
-			if ((i + 2 == lines.length) && (useAbbrv || useSmallCaps)) {
-				for (let b = 0; b < entries.length; b++) {
-					parsedEntry += "<td>" + splitEntryGloss(entries[b], conv) + "</td>";
+	function latexMarkup() {
+		latexOutput = "";
+		for (let col_num = 0; col_num < lines.length; col_num++) {
+			// Third last line
+		  if (col_num + 3 == lines.length) {
+				latexOutput += "\\begin{exe}\n\\ex\n\\gll " + lines[col_num] + "\\\\\n";
+			} else if (col_num + 2 == lines.length) {
+				if (useSmallCaps) {
+					var entries = lines[col_num].split(/[ \t]+/);
+					for (let row_num = 0; row_num < entries.length; row_num++) {
+						latexOutput += splitEntryGlossLatex(entries[row_num], conv);
+						if (row_num + 1 != entries.length) {
+							latexOutput += " ";
+						}
+					}
+					latexOutput += "\\\\\n";
+				} else {
+					latexOutput += lines[col_num] + "\\\\\n";
 				}
-				conv.addLine(parsedEntry);
-				//Do something if skip line or last line
-			} else if (lines[i] == "$&N;") {
-				conv.addSingleLineEntry("<br/>", maxColumns);
-			} else if (skipline || i + 1 == lines.length) {
-				conv.addSingleLineEntry(lines[i], maxColumns);
-				//Else do normal line
+			} else if (col_num + 1 == lines.length) {
+				latexOutput += "\\trans " + lines[col_num] + "\n\\end{exe}";
 			} else {
-				for (let c = 0; c < entries.length; c++) {
-					parsedEntry += "<td>" + entries[c] + "</td>";
-				}
-				conv.addLine(parsedEntry);
+				latexOutput += lines[col_num] + "\n";
 			}
-			parsedEntry = "";
 		}
-		conv.finishTable();
+		conv.finish(latexOutput);
+	}
+	function zbbMarkup() {
+		var zbbOutput = "";
+		let col_num = 0;
+		while (col_num < lines.length) {
+			//Third last line. Or first if there are only two lines
+			if ((col_num + 3 == lines.length) || (lines.length == 2 && col_num == 0)) {
+				var normLine = lines[col_num].split(/[ \t]+/);
+				//Go to second last line
+				col_num++;
+				var glossLine = lines[col_num].split(/[ \t]+/);
+				for (let j = 0; j < glossLine.length; j++) {
+					if ((typeof normLine !== "undefined") || (typeof glossLine !== "undefined")) {
+						if (useSmallCaps) {
+							glossLine[j] = splitEntryGlossZbb(glossLine[j], conv);
+						}
+						zbbOutput += "[gloss=" + glossLine[j] + "]" + normLine[j] + "[/gloss]";
+					}
+				}
+				zbbOutput += "\n"
+			//Other lines, spit it out
+			} else {
+				zbbOutput += lines[col_num] + "\n";
+			}
+			col_num++;
+		}
+		conv.finish(zbbOutput);
+	}
+	function cwsMarkup() {
+		cwsOutput = "";
+		table = new Array();
+		maxColumns = 0;
+		noOfLines = lines.length - 1;
+
+		for (let col_num = 0; col_num < lines.length; col_num++) {
+			// If last line
+			if (col_num + 1 == lines.length) {
+
+			} else {
+				var line = lines[col_num].split(/[ \t]+/);
+				if (maxColumns <= line.length) {
+					maxColumns = line.length;
+				}
+				table[col_num] = new Array();
+				for (let row_num = 0; row_num < line.length; row_num++) {
+					table[col_num].push(line[row_num]);
+				}
+			}
+		}
+		for (let col_num = 0; col_num < maxColumns; col_num++) {
+			for (let row_num = 0; row_num < noOfLines; row_num++) {
+				if (table[row_num][col_num] != null) {
+					cwsOutput += table[row_num][col_num];
+				} else {
+					cwsOutput += ""
+				}
+				if (row_num != noOfLines - 1) {
+					cwsOutput += "//";
+				}
+			}
+			if (col_num != maxColumns - 1) {
+				cwsOutput += "|";
+			}
+		}
+		cwsOutput = "<gbl=" + noOfLines + ">" + cwsOutput + "</gbl>\n";
+		var lastLine = lines[noOfLines].split(/[ \t]+/);
+		cwsOutput += lastLine.join(" ");
+
+		conv.finish(cwsOutput);
 	}
 	function redditMarkup() {
 		var wordLength = [];
@@ -477,7 +379,7 @@ function convert(conv) {
 				}
 				a++
 			}
-			var entriesZ = lines[m].split(/[ \t]+/).map($.trim).filter(function (x) { return !(x === ""); });
+			var entriesZ = lines[m].split(/[ \t]+/);
 			for (let n = 0; n < entriesZ.length; n++) {
 				var noDiacriticsEntry = entriesZ[n].normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 				if (!skipline && m + 1 != lines.length) {
@@ -501,17 +403,15 @@ function convert(conv) {
 				}
 				a++
 			}
-			var line = lines[i].split(/[ \t]+/).map($.trim).filter(function (x) { return !(x === ""); });
+			var line = lines[i].split(/[ \t]+/);
 			for (let j = 0; j < line.length; j++) {
 				// If small caps, turn each glossing abbreviation to small caps if abbreviation is all caps.
-				if (useSmallCaps == "abbrv sc") {
+				if (useSmallCaps) {
 					///////////////////
 					line[j] = splitEntryGlossZbb(line[j], conv);
 					//////////////////
 				}
-				if (line[j] == "$&N;") {
-					line[j] = ""
-				} else if (!skipline && i + 1 != lines.length) {
+				if (!skipline && i + 1 != lines.length) {
 					// breack diacritical characters to get true length of entry
 					var noDiacritics = line[j].normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 					while (noDiacritics.length < wordLength[j] && j != line.length - 1) {
@@ -528,6 +428,74 @@ function convert(conv) {
 			}
 		}
 		conv.finish(gloss);
+	}
+	function wikiMarkup() {
+		var wikiOutput = "";
+		maxColumns = 0;
+
+		for (let col_num = 0; col_num < lines.length; col_num++) {
+			var line = lines[col_num].split(/[ \t]+/);
+
+			var toMatch = col_num + 1;
+			toMatch.toString();
+			stringInterlinear = nonInterlinear.join(',');
+  		var includes = stringInterlinear.indexOf(toMatch);
+			if (includes != -1) {
+				skipline = true;
+			} else if (col_num + 1 == lines.length) {
+
+			} else if (maxColumns <= line.length) {
+				maxColumns = line.length;
+			}
+		}
+
+		for (let col_num = 0; col_num < lines.length; col_num++) {
+			var parsedEntry = "";
+			skipline = false;
+			
+			var toMatch = col_num + 1;
+			toMatch.toString();
+			stringInterlinear = nonInterlinear.join(',');
+  		var includes = stringInterlinear.indexOf(toMatch);
+			if (includes != -1) {
+				skipline = true;
+			}
+
+			var entries = lines[col_num].split(/[ \t]+/);
+			// Do something if is the second last iteration of the array
+			if ((col_num + 2 == lines.length) && (useAbbrv || useSmallCaps)) {
+				for (let row_num = 0; row_num < maxColumns; row_num++) {
+					if (entries[row_num] == null || entries[row_num] == "") {
+						parsedEntry += "|\n";
+					} else {
+						parsedEntry += "|" + splitEntryGlossWiki(entries[row_num], conv) + "\n";
+					}
+				}
+				wikiOutput += parsedEntry;
+				//Do something if skip line 
+			} else if (skipline) {
+				wikiOutput += "| colspan='" + maxColumns + "'|" + lines[col_num] + "\n|-\n";
+				//Blank line
+			} else if (lines[col_num] == "") {
+				wikiOutput += "| colspan='" + maxColumns + "'|" + "\n|-\n";
+				//Else or last line
+			} else if (col_num + 1 == lines.length) {
+				wikiOutput += "|-\n| colspan='" + maxColumns + "'|" + lines[col_num];
+				//Else do normal line
+			} else {
+				for (let row_num = 0; row_num < maxColumns; row_num++) {
+					if (entries[row_num] == null) {
+						parsedEntry += "|" + "\n";
+					} else {
+						parsedEntry += "| " + entries[row_num] + "\n";
+					}
+				}
+				parsedEntry += "|-\n";
+				wikiOutput += parsedEntry;
+			}
+			parsedEntry = "";
+		}
+		conv.finishWiki(wikiOutput);
 	}
 }
 
@@ -555,6 +523,10 @@ function splitEntryGloss(entry, conv) {
 	}
 	function setEntryGloss() {
 		var glossexpl = "";
+		var smallCapsClass = "abbrv";
+		if (useSmallCaps) {
+			smallCapsClass = "abbrv sc";
+		}
 		let j = 0;
 		while (j < abbreviations.length) {
 			if (word == abbreviations[j]) {
@@ -564,18 +536,18 @@ function splitEntryGloss(entry, conv) {
 			j++
 		}
 		if (glossexpl == "") {
-			if (word == word.toUpperCase() && useSmallCaps == "abbrv sc") {
+			if (word == word.toUpperCase() && useSmallCaps) {
 				result = result.concat("<a class='sc'>", word, "</a>");
 			} else {
 				result = result.concat(word);
 			}
 		} else if (useAbbrv) {
-			if (word == word.toUpperCase() && useSmallCaps == "abbrv sc") {
-				result = result.concat("<abbr class='", useSmallCaps, "' title='", glossexpl, "'>", word, "</abbr>");
+			if (word == word.toUpperCase() && useSmallCaps) {
+				result = result.concat("<abbr class='", smallCapsClass, "' title='", glossexpl, "'>", word, "</abbr>");
 			} else {
 				result = result.concat("<abbr class='abbrv' title='", glossexpl, "'>", word, "</abbr>");
 			}
-		} else if (useSmallCaps == "abbrv sc") {
+		} else if (useSmallCaps) {
 			result = result.concat("<a class='sc'>", word, "</a>");
 		} else {
 			result = result.concat(word);
@@ -591,7 +563,7 @@ function splitEntryGlossWiki(entry, conv) {
 	useSmallCaps = conv.useSmallCaps;
 	var smallCapsPrefix = "";
 	var smallCapsSuffix = "";
-	if (useSmallCaps == "abbrv sc") {
+	if (useSmallCaps) {
 		smallCapsPrefix = "{{sc|";
 		smallCapsSuffix = "}}";
 	}
@@ -634,7 +606,7 @@ function splitEntryGlossWiki(entry, conv) {
 			} else {
 				result = result.concat("{{abbr|", word, "|", glossexpl, "}}");
 			}
-		} else if (useSmallCaps == "abbrv sc") {
+		} else if (useSmallCaps) {
 			result = result.concat("{{sc|", word, "}}");
 		} else {
 			result = result.concat(word);
