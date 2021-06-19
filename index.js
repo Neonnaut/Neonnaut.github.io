@@ -211,63 +211,61 @@ function convert(conv) {
 	}
 	function plainTextMarkup() {
 		var wordLength = [];
-		var gloss = "";
+		var plainOutput = "";
 
-		for (let m = 0; m < lines.length; m++) {
+		for (let col_num = 0; col_num < lines.length; col_num++) {
 			// Find out if the line is non allignable
 			var skipline = false;
-			var a = 0;
-			while (a < nonInterlinear[a]) {
-				if (nonInterlinear[a] == m + 1) {
+			var inter_num = 0;
+			while (inter_num < nonInterlinear[inter_num]) {
+				if (nonInterlinear[inter_num] == col_num + 1) {
 					skipline = true;
-					a == nonInterlinear[a] - 5;
+					inter_num == nonInterlinear[inter_num] - 5;
 				}
-				a++
+				inter_num++
 			}
-			var entriesZ = lines[m].split(/[ \t]+/);
-			for (let n = 0; n < entriesZ.length; n++) {
-				var noDiacriticsEntry = entriesZ[n].normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-				if (!skipline && m + 1 != lines.length) {
-					if (typeof wordLength[n] === "undefined") {
+			var entriesZ = lines[col_num].split(/[ \t]+/);
+			for (let row_num = 0; row_num < entriesZ.length; row_num++) {
+				var noDiacriticsEntry = entriesZ[row_num].normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+				if (!skipline && col_num + 1 != lines.length) {
+					if (typeof wordLength[row_num] === "undefined") {
 						wordLength.push(noDiacriticsEntry.length);
 					}
-					if (wordLength[n] <= noDiacriticsEntry.length) {
-						wordLength[n] = noDiacriticsEntry.length;
+					if (wordLength[row_num] <= noDiacriticsEntry.length) {
+						wordLength[row_num] = noDiacriticsEntry.length;
 					}
 				}
 			}
 		}
-		for (let i = 0; i < lines.length; i++) {
+		for (let col_num = 0; col_num < lines.length; col_num++) {
 			// Find out if the line is non allignable
 			var skipline = false;
-			var a = 0;
-			while (a < nonInterlinear[a]) {
-				if (nonInterlinear[a] == i + 1) {
+			var inter_num = 0;
+			while (inter_num < nonInterlinear[inter_num]) {
+				if (nonInterlinear[inter_num] == col_num + 1) {
 					skipline = true;
-					a == nonInterlinear[a] - 5;
+					inter_num == nonInterlinear[inter_num] - 5;
 				}
-				a++
+				inter_num++
 			}
-			var line = lines[i].split(/[ \t]+/);
-			for (let j = 0; j < line.length; j++) {
+			var line = lines[col_num].split(/[ \t]+/);
+			for (let row_num = 0; row_num < line.length; row_num++) {
 				// If small caps, turn each glossing abbreviation to small caps if abbreviation is all caps.
 				if (useSmallCaps) {
-					///////////////////
-					line[j] = splitEntryGlossZbb(line[j], conv);
-					//////////////////
+					line[row_num] = splitEntryGlossZbb(line[row_num], conv);
 				}
-				if (!skipline && i + 1 != lines.length) {
+				if (!skipline && col_num + 1 != lines.length) {
 					// breack diacritical characters to get true length of entry
-					var noDiacritics = line[j].normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-					while (noDiacritics.length < wordLength[j] && j != line.length - 1) {
-						line[j] += " ";
+					var noDiacritics = line[row_num].normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+					while (noDiacritics.length < wordLength[row_num] && row_num != line.length - 1) {
+						line[row_num] += " ";
 						noDiacritics += " ";
 					}
 				}
 			}
-			gloss += line.join(" ") + "\n";
+			plainOutput += line.join(" ") + "\n";
 		}
-		conv.finishPlainText(gloss);
+		conv.finishPlainText(plainOutput);
 	}
 	function latexMarkup() {
 		latexOutput = "";
@@ -306,12 +304,12 @@ function convert(conv) {
 				//Go to second last line
 				col_num++;
 				var glossLine = lines[col_num].split(/[ \t]+/);
-				for (let j = 0; j < glossLine.length; j++) {
+				for (let col_num = 0; col_num < glossLine.length; col_num++) {
 					if ((typeof normLine !== "undefined") || (typeof glossLine !== "undefined")) {
 						if (useSmallCaps) {
-							glossLine[j] = splitEntryGlossZbb(glossLine[j], conv);
+							glossLine[col_num] = splitEntryGlossZbb(glossLine[col_num], conv);
 						}
-						zbbOutput += "[gloss=" + glossLine[j] + "]" + normLine[j] + "[/gloss]";
+						zbbOutput += "[gloss=" + glossLine[col_num] + "]" + normLine[col_num] + "[/gloss]";
 					}
 				}
 				zbbOutput += "\n"
@@ -367,67 +365,67 @@ function convert(conv) {
 	}
 	function redditMarkup() {
 		var wordLength = [];
-		var gloss = "";
-		for (let m = 0; m < lines.length; m++) {
+		var redditOutput = "";
+		for (let col_num = 0; col_num < lines.length; col_num++) {
 			// Find out if the line is non allignable
 			var skipline = false;
-			var a = 0;
-			while (a < nonInterlinear[a]) {
-				if (nonInterlinear[a] == m + 1) {
+			var inter_num = 0;
+			while (inter_num < nonInterlinear[inter_num]) {
+				if (nonInterlinear[inter_num] == col_num + 1) {
 					skipline = true;
-					a == nonInterlinear[a] - 5;
+					inter_num == nonInterlinear[inter_num] - 5;
 				}
-				a++
+				inter_num++
 			}
-			var entriesZ = lines[m].split(/[ \t]+/);
-			for (let n = 0; n < entriesZ.length; n++) {
-				var noDiacriticsEntry = entriesZ[n].normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-				if (!skipline && m + 1 != lines.length) {
-					if (typeof wordLength[n] === "undefined") {
+			var entriesZ = lines[col_num].split(/[ \t]+/);
+			for (let row_num = 0; row_num < entriesZ.length; row_num++) {
+				var noDiacriticsEntry = entriesZ[row_num].normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+				if (!skipline && col_num + 1 != lines.length) {
+					if (typeof wordLength[row_num] === "undefined") {
 						wordLength.push(noDiacriticsEntry.length);
 					}
-					if (wordLength[n] <= noDiacriticsEntry.length) {
-						wordLength[n] = noDiacriticsEntry.length;
+					if (wordLength[row_num] <= noDiacriticsEntry.length) {
+						wordLength[row_num] = noDiacriticsEntry.length;
 					}
 				}
 			}
 		}
-		for (let i = 0; i < lines.length; i++) {
+		for (let col_num = 0; col_num < lines.length; col_num++) {
 			// Find out if the line is non allignable
 			var skipline = false;
-			var a = 0;
-			while (a < nonInterlinear[a]) {
-				if (nonInterlinear[a] == i + 1) {
+			var inter_num = 0;
+			while (inter_num < nonInterlinear[inter_num]) {
+				if (nonInterlinear[inter_num] == col_num + 1) {
 					skipline = true;
-					a == nonInterlinear[a] - 5;
+					inter_num = inter_num + 5;
 				}
-				a++
+				inter_num++
 			}
-			var line = lines[i].split(/[ \t]+/);
-			for (let j = 0; j < line.length; j++) {
+			var line = lines[col_num].split(/[ \t]+/);
+			for (let row_num = 0; row_num < line.length; row_num++) {
 				// If small caps, turn each glossing abbreviation to small caps if abbreviation is all caps.
 				if (useSmallCaps) {
 					///////////////////
-					line[j] = splitEntryGlossZbb(line[j], conv);
+					line[row_num] = splitEntryGlossZbb(line[row_num], conv);
 					//////////////////
 				}
-				if (!skipline && i + 1 != lines.length) {
+				if (!skipline && col_num + 1 != lines.length) {
 					// breack diacritical characters to get true length of entry
-					var noDiacritics = line[j].normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-					while (noDiacritics.length < wordLength[j] && j != line.length - 1) {
-						line[j] += " ";
+					var noDiacritics = line[row_num].normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+					while (noDiacritics.length < wordLength[row_num] && row_num != line.length - 1) {
+						line[row_num] += " ";
 						noDiacritics += " ";
 					}
 				}
 			}
 			// Last line or first line
-			if (i + 1 == lines.length && lines.length != 2) {
-				gloss += line.join(" ") + "\n";
+			if (col_num + 1 == lines.length && lines.length != 2) {
+				redditOutput += line.join(" ") + "\n";
 			} else {
-				gloss += "    " + line.join(" ") + "\n";
+				redditOutput += "    " + line.join(" ") + "\n";
 			}
 		}
-		conv.finish(gloss);
+		conv.finish(redditOutput);
 	}
 	function wikiMarkup() {
 		var wikiOutput = "";
@@ -555,7 +553,65 @@ function splitEntryGloss(entry, conv) {
 	}
 	return result;
 }
-
+function splitEntryGlossLatex(entry, conv) {
+	var result = "";
+	var word = "";
+	abbrvDelimiterInput = conv.abbrvDelimiterInput;
+	useSmallCaps = conv.useSmallCaps;
+	useAbbrv = conv.useAbbrv;
+	abbreviations = conv.abbreviations;
+	explanations = conv.explanations;
+	for (var i = 0; i < entry.length; i++) {
+		if (abbrvDelimiterInput.indexOf(entry[i]) != -1) {
+			if (!(word === "")) {
+				setEntryGlossLatex();
+			}
+			word = "";
+			result = result.concat(entry[i]);
+		} else {
+			word += entry[i];
+		}
+	}
+	if (!(word === "")) {
+		setEntryGlossLatex();
+	}
+	function setEntryGlossLatex() {
+		if (word.toUpperCase() == word) {
+			result = result.concat("\\textsc{", word.toLowerCase(), "}");
+		} else {
+			result = result.concat(word);
+		}
+	}
+	return result;
+}
+function splitEntryGlossZbb(entry, conv) {
+	var result = "";
+	var word = "";
+	abbrvDelimiterInput = conv.abbrvDelimiterInput;
+	useSmallCaps = conv.useSmallCaps;
+	for (var i = 0; i < entry.length; i++) {
+		if (abbrvDelimiterInput.indexOf(entry[i]) != -1) {
+			if (!(word === "")) {
+				setEntryGlossZbb();
+			}
+			word = "";
+			result = result.concat(entry[i]);
+		} else {
+			word += entry[i];
+		}
+	}
+	if (!(word === "")) {
+		setEntryGlossZbb();
+	}
+	function setEntryGlossZbb() {
+		if (word == word.toUpperCase()) {
+			result += toSmallCaps(word);
+		} else {
+			result += word;
+		}
+	}
+	return result;
+}
 function splitEntryGlossWiki(entry, conv) {
 	var result = "";
 	var word = "";
@@ -610,67 +666,6 @@ function splitEntryGlossWiki(entry, conv) {
 			result = result.concat("{{sc|", word, "}}");
 		} else {
 			result = result.concat(word);
-		}
-	}
-	return result;
-}
-
-function splitEntryGlossLatex(entry, conv) {
-	var result = "";
-	var word = "";
-	abbrvDelimiterInput = conv.abbrvDelimiterInput;
-	useSmallCaps = conv.useSmallCaps;
-	useAbbrv = conv.useAbbrv;
-	abbreviations = conv.abbreviations;
-	explanations = conv.explanations;
-	for (var i = 0; i < entry.length; i++) {
-		if (abbrvDelimiterInput.indexOf(entry[i]) != -1) {
-			if (!(word === "")) {
-				setEntryGlossLatex();
-			}
-			word = "";
-			result = result.concat(entry[i]);
-		} else {
-			word += entry[i];
-		}
-	}
-	if (!(word === "")) {
-		setEntryGlossLatex();
-	}
-	function setEntryGlossLatex() {
-		if (word.toUpperCase() == word) {
-			result = result.concat("\\textsc{", word.toLowerCase(), "}");
-		} else {
-			result = result.concat(word);
-		}
-	}
-	return result;
-}
-
-function splitEntryGlossZbb(entry, conv) {
-	var result = "";
-	var word = "";
-	abbrvDelimiterInput = conv.abbrvDelimiterInput;
-	useSmallCaps = conv.useSmallCaps;
-	for (var i = 0; i < entry.length; i++) {
-		if (abbrvDelimiterInput.indexOf(entry[i]) != -1) {
-			if (!(word === "")) {
-				setEntryGlossZbb();
-			}
-			word = "";
-			result = result.concat(entry[i]);
-		} else {
-			word += entry[i];
-		}
-	}
-	if (!(word === "")) {
-		setEntryGlossZbb();
-	}
-	function setEntryGlossZbb() {
-		if (word == word.toUpperCase()) {
-			result += toSmallCaps(word);
-		} else {
-			result += word;
 		}
 	}
 	return result;
