@@ -3,6 +3,7 @@
 > A generator for interlinear glosses
 
 This is an input/output generator for aligning linguistic interlinear gloss, for the purposes of conlanging.
+It is built with HTML and JavaScript with jQuery and runs in your browser at https://neonnaut.github.io/
 There are several markup options for displaying on different websites.
 
 Refer to the following documents:

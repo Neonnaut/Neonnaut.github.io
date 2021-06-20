@@ -121,15 +121,6 @@ function convert(conv) {
 
 	function htmlTableMarkup() {
 		var htmlOutput = "";
-		Converter.prototype.addLine = function (input) {
-			htmlOutput += "  <tr>" + input + "</tr>" + "\n";
-		};
-		Converter.prototype.addSingleLineEntry = function (input, maxLines) {
-			htmlOutput += "  <tr><td colspan=" + maxLines + ">" + input + "</td></tr>" + "\n";
-		};
-		Converter.prototype.finishTable = function () {
-			htmlOutput = "<table>" + "\n" + this.orig + "\n" + "</table><br>";
-		};
 
 		maxColumns = 0;
 		for (let col_num = 0; col_num < lines.length; col_num++) {
@@ -181,7 +172,7 @@ function convert(conv) {
 			}
 			parsedEntry = "";
 		}
-		htmlOutput = "<table>" + "\n" + htmlOutput + "\n" + "</table>";
+		htmlOutput = "<table>" + "\n" + htmlOutput + "</table>";
 		conv.finishAndShow(htmlOutput);
 	}
 	function interlinearMarkup() {
