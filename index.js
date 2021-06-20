@@ -83,8 +83,7 @@ function convert(conv) {
 				lines[i] = "$&N;";
 			}
 		}
-		lines[i] = lines[i].replace(/ +(?= )/g,'');
-		lines[i] = lines[i].trim();
+		lines[i] = lines[i].replace(/ +(?= )/g,'').trim();
 	}
 	lines = lines.map($.trim).filter(function (x) { return !(x === ""); });
 	for (let i = 0; i < lines.length; i++) {
@@ -93,25 +92,45 @@ function convert(conv) {
 		}
 	}
 
-	if (markup == "zbbGloss") {
-		zbbMarkup();
-	} else if (markup == "htmlTable") {
-		htmlTableMarkup();
-	} else if (markup == "plainText") {
-		plainTextMarkup();
-	} else if (markup == "latexGloss") {
-		latexMarkup();
-	} else if (markup == "cwsGloss") {
-		cwsMarkup();
-	} else if (markup == "wikiTable") {
-		wikiMarkup();
-	} else if (markup == "interlinear") {
-		interlinearMarkup();
-	} else if (markup == "reddit") {
-		redditMarkup();
+	switch(markup) {
+		case "htmlTable":
+			htmlTableMarkup();
+			break;
+		case "interlinear":
+			interlinearMarkup();
+			break;
+		case "plainText":
+			plainTextMarkup();
+			break;
+		case "latexGloss":
+			latexMarkup();
+			break;
+		case "zbbGloss":
+			zbbMarkup();
+			break;
+		case "cwsGloss":
+			cwsMarkup();
+			break;
+		case "reddit":
+			redditMarkup();
+			break;
+		case "wikiTable":
+			wikiMarkup();
+			break;
 	}
 
 	function htmlTableMarkup() {
+		var htmlOutput = "";
+		Converter.prototype.addLine = function (input) {
+			htmlOutput += "  <tr>" + input + "</tr>" + "\n";
+		};
+		Converter.prototype.addSingleLineEntry = function (input, maxLines) {
+			htmlOutput += "  <tr><td colspan=" + maxLines + ">" + input + "</td></tr>" + "\n";
+		};
+		Converter.prototype.finishTable = function () {
+			htmlOutput = "<table>" + "\n" + this.orig + "\n" + "</table><br>";
+		};
+
 		maxColumns = 0;
 		for (let col_num = 0; col_num < lines.length; col_num++) {
 			var line = lines[col_num].split(/[ \t]+/);
@@ -147,22 +166,23 @@ function convert(conv) {
 				for (let row_num = 0; row_num < entries.length; row_num++) {
 					parsedEntry += "<td>" + splitEntryGloss(entries[row_num], conv) + "</td>";
 				}
-				conv.addLine(parsedEntry);
+				htmlOutput += "  <tr>" + parsedEntry + "</tr>" + "\n";
 				//Do something if skip line or last line
 			} else if (lines[col_num] == "") {
-				conv.addSingleLineEntry("<br/>", maxColumns);
+				htmlOutput += "  <tr><td colspan=" + maxColumns + ">" + "<br/>" + "</td></tr>" + "\n";
 			} else if (skipline || col_num + 1 == lines.length) {
-				conv.addSingleLineEntry(lines[col_num], maxColumns);
+				htmlOutput += "  <tr><td colspan=" + maxColumns + ">" + lines[col_num] + "</td></tr>" + "\n";
 				//Else do normal line
 			} else {
 				for (let row_num = 0; row_num < entries.length; row_num++) {
 					parsedEntry += "<td>" + entries[row_num] + "</td>";
 				}
-				conv.addLine(parsedEntry);
+				htmlOutput += "  <tr>" + parsedEntry + "</tr>" + "\n";
 			}
 			parsedEntry = "";
 		}
-		conv.finishTable();
+		htmlOutput = "<table>" + "\n" + htmlOutput + "\n" + "</table>";
+		conv.finishAndShow(htmlOutput);
 	}
 	function interlinearMarkup() {
 		interOutput = "";
@@ -207,7 +227,7 @@ function convert(conv) {
 		interOutput += "  <div>" + lastLine.join(" ") + "</div>\n";
 		interOutput = "<div>\n" + interOutput + "</div>";
 
-		conv.finishInterlinear(interOutput);
+		conv.finishAndShow(interOutput);
 	}
 	function plainTextMarkup() {
 		var wordLength = [];
@@ -466,7 +486,7 @@ function convert(conv) {
 					if (entries[row_num] == null || entries[row_num] == "") {
 						parsedEntry += "|\n";
 					} else {
-						parsedEntry += "|" + splitEntryGlossWiki(entries[row_num], conv) + "\n";
+						parsedEntry += "| " + splitEntryGlossWiki(entries[row_num], conv) + "\n";
 					}
 				}
 				wikiOutput += parsedEntry;
@@ -493,7 +513,10 @@ function convert(conv) {
 			}
 			parsedEntry = "";
 		}
-		conv.finishWiki(wikiOutput);
+
+		wikiOutput = "{| class='wikitable'\n|-\n" + wikiOutput + "\n|}"
+
+		conv.finish(wikiOutput);
 	}
 }
 
@@ -714,41 +737,19 @@ function toSmallCaps(input) {
 }
 
 var Converter = function (markup, nonInterlinear, useAbbrv, abbreviations, explanations, abbrvDelimiterInput, useSmallCaps) {
-	this.orig = "";
 	this.output = "";
-
 	this.markup = markup;
-
 	this.nonInterlinear = nonInterlinear;
-
 	this.useAbbrv = useAbbrv;
-
 	this.abbreviations = abbreviations;
-
 	this.explanations = explanations;
-
 	this.abbrvDelimiterInput = abbrvDelimiterInput;
-
 	this.useSmallCaps = useSmallCaps;
-};
-
-Converter.prototype.addLine = function (input) {
-	this.orig += "  <tr>" + input + "</tr>" + "\n";
-};
-Converter.prototype.addSingleLineEntry = function (input, maxLines) {
-	this.orig += "  <tr><td colspan=" + maxLines + ">" + input + "</td></tr>" + "\n";
-};
-Converter.prototype.finishTable = function () {
-	this.output = "<table>" + "\n" + this.orig + "\n" + "</table><br>" + "<textarea id='output' spellcheck='false'>"
-		+ "\n" + "<table>" + "\n" + this.orig + "</table>" + "</textarea>";
-};
-Converter.prototype.finishWiki = function (input) {
-	this.output = "<textarea id='output' spellcheck='false'>{| class='wikitable'\n|-\n" + input + "\n|}</textarea>";
 };
 Converter.prototype.finish = function (input) {
 	this.output = "<textarea id='output' spellcheck='false'>" + input + "</textarea>";
 }
-Converter.prototype.finishInterlinear = function (input) {
+Converter.prototype.finishAndShow = function (input) {
 	this.output = input + "<br><textarea id='output' spellcheck='false'>" + input + "</textarea>";
 }
 Converter.prototype.finishPlainText = function (input) {
