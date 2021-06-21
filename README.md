@@ -67,6 +67,14 @@ If you wish to style anything, such as use italics or bold, you may enter HTML t
 When using the HTML interlinear div method, provide the following CSS on your website to get the desired output:
 
 ```
+.abbrv {
+   cursor: help;
+}
+.sc {
+  font-variant: small-caps;
+  font-variant-numeric: oldstyle-nums;
+  text-transform: lowercase;
+}
 div .gll {
   display: inline-table;
   padding-right: 10px;
