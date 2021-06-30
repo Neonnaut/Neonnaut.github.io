@@ -41,10 +41,12 @@
     #input {
       height: 8em;
       width: 100%;
+      min-width: 40%;
     }
     #output {
       height: 12em;
       width: 100%;
+      min-width: 40%;
     }
     #abbrvDelimiterInput,
     #abbrvInput,
@@ -52,6 +54,7 @@
     #notInterlinear {
       width: 95%;
       max-width: 40em;
+      min-width: 40%;
     }
     #abbrvInput {
       height: 5em;
@@ -107,6 +110,10 @@
       display: inline-table;
       padding-right: 10px;
     }
+    i {
+      padding-top: 8px;
+      display:inline-block;
+    }
     @media only screen and (max-width: 700px) {
       #top-content {
         padding: 8px 10px 0px 10px;
@@ -126,10 +133,10 @@
     <a href="https://github.com/Neonnaut/Neonnaut.github.io/blob/main/README.md">Click here for instructions</a>
 
     <h1>Text to be glossed (last line must be translation, second last must be gloss)</h1>
-    <textarea id="input" name="input" spellcheck="false" placeholder="Astra inclinant, sed non obligant.
+    <textarea id="input" name="input" spellcheck="false" placeholder='Astra inclinant, sed non obligant.
 [astra inkliːnant sed non obligant]
 star.ACC.PL incline.PRS.PTCP but NEG bind.3P.PRS.ACT.IND
-'The stars incline us, they do not bind us.'"></textarea><br>
+"The stars incline us, they do not bind us."'></textarea><br>
 
     <h1>Markup</h1>
     <div id="switch-field">
@@ -165,8 +172,10 @@ YABRV,Your abbreviation
       <br>
 
       <h2>Glossing seperators, comma delimited</h2>
-      <input id="abbrvDelimiterInput" name="abbrvDelimiterInput" value=".,-,=,›" spellcheck="false">
+      <input id="abbrvDelimiterInput" name="abbrvDelimiterInput" value=".,-,=,›" spellcheck="false"><br><br>
+
+      <input type="checkbox" id="useAcknowledgement" name="useAcknowledgement" />
+      <label for="useAcknowledgement">Append an acknowledgement of this tool when using HTML options</label><br>
     </div>
   </body>
-
 </html>

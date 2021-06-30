@@ -1,30 +1,19 @@
-+----------------+------+---------------+
-| kyustk         | noun | tax           |
-+----------------+------+---------------+
-| näkayöskäläl   | verb | teach         |
-+----------------+------+---------------+
-| näkayöskäläl   | noun | teacher       |
-+----------------+------+---------------+
-| äläng          | noun | tear          |
-+----------------+------+---------------+
-|                | noun | water droplet |
-+----------------+------+---------------+
-| bl¨äzär        | verb | tear apart    |
-+----------------+------+---------------+
+**Input**
+word		POS		Equivelents			Child-entry	Child-type
+<kyustk>	noun	tax; texes			NULL		NULL
+<näkayös>	verb	teach				NULL		NULL
+<näkayös>	noun	teacher				NULL		NULL
+			noun	instructor			NULL		NULL
+<foobar>	noun	teacher				<näkayös>	Synonym
+<näkayösom>	noun	substitute teacher	<näkayös>	NULL
 
-{
-	"poses":[ 
-		{"pos":"noun", "abbr":"n."},
-		{"pos":"transitive verb", "abbr":"v. trans."},
-		{"pos":"intransitive verb", "abbr":"v. intrans."},
-		{"pos":"adjective", "abbr":"adj."},
-		{"pos":"interjection", "abbr":"int."}
-	],
-	"terms":[
-		{"term":"tythemek", "defs":[["noun", "bad idea", "mythical centipede with human hands, and the teeth and dangling thing of a deep-sea anglerfish"]]},
-		{"term":"duhden", "defs":[["noun", "pasta", "that which causes tangential deviations from the topic"], ["intransitive verb", "to create a tangential deviation from a topic", "to go off on a tangent"]]},
-		{"term":"femek", "defs":[["adjective", "noetic", "intellectual"], ["noun", "mind", "thought"], ["transitive verb", "deduce", "realize"]]},
-		{"term":"xanoln", "defs":[["transitive verb", "greet", "say hello to"], ["interjection", "hello"]]},
-		{"term":"ximulc", "defs":[["transitive verb", "say goodbye to", "bid farewell"], ["interjection", "goodbye"]]}
-	]
-}
+**Markup**
+{\b\Word} {duplicationNo}{[POS]} Equivelents
+	{Child-type} {\b\Word} {[POS]} {Equivelents}
+	
+**Output**
+kyustk [n] tax;taxes
+näkayös 1[v] teach
+näkayös 2[n] teacher; instructor
+	Syn: foobar [n] teacher
+	näkayösom [n] substitute teacher

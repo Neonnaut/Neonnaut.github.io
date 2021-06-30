@@ -56,7 +56,8 @@ function glossarize(markup) {
 		abbreviations,
 		explanations,
 		abbrvDelimiterInput,
-		useSmallCaps
+		useSmallCaps,
+		$("#useAcknowledgement").is(":checked")
 	);
 
 	convert(conv);
@@ -727,7 +728,7 @@ function toSmallCaps(input) {
 	return result;
 }
 
-var Converter = function (markup, nonInterlinear, useAbbrv, abbreviations, explanations, abbrvDelimiterInput, useSmallCaps) {
+var Converter = function (markup, nonInterlinear, useAbbrv, abbreviations, explanations, abbrvDelimiterInput, useSmallCaps, useAcknowledgement) {
 	this.output = "";
 	this.markup = markup;
 	this.nonInterlinear = nonInterlinear;
@@ -736,12 +737,18 @@ var Converter = function (markup, nonInterlinear, useAbbrv, abbreviations, expla
 	this.explanations = explanations;
 	this.abbrvDelimiterInput = abbrvDelimiterInput;
 	this.useSmallCaps = useSmallCaps;
+	this.useAcknowledgement = useAcknowledgement;
 };
 Converter.prototype.finish = function (input) {
 	this.output = "<textarea id='output' spellcheck='false'>" + input + "</textarea>";
 }
 Converter.prototype.finishAndShow = function (input) {
-	this.output = input + "<br><textarea id='output' spellcheck='false'>" + input + "</textarea>";
+	if (this.useAcknowledgement){
+		let ack = "<i>Gloss provided by <a href='https://neonnaut.github.io/'>Gloss My Gloss</a></i>";
+		this.output = input + ack + "<br>" + "<br><textarea id='output' spellcheck='false'>" + input + "\n" + ack + "</textarea>";
+	} else {
+		this.output = input + "<br><textarea id='output' spellcheck='false'>" + input + "</textarea>";
+	}
 }
 Converter.prototype.finishPlainText = function (input) {
 	this.output = "<pre><code>" + input + "</code></pre><textarea id='output' spellcheck='false'>" + input + "</textarea>";
