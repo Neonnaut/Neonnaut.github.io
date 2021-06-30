@@ -322,7 +322,6 @@ IPFV,Imperfective
 IRR,Irrealis
 ITER,Iterative aspect
 JUS,Jussive mood
-KIN,Kinship affix
 LIM,Limitative
 MASC,Masculine gender
 MID,Middle voice; medio-passive
@@ -337,6 +336,7 @@ NUM,Numeral; numerative
 NVEXP,Nonvisual experiential (evidential)
 O,Object(ive)
 OBLIG,Obligative mood
+OBJ,Object(ive)
 OBV,Obviative
 OFC,Object focus
 ONOM,Onomatopoeia
