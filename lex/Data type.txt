@@ -1,11 +1,19 @@
 **Input**
-word		POS		Equivelents			Child-entry	Child-type
-<kyustk>	noun	tax; texes			NULL		NULL
-<näkayös>	verb	teach				NULL		NULL
-<näkayös>	noun	teacher				NULL		NULL
-			noun	instructor			NULL		NULL
-<foobar>	noun	teacher				<näkayös>	Synonym
-<näkayösom>	noun	substitute teacher	<näkayös>	NULL
++-----------+------+-----------------+--------------------------+---------------+-------------+------------+
+| Word      | POS  | Equivelents     | Notes                    | Example       | Child-entry | Child-type |
++-----------+------+-----------------+--------------------------+---------------+-------------+------------+
+| kyustk    | noun | tax; taxes      |                          | NOM COP tax   |             |            |
++-----------+------+-----------------+--------------------------+---------------+-------------+------------+
+| näkayös   | verb | teach           | Used in Atlantis dialect |               |             |            |
++-----------+------+-----------------+--------------------------+---------------+-------------+------------+
+| näkayös   | noun | teacher         |                          |               |             |            |
++-----------+------+-----------------+--------------------------+---------------+-------------+------------+
+|           | noun | instructor      |                          |               |             |            |
++-----------+------+-----------------+--------------------------+---------------+-------------+------------+
+| foobar    | noun | teacher         |                          |               | näkayös     | Synonym    |
++-----------+------+-----------------+--------------------------+---------------+-------------+------------+
+| näkayösom | noun | science teacher |                          |               | näkayös     |            |
++-----------+------+-----------------+--------------------------+---------------+-------------+------------+
 
 **Markup**
 {\b\Word} {duplicationNo}{[POS]} Equivelents
@@ -14,6 +22,6 @@ word		POS		Equivelents			Child-entry	Child-type
 **Output**
 kyustk [n] tax;taxes
 näkayös 1[v] teach
-näkayös 2[n] teacher; instructor
+	2[n] teacher; instructor
 	Syn: foobar [n] teacher
 	näkayösom [n] substitute teacher
