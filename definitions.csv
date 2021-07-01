@@ -418,3 +418,24 @@ WIT,Witnessed evidential
 WP,Witnessed past
 WPST,Witnessed past
 YNQ,Yes-no question
+DTRNZ,Detransitivizer
+ER,Ergative
+EXH,Exhortative
+HSY,Hearsay
+MAL,Malefactive
+PDS,Previous different subject
+POS1,Possessive first person singular
+POS2,Possessive second person singular
+POS3,Possessive third person singular
+POS1p,Possessive first person plural
+POS2p,Possessive second person plural
+POS3p,Possessive third person plural
+FRUSTR,Frustrative
+FDS ,Subsequent different subject
+FSSI,Subsequent same subject intransitive
+FSST,Subsequent same subject transitive
+PSSI,Previous same subject intransitive
+PSST,Previous same subject transitive
+SDS,Simultaneous different subject
+SSSI,Simultaneous same subject intransitive
+SSST,Simultaneous same subject transitive
