@@ -25,3 +25,15 @@ näkayös 1[v] teach
 	2[n] teacher; instructor
 	Syn: foobar [n] teacher
 	näkayösom [n] substitute teacher
+
+embassy1 n 1 to 2 had
+embassy2 v ross >>whicki
+embrossed v joker
+
+<b>embassy<b><sup>1</sup> <i>n</i> <b>1</b> to be embassy <b>2</b> had to be embassy.
+<b>embassy</b><sup>2</sup> v ross >>whicki to be whicki
+<b>embossed</b> <i>v</i> joker
+
+<label for="csvFileInput">File:</label>
+<input type="file" id="csvFileInput" onchange="handleFiles(this.files)" accept=".csv,.txt">
+<div id="output">
