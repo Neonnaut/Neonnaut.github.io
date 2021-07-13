@@ -227,13 +227,32 @@ function convert(conv) {
 			}
 			var entriesZ = lines[col_num].split(/[ \t]+/);
 			for (let row_num = 0; row_num < entriesZ.length; row_num++) {
-				var noDiacriticsEntry = entriesZ[row_num].normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+				var noDiacritics = entriesZ[row_num].normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+				noDiacritics = noDiacritics.replace(/[\u02E5-\u02E9]/g, "˥");
+				noDiacritics = noDiacritics.replace(/[\uA708-\uA716]/g, "˥");
+
+				let noDiacriticsLength = noDiacritics.length
+				noDiChar = 0;
+				while (noDiChar < noDiacritics.length){
+					noDiChar++
+					if (noDiacritics[noDiChar] == "˥"){
+						noDiChar++
+						if (noDiacritics[noDiChar] == "˥"){
+							noDiChar++
+							noDiacriticsLength--
+							if (noDiacritics[noDiChar] == "˥"){
+								noDiacriticsLength--
+							}
+						}
+					}
+				}
+
 				if (!skipline && col_num + 1 != lines.length) {
 					if (typeof wordLength[row_num] === "undefined") {
-						wordLength.push(noDiacriticsEntry.length);
+						wordLength.push(noDiacriticsLength);
 					}
-					if (wordLength[row_num] <= noDiacriticsEntry.length) {
-						wordLength[row_num] = noDiacriticsEntry.length;
+					if (wordLength[row_num] <= noDiacriticsLength) {
+						wordLength[row_num] = noDiacriticsLength;
 					}
 				}
 			}
@@ -399,14 +418,34 @@ function convert(conv) {
 				inter_num++
 			}
 			var entriesZ = lines[col_num].split(/[ \t]+/);
+			
 			for (let row_num = 0; row_num < entriesZ.length; row_num++) {
-				var noDiacriticsEntry = entriesZ[row_num].normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+				var noDiacritics = entriesZ[row_num].normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+				noDiacritics = noDiacritics.replace(/[\u02E5-\u02E9]/g, "˥");
+				noDiacritics = noDiacritics.replace(/[\uA708-\uA716]/g, "˥");
+
+				let noDiacriticsLength = noDiacritics.length
+				noDiChar = 0;
+				while (noDiChar < noDiacritics.length){
+					noDiChar++
+					if (noDiacritics[noDiChar] == "˥"){
+						noDiChar++
+						if (noDiacritics[noDiChar] == "˥"){
+							noDiChar++
+							noDiacriticsLength--
+							if (noDiacritics[noDiChar] == "˥"){
+								noDiacriticsLength--
+							}
+						}
+					}
+				}
+
 				if (!skipline && col_num + 1 != lines.length) {
 					if (typeof wordLength[row_num] === "undefined") {
-						wordLength.push(noDiacriticsEntry.length);
+						wordLength.push(noDiacriticsLength);
 					}
-					if (wordLength[row_num] <= noDiacriticsEntry.length) {
-						wordLength[row_num] = noDiacriticsEntry.length;
+					if (wordLength[row_num] <= noDiacriticsLength) {
+						wordLength[row_num] = noDiacriticsLength;
 					}
 				}
 			}
