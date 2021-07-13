@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>S</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="index.js"></script>
+  <style>
+    body {
+      background-color: #f6f8fa;
+      margin: 0;
+      padding: 8px 30px 0px 30px;
+    }
+    h1 {
+      margin-bottom: 2px;
+      margin-top: 6px;
+      font-size: 19px;
+    }
+    #input {
+      height: 8em;
+      width: 100%;
+      min-width: 40%;
+    }
+    #output {
+      height: 12em;
+      width: 100%;
+      min-width: 40%;
+    }
+    @media only screen and (max-width: 700px) {
+      body {
+        padding: 8px 10px 0px 10px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  
+  <h1>Input</h1>
+  <textarea id="input" name="input" spellcheck="false" ></textarea><br>
+
+  <input type="submit" id="submit" value="Wiki" name="markupButton">
+
+  <div id="out"></div><br>
+
+  </body>
+</html>

@@ -74,7 +74,7 @@ SG,Singular
 3pl,Third person plural (they)
 3s,Third person singular (he; she; it)
 3sg,Third person singular (he; she; it)
-A,Agent-like argument of canonical transitive verb
+A,Agent
 ABESS,Abessive case
 ABL,Ablative case (from)
 ABS,Absolutive case
@@ -209,7 +209,6 @@ ELA,Elative case (out of)
 ELAT,Elative case (out of)
 EMP,Emphatic; emphasizer
 EMPH,Emphatic; emphasizer
-EP,Epenthetic morpheme; epenthetical
 EPIT,Epithet
 ESS,Essive case
 EVIT,Evitative case
@@ -225,7 +224,6 @@ EXP,Experiential; eyewitness; direct evidential
 EXPR,Expressive
 EXST,Existential (there is)
 EXT,Extended aspect; extendible
-FAC,Factive
 FACT,Factive
 FAM,Familiar; familiar register
 FEM,Feminine gender
@@ -380,7 +378,6 @@ RES,Resultative
 RESP,Respect
 RPRT,Reported evidential
 RQ,Rhetorical question
-S,Single argument of canonical intransitive verb
 SBJ,Subject; subject agreement
 SCEP,Sceptical
 SEM,Semelfactive aspect (once)
@@ -424,12 +421,6 @@ EXH,Exhortative
 HSY,Hearsay
 MAL,Malefactive
 PDS,Previous different subject
-POS1,Possessive first person singular
-POS2,Possessive second person singular
-POS3,Possessive third person singular
-POS1p,Possessive first person plural
-POS2p,Possessive second person plural
-POS3p,Possessive third person plural
 FRUSTR,Frustrative
 FDS ,Subsequent different subject
 FSSI,Subsequent same subject intransitive
@@ -440,3 +431,20 @@ SDS,Simultaneous different subject
 SSSI,Simultaneous same subject intransitive
 SSST,Simultaneous same subject transitive
 AB,Absolutive
+ANTIAPP,aniapplicative
+TCV,Temporal Converb
+PFVCVB,Perfective Converb
+AS,aseverative
+2POSS,Second person possessive
+3POSS,Second person possessive
+1POSS,First person possessive
+PSR,Possessor
+SDS,Simultaneous event different subject
+SE,Same event
+SS,Same-subject
+U,Uninflected
+UC,Upcoast
+RLN,Relational
+SBEN,Self-benefactive
+PERSE,Personal experience
+EXPECT,expectational
