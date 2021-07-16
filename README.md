@@ -119,4 +119,5 @@ And after saving, if your wiki asks for documentation, provide this link: https:
 - [ ] Accept abbreviation input with delimiters in them e.g: "Q.WH, Interogative question particle" (unnecessary?)
 - [ ] Get in-built abbreviations from csv file (difficult, may need third party addon, and might be slower for user)
 - [ ] Style lines bold or italics option (unnecessary and could croud the input layout?)
+- [ ] Support combining diacritic `◌˞` for Plaintext method.
 - [ ] Start a new alignment every time there is a blank line for the Plaintext and Reddit method.
