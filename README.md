@@ -2,11 +2,11 @@
 
 > A generator for interlinear glosses
 
-This is an input/output generator for aligning linguistic interlinear gloss, for the purposes of conlanging.
-It is built with HTML and JavaScript with jQuery and runs in your browser at https://neonnaut.github.io/
+This is an input/output generator for setting linguistic interlinear gloss, for the purposes of conlanging.
+It is built with HTML and JavaScript with jQuery and runs in your browser at https://neonnaut.github.io/ ;
 There are several markup options for displaying on different websites.
 
-Refer to the following documents:
+Refer to the following documents on setting interlinear gloss:
 
 https://www.eva.mpg.de/lingua/resources/glossing-rules.php
 
@@ -60,7 +60,7 @@ table tr td {
 }
 ```
 
-If you wish to style anything, such as use italics or bold, you may enter HTML tags on an individual word. If you wish to style an entire line, the best way is to add a class to the `<tr>` and add styles with CSS.
+If you wish to style anything, such as use italics or bold, you may enter HTML tags on an individual word. If you wish to style an entire line, the best way is to add a class to `<tr>` and add styles with CSS.
 
 #### HTML Interlinear div
 
@@ -81,25 +81,27 @@ div .gll {
 }
 ```
 
-If you haven't noticed, 'Single column lines' does not work. Even if you were to edit the output, a div without the .gll class will only work at the end or the beggining of a block of .gll divs.
+'Single column lines' does not work with this method. Even if you were to edit the output, a div without the .gll class will only work at the end or the beggining of a block of .gll divs.
 
 #### Plain Text
 
-Make sure to display the text in a fixed-width font, such as including the text in a `<pre>` element. Be careful when using the small caps option, as the characters may not display correctly on all devices, especially F, S, X, and Q. My advice is to not use these characters in WYSIWYG editors, but the option is there.
+Make sure to display the text in a fixed-width font, such as including the text in a `<pre>` element. Be careful when using the small caps option, as the characters may not display correctly on all devices, especially F, S, X, and Q. My advice is to not use the small caps option, but the option is there.
+
+Using
 
 #### Latex
 
-Latex's gb4e package takes some fiddling around to accept more than three lines, therefore this generator only outputs three lines.
+Using Latex's gb4e package, this method normally takes only three lines, therefore this generator only configures three lines.
 
-make sure to put `\usepackage{gb4e}` in your preamble. And if you are using small caps, the font you are using has to support it.
+make sure to put `\usepackage{gb4e}` in your preamble. And if you are using small caps, the font you are using has to support small caps.
 
 #### ZBB
 
-This generator outputs the ZBB Board's gloss markup, if you provide more than two lines, the third last line must not be empty!
+This generator outputs to the ZBB Board's gloss markup, if you provide more than two lines, the third last line must not be empty.
 
 #### Reddit
 
-You must ue Reddit's "Markdown" mode and not it's "Fancy pants editor". This will output your text into a so-called fixed-width-font in it's codeblock, and the last line out of the codeblock. Reddit's codeblock doesn't seem to have a fixed width font for all chaacters, at least on the devices I tested on. So if you use certain IPA characters such as `ɨ`, your columns will come out of alignment and there is nothing you can do about it.
+You must ue Reddit's "Markdown" mode and not the "Fancy pants editor". This will output your text into a so-called fixed-width-font in it's codeblock, and the last line out of the codeblock. Reddit's font for codeblocks doesn't seem to be a fixed width font for all chaacters, at least on the devices I tested on. So if you use certain IPA characters such as `ɨ`, your columns may come out of alignment.
 
 #### Wiki tables
 
@@ -117,3 +119,4 @@ And after saving, if your wiki asks for documentation, provide this link: https:
 - [ ] Accept abbreviation input with delimiters in them e.g: "Q.WH, Interogative question particle" (unnecessary?)
 - [ ] Get in-built abbreviations from csv file (difficult, may need third party addon, and might be slower for user)
 - [ ] Style lines bold or italics option (unnecessary and could croud the input layout?)
+- [ ] Start a new alignment every time there is a blank line for the Plaintext and Reddit method.
