@@ -108,10 +108,8 @@ You must ue Reddit's "Markdown" mode and not the "Fancy pants editor". This will
 If your wiki does not have the abbr template, you will need to start a page called template:abbr, and put the following code in it:
 
 ```
-<abbr {{#if:{{{class|}}}|class="{{{class}}}"}} {{#if:{{{id|}}}|id="{{{id}}}"}} {{#if:{{{style|}}}|style="{{{style}}}"}} title="{{#tag:nowiki|{{#invoke:String|replace|{{{2|}}}|"|&quot;}}}}">{{{1|}}}</abbr><noinclude>{{Documentation}}
-</noinclude>
+<abbr title="{{{2}}}">{{{1|[?]}}}</abbr><noinclude>{{documentation}}</noinclude>
 ```
-
 And after saving, if your wiki asks for documentation, provide this link: https://en.wikipedia.org/wiki/Template:Abbr
 
 ## TODO
