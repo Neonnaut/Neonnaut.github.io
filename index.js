@@ -572,7 +572,7 @@ function convert(conv) {
 			parsedEntry = "";
 		}
 
-		wikiOutput = "{| class='wikitable'\n|-\n" + wikiOutput + "\n|}"
+		wikiOutput = "{| \n|-\n" + wikiOutput + "\n|}"
 
 		conv.finish(wikiOutput);
 	}
