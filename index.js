@@ -572,7 +572,7 @@ function convert(conv) {
 			parsedEntry = "";
 		}
 
-		wikiOutput = "{| \n|-\n" + wikiOutput + "\n|}"
+		wikiOutput = "<blockquote>\n{| \n|-\n" + wikiOutput + "\n|\n</blockquote>}"
 
 		conv.finish(wikiOutput);
 	}
