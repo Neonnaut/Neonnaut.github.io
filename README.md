@@ -2,11 +2,11 @@
 
 > A generator for interlinear glosses
 
-This is an input/output generator for setting linguistic interlinear gloss, for the purposes of conlanging.
-It is built with HTML and JavaScript with jQuery and runs in your browser at https://neonnaut.github.io/ ;
-There are several markup options for displaying on different websites.
+This tool, designed for formatting linguistic interlinear gloss, is built with HTML and and runs in your browser at https://neonnaut.github.io/. It should be noted that this tool saves your data in local storage of your brower
 
-Refer to the following documents on setting interlinear gloss:
+It's main purpose has been designed for constructed languages, and as many abbreviations for grammatical elements already have conflicts with each other, new definitions can be set that can overwrite individual definitions.
+
+You may refer to the following information on what interlinear gloss is and it's purpose:
 
 https://www.eva.mpg.de/lingua/resources/glossing-rules.php
 
@@ -97,7 +97,11 @@ make sure to put `\usepackage{gb4e}` in your preamble. And if you are using smal
 
 #### ZBB
 
-This generator outputs to the ZBB Board's gloss markup, if you provide more than two lines, the third last line must not be empty.
+This method outputs to the ZBB Board's gloss markup, if you provide more than two lines, the third last line must not be empty.
+
+#### Reddit
+
+This method creates a codeblock where backtick enabled codeblock is enabled.
 
 #### Reddit
 
@@ -110,12 +114,11 @@ If your wiki does not have the abbr template, you will need to start a page call
 ```
 <abbr title="{{{2}}}">{{{1|[?]}}}</abbr><noinclude>{{documentation}}</noinclude>
 ```
+
 And after saving, if your wiki asks for documentation, provide this link: https://en.wikipedia.org/wiki/Template:Abbr
 
-## TODO
+## Issues
 
-- [ ] Accept abbreviation input with delimiters in them e.g: "Q.WH, Interogative question particle" (unnecessary?)
-- [ ] Get in-built abbreviations from csv file (difficult, may need third party addon, and might be slower for user)
-- [ ] Style lines bold or italics option (unnecessary and could croud the input layout?)
-- [ ] Support combining diacritic `◌˞` for Plaintext method.
-- [ ] Start a new alignment every time there is a blank line for the Plaintext and Reddit method.
+- Custom abbreviations with a delimiter in them e.g: "Q.WH, Interogative question particle" will not work propperly.
+- Plaintext method does not support combining diacritic `◌˞`.
+- Plaintext method does not do multiple translations.
