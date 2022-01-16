@@ -920,7 +920,7 @@ Converter.prototype.finishPlainText = function (input) {
 	this.output = "<pre><code>" + input + "</code></pre><textarea id='output' spellcheck='false'>" + input + "</textarea>";
 }
 Converter.prototype.finishBlock = function (input) {
-	this.output = "<textarea id='output' spellcheck='false'>`" + input + "`</textarea>";
+	this.output = "<textarea id='output' spellcheck='false'>`<br>" + input + "`</textarea>";
 }
 
 // Save input text in user's localstorage for next session
