@@ -36,7 +36,17 @@ sun SUBJECT east POSSESSIVE sky LOCATIVE rise
 
 Then "Non alignable lines" should have a "1" to indicate not to align the first line.
 
-#### HTML table
+If all goes well you should have something that looks like this:
+
+```
+太陽が東の空に昇る
+taiyō   ga      higashi no         sora ni       noboru
+/taijoː ŋa      çiŋaɕi  no         soɾa nʲi      noboɾɯᵝ/
+sun     SUBJECT east    POSSESSIVE sky  LOCATIVE rise
+"The sun rises in the eastern sky."
+```
+
+### HTML table
 
 When using the HTML markup method, provide the following CSS on your website to get the desired output:
 
@@ -62,7 +72,7 @@ table tr td {
 
 If you wish to style anything, such as use italics or bold, you may enter HTML tags on an individual word. If you wish to style an entire line, the best way is to add a class to `<tr>` and add styles with CSS.
 
-#### HTML Interlinear div
+### HTML Interlinear div
 
 When using the HTML interlinear div method, provide the following CSS on your website to get the desired output:
 
@@ -83,31 +93,29 @@ div .gll {
 
 'Single column lines' does not work with this method. Even if you were to edit the output, a div without the .gll class will only work at the end or the beggining of a block of .gll divs.
 
-#### Plain Text
+### Plain Text
 
 Make sure to display the text in a fixed-width font, such as including the text in a `<pre>` element. Be careful when using the small caps option, as the characters may not display correctly on all devices, especially F, S, X, and Q. My advice is to not use the small caps option, but the option is there.
 
-Using
-
-#### Latex
+### Latex
 
 Using Latex's gb4e package, this method normally takes only three lines, therefore this generator only configures three lines.
 
 make sure to put `\usepackage{gb4e}` in your preamble. And if you are using small caps, the font you are using has to support small caps.
 
-#### ZBB
+### ZBB
 
 This method outputs to the ZBB Board's gloss markup, if you provide more than two lines, the third last line must not be empty.
 
-#### Reddit
+### Codeblock
 
-This method creates a codeblock where backtick enabled codeblock is enabled.
+This method is the same as the Plaintext method except that it puts the output between backticks. This should be useful for anyone who posts language bits on Discord
 
-#### Reddit
+### Reddit
 
 You must ue Reddit's "Markdown" mode and not the "Fancy pants editor". This will output your text into a so-called fixed-width-font in it's codeblock, and the last line out of the codeblock. Reddit's font for codeblocks doesn't seem to be a fixed width font for all chaacters, at least on the devices I tested on. So if you use certain IPA characters such as `ɨ`, your columns may come out of alignment.
 
-#### Wiki tables
+### Wiki tables
 
 If your wiki does not have the abbr template, you will need to start a page called template:abbr, and put the following code in it:
 
