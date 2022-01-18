@@ -109,7 +109,7 @@ This method outputs to the ZBB Board's gloss markup, if you provide more than tw
 
 ### Codeblock
 
-This method is the same as the Plaintext method except that it puts the output between backticks. This should be useful for anyone who posts language bits on Discord
+This method is the same as the Plaintext method, except that it puts the output between backticks. This should be useful for anyone who posts conlang sentences on Discord.
 
 ### Reddit
 
