@@ -2,9 +2,9 @@
 
 > A generator for interlinear glosses
 
-This tool, designed for formatting linguistic interlinear gloss, is built with HTML and and runs in your browser at https://neonnaut.github.io/. It should be noted that this tool saves your data in local storage of your brower
+This tool, designed for formatting linguistic interlinear gloss, is built with HTML and and runs in your browser at https://neonnaut.github.io/.
 
-It's main purpose has been designed for constructed languages, and as many abbreviations for grammatical elements already have conflicts with each other, new definitions can be set that can overwrite individual definitions.
+It's main purpose has been designed with constructed languages in mind, and as many abbreviations for grammatical elements already have conflicts with each other, new definitions can be set that can overwrite individual definitions. It should be noted that this tool saves data in "local storage" of your browser.
 
 You may refer to the following information on what interlinear gloss is and it's purpose:
 
@@ -127,6 +127,6 @@ And after saving, if your wiki asks for documentation, provide this link: https:
 
 ## Issues
 
-- Custom abbreviations with a delimiter in them e.g: "Q.WH, Interogative question particle" will not work propperly.
+- Custom abbreviations with a delimiter in them e.g: "Q.WH, Interogative question particle" will not work properly.
 - Plaintext method does not support combining diacritic `◌˞`.
-- Plaintext method does not do multiple translations.
+- Plaintext method does not do multiple translations in one go, as one might hope for.
