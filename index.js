@@ -943,6 +943,25 @@ window.onload = function () {
 	}
 };
 // Check for markup submit button and colour it blue
-$(window).onload(function () {
-	
+$(window).load(function () {
+	$("[name='markupButton']").click(function () {
+		glossarize($(this).attr('id'));
+		var selection = document.querySelectorAll("#switch-field input");
+		for (i = 0; i < selection.length; i++) {
+			selection[i].classList.remove('checked');
+		}
+		$(id = $(this)).addClass("checked");
+	});
+	// Check if use abbreviations has been unchecked and disable abbreviation input
+	$("#useAbbrv").click(function () {
+		if ($("#useAbbrv").is(':checked')) {
+			$("#abbrvInput").prop('disabled', false);
+			$("#abbrvDelimiterInput").prop('disabled', false);
+			$("#useInputAbbrv").prop('disabled', false);
+		} else {
+			$("#abbrvInput").prop('disabled', true);
+			$("#abbrvDelimiterInput").prop('disabled', true);
+			$("#useInputAbbrv").prop('disabled', true);
+		}
+	});
 });
