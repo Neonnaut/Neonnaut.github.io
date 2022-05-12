@@ -13,41 +13,18 @@
   <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
   <style>
-    body {
-      background-color: #f6f8fa;
-      margin: 0;
-      font-family: Verdana, sans-serif;
-    }
-    #top-content {
-      background-color: #fff;
-      padding: 8px 30px 0px 30px;
-    }
-    #bottom-content {
-      background-color: #f6f8fa;
-      padding: 8px 30px 38px 30px;
-    }
-    h1, h2 {
-      margin-bottom: 2px;
-      margin-top: 6px;
-      font-size: 19px;
-    }
-    h2 {
-      font-size: 17px;
-    }
-    input[type="checkbox"]:checked + label, h2 {
-      color: #424242;
-    }
     #input {
       height: 8em;
       width: 98%;
-      max-width: 1100px;
     }
     #output {
       height: 12em;
       width: 98%;
-      max-width: 1100px;
     }
-    h1, h2, label, a:link, #switch-field, #bottom-content {
+    #out {
+      margin: 10px 0;
+    }
+    label, a:link, #switch-field, #bottom-content {
       font-family: "Segoe UI", Arial, sans-serif;
       -webkit-touch-callout: none; /* iOS Safari */
         -webkit-user-select: none; /* Safari */
@@ -80,7 +57,7 @@
       line-height: 1;
       margin-bottom: 3px;
       text-align: center;
-      padding: 8px 14px 6px 14px;
+      padding: 8px 13px 6px 13px;
       border: 1px solid rgba(0, 0, 0, 0.2);
       box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);
       transition: all 0.1s ease-in-out;
@@ -124,69 +101,207 @@
     .gmg-ack {
       font-size: small;
     }
-    @media only screen and (max-width: 700px) {
-      #top-content {
-        padding: 8px 10px 0px 10px;
-      }
-      #bottom-content {
-        padding: 8px 10px 38px 10px;
-      }
+    @media only screen and (max-width: 620px) {
       #switch-field {
         display: inline;
       }
     }
   </style>
 </head>
+<body id="body" class="dark-theme">
+  <div id="content">
 
-<body>
-  <div id="top-content">
-    <a href="https://github.com/Neonnaut/Neonnaut.github.io/blob/main/README.md">Click here for instructions</a>
+		<section id="top">
+      <h1>Linguistic Gloss Generator</h1>
+      <h3>Input to be glossed (abbreviations on 2<sup>nd</sup> last line)</h3>
+      <textarea id="input" name="input" spellcheck="false" placeholder='Astra inclinant, sed non obligant.
+    [astra inkliːnant sed non obligant]
+    star.ACC.PL incline.PRS.PTCP but NEG bind.3P.PRS.ACT.IND
+    "The stars incline us, they do not bind us."'>
+      </textarea>
+      
+      <h3>Markup</h3>
+      <div id="switch-field">
+        <input type="submit" id="htmlTable" value="HTML table" name="markupButton">
+        <input type="submit" id="interlinear" value="HTML div" name="markupButton">
+        <input type="submit" id="plainText" value="Plain text" name="markupButton">
+        <input type="submit" id="latexGloss" value="Latex" name="markupButton">
+        <input type="submit" id="zbbGloss" value="ZBB" name="markupButton">
+        <input type="submit" id="cwsGloss" value="CWS" name="markupButton">
+        <input type="submit" id="reddit" value="Reddit" name="markupButton">
+        <input type="submit" id="wikiTable" value="Wiki" name="markupButton">
+      </div>
+    
+      <h3>Output</h3>
+      <div id="out"></div>
 
-    <h1>Text to be glossed (last line must be translation, second last must be gloss)</h1>
-    <textarea id="input" name="input" spellcheck="false" placeholder='Astra inclinant, sed non obligant.
-[astra inkliːnant sed non obligant]
-star.ACC.PL incline.PRS.PTCP but NEG bind.3P.PRS.ACT.IND
-"The stars incline us, they do not bind us."'></textarea><br>
-
-    <h1>Markup</h1>
-    <div id="switch-field">
-      <input type="submit" id="htmlTable" value="HTML table" name="markupButton">
-      <input type="submit" id="interlinear" value="HTML div" name="markupButton">
-      <input type="submit" id="plainText" value="Plain text" name="markupButton">
-      <input type="submit" id="latexGloss" value="Latex" name="markupButton">
-      <input type="submit" id="zbbGloss" value="ZBB" name="markupButton">
-      <input type="submit" id="cwsGloss" value="CWS" name="markupButton">
-      <input type="submit" id="block" value="Codeblock" name="markupButton">
-      <input type="submit" id="reddit" value="Reddit" name="markupButton">
-      <input type="submit" id="wikiTable" value="Wiki" name="markupButton">
-    </div><br>
-
-    <div id="out"></div><br>
-  </div>
+      <fieldset id="bottom-content">
+        <legend>Options</legend>
+        <h5>Single column lines, comma delimited</h5>
+        <input id="notInterlinear" name="notInterlinear" spellcheck="false"><br><br>
+        <input type="checkbox" id="useSmallCaps" name="useSmallCaps" />
+        <label for="useSmallCaps">Use small caps on gloss line</label><br>
+        <input type="checkbox" id="useAbbrv" name="useAbbrv" checked />
+        <label for="useAbbrv">Use abbreviations</label><br>
+        <input type="checkbox" id="useInputAbbrv" name="useInputAbbrv" checked />
+        <label for="useInputAbbrv">Use in-built abbreviations</label><br>
   
-    <div id="bottom-content">
-      <h2>Single column lines, comma delimited (e.g: 1,2)</h2>
-      <input id="notInterlinear" name="notInterlinear" spellcheck="false"><br><br>
+        <h5>Glossing abbreviations, comma and line delimited</h5>
+        <textarea id="abbrvInput" name="abbrvInput" spellcheck="false">
+  ACT,Actor voice
+  YABRV,Your abbreviation
+        </textarea>
+        <br>
+  
+        <h5>Glossing seperators, comma delimited</h5>
+        <input id="abbrvDelimiterInput" name="abbrvDelimiterInput" value=".,-,=,›,:" spellcheck="false"><br><br>
+  
+        <input type="checkbox" id="useAcknowledgement" name="useAcknowledgement" />
+        <label for="useAcknowledgement">Append an acknowledgement of this tool when using HTML options</label>
+      </fieldset>
+    </section>
 
-      <input type="checkbox" id="useSmallCaps" name="useSmallCaps" />
-      <label for="useSmallCaps">Use small caps on gloss line</label><br>
-      <input type="checkbox" id="useAbbrv" name="useAbbrv" checked />
-      <label for="useAbbrv">Use abbreviations</label><br>
-      <input type="checkbox" id="useInputAbbrv" name="useInputAbbrv" checked />
-      <label for="useInputAbbrv">Use in-built abbreviations</label><br>
+    <section>
+      <h2>Instructions</h2>
 
-      <h2>Glossing abbreviations, comma and line delimited</h2>
-      <textarea id="abbrvInput" name="abbrvInput" spellcheck="false">
-ACT,Actor voice
-YABRV,Your abbreviation
-  </textarea>
+      <p>This tool, designed for formatting linguistic interlinear gloss</p>
+
+      <p>It's main purpose has been designed with constructed languages in mind, and as many abbreviations for grammatical elements already have conflicts with each other, new definitions can be set that can overwrite individual definitions. It should be noted that this tool saves data in "local storage" of your browser.</p>
+
+      <p>You may refer to the following information on what interlinear gloss is and it's purpose:</p>
+
+      <a href="https://www.eva.mpg.de/lingua/resources/glossing-rules.php">Lingua Glossing Rules</a>
       <br>
+      <a href="https://kbmcgowan.github.io/blog/2009/02/28/css-interlinear-glosses.html">CSS Interlinear Glosses</a>
 
-      <h2>Glossing seperators, comma delimited</h2>
-      <input id="abbrvDelimiterInput" name="abbrvDelimiterInput" value=".,-,=,›,:" spellcheck="false"><br><br>
+      <h3>Use</h3>
+      <p>Make sure to provide at least three lines in the input, with your gloss on the second last line and your translation on the last. (ZBB can work with two). In this case your input would look like this:</p>
 
-      <input type="checkbox" id="useAcknowledgement" name="useAcknowledgement" />
-      <label for="useAcknowledgement">Append an acknowledgement of this tool when using HTML options</label><br>
-    </div>
-  </body>
+      <blockquote>
+Astra inclinant, sed non obligant.<br>
+star.ACC.PL incline.PRS.PTCP but NEG bind.3P.PRS.ACT.IND<br>
+"The stars incline us, they do not bind us."<br>
+      </blockquote>
+
+      <p>Any additional lines must go above the gloss line. Any of these additional lines may be marked with the "Non alignable lines" textbox. For example, if we had the input:</p>
+
+      <blockquote>
+太陽が東の空に昇る<br>
+taiyō ga higashi no sora ni noboru<br>
+/taijoː ŋa çiŋaɕi no soɾa nʲi noboɾɯᵝ/<br>
+sun SUBJECT east POSSESSIVE sky LOCATIVE rise<br>
+"The sun rises in the eastern sky."<br>
+      </blockquote>
+
+      <p>Then "Non alignable lines" should have a "1" to indicate not to align the first line. If all goes well you should have something that looks like this:</p>
+
+      <pre><blockquote>
+太陽が東の空に昇る
+taiyō   ga      higashi no         sora ni       noboru
+/taijoː ŋa      çiŋaɕi  no         soɾa nʲi      noboɾɯᵝ/
+sun     SUBJECT east    POSSESSIVE sky  LOCATIVE rise
+"The sun rises in the eastern sky."
+      </blockquote></pre>
+
+      <h4>HTML table</h4>
+      <p>When using the HTML markup method, provide the following CSS on your website to get the desired output:</p>
+
+      <pre><blockquote>
+.abbrv {
+   cursor: help;
+ }
+.sc {
+  font-variant: small-caps;
+  font-variant-numeric: oldstyle-nums;
+  text-transform: lowercase;
+}
+table {
+  overflow: auto;
+}
+table tr {
+  white-space: nowrap;
+}
+table tr td {
+  padding-right: 3px;
+}
+      </blockquote></pre>
+
+      <p>If you wish to style anything, such as use italics or bold, you may enter HTML tags on an individual word. If you wish to style an entire line, the best way is to add a class to <samp><tr></samp> and add styles with CSS.</p>
+
+      <h4>HTML Interlinear div</h4>
+
+      <p>When using the HTML interlinear div method, provide the following CSS on your website to get the desired output:</p>
+      
+      <pre><blockquote>
+.abbrv {
+   cursor: help;
+}
+.sc {
+  font-variant: small-caps;
+  font-variant-numeric: oldstyle-nums;
+  text-transform: lowercase;
+}
+div .gll {
+  display: inline-table;
+  padding-right: 10px;
+}
+      </blockquote></pre>
+
+<p>'Single column lines' does not work with this method. Even if you were to edit the output, a div without the .gll class will only work at the end or the beggining of a block of .gll divs.</p>
+
+<h4>Plain Text</h4>
+<p>Make sure to display the text in a fixed-width font, such as including the text in a &lt;pre&lt; element. Be careful when using the small caps option, as the characters may not display correctly on all devices, especially F, S, X, and Q. My advice is to not use the small caps option, but the option is there.</p>
+
+<h4>Latex</h4>
+<p>Using Latex's gb4e package, this method normally takes only three lines, therefore this generator only configures three lines.
+
+  <p>make sure to put \usepackage{gb4e} in your preamble. And if you are using small caps, the font you are using has to support small caps.
+
+<h4>ZBB</h4>
+<p>This method outputs to the ZBB Board's gloss markup, if you provide more than two lines, the third last line must not be empty.
+
+<h4>Reddit</h4>
+<p>You must ue Reddit's "Markdown" mode and not the "Fancy pants editor". This will output your text into a so-called fixed-width-font in it's codeblock, and the last line out of the codeblock. Reddit's font for codeblocks doesn't seem to be a fixed width font for all chaacters, at least on the devices I tested on. So if you use certain IPA characters such as ɨ, your columns may come out of alignment.</p>
+
+<h4>Wiki tables</h4>
+<p>If your wiki does not have the abbr template, you will need to start a page called template:abbr, and put the following code in it:</p>
+
+<pre><blockquote>&lt;abbr title="{{{2}}}">{{{1|[?]}}}&lt;/abbr>&lt;noinclude>{{documentation}}&lt;/noinclude>
+</blockquote></pre>
+
+<p>And after saving, if your wiki asks for documentation, provide this link: https://en.wikipedia.org/wiki/Template:Abbr</p>
+
+    </section>
+
+  </div>
+  <footer>
+		<details>
+			<summary>Expand for details</summary>
+			<ul>
+				<li><a href="#forms__input">Input fields</a></li>
+				<li><a href="#forms__select">Select menus</a></li>
+				<li><a href="#forms__checkbox">Checkboxes</a></li>
+				<li><a href="#forms__radio">Radio buttons</a></li>
+				<li><a href="#forms__textareas">Textareas</a></li>
+				<li><a href="#forms__html5">HTML5 inputs</a></li>
+				<li><a href="#forms__action">Action buttons</a></li>
+			</ul>
+		</details>
+		<details>
+			<summary><a href="#forms__input">Input fields</a></summary>
+			<ul>
+				<li><a href="#forms__input">Input fields</a></li>
+				<li><a href="#forms__select">Select menus</a></li>
+				<li><a href="#forms__checkbox">Checkboxes</a></li>
+				<li><a href="#forms__radio">Radio buttons</a></li>
+				<li><a href="#forms__textareas">Textareas</a></li>
+				<li><a href="#forms__html5">HTML5 inputs</a></li>
+				<li><a href="#forms__action">Action buttons</a></li>
+			</ul>
+		</details>
+
+    <a href="#top">[Top]<img id="neocities-icon" src="img/neocities.png"> </a>
+  </footer>
+</body>
+
 </html>
