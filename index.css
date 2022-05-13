@@ -1,0 +1,264 @@
+    html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, hgroup, menu, nav, section {
+	display: block;
+}
+html {
+  font-size: 62.5%;
+}
+body {
+	line-height: 1;
+  background: #665f56;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+    #input {
+      height: 8em;
+      width: 98%;
+    }
+    #output {
+      height: 12em;
+      width: 98%;
+    }
+    #out {
+      margin: 10px 0;
+    }
+    label, a:link, #switch-field, #bottom-content {
+      font-family: "Segoe UI", Arial, sans-serif;
+      -webkit-touch-callout: none; /* iOS Safari */
+        -webkit-user-select: none; /* Safari */
+          -khtml-user-select: none; /* Konqueror HTML */
+           -moz-user-select: none; /* Old versions of Firefox */
+            -ms-user-select: none; /* Internet Explorer/Edge */
+              user-select: none; /* Non-prefixed version, currently
+                                    supported by Chrome, Edge, Opera and Firefox */
+    }
+    #abbrvDelimiterInput,
+    #abbrvInput,
+    #abbrvDelimiterInput,
+    #notInterlinear {
+      width: 95%;
+      max-width: 40em;
+      min-width: 40%;
+    }
+    #abbrvInput {
+      height: 5em;
+    }
+    #switch-field {
+      display: flex;
+    }
+    textarea, input {
+    background: #Fdfbf8;
+}
+    #switch-field input {
+      -webkit-appearance: none;
+      background-color: #fefefe;
+      color: rgba(0, 0, 0, 0.9);
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 1;
+      margin-bottom: 3px;
+      text-align: center;
+      padding: 8px 13px 6px 13px;
+      border: 1px solid rgba(0, 0, 0, 0.2);
+      box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);
+      transition: all 0.1s ease-in-out;
+      user-select: none;
+    }
+    #switch-field input:hover {
+      cursor: pointer;
+    }
+    #switch-field .checked {
+      background-color: #2d77d1;
+      color: #FFF;
+      box-shadow: none;
+    }
+
+    .abbrv {
+      cursor: help;
+    }
+    .sc {
+      font-variant: small-caps;
+      font-variant-numeric: oldstyle-nums;
+      text-transform: lowercase;
+    }
+    pre {
+      overflow: auto;
+      margin: 5px 0 8px 0;
+    }
+    table {
+      overflow-x: auto;
+      margin-bottom: 5px;
+    }
+    table tr {
+      white-space: nowrap;
+    }
+    table tr td {
+      padding-right: 3px;
+    }
+    div .gll {
+      display: inline-table;
+      padding-right: 10px;
+    }
+    .gmg-ack {
+      font-size: small;
+    }
+
+
+
+    
+
+a:link{
+  color:#2d77d1;
+  text-decoration: none;
+}
+a:visited{
+  color: #2d77d1;
+}
+a:hover{
+  text-decoration: underline;
+}
+ul, ol {
+  padding-left:20px;
+}
+h1 {
+  padding: 10px;
+  margin: 0 0 5px 0;
+  background: #207875;
+  color: #eee;
+  font-size: 2.618rem;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 700;
+  line-height: 23px;
+  font-family: Candara, 'Open Sans', sans-serif;
+}
+h2,h3,h4,h5,h6 { 
+  Font-family: 'Open Sans', sans-serif;
+}
+
+h2 {
+  margin: 9px 0 9px 0;
+  font-size: 2.5rem;
+}
+
+h3 {
+  margin: 7px 0 7px 0;
+  font-size: 2.3rem;
+}
+h4 {
+  margin: 7px 0 7px 0;
+  font-size: 2.15rem;
+}
+h5 {
+  margin: 7px 0 7px 0;
+  font-size: 2rem;
+}
+h6 {
+  margin: 7px 0 7px 0;
+  font-size: 1.7rem;
+}
+
+blockquote {
+  margin: 15px 25px 15px 25px;
+}
+p {
+  margin: 10px 0;
+}
+
+body {
+  font-size: 1.5em;
+  margin: 8px 0;
+  Font-family: Calibri, Segoe, Segoe UI, Optima, Arial, sans-serif;
+}
+
+img {
+  max-width: 580px;
+  width: auto;
+}
+button {
+    -webkit-appearance: none;
+    background-color: #e4e4e4;
+    color: rgba(0, 0, 0, 0.9);
+    font-weight: 500;
+    font-size: 1.4em;
+    line-height: 1;
+    margin-bottom: 3px;
+    text-align: center;
+    padding: 8px 10px 6px 10px;
+    border: 1px solid rgba(0, 0, 0, 0.4);
+    box-shadow: inset 0 2px 3px rgb(0 0 0 / 40%), 0 1px rgb(0 0 0 / 10%);
+    transition: all 0.1s ease-in-out;
+    user-select: none;
+}
+button:hover {
+  cursor: pointer;
+}
+
+
+#content,header,footer {
+
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+#content {
+  padding-top: 10px; padding-bottom: 5px;
+
+}
+section {
+  margin: 0 0 10px 0;
+  padding: 10px 20px 10px 20px;
+  background: #ffe4c4;
+  color: #000;
+}
+
+fieldset {
+  border: 2px ridge #aaa;
+  margin-bottom: 8px;
+}
+fieldset legend {
+  font-weight: bold;
+  padding: 0 2px;
+}
+
+@media only screen and (max-width: 620px) {
+    #switch-field {
+      display: inline;
+    }
+    section {
+      margin: 0 0 10px 0;
+      padding: 8px;
+    }
+    body {
+      margin: 0;
+    }
