@@ -165,7 +165,7 @@ function convert(conv) {
 			}
 			parsedEntry = "";
 		}
-		htmlOutput = "<table>" + "\n" + htmlOutput + "</table>";
+		htmlOutput = "<div id='outerTable'><table>" + "\n" + htmlOutput + "</table></div>";
 		conv.finishAndShow(htmlOutput);
 	}
 	function interlinearMarkup() {
@@ -570,7 +570,7 @@ function convert(conv) {
 					//////////////////
 				}
 				if (!skipline && col_num + 1 != lines.length) {
-					// breack diacritical characters to get true length of entry
+					// break diacritical characters to get true length of entry
 					var noDiacritics = line[row_num].normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 					noDiacritics = noDiacritics.replace(/[\u02E5-\u02E9]/g, "˥");
 					noDiacritics = noDiacritics.replace(/[\uA708-\uA716]/g, "˥");
