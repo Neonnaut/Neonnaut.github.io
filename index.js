@@ -104,9 +104,6 @@ function convert(conv) {
 		case "block":
 			blockMarkup();
 			break;
-		case "reddit":
-			redditMarkup();
-			break;
 		case "wikiTable":
 			wikiMarkup();
 			break;
@@ -502,108 +499,6 @@ function convert(conv) {
 			plainOutput += line.join(" ") + "\n";
 		}
 		conv.finishBlock(plainOutput);
-	}
-	function redditMarkup() {
-		var wordLength = [];
-		var redditOutput = "";
-		for (let col_num = 0; col_num < lines.length; col_num++) {
-			// Find out if the line is non allignable
-			var skipline = false;
-			var inter_num = 0;
-			while (inter_num < nonInterlinear[inter_num]) {
-				if (nonInterlinear[inter_num] == col_num + 1) {
-					skipline = true;
-					inter_num == nonInterlinear[inter_num] - 5;
-				}
-				inter_num++
-			}
-			var entriesZ = lines[col_num].split(/[ \t]+/);
-			
-			for (let row_num = 0; row_num < entriesZ.length; row_num++) {
-				var noDiacritics = entriesZ[row_num].normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-				noDiacritics = noDiacritics.replace(/[\u02E5-\u02E9]/g, "˥");
-				noDiacritics = noDiacritics.replace(/[\uA708-\uA716]/g, "˥");
-
-				let noDiacriticsLength = noDiacritics.length
-				noDiChar = 0;
-				while (noDiChar < noDiacritics.length){
-					noDiChar++
-					if (noDiacritics[noDiChar] == "˥"){
-						noDiChar++
-						if (noDiacritics[noDiChar] == "˥"){
-							noDiChar++
-							noDiacriticsLength--
-							if (noDiacritics[noDiChar] == "˥"){
-								noDiacriticsLength--
-							}
-						}
-					}
-				}
-
-				if (!skipline && col_num + 1 != lines.length) {
-					if (typeof wordLength[row_num] === "undefined") {
-						wordLength.push(noDiacriticsLength);
-					}
-					if (wordLength[row_num] <= noDiacriticsLength) {
-						wordLength[row_num] = noDiacriticsLength;
-					}
-				}
-			}
-		}
-		for (let col_num = 0; col_num < lines.length; col_num++) {
-			// Find out if the line is non allignable
-			var skipline = false;
-			var inter_num = 0;
-			while (inter_num < nonInterlinear[inter_num]) {
-				if (nonInterlinear[inter_num] == col_num + 1) {
-					skipline = true;
-					inter_num = inter_num + 5;
-				}
-				inter_num++
-			}
-			var line = lines[col_num].split(/[ \t]+/);
-			for (let row_num = 0; row_num < line.length; row_num++) {
-				// If small caps, turn each glossing abbreviation to small caps if abbreviation is all caps.
-				if (useSmallCaps) {
-					/////////////////
-					line[row_num] = splitEntryGlossZbb(line[row_num], conv);
-					//////////////////
-				}
-				if (!skipline && col_num + 1 != lines.length) {
-					// break diacritical characters to get true length of entry
-					var noDiacritics = line[row_num].normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-					noDiacritics = noDiacritics.replace(/[\u02E5-\u02E9]/g, "˥");
-					noDiacritics = noDiacritics.replace(/[\uA708-\uA716]/g, "˥");
-
-					let noDiacriticsLength = noDiacritics.length
-					noDiChar = 0;
-					while (noDiChar < noDiacritics.length){
-						noDiChar++
-						if (noDiacritics[noDiChar] == "˥"){
-							noDiChar++
-							if (noDiacritics[noDiChar] == "˥"){
-								noDiChar++
-								noDiacriticsLength--
-								if (noDiacritics[noDiChar] == "˥"){
-									noDiacriticsLength--
-								}
-							}
-						}
-					}
-					while (noDiacriticsLength < wordLength[row_num] && row_num != line.length - 1) {
-						line[row_num] += " ";
-						noDiacriticsLength++;
-					}
-				}
-			}
-			// Last line or first line
-			if (col_num + 1 == lines.length && lines.length != 2) {
-				redditOutput += line.join(" ") + "\n";
-			} else {
-				redditOutput += "    " + line.join(" ") + "\n";
-			}
-		}
-		conv.finish(redditOutput);
 	}
 	function wikiMarkup() {
 		var wikiOutput = "";
