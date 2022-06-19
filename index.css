@@ -1,26 +1,3 @@
-    html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	vertical-align: baseline;
-}
-/* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, 
-footer, hgroup, menu, nav, section {
-	display: block;
-}
 html {
   font-size: 62.5%;
 }
@@ -28,14 +5,7 @@ body {
 	line-height: 1.2;
   background: #7b7776
 }
-blockquote, q {
-	quotes: none;
-}
-blockquote:before, blockquote:after,
-q:before, q:after {
-	content: '';
-	content: none;
-}
+
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
@@ -45,98 +15,98 @@ table {
   overflow-y: clip;
 }
 
-    #input {
-      height: 8em;
-      width: 98%;
-    }
-    #output {
-      height: 12em;
-      width: 98%;
-    }
-    #out {
-      margin: 10px 0;
-    }
-    label, a:link, #switch-field, #bottom-content {
-      font-family: "Segoe UI", Arial, sans-serif;
-      -webkit-touch-callout: none; /* iOS Safari */
-        -webkit-user-select: none; /* Safari */
-          -khtml-user-select: none; /* Konqueror HTML */
-           -moz-user-select: none; /* Old versions of Firefox */
-            -ms-user-select: none; /* Internet Explorer/Edge */
-              user-select: none; /* Non-prefixed version, currently
-                                    supported by Chrome, Edge, Opera and Firefox */
-    }
-    #abbrvDelimiterInput,
-    #abbrvInput,
-    #abbrvDelimiterInput,
-    #notInterlinear {
-      width: 95%;
-      max-width: 40em;
-      min-width: 40%;
-    }
-    #abbrvInput {
-      height: 5em;
-    }
-    #switch-field {
-      display: flex;
-    }
-    textarea, input {
-    background: #Fdfbf8;
+#input {
+  height: 8em;
+  width: 98%;
 }
-    #switch-field input {
-      -webkit-appearance: none;
-      background-color: #fefefe;
-      color: rgba(0, 0, 0, 0.9);
-      font-weight: 500;
-      font-size: 14px;
-      line-height: 1;
-      margin-bottom: 3px;
-      text-align: center;
-      padding: 8px 13px 6px 13px;
-      border: 1px solid rgba(0, 0, 0, 0.2);
-      box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);
-      transition: all 0.1s ease-in-out;
-      user-select: none;
-    }
-    #switch-field input:hover {
-      cursor: pointer;
-    }
-    #switch-field .checked {
-      background-color: #2d77d1;
-      color: #FFF;
-      box-shadow: none;
-    }
+#output {
+  height: 12em;
+  width: 98%;
+}
+#out {
+  margin: 10px 0;
+}
+label, a:link, #switch-field, #bottom-content {
+  font-family: "Segoe UI", Arial, sans-serif;
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+      -khtml-user-select: none; /* Konqueror HTML */
+        -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+          user-select: none; /* Non-prefixed version, currently
+                                supported by Chrome, Edge, Opera and Firefox */
+}
+#abbrvDelimiterInput,
+#abbrvInput,
+#abbrvDelimiterInput,
+#notInterlinear {
+  width: 95%;
+  max-width: 40em;
+  min-width: 40%;
+}
+#abbrvInput {
+  height: 5em;
+}
+#switch-field {
+  display: flex;
+}
+textarea, input {
+  background: #Fdfbf8;
+}
+#switch-field input {
+  -webkit-appearance: none;
+  background-color: #fefefe;
+  color: rgba(0, 0, 0, 0.9);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1;
+  margin-bottom: 3px;
+  text-align: center;
+  padding: 8px 13px 6px 13px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);
+  transition: all 0.1s ease-in-out;
+  user-select: none;
+}
+#switch-field input:hover {
+  cursor: pointer;
+}
+#switch-field .checked {
+  background-color: #2d77d1;
+  color: #FFF;
+  box-shadow: none;
+}
 
-    .abbrv {
-      cursor: help;
-    }
-    .sc {
-      font-variant: small-caps;
-      font-variant-numeric: oldstyle-nums;
-      text-transform: lowercase;
-    }
-    pre {
-      overflow-x: auto;
-      overflow-y: clip;
-      margin: 5px 0 8px 0;
-    }
-    table {
-      overflow-x: auto;
-      margin-bottom: 5px;
-    }
-    table tr {
-      white-space: nowrap;
-    }
-    table tr td {
-      padding-right: 3px;
-    }
-    div .gll {
-      display: inline-table;
-      padding-right: 10px;
-    }
-    .gmg-ack {
-      font-size: small;
-    }
+.abbrv {
+  cursor: help;
+}
+.sc {
+  font-variant: small-caps;
+  font-variant-numeric: oldstyle-nums;
+  text-transform: lowercase;
+}
+pre {
+  overflow-x: auto;
+  overflow-y: clip;
+  margin: 5px 0 8px 0;
+}
+table {
+  overflow-x: auto;
+  margin-bottom: 5px;
+}
+table tr {
+  white-space: nowrap;
+}
+table tr td {
+  padding-right: 3px;
+}
+div .gll {
+  display: inline-table;
+  padding-right: 10px;
+}
+.gmg-ack {
+  font-size: small;
+}
 
 
 
@@ -211,45 +181,45 @@ img {
   width: auto;
 }
 button {
-    -webkit-appearance: none;
-    background-color: #e4e4e4;
-    color: rgba(0, 0, 0, 0.9);
-    font-weight: 500;
-    font-size: 1.4em;
-    line-height: 1;
-    margin-bottom: 3px;
-    text-align: center;
-    padding: 8px 10px 6px 10px;
-    border: 1px solid rgba(0, 0, 0, 0.4);
-    box-shadow: inset 0 2px 3px rgb(0 0 0 / 40%), 0 1px rgb(0 0 0 / 10%);
-    transition: all 0.1s ease-in-out;
-    user-select: none;
+  -webkit-appearance: none;
+  background-color: #e4e4e4;
+  color: rgba(0, 0, 0, 0.9);
+  font-weight: 500;
+  font-size: 1.4em;
+  line-height: 1;
+  margin-bottom: 3px;
+  text-align: center;
+  padding: 8px 10px 6px 10px;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  box-shadow: inset 0 2px 3px rgb(0 0 0 / 40%), 0 1px rgb(0 0 0 / 10%);
+  transition: all 0.1s ease-in-out;
+  user-select: none;
 }
 button:hover {
   cursor: pointer;
 }
 
 #content,header,footer {
-
   max-width: 615px;
   margin: 0 auto;
 }
 
 #content {
   padding-bottom: 5px;
-
 }
+
 section {
   margin: 0 0 10px 0;
   padding: 10px 20px 10px 20px;
   background: #f1f0ef;
   color: #000;
 }
-#ffe4c4
+
 fieldset {
   border: 2px ridge #aaa;
   margin-bottom: 8px;
 }
+
 fieldset legend {
   font-weight: bold;
   padding: 0 2px;

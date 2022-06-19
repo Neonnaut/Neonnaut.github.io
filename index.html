@@ -46,27 +46,27 @@
 
       <fieldset id="bottom-content">
         <legend>Options</legend>
-        <h5>Single Column Lines, Comma Delimited</h5>
-        <input id="notInterlinear" name="notInterlinear" spellcheck="false"><br><br>
-        <input type="checkbox" id="useSmallCaps" name="useSmallCaps" />
-        <label for="useSmallCaps">Use small caps on gloss line</label><br>
         <input type="checkbox" id="useAbbrv" name="useAbbrv" checked />
         <label for="useAbbrv">Use abbreviations</label><br>
         <input type="checkbox" id="useInputAbbrv" name="useInputAbbrv" checked />
         <label for="useInputAbbrv">Use in-built abbreviations</label><br>
-  
-        <h5>Glossing Abbreviations, Comma and Line Delimited</h5>
+        <input type="checkbox" id="useSmallCaps" name="useSmallCaps" />
+        <label for="useSmallCaps">Use small caps on gloss line</label><br>
+        <input type="checkbox" id="useAcknowledgement" name="useAcknowledgement" />
+        <label for="useAcknowledgement">Append an acknowledgement of this tool when using HTML options</label><br><br>
+        
+        <label>Single Column Lines, Comma Delimited</label>
+        <input id="notInterlinear" name="notInterlinear" spellcheck="false"><br><br>
+
+        <label>Glossing Abbreviations, Comma and Line Delimited</label>
         <textarea id="abbrvInput" name="abbrvInput" spellcheck="false">
   ACT,Actor voice
   YABRV,Your abbreviation
-        </textarea>
-        <br>
+        </textarea><br><br>
   
-        <h5>Glossing Seperators, Comma Delimited</h5>
-        <input id="abbrvDelimiterInput" name="abbrvDelimiterInput" value=".,-,=,›,:" spellcheck="false"><br><br>
+        <label>Glossing Seperators, Comma Delimited</label>
+        <input id="abbrvDelimiterInput" name="abbrvDelimiterInput" value=".,-,=,›,:" spellcheck="false">
   
-        <input type="checkbox" id="useAcknowledgement" name="useAcknowledgement" />
-        <label for="useAcknowledgement">Append an acknowledgement of this tool when using HTML options</label>
       </fieldset>
     </section>
 
