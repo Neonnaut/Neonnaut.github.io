@@ -3,18 +3,21 @@ html {
 }
 body {
 	line-height: 1.2;
-  background: #7b7776
+  background: #7b7776;
+  font-size: 1.5em;
+  margin: 8px 0;
+  Font-family: 'Open Sans', Arial, sans-serif;
 }
-
-table {
-	border-collapse: collapse;
-	border-spacing: 0;
+section {
+  margin: 0 0 10px 0;
+  padding: 10px 20px 10px 20px;
+  background: #f1f0ef;
+  color: #000;
 }
-#outerTable {
-  overflow-x: auto;
-  overflow-y: clip;
+#content,header,footer {
+  max-width: 615px;
+  margin: 0 auto;
 }
-
 #input {
   height: 8em;
   width: 98%;
@@ -26,6 +29,67 @@ table {
 #out {
   margin: 10px 0;
 }
+a:link{
+  color:#2d77d1;
+  text-decoration: none;
+}
+a:visited{
+  color: #2d77d1;
+}
+a:hover{
+  text-decoration: underline;
+}
+ul, ol {
+  padding-left:20px;
+}
+h1 {
+  padding: 10px;
+  margin: 0 0 5px 0;
+  background: #333333;
+  color: #eee;
+  font-size: 2.618rem;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 700;
+  line-height: 23px;
+  font-family: Candara, 'Open Sans', Arial, sans-serif;
+}
+h2,h3,h4,h5,h6 { 
+  Font-family: 'Open Sans', Arial, sans-serif;
+}
+h2 {
+  margin: 9px 0 9px 0;
+  font-size: 2.5rem;
+}
+h3 {
+  margin: 7px 0 7px 0;
+  font-size: 2.3rem;
+}
+h4 {
+  margin: 7px 0 7px 0;
+  font-size: 2.15rem;
+}
+h5 {
+  margin: 7px 0 7px 0;
+  font-size: 2rem;
+}
+h6 {
+  margin: 7px 0 7px 0;
+  font-size: 1.7rem;
+}
+blockquote {
+  margin: 15px 25px 15px 25px;
+}
+p {
+  margin: 10px 0;
+}
+img {
+  max-width: 580px;
+  width: auto;
+}
+
+/* ------------------------- */
+
 label, a:link, #switch-field, #bottom-content {
   font-family: "Segoe UI", Arial, sans-serif;
   -webkit-touch-callout: none; /* iOS Safari */
@@ -76,110 +140,6 @@ textarea, input {
   color: #FFF;
   box-shadow: none;
 }
-
-.abbrv {
-  cursor: help;
-}
-.sc {
-  font-variant: small-caps;
-  font-variant-numeric: oldstyle-nums;
-  text-transform: lowercase;
-}
-pre {
-  overflow-x: auto;
-  overflow-y: clip;
-  margin: 5px 0 8px 0;
-}
-table {
-  overflow-x: auto;
-  margin-bottom: 5px;
-}
-table tr {
-  white-space: nowrap;
-}
-table tr td {
-  padding-right: 3px;
-}
-div .gll {
-  display: inline-table;
-  padding-right: 10px;
-}
-.gmg-ack {
-  font-size: small;
-}
-
-
-
-    
-
-a:link{
-  color:#2d77d1;
-  text-decoration: none;
-}
-a:visited{
-  color: #2d77d1;
-}
-a:hover{
-  text-decoration: underline;
-}
-ul, ol {
-  padding-left:20px;
-}
-h1 {
-  padding: 10px;
-  margin: 0 0 5px 0;
-  background: #333333;
-  color: #eee;
-  font-size: 2.618rem;
-  font-style: normal;
-  font-variant: normal;
-  font-weight: 700;
-  line-height: 23px;
-  font-family: Candara, 'Open Sans', Arial, sans-serif;
-}
-h2,h3,h4,h5,h6 { 
-  Font-family: 'Open Sans', Arial, sans-serif;
-}
-
-h2 {
-  margin: 9px 0 9px 0;
-  font-size: 2.5rem;
-}
-
-h3 {
-  margin: 7px 0 7px 0;
-  font-size: 2.3rem;
-}
-h4 {
-  margin: 7px 0 7px 0;
-  font-size: 2.15rem;
-}
-h5 {
-  margin: 7px 0 7px 0;
-  font-size: 2rem;
-}
-h6 {
-  margin: 7px 0 7px 0;
-  font-size: 1.7rem;
-}
-
-blockquote {
-  margin: 15px 25px 15px 25px;
-}
-p {
-  margin: 10px 0;
-}
-
-body {
-  font-size: 1.5em;
-  margin: 8px 0;
-  Font-family: 'Open Sans', Arial, sans-serif;
-}
-
-img {
-  max-width: 580px;
-  width: auto;
-}
 button {
   -webkit-appearance: none;
   background-color: #e4e4e4;
@@ -198,42 +158,67 @@ button {
 button:hover {
   cursor: pointer;
 }
-
-#content,header,footer {
-  max-width: 615px;
-  margin: 0 auto;
-}
-
-#content {
-  padding-bottom: 5px;
-}
-
-section {
-  margin: 0 0 10px 0;
-  padding: 10px 20px 10px 20px;
-  background: #f1f0ef;
-  color: #000;
-}
-
 fieldset {
   border: 2px ridge #aaa;
   margin-bottom: 8px;
 }
-
 fieldset legend {
   font-weight: bold;
   padding: 0 2px;
 }
 
+/* ------------------------- */
+
+#outerTable {
+  overflow-x: auto;
+  overflow-y: clip;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+  overflow-x: auto;
+  margin-bottom: 5px;
+}
+table tr {
+  white-space: nowrap;
+}
+table tr td {
+  padding-right: 3px;
+}
+
+/* ------------------------- */
+
+pre {
+  overflow-x: auto;
+  overflow-y: clip;
+  margin: 5px 0 8px 0;
+}
+div .gll {
+  display: inline-table;
+  padding-right: 10px;
+}
+.gmg-ack {
+  font-size: small;
+}
+
+.abbrv {
+  cursor: help;
+}
+.sc {
+  font-variant: small-caps;
+  font-variant-numeric: oldstyle-nums;
+  text-transform: lowercase;
+}
+
 @media only screen and (max-width: 620px) {
-    #switch-field {
-      display: inline;
+    body {
+      margin: 0;
     }
     section {
       margin: 0 0 10px 0;
       padding: 8px;
     }
-    body {
-      margin: 0;
+    #switch-field {
+      display: inline;
     }
   }
