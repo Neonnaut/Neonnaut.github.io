@@ -2,7 +2,7 @@
 
 > A generator for interlinear glosses
 
-This tool, designed for formatting linguistic interlinear gloss, is built with HTML and and runs on your browser at https://neonnaut.github.io/ where you will also find it's instructions for use.
+This tool, designed for formatting linguistic interlinear gloss, is built using Javascript and and runs on your browser at https://neonnaut.github.io/ where you will also find it's instructions for use.
 
 ## Issues
 
