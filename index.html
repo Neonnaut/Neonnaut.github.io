@@ -55,16 +55,16 @@
         <input type="checkbox" id="useAcknowledgement" name="useAcknowledgement" />
         <label for="useAcknowledgement">Append an acknowledgement of this tool when using HTML options</label><br><br>
         
-        <label>Single Column Lines, Comma Delimited</label>
+        <label>Single column lines, comma delimited</label>
         <input id="notInterlinear" name="notInterlinear" spellcheck="false"><br><br>
 
-        <label>Glossing Abbreviations, Comma and Line Delimited</label>
+        <label>Glossing abbreviations, comma and line delimited</label>
         <textarea id="abbrvInput" name="abbrvInput" spellcheck="false">
   ACT,Actor voice
   YABRV,Your abbreviation
         </textarea><br><br>
   
-        <label>Glossing Seperators, Comma Delimited</label>
+        <label>Glossing seperators, comma delimited</label>
         <input id="abbrvDelimiterInput" name="abbrvDelimiterInput" value=".,-,=,›,:" spellcheck="false">
   
       </fieldset>
@@ -73,9 +73,9 @@
     <section>
       <h2>Instructions</h2>
 
-      <p>This tool is designed for formatting linguistic interlinear gloss. with constructed languages in mind, and as many abbreviations for grammatical elements already have conflicts with each other, new definitions can be set that can overwrite individual definitions. It should be noted that this tool saves data in "local storage" of your browser.</p>
+      <p>This tool is designed for formatting linguistic interlinear gloss with constructed languages in mind. As many abbreviations for grammatical elements already have conflicts with each other, new definitions can be set that can overwrite individual definitions. It should be noted that this tool saves the data of the input to the "local storage" of your browser for the next time it's used.</p>
 
-      <p>If you have found any bugs with it, please go to <a href="https://github.com/Neonnaut/Neonnaut.github.io">github.com/Neonnaut/Neonnaut.github.io</a> and create a new issue.</p>
+      <p>If you find any bugs or issues, please go to <a href="https://github.com/Neonnaut/Neonnaut.github.io">github.com/Neonnaut/Neonnaut.github.io</a> and create a new issue.</p>
 
       <p>You may refer to the following information on what interlinear gloss is and it's purpose:</p>
 
@@ -102,7 +102,7 @@ sun SUBJECT east POSSESSIVE sky LOCATIVE rise<br>
 "The sun rises in the eastern sky."<br>
       </blockquote>
 
-      <p>Then "Non alignable lines" should have a "1" to indicate not to break the origanl Japanese into words. If all goes well you should have something that looks like this:</p>
+      <p>And wanted to make sure the first line stay unchanged, then "Non alignable lines" should have a "1" to indicate not to break the origanl Japanese into words. If all goes well you should have something that looks like this:</p>
 
       <pre><blockquote>
 太陽が東の空に昇る
@@ -168,11 +168,11 @@ div .gll {
       <p>This method outputs to the ZBB Board's gloss markup, if you provide more than two lines, the third last line must not be empty.
 
       <h4>Wiki Table</h4>
-      <p>If your wiki does not have the abbr template, you will need to start a page called template:abbr, and put the following code in it:</p>
+      <p>If your wiki does not have the abbr template, you will need to start a page called template:abbr, with the following code:</p>
 
       <pre><blockquote>&lt;abbr title="{{{2}}}">{{{1|[?]}}}&lt;/abbr>&lt;noinclude>{{documentation}}&lt;/noinclude>
 </blockquote></pre>
-      <p>And after saving, if your wiki asks for documentation, provide this link: https://en.wikipedia.org/wiki/Template:Abbr</p>
+      <p>And after saving, if your wiki asks for documentation, paste this link: https://en.wikipedia.org/wiki/Template:Abbr</p>
 
     </section>
   </div>
