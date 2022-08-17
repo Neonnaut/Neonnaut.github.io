@@ -61,6 +61,7 @@ SG,Singular
 3S,Third person singular (he; she; it)
 3SF,Third person singular feminine (she)
 3SM,Third person singular masculine (he)
+3SN,Third person singular neuter (it)
 3T,Third person trial
 1p,First person plural (we)
 1pl,First person plural (we)
