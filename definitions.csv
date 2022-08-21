@@ -31,7 +31,7 @@ PRS,Present tense
 Q,Question word or particle
 R,Rational gender (thinking beings)
 SG,Singular
-?,Zero (null) morpheme
+∅,Zero (null) morpheme
 12DU,First person inclusive dual
 12P,First person inclusive plural
 12PAU,First person inclusive paucal
@@ -448,4 +448,4 @@ UC,Upcoast
 RLN,Relational
 SBEN,Self-benefactive
 PERSE,Personal experience
-EXPECT,expectational
+EXPECT,Expectational
