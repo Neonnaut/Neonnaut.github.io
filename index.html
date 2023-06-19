@@ -73,7 +73,7 @@ YABRV,Your abbreviation
     <section>
       <h2>Instructions</h2>
 
-      <p>This tool is designed for formatting linguistic interlinear gloss with constructed languages in mind. As many abbreviations for grammatical elements already have conflicts with each other, new definitions can be set that can overwrite individual definitions. It should be noted that this tool saves the data of the input to the "local storage" of your browser for the next time you visit this page.</p>
+      <p>This tool will format linguistic interlinear gloss into ordered columns and also hover over text for linguistic abbreviations.</p>
 
       <p>If you find any bugs or issues, please go to <a href="https://github.com/Neonnaut/Neonnaut.github.io">github.com/Neonnaut/Neonnaut.github.io</a> and create a new issue.</p>
 
@@ -92,7 +92,7 @@ star.ACC.PL incline.PRS.PTCP but NEG bind.3P.PRS.ACT.IND<br>
 "The stars incline us, they do not bind us."<br>
       </blockquote>
 
-      <p>Any additional lines must go above the gloss line. Any of these additional lines may be marked with the "Non alignable lines" setting. For example, if we had the input:</p>
+      <p>Any additional lines must go above the gloss line. Any of these additional lines may be marked with the "Non alignable lines" setting. For example, if we had the input but wanted to keep the first two lines unaligned with the linguistic gloss just like the translation:</p>
 
       <blockquote>
 太陽が東の空に昇る<br>
@@ -102,21 +102,25 @@ sun SUBJECT east POSSESSIVE sky LOCATIVE rise<br>
 "The sun rises in the eastern sky."<br>
       </blockquote>
 
-      <p>And wanted to make sure the first line stay unchanged, then "Non alignable lines" should have a "1" to indicate not to break the origanl Japanese into words. If all goes well you should have something that looks like this:</p>
+      <p>Then "Non alignable lines" should have "1, 2". If all goes well you should have something that looks like this:</p>
 
       <pre><blockquote>
 太陽が東の空に昇る
-taiyō   ga      higashi no         sora ni       noboru
+taiyō ga higashi no sora ni noboru
 /taijoː ŋa      çiŋaɕi  no         soɾa nʲi      noboɾɯᵝ/
 sun     SUBJECT east    POSSESSIVE sky  LOCATIVE rise
 "The sun rises in the eastern sky."
       </blockquote></pre>
 
+      <p>You can then set up your own custom abbreviations and seperators. As many abbreviations for grammatical elements already have conflicts with each other, your new definitions will overwride any in-built definitions.</p>
+
+      <p> It should be noted that this tool saves the data of the input to the "local storage" of your browser for the next time you visit this page.</p>
+
       <h4>Plain Text</h4>
-      <p>Make sure to display the text in a fixed-width font, such as including the text in a &lt;pre&lt; element. Be careful when using the small caps option, as the characters may not display correctly on all devices, especially F, S, X, and Q. My advice is to not use the small caps option, but the option is there.</p>
+      <p>To align the plain text output properly you need to use a fixed-width font. You can do this by using a &lt;pre&gt; element. Be careful when using the small caps option, as the characters may not display correctly on all devices, especially F, S, X, and Q. My advice is to not use the small caps option using plain text, but the option is there.</p>
 
       <h4>HTML Table</h4>
-      <p>When using the HTML markup method, provide the following CSS on your website to get the desired output:</p>
+      <p>When using the HTML markup method, use the following CSS on your website to get the desired output:</p>
 
       <pre><blockquote>
 .abbrv {
@@ -138,10 +142,10 @@ table tr td {
 }
       </blockquote></pre>
 
-      <p>If you wish to style the table, such as italics or bold, use css classes on an individual word. If you wish to style an entire line, the best way is to add a class to &lt;tr> and add styles with CSS.</p>
+      <p>If you wish to style the table element, such as with italics or bold, use css classes on an individual word. If you wish to style an entire line, the best way is to add a class to &lt;tr> and add styles with CSS.</p>
 
       <h4>HTML Interlinear Div</h4>
-      <p>When using the 'HTML Interlinear Div' method, provide the following CSS on your website to get the desired output:</p>
+      <p>When using the 'HTML Interlinear Div' method, use the following CSS on your website to get the desired output:</p>
       
       <pre><blockquote>
 .abbrv {

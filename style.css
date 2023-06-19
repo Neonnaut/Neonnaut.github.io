@@ -6,7 +6,7 @@ body {
   background: #7b7776;
   font-size: 1.5em;
   margin: 8px 0;
-  Font-family: 'Open Sans', Arial, sans-serif;
+  Font-family: 'Public Sans', Arial, sans-serif;
 }
 section {
   margin: 0 0 10px 0;
@@ -52,10 +52,10 @@ h1 {
   font-variant: normal;
   font-weight: 700;
   line-height: 23px;
-  font-family: Candara, 'Open Sans', Arial, sans-serif;
+  font-family: Candara, 'Public Sans', Arial, sans-serif;
 }
 h2,h3,h4,h5,h6 { 
-  Font-family: 'Open Sans', Arial, sans-serif;
+  Font-family: 'Public Sans', Arial, sans-serif;
 }
 h2 {
   margin: 9px 0 9px 0;
