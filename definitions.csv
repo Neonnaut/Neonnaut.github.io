@@ -1,451 +1,451 @@
-1,First person (speaker)
-2,Second person (listener)
-3,Third person (referent)
-4,Fourth person (obviative or generic)
-12,First person inclusive
-ACC,Accusative case
-AN,Animate gender
-ANIM,Animate gender
-C,Common gender
-CLF,Classifier
-DAT,Dative case
-ERG,Ergative case
-F,Feminine gender
-FUT,Future
-GEN,Genitive case
-HUM,Human gender; anthropic gender
-INAN,Inanimate gender
-INST,Instrumental case
-INSTR,Instrumental case
-LOC,Locative case
-M,Masculine gender
-N,Neuter gender
-NEG,Negation; negative
-NEUT,Neuter
-NOM,Nominative case
-OBL,Oblique case
-PAST,Past
-PL,Plural
-POSS,Possessive; possessor
-PRS,Present tense
-Q,Question word or particle
-R,Rational gender (thinking beings)
-SG,Singular
-∅,Zero (null) morpheme
-12DU,First person inclusive dual
-12P,First person inclusive plural
-12PAU,First person inclusive paucal
-12S,First person inclusive singular
-12T,First person inclusive trial
-1DU,First person dual (you two)
-1E,First person exclusive
-1EDU,First person exclusive dual
-1EP,First person exclusive plural
-1EPAU,First person exclusive paucal
-1ES,First person inclusive singular
-1GEN,First person genitive (my or our)
-1P,First person plural (we)
-1PAU,First person paucal
-1S,First person singular (I; me)
-1T,First person trial
-2DU,Second person dual
-2GEN,Second person genitive (your)
-2P,Second person plural
-2PAU,Second person paucal
-2S,Second person singular (you)
-2T,Second person trial
-3DU,Third person dual
-3GEN,Third person genitive (their)
-3P,Third person plural (they)
-3PAU,Third person paucal
-3S,Third person singular (he; she; it)
-3SF,Third person singular feminine (she)
-3SM,Third person singular masculine (he)
-3SN,Third person singular neuter (it)
-3T,Third person trial
-1p,First person plural (we)
-1pl,First person plural (we)
-1s,First person singular (I)
-1sg,First person singular (I)
-2p,Second person plural (you all)
-2pl,Second person plural (you all)
-2s,Second person singular (you)
-2sg,Second person singular (you)
-3p,Third person plural (they)
-3pl,Third person plural (they)
-3s,Third person singular (he; she; it)
-3sg,Third person singular (he; she; it)
-A,Agent
-ABESS,Abessive case
-ABL,Ablative case (from)
-ABS,Absolutive case
-ABSL,Absolute
-AC,Anticausative
-ACCOM,Accompanier
-ACP,Accomplishment
-ACR,Actor role
-ADDR,Addressive
-ADEL,Adelative
-ADESS,Adessive case (at)
-ADJ,Adjective
-ADJZ,Adjectivizer
-ADM,Admonitive mood (warning)
-ADV,Adverb(ial); adverbial case
-ADVS,Adversative
-ADVZ,Adverbializer
-AF,Actor; agent focus; agent voice
-AFF,Affirmative
-AFFT,Affective case
-AFW,Away from water
-AGN,Agent nominalization
-AGR,Agreement
-ALL,Allative case
-ALLOC,Allocutive agreement
-AND,Andative (going towards)
-ANTE,In front of
-ANTESS,Antessive case (before)
-ANTIC,Anticausative
-ANTIP,Antipassive
-AO,Agent-orientated verb
-AOR,Aorist
-AP,Antipassive voice
-APPL,Applicative
-APRX,Approximative
-APUD,Near; in the vicinity of
-ARG,Argumentative
-ART,Article
-ASRT,Assertive mood
-ASSUM,Assumptive mood; assumed
-AT,Agent trigger
-ATR,Attributive
-ATTEN,Attenuative
-AUD,Auditory evidential
-AUG,Augmentative
-AUX,Auxiliary
-AVERT,Avertive
-AVR,Aversative
-BEN,Benefactive case (for)
-BF,Beneficiary focus
-CAR,Caritive case
-CARD,Cardinal numeral
-CAUS,Causative
-CENT,Centric case
-CERT,Certainty (evidential)
-CESS,Cessative
-CF,Circumstantial focus
-CMP,Comparative
-CMPD,Compound
-CNJ,Conjunction
-CNS,Construct state
-CNSQ,Consequential mood
-CNTF,Counterfactual conditional
-COL,Collective number
-COM,Comitative case (together with)
-COMIT,Comitative case (together with)
-COMP,Complementizer
-COMPL,Completive aspect
-COMPLR,Complementizer
-COMPUL,Compulsional
-CONC,Concessive
-COND,Conditional mood
-CONF,Confirmational
-CONJC,Conjectural (evidential)
-CONN,Connective particle
-CONR,Connector
-CONT,Continuous aspect; continuative aspect
-CONTEMP,Contemporative (at that/the same time)
-CONTR,Contrastive; contranstive focus
-CONV,Converb
-COOP,Cooperative
-COORD,Coordination
-COP,Copula
-COR,Coreference; coreferential
-COREF,Coreference; coreferential
-COTEMP,Contemporative (at that/the same time)
-CRAS,Crastinal tense (tomorrow)
-CTG,Contingent mood
-CTM,Contemporative (at that/the same time)
-CVB,Converb
-DE,Different event; change of event
-DEB,Debitive
-DECL,Declarative mood
-DED,Deductive evidential
-DEF,Definite
-DEFIN,Definitive
-DEFOC,Defocus
-DEL,Delative case (off of)
-DEM,Demonstrative
-DENOM,Denominal
-DEO,Deontic mood
-DEOBJ,Deobjective
-DEONT,Deontic mood
-DEP,Dependent
-DER,Derivation; derivational
-DERIV,Derivation; derivational
-DES,Desiderative mood
-DET,Determiner
-DETR,Detransitivizer; detransitive
-DH,Downhill; seaward
-DIM,Diminutive
-DIMIN,Diminutive
-DIS,Distal; distant
-DISJ,Disjunction; disjunctive
-DIST,Distal; distant
-DISTR,Distributive
-DITR,Ditransitive
-DON,Donative
-DOX,Doxastic
-DP,Distant past
-DR,Downriver; toward the water
-DTR,Detrimentary
-DU,Dual
-DUB,Dubitative mood
-DUBIT,Dubitative mood
-DUPLIC,Duplicative
-DUR,Durative aspect
-DYN,Dynamic aspect
-DYNM,Dynamic aspect
-EL,Elative case (out of)
-ELA,Elative case (out of)
-ELAT,Elative case (out of)
-EMP,Emphatic; emphasizer
-EMPH,Emphatic; emphasizer
-EPIT,Epithet
-ESS,Essive case
-EVIT,Evitative case
-EX,Exclusive person
-EXAL,Exaltive; deferential (high-status register )
-EXC,Exclusive person
-EXCL,Exclusive
-EXCLAM,Exclamative
-EXESS,Exessive case
-EXIST,Existential (there is)
-EXO,Exocentric case
-EXP,Experiential; eyewitness; direct evidential
-EXPR,Expressive
-EXST,Existential (there is)
-EXT,Extended aspect; extendible
-FACT,Factive
-FAM,Familiar; familiar register
-FEM,Feminine gender
-FIN,Finite verb
-FOC,Focus
-FPRT,Future participle
-FRACT,Fraction; fractional (numeral)
-FREQ,Frequentative aspect
-FRQ ,Frequentative aspect
-FRUS,Frustrative
-FRUST,Frustrative
-FS,False start
-FUNC,Functive case
-GER,Gerund; gerundive
-GF,Goal focus
-GIV,Given
-GNO,Gnomic (generic) aspect
-GNOMIC,Gnomic (generic) aspect
-GNT,General tense
-GT,Goal trigger
-HAB,Habitual aspect
-HABIT,Habitual aspect
-HBL,Habilitive
-HES,Hesitation; hesitation particle
-HEST,Hesternal tense (yesterday)
-HIST,Historic(al) tense
-HML,Humiliative (humble/low-status register)
-HOD,Hodiernal tense
-HON,Honorific
-HORT,Hortative
-HRS,Hearsay; reported evidential
-HYP,Hypothetical mood
-HYPO,Hypothetical mood
-IAM,Iamitive
-IC,Involuntary causative
-ICOM,Involuntary comitative
-IDEO,Ideophone
-IDEOPH,Ideophone
-IDPH,Ideophone
-IF,Instrument focus
-IFUT,Indefinite future
-IGNOR,Ignorative
-ILL,Illative case (into)
-ILLA,Illative case (into)
-IMMED,Immediate past
-IMP,Imperative mood
-IMPER,Imperative mood
-IMPF,Imperfect
-IMPOSS,Modal impossibility
-IMPR,Imprecative mood
-IN,Inclusive person
-INAB,Impotential
-INABL,Inablative
-INACT,Inactive
-INAL,Inalienable possession
-INANIM,Inanimate gender
-INC,Inclusive person
-INCEP,Inceptive aspect
-INCH,Inchoative aspect
-INCHO,Inchoative aspect
-INCL,Inclusive
-IND,Indicative
-INDET,Indeterminate
-INDF,Indefinite
-INDEF,Indefinite
-INDIC,Indicative mood
-INDIR,Indirect; indirective
-INEL,Inelative case (from within)
-INESS,Inessive case (in)
-INF,Infinitive
-INFER,Inferential mood
-INFL,Inflectional
-INFR,Inferential mood
-ING,Ingressive case
-INS,Instrumental
-INTENS,Intensifier; intensive
-INTENTV,Intentive
-INTER,Interrogative
-INTERESS,Interessive
-INTERJ,Interjection
-INTERP,Interpellative mood
-INTJ,Interjection
-INTL,Intentional
-INTR,Intransitive
-INTRV,Introversive
-INTS,Intensifier; intensive
-INTV,Intentive
-INV,Inverse
-INVOL,Involuntative; involitive
-IO,Indirect object (ive)
-IOBJ,Indirect object
-IP,Immediate past
-IPFV,Imperfective
-IRR,Irrealis
-ITER,Iterative aspect
-JUS,Jussive mood
-LIM,Limitative
-MASC,Masculine gender
-MID,Middle voice; medio-passive
-MIT,Mitigation
-MOM,Momentane (single-event verb)
-NARR,Narrative tense
-NEC,Necessitative
-NFIN,Non-finite
-NH,Non-human
-NMLZ,Nominalizer; nominalization
-NUM,Numeral; numerative
-NVEXP,Nonvisual experiential (evidential)
-O,Object(ive)
-OBLIG,Obligative mood
-OBJ,Object(ive)
-OBV,Obviative
-OFC,Object focus
-ONOM,Onomatopoeia
-ORD,Ordinal numeral
-PASS,Passive voice
-PAU,Paucal number
-PAUS,Pausal
-PEG,Pegative case (a special case for the giver)
-PERFV,Perfective aspect
-PERL,Perlative case
-PF,Patient focus; patient voice
-PFV,Perfective aspect
-PLUP,Pluperfect
-PLUR,Pluractional
-POL,Polite register
-POSB,Possible; modal possibility
-PPFV,Past perfective
-PQP,Polar question particle
-PREC,Precative mood (requests)
-PRED,Predicative affix; predicative
-PREP,Preposition; prepositional case
-PRF,Perfect
-PROG,Progressive aspect
-PROH,Prohibitive mood (do not!)
-PROP,Proprietive case
-PST,Past tense
-PTCP,Participle
-PTV,Partitive case
-PURP,Purposive case
-PVB,Preverb
-QUOT,Quotative
-RECP,Reciprocal voice
-RED,Reduplication
-REDUP,Reduplication
-REF,Referential
-REFL,Reflexive (reflexive pronoun; reflexive voice)
-REL,Relative clause marker
-REM,Remote
-REP,Repetitive aspect
-RES,Resultative
-RESP,Respect
-RPRT,Reported evidential
-RQ,Rhetorical question
-SBJ,Subject; subject agreement
-SCEP,Sceptical
-SEM,Semelfactive aspect (once)
-SENS,Sensory evidential mood
-SIM,Simultaneous aspect; simultaneity
-SJV,Subjunctive mood
-SPECL,Speculative mood
-STAT,Stative aspect
-SUB,Sublocative (under)
-SUBL,Sublative case (onto; down onto)
-SUG,Suggestive mood
-SUPEL,Superelative case (on)
-SUPL,Superlative
-TENT,Tentative
-TOP,Topic marker
-TRI,Trial number
-UF,Uncertain future
-UH,Uphill; inland
-UNCERT,Uncertain mood
-UR,Upriver
-UWPST,Unwitnessed past
-VAL,Valency increasing; valence marker
-VBLZR,Verbalizer
-VEG,Vegetable (food) gender
-VEN,Venitive (coming towards; andative)
-VENT,Ventive; ventitive
-VERT,Vertical
-VIA,Vialis case
-VN,Verbal noun
-VOC,Vocative case
-VOL,Volitive mood; volitional
-WH,Interrogative pronoun
-WHQ,Wh- question
-WIT,Witnessed evidential
-WP,Witnessed past
-WPST,Witnessed past
-YNQ,Yes-no question
-DTRNZ,Detransitivizer
-ER,Ergative
-EXH,Exhortative
-HSY,Hearsay
-MAL,Malefactive
-PDS,Previous different subject
-FRUSTR,Frustrative
-FDS ,Subsequent different subject
-FSSI,Subsequent same subject intransitive
-FSST,Subsequent same subject transitive
-PSSI,Previous same subject intransitive
-PSST,Previous same subject transitive
-SDS,Simultaneous different subject
-SSSI,Simultaneous same subject intransitive
-SSST,Simultaneous same subject transitive
-AB,Absolutive
+1,first person (speaker)
+2,second person (listener)
+3,third person (referent)
+4,fourth person (obviative or generic)
+12,first person inclusive
+ACC,accusative case
+AN,animate gender
+ANIM,animate gender
+C,common gender
+CLF,classifier
+DAT,dative case
+ERG,ergative case
+F,feminine gender
+FUT,future
+GEN,genitive case
+HUM,human gender; anthropic gender
+INAN,inanimate gender
+INST,instrumental case
+INSTR,instrumental case
+LOC,locative case
+M,masculine gender
+N,neuter gender
+NEG,negation; negative
+NEUT,neuter
+NOM,nominative case
+OBL,oblique case
+PAST,past
+PL,plural
+POSS,possessive; possessor
+PRS,present tense
+Q,question word or particle
+R,rational gender (thinking beings)
+SG,singular
+∅,zero (null) morpheme
+12DU,first person inclusive dual
+12P,first person inclusive plural
+12PAU,first person inclusive paucal
+12S,first person inclusive singular
+12T,first person inclusive trial
+1DU,first person dual (you two)
+1E,first person exclusive
+1EDU,first person exclusive dual
+1EP,first person exclusive plural
+1EPAU,first person exclusive paucal
+1ES,first person inclusive singular
+1GEN,first person genitive (my or our)
+1P,first person plural (we)
+1PAU,first person paucal
+1S,first person singular (i; me)
+1T,first person trial
+2DU,second person dual
+2GEN,second person genitive (your)
+2P,second person plural
+2PAU,second person paucal
+2S,second person singular (you)
+2T,second person trial
+3DU,third person dual
+3GEN,third person genitive (their)
+3P,third person plural (they)
+3PAU,third person paucal
+3S,third person singular (he; she; it)
+3SF,third person singular feminine (she)
+3SM,third person singular masculine (he)
+3SN,third person singular neuter (it)
+3T,third person trial
+1p,first person plural (we)
+1pl,first person plural (we)
+1s,first person singular (i)
+1sg,first person singular (i)
+2p,second person plural (you all)
+2pl,second person plural (you all)
+2s,second person singular (you)
+2sg,second person singular (you)
+3p,third person plural (they)
+3pl,third person plural (they)
+3s,third person singular (he; she; it)
+3sg,third person singular (he; she; it)
+A,agent
+ABESS,abessive case
+ABL,ablative case (from)
+ABS,absolutive case
+ABSL,absolute
+AC,anticausative
+ACCOM,accompanier
+ACP,accomplishment
+ACR,actor role
+ADDR,addressive
+ADEL,adelative
+ADESS,adessive case (at)
+ADJ,adjective
+ADJR,adjectiviser
+ADM,admonitive mood (warning)
+ADV,adverb(ial); adverbial case
+ADVS,adversative
+ADVR,adverbialiser
+AF,actor; agent focus; agent voice
+AFF,affirmative
+AFFT,affective case
+AFW,away from water
+AGN,agent nominalisation
+AGR,agreement
+ALL,allative case
+ALLOC,allocutive agreement
+AND,andative (going towards)
+ANTE,in front of
+ANTESS,antessive case (before)
+ANTIC,anticausative
+ANTIP,antipassive
+AO,agent-orientated verb
+AOR,aorist
+AP,antipassive voice
+APPL,applicative
+APRX,approximative
+APUD,near; in the vicinity of
+ARG,argumentative
+ART,article
+ASRT,assertive mood
+ASSUM,assumptive mood; assumed
+AT,agent trigger
+ATR,attributive
+ATTEN,attenuative
+AUD,auditory evidential
+AUG,augmentative
+AUX,auxiliary
+AVERT,avertive
+AVR,aversative
+BEN,benefactive case (for)
+BF,beneficiary focus
+CAR,caritive case
+CARD,cardinal numeral
+CAUS,causative
+CENT,centric case
+CERT,certainty (evidential)
+CESS,cessative
+CF,circumstantial focus
+CMP,comparative
+CMPD,compound
+CNJ,conjunction
+CNS,construct state
+CNSQ,consequential mood
+CNTF,counterfactual conditional
+COL,collective number
+COM,comitative case (together with)
+COMIT,comitative case (together with)
+COMP,complementiser
+COMPL,completive aspect
+COMPLR,complementiser
+COMPUL,compulsional
+CONC,concessive
+COND,conditional mood
+CONF,confirmational
+CONJC,conjectural (evidential)
+CONN,connective particle
+CONR,connector
+CONT,continuous aspect; continuative aspect
+CONTEMP,contemporative (at that/the same time)
+CONTR,contrastive; contranstive focus
+CONV,converb
+COOP,cooperative
+COORD,coordination
+COP,copula
+COR,coreference; coreferential
+COREF,coreference; coreferential
+COTEMP,contemporative (at that/the same time)
+CRAS,crastinal tense (tomorrow)
+CTG,contingent mood
+CTM,contemporative (at that/the same time)
+CVB,converb
+DE,different event; change of event
+DEB,debitive
+DECL,declarative mood
+DED,deductive evidential
+DEF,definite
+DEFIN,definitive
+DEFOC,defocus
+DEL,delative case (off of)
+DEM,demonstrative
+DENOM,denominal
+DEO,deontic mood
+DEOBJ,deobjective
+DEONT,deontic mood
+DEP,dependent
+DER,derivation; derivational
+DERIV,derivation; derivational
+DES,desiderative mood
+DET,determiner
+DETR,detransitiviser; detransitive
+DH,downhill; seaward
+DIM,diminutive
+DIMIN,diminutive
+DIS,distal; distant
+DISJ,disjunction; disjunctive
+DIST,distal; distant
+DISTR,distributive
+DITR,ditransitive
+DON,donative
+DOX,doxastic
+DP,distant past
+DR,downriver; toward the water
+DTR,detrimentary
+DU,dual
+DUB,dubitative mood
+DUBIT,dubitative mood
+DUPLIC,duplicative
+DUR,durative aspect
+DYN,dynamic aspect
+DYNM,dynamic aspect
+EL,elative case (out of)
+ELA,elative case (out of)
+ELAT,elative case (out of)
+EMP,emphatic; emphasiser
+EMPH,emphatic; emphasiser
+EPIT,epithet
+ESS,essive case
+EVIT,evitative case
+EX,exclusive person
+EXAL,exaltive; deferential (high-status register )
+EXC,exclusive person
+EXCL,exclusive
+EXCLAM,exclamative
+EXESS,exessive case
+EXIST,existential (there is)
+EXO,exocentric case
+EXP,experiential; eyewitness; direct evidential
+EXPR,expressive
+EXST,existential (there is)
+EXT,extended aspect; extendible
+FACT,factive
+FAM,familiar; familiar register
+FEM,feminine gender
+FIN,finite verb
+FOC,focus
+FPRT,future participle
+FRACT,fraction; fractional (numeral)
+FREQ,frequentative aspect
+FRQ ,frequentative aspect
+FRUS,frustrative
+FRUST,frustrative
+FS,false start
+FUNC,functive case
+GER,gerund; gerundive
+GF,goal focus
+GIV,given
+GNO,gnomic (generic) aspect
+GNOMIC,gnomic (generic) aspect
+GNT,general tense
+GT,goal trigger
+HAB,habitual aspect
+HABIT,habitual aspect
+HBL,habilitive
+HES,hesitation; hesitation particle
+HEST,hesternal tense (yesterday)
+HIST,historic(al) tense
+HML,humiliative (humble/low-status register)
+HOD,hodiernal tense
+HON,honorific
+HORT,hortative
+HRS,hearsay; reported evidential
+HYP,hypothetical mood
+HYPO,hypothetical mood
+IAM,iamitive
+IC,involuntary causative
+ICOM,involuntary comitative
+IDEO,ideophone
+IDEOPH,ideophone
+IDPH,ideophone
+IF,instrument focus
+IFUT,indefinite future
+IGNOR,ignorative
+ILL,illative case (into)
+ILLA,illative case (into)
+IMMED,immediate past
+IMP,imperative mood
+IMPER,imperative mood
+IMPF,imperfect
+IMPOSS,modal impossibility
+IMPR,imprecative mood
+IN,inclusive person
+INAB,impotential
+INABL,inablative
+INACT,inactive
+INAL,inalienable possession
+INANIM,inanimate gender
+INC,inclusive person
+INCEP,inceptive aspect
+INCH,inchoative aspect
+INCHO,inchoative aspect
+INCL,inclusive
+IND,indicative
+INDET,indeterminate
+INDF,indefinite
+INDEF,indefinite
+INDIC,indicative mood
+INDIR,indirect; indirective
+INEL,inelative case (from within)
+INESS,inessive case (in)
+INF,infinitive
+INFER,inferential mood
+INFL,inflectional
+INFR,inferential mood
+ING,ingressive case
+INS,instrumental
+INTENS,intensifier; intensive
+INTENTV,intentive
+INTER,interrogative
+INTERESS,interessive
+INTERJ,interjection
+INTERP,interpellative mood
+INTJ,interjection
+INTL,intentional
+INTR,intransitive
+INTRV,introversive
+INTS,intensifier; intensive
+INTV,intentive
+INV,inverse
+INVOL,involuntative; involitive
+IO,indirect object (ive)
+IOBJ,indirect object
+IP,immediate past
+IPFV,imperfective
+IRR,irrealis
+ITER,iterative aspect
+JUS,jussive mood
+LIM,limitative
+MASC,masculine gender
+MID,middle voice; medio-passive
+MIT,mitigation
+MOM,momentane (single-event verb)
+NARR,narrative tense
+NEC,necessitative
+NFIN,non-finite
+NH,non-human
+NMLR,nominaliser; nominalisation
+NUM,numeral; numerative
+NVEXP,nonvisual experiential (evidential)
+O,object(ive)
+OBLIG,obligative mood
+OBJ,object(ive)
+OBV,obviative
+OFC,object focus
+ONOM,onomatopoeia
+ORD,ordinal numeral
+PASS,passive voice
+PAU,paucal number
+PAUS,pausal
+PEG,pegative case (a special case for the giver)
+PERFV,perfective aspect
+PERL,perlative case
+PF,patient focus; patient voice
+PFV,perfective aspect
+PLUP,pluperfect
+PLUR,pluractional
+POL,polite register
+POSB,possible; modal possibility
+PPFV,past perfective
+PQP,polar question particle
+PREC,precative mood (requests)
+PRED,predicative affix; predicative
+PREP,preposition; prepositional case
+PRF,perfect
+PROG,progressive aspect
+PROH,prohibitive mood (do not!)
+PROP,proprietive case
+PST,past tense
+PTCP,participle
+PTV,partitive case
+PURP,purposive case
+PVB,preverb
+QUOT,quotative
+RECP,reciprocal voice
+RED,reduplication
+REDUP,reduplication
+REF,referential
+REFL,reflexive (reflexive pronoun; reflexive voice)
+REL,relative clause marker
+REM,remote
+REP,repetitive aspect
+RES,resultative
+RESP,respect
+RPRT,reported evidential
+RQ,rhetorical question
+SBJ,subject; subject agreement
+SCEP,sceptical
+SEM,semelfactive aspect (once)
+SENS,sensory evidential mood
+SIM,simultaneous aspect; simultaneity
+SJV,subjunctive mood
+SPECL,speculative mood
+STAT,stative aspect
+SUB,sublocative (under)
+SUBL,sublative case (onto; down onto)
+SUG,suggestive mood
+SUPEL,superelative case (on)
+SUPL,superlative
+TENT,tentative
+TOP,topic marker
+TRI,trial number
+UF,uncertain future
+UH,uphill; inland
+UNCERT,uncertain mood
+UR,upriver
+UWPST,unwitnessed past
+VAL,valency increasing; valence marker
+VERBR,verbaliser
+VEG,vegetable (food) gender
+VEN,venitive (coming towards; andative)
+VENT,ventive; ventitive
+VERT,vertical
+VIA,vialis case
+VN,verbal noun
+VOC,vocative case
+VOL,volitive mood; volitional
+WH,interrogative pronoun
+WHQ,wh- question
+WIT,witnessed evidential
+WP,witnessed past
+WPST,witnessed past
+YNQ,yes-no question
+DETR,detransitiviser
+ER,ergative
+EXH,exhortative
+HSY,hearsay
+MAL,malefactive
+PDS,previous different subject
+FRUSTR,frustrative
+FDS ,subsequent different subject
+FSSI,subsequent same subject intransitive
+FSST,subsequent same subject transitive
+PSSI,previous same subject intransitive
+PSST,previous same subject transitive
+SDS,simultaneous different subject
+SSSI,simultaneous same subject intransitive
+SSST,simultaneous same subject transitive
+AB,absolutive
 ANTIAPP,aniapplicative
-TCV,Temporal Converb
-PFVCVB,Perfective Converb
+TCV,temporal converb
+PFVCVB,perfective converb
 AS,aseverative
-2POSS,Second person possessive
-3POSS,Second person possessive
-1POSS,First person possessive
-PSR,Possessor
-SDS,Simultaneous event different subject
-SE,Same event
-SS,Same-subject
-U,Uninflected
-UC,Upcoast
-RLN,Relational
-SBEN,Self-benefactive
-PERSE,Personal experience
-EXPECT,Expectational
+2POSS,second person possessive
+3POSS,second person possessive
+1POSS,first person possessive
+PSR,possessor
+SDS,simultaneous event different subject
+SE,same event
+SS,same-subject
+U,uninflected
+UC,upcoast
+RLN,relational
+SBEN,self-benefactive
+PERSE,personal experience
+EXPECT,expectational
