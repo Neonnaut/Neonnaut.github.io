@@ -30,11 +30,11 @@ section {
   margin: 10px 0;
 }
 a:link{
-  color:#2d77d1;
+  color:#1b58a3;
   text-decoration: none;
 }
 a:visited{
-  color: #2d77d1;
+  color: #1b58a3;
 }
 a:hover{
   text-decoration: underline;
