@@ -20,7 +20,7 @@
 <body>
   <div id="content">
 
-		<section id="top">
+    <section id="top">
       <h1>Linguistic Gloss Generator</h1>
       <h3>Input to be Glossed</h3>
       <textarea id="input" name="input" spellcheck="false" placeholder='Astra inclinant, sed non obligant.
@@ -96,21 +96,18 @@ star.ACC.PL incline.PRS.PTCP but NEG bind.3P.PRS.ACT.IND<br>
 
       <blockquote>
 太陽が東の空に昇る<br>
-taiyō ga higashi no sora ni noboru<br>
-/taijoː ŋa çiŋaɕi no soɾa nʲi noboɾɯᵝ/<br>
-sun SUBJECT east POSSESSIVE sky LOCATIVE rise<br>
-"The sun rises in the eastern sky."<br>
-      </blockquote>
+taiyō ga higashi no sora ni noboru
+/taijoː ŋa çiŋaɕi no soɾa nʲi noboɾɯᵝ/
+sun SUBJECT east POSSESSIVE sky LOCATIVE rise
+"The sun rises in the eastern sky."</blockquote>
 
       <p>Then "Non alignable lines" should have "1, 2". If all goes well you should have something that looks like this:</p>
 
-      <pre><blockquote>
-太陽が東の空に昇る
+      <pre><blockquote>太陽が東の空に昇る
 taiyō ga higashi no sora ni noboru
 /taijoː ŋa      çiŋaɕi  no         soɾa nʲi      noboɾɯᵝ/
 sun     SUBJECT east    POSSESSIVE sky  LOCATIVE rise
-"The sun rises in the eastern sky."
-      </blockquote></pre>
+"The sun rises in the eastern sky."</blockquote></pre>
 
       <p>You can then set up your own custom abbreviations and seperators. As many abbreviations for grammatical elements already have conflicts with each other, your new definitions will overwride any in-built definitions.</p>
 
@@ -122,8 +119,7 @@ sun     SUBJECT east    POSSESSIVE sky  LOCATIVE rise
       <h4>HTML Table</h4>
       <p>When using the HTML markup method, use the following CSS on your website to get the desired output:</p>
 
-      <pre><blockquote>
-.abbrv {
+      <pre><blockquote>.abbrv {
    cursor: help;
  }
 .sc {
@@ -139,16 +135,14 @@ table tr {
 }
 table tr td {
   padding-right: 3px;
-}
-      </blockquote></pre>
+}</blockquote></pre>
 
       <p>If you wish to style the table element, such as with italics or bold, use css classes on an individual word. If you wish to style an entire line, the best way is to add a class to &lt;tr> and add styles with CSS.</p>
 
       <h4>HTML Interlinear Div</h4>
       <p>When using the 'HTML Interlinear Div' method, use the following CSS on your website to get the desired output:</p>
       
-      <pre><blockquote>
-.abbrv {
+      <pre><blockquote>.abbrv {
    cursor: help;
 }
 .sc {
@@ -159,8 +153,7 @@ table tr td {
 div .gll {
   display: inline-table;
   padding-right: 10px;
-}
-      </blockquote></pre>
+}</blockquote></pre>
 
       <p>'Single column lines' does not work with this method. Even if you were to edit the output, a div without the .gll class will only work at the end or the beggining of a block of .gll divs.</p>
 

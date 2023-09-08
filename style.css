@@ -2,21 +2,21 @@ html {
   font-size: 62.5%;
 }
 body {
-	line-height: 1.2;
   background: #7b7776;
+  font-family: 'Public Sans', Arial, sans-serif;
   font-size: 1.5em;
-  margin: 8px 0;
-  Font-family: 'Public Sans', Arial, sans-serif;
+  line-height: 1.2;
+  margin: 0
 }
 section {
-  margin: 0 0 10px 0;
-  padding: 10px 40px 10px 40px;
   background: #f1f0ef;
   color: #000;
+  margin: 0 0 10px 0;
+  padding: 8px;
 }
 #content,header,footer {
-  max-width: 700px;
   margin: 0 auto;
+  max-width: 700px;
 }
 #input {
   height: 8em;
@@ -43,42 +43,42 @@ ul, ol {
   padding-left:20px;
 }
 h1 {
-  padding: 10px;
-  margin: 0 0 5px 0;
   background: #333333;
   color: #eee;
+  font-family: Candara, 'Public Sans', Arial, sans-serif;
   font-size: 2.618rem;
   font-style: normal;
   font-variant: normal;
   font-weight: 700;
   line-height: 23px;
-  font-family: Candara, 'Public Sans', Arial, sans-serif;
+  margin: 0 0 5px 0;
+  padding: 10px;
 }
 h2,h3,h4,h5,h6 { 
-  Font-family: 'Public Sans', Arial, sans-serif;
+  font-family: 'Public Sans', Arial, sans-serif;
 }
 h2 {
-  margin: 9px 0 9px 0;
   font-size: 2.5rem;
+  margin: 9px 0 9px 0;
 }
 h3 {
-  margin: 7px 0 7px 0;
   font-size: 2.3rem;
+  margin: 7px 0 7px 0;
 }
 h4 {
-  margin: 7px 0 7px 0;
   font-size: 2.15rem;
+  margin: 7px 0 7px 0;
 }
 h5 {
-  margin: 7px 0 7px 0;
   font-size: 2rem;
+  margin: 7px 0 7px 0;
 }
 h6 {
-  margin: 7px 0 7px 0;
   font-size: 1.7rem;
+  margin: 7px 0 7px 0;
 }
 blockquote {
-  margin: 15px 25px 15px 25px;
+  margin: 15px 0 15px 15px;
 }
 p {
   margin: 10px 0;
@@ -88,7 +88,7 @@ img {
   width: auto;
 }
 
-/* ------------------------- */
+/* --Input Stuff-- */
 
 label, a:link, #switch-field, #bottom-content {
   font-family: "Segoe UI", Arial, sans-serif;
@@ -104,15 +104,15 @@ label, a:link, #switch-field, #bottom-content {
 #abbrvInput,
 #abbrvDelimiterInput,
 #notInterlinear {
-  width: 95%;
   max-width: 40em;
   min-width: 40%;
+  width: 95%;
 }
 #abbrvInput {
   height: 5em;
 }
 #switch-field {
-  display: flex;
+  display: inline;
 }
 textarea, input {
   background: #Fdfbf8;
@@ -120,15 +120,15 @@ textarea, input {
 #switch-field input {
   -webkit-appearance: none;
   background-color: #fefefe;
-  color: rgba(0, 0, 0, 0.9);
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 1;
-  margin-bottom: 3px;
-  text-align: center;
-  padding: 8px 13px 6px 13px;
   border: 1px solid rgba(0, 0, 0, 0.2);
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);
+  color: rgba(0, 0, 0, 0.9);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1;
+  margin-bottom: 3px;
+  padding: 8px 13px 6px 13px;
+  text-align: center;
   transition: all 0.1s ease-in-out;
   user-select: none;
 }
@@ -137,21 +137,21 @@ textarea, input {
 }
 #switch-field .checked {
   background-color: #2d77d1;
-  color: #FFF;
   box-shadow: none;
+  color: #FFF;
 }
 button {
   -webkit-appearance: none;
   background-color: #e4e4e4;
-  color: rgba(0, 0, 0, 0.9);
-  font-weight: 500;
-  font-size: 1.4em;
-  line-height: 1;
-  margin-bottom: 3px;
-  text-align: center;
-  padding: 8px 10px 6px 10px;
   border: 1px solid rgba(0, 0, 0, 0.4);
   box-shadow: inset 0 2px 3px rgb(0 0 0 / 40%), 0 1px rgb(0 0 0 / 10%);
+  color: rgba(0, 0, 0, 0.9);
+  font-size: 1.4em;
+  font-weight: 500;
+  line-height: 1;
+  margin-bottom: 3px;
+  padding: 8px 10px 6px 10px;
+  text-align: center;
   transition: all 0.1s ease-in-out;
   user-select: none;
 }
@@ -167,7 +167,7 @@ fieldset legend {
   padding: 0 2px;
 }
 
-/* ------------------------- */
+/* --Displaying table method-- */
 
 #outerTable {
   overflow-x: auto;
@@ -176,8 +176,8 @@ fieldset legend {
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
-  overflow-x: auto;
   margin-bottom: 5px;
+  overflow-x: auto;
 }
 table tr {
   white-space: nowrap;
@@ -186,12 +186,13 @@ table tr td {
   padding-right: 3px;
 }
 
-/* ------------------------- */
+/* --Displaying div method-- */
 
 pre {
+  font-size: 1.16em;
   overflow-x: auto;
   overflow-y: clip;
-  margin: 5px 0 8px 0;
+  margin: 0;
 }
 div .gll {
   display: inline-table;
@@ -200,7 +201,6 @@ div .gll {
 .gmg-ack {
   font-size: small;
 }
-
 .abbrv {
   cursor: help;
 }
@@ -210,15 +210,13 @@ div .gll {
   text-transform: lowercase;
 }
 
-@media only screen and (max-width: 620px) {
-    body {
-      margin: 0;
-    }
-    section {
-      margin: 0 0 10px 0;
-      padding: 8px;
-    }
-    #switch-field {
-      display: inline;
-    }
+/* --Mobile first, because that's the hipster thing to do I guess-- */
+@media only screen and (min-width: 600px) {
+  section {
+    margin: 0 0 10px 0;
+    padding: 30px 30px;
   }
+  #switch-field {
+    display: flex;
+  }
+}
