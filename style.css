@@ -23,6 +23,7 @@ section {
   width: 98%;
 }
 #output {
+  font-family: monospace;
   height: 12em;
   width: 98%;
 }
