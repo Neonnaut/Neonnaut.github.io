@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Lexifer</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script type="text/javascript" src="lexifer.js"></script>
+  <script type="text/javascript" src="lexifer-examples.js"></script>
+  <meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1" />
+  <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet" />
+  <link href="style.css" rel="stylesheet" type="text/css" media="all" />
+</head>
+<body>
+  <div id="content">
+    <section id="top">
+      <h1>Lexifer Online</h1>
+      <textarea id="def" rows="17">with: std-ipa-features std-assimilations coronal-metathesis
+
+letters: ʔ a á b ch d e g h i k l m n o p r s t u w y
+
+C = t n k m ch l ʔ s r d h w b y p g
+D = n l ʔ t k r p
+V = a i e á u o
+
+$S = CVD?
+
+words: V?$S$S V?$S V?$S$S$S
+
+# haplology
+reject: (..+)\1+
+
+reject: wu yi w$ y$ h$ ʔʔ (p|t|k|ʔ)h
+filter: nr > tr; mr > pr; ŋ > n</textarea>
+
+      <br><button id="genWords" name="lexiferButton">Generate Words</button><br>
+
+      <h3>Output</h3>
+      <p id="errors"></p>
+      <div id="result"></div>
+      <hr>
+
+      <fieldset id="bottom-content">
+        <legend>Options</legend>
+        <label for="number">Number of words (leave blank for a paragraph)</label><br>
+        <input type="number" autocomplete="off" id="number" min="0" /><br>
+        <input type="checkbox" id="unsorted" />
+        <label for="unsorted">Leave output unsorted</label><br>
+        <input type="checkbox" id="one-per-line" />
+        <label for="one-per-line">Display only one word per line</label><br>
+        <input type="checkbox" id="verbose" />
+        <label for="verbose">Display all generation steps</label><br>
+
+        <div class="dropdown switch-field">
+          <input value="▼ Examples (clears input)"></input>
+          <div class="dropdown-content">
+            <a onclick="lexiferExample('basic')">Default</a>
+            <a onclick="lexiferExample('basic-ex')">Default with Comments</a>
+            <a onclick="lexiferExample('tonal')">Tonal</a>
+            <a onclick="lexiferExample('hungarian')">(Fake) Hungarian</a>
+          </div>
+        </div>
+      </fieldset>
+    </section>
+
+    <section>
+      <p>This is a TypeScript version of <a href="https://lingweenie.org/conlang/lexifer.html">Lexifer</a> written by u/bbrk24. Software Copyright (c) 2021-2022 bbrk24Copyright (c), 2006-2023 William S. Annis.</p>
+      
+      <h2>Defining a Phonology</h2>
+
+    </section>
+  </div>
+</body>
+</html>

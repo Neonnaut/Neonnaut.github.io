@@ -11,10 +11,10 @@ function glossarize(markup) {
 	var useAbbrv = $("#useAbbrv").is(":checked");
 
 	//Get abbreviations and put them at the start of the arrays
-	var origAbbreviations = ["1","2","3","4","12","ACC","AN","ANIM","C","CLF","DAT","ERG","F","FUT","GEN","HUM","INAN","INST","INSTR","LOC","M","N","NEG","NEUT","NOM","OBL","PAST","PL","POSS","PRS","Q","R","SG","?","12DU","12P","12PAU","12S","12T","1DU","1E","1EDU","1EP","1EPAU","1ES","1GEN","1P","1PAU","1S","1T","2DU","2GEN","2P","2PAU","2S","2T","3DU","3GEN","3P","3PAU","3S","3SF","3SM","3SN","3T","1p","1pl","1s","1sg","2p","2pl","2s","2sg","3p","3pl","3s","3sg","A","ABESS","ABL","ABS","ABSL","AC","ACCOM","ACP","ACR","ADDR","ADEL","ADESS","ADJ","ADJZ","ADM","ADV","ADVS","ADVZ","AF","AFF","AFFT","AFW","AGN","AGR","ALL","ALLOC","AND","ANTE","ANTESS","ANTIC","ANTIP","AO","AOR","AP","APPL","APRX","APUD","ARG","ART","ASRT","ASSUM","AT","ATR","ATTEN","AUD","AUG","AUX","AVERT","AVR","BEN","BF","CAR","CARD","CAUS","CENT","CERT","CESS","CF","CMP","CMPD","CNJ","CNS","CNSQ","CNTF","COL","COM","COMIT","COMP","COMPL","COMPLR","COMPUL","CONC","COND","CONF","CONJC","CONN","CONR","CONT","CONTEMP","CONTR","CONV","COOP","COORD","COP","COR","COREF","COTEMP","CRAS","CTG","CTM","CVB","DE","DEB","DECL","DED","DEF","DEFIN","DEFOC","DEL","DEM","DENOM","DEO","DEOBJ","DEONT","DEP","DER","DERIV","DES","DET","DETR","DH","DIM","DIMIN","DIS","DISJ","DIST","DISTR","DITR","DON","DOX","DP","DR","DTR","DU","DUB","DUBIT","DUPLIC","DUR","DYN","DYNM","EL","ELA","ELAT","EMP","EMPH","EPIT","ESS","EVIT","EX","EXAL","EXC","EXCL","EXCLAM","EXESS","EXIST","EXO","EXP","EXPR","EXST","EXT","FACT","FAM","FEM","FIN","FOC","FPRT","FRACT","FREQ","FRQ ","FRUS","FRUST","FS","FUNC","GER","GF","GIV","GNO","GNOMIC","GNT","GT","HAB","HABIT","HBL","HES","HEST","HIST","HML","HOD","HON","HORT","HRS","HYP","HYPO","IAM","IC","ICOM","IDEO","IDEOPH","IDPH","IF","IFUT","IGNOR","ILL","ILLA","IMMED","IMP","IMPER","IMPF","IMPOSS","IMPR","IN","INAB","INABL","INACT","INAL","INANIM","INC","INCEP","INCH","INCHO","INCL","IND","INDET","INDF","INDEF","INDIC","INDIR","INEL","INESS","INF","INFER","INFL","INFR","ING","INS","INTENS","INTENTV","INTER","INTERESS","INTERJ","INTERP","INTJ","INTL","INTR","INTRV","INTS","INTV","INV","INVOL","IO","IOBJ","IP","IPFV","IRR","ITER","JUS","LIM","MASC","MID","MIT","MOM","NARR","NEC","NFIN","NH","NMLZ","NUM","NVEXP","O","OBLIG","OBJ","OBV","OFC","ONOM","OPT","ORD","PASS","PAU","PAUS","PEG","PERFV","PERL","PF","PFV","PLUP","PLUR","POL","POSB","PPFV","PQP","PREC","PRED","PREP","PRF","PROG","PROH","PROP","PST","PTCP","PTV","PURP","PVB","QUOT","RECP","RED","REDUP","REF","REFL","REL","REM","REP","RES","RESP","RPRT","RQ","SBJ","SCEP","SEM","SENS","SIM","SJV","SPECL","STAT","SUB","SUBL","SUG","SUPEL","SUPL","TENT","TOP","TRI","UF","UH","UNCERT","UR","UWPST","V","VAL","VBLZR","VEG","VEN","VENT","VERT","VIA","VN","VOC","VOL","WH","WHQ","WIT","WP","WPST","YNQ","DTRNZ","ER","EXH","HSY","MAL","PDS","FRUSTR","FDS ","FSSI","FSST","PSSI","PSST","SDS","SSSI","SSST","AB","ANTIAPP","TCV","PFVCVB","AS","2POSS","3POSS","1POSS","PSR","SDS","SE","SS","U","UC","RLN","SBEN","PERSE","EXPECT"];
-	var origExplanations = ["first person (speaker)","second person (listener)","third person (referent)","fourth person (obviative or generic)","first person inclusive","accusative case","animate gender","animate gender","common gender","classifier","dative case","ergative case","feminine gender","future","genitive case","human gender; anthropic gender","inanimate gender","instrumental case","instrumental case","locative case","masculine gender","neuter gender","negation; negative","neuter","nominative case","oblique case","past","plural","possessive; possessor","present tense","question word or particle","rational gender (thinking beings)","singular","zero (null) morpheme","first person inclusive dual","first person inclusive plural","first person inclusive paucal","first person inclusive singular","first person inclusive trial","first person dual (you two)","first person exclusive","first person exclusive dual","first person exclusive plural","first person exclusive paucal","first person inclusive singular","first person genitive (my or our)","first person plural (we)","first person paucal","first person singular (i; me)","first person trial","second person dual","second person genitive (your)","second person plural","second person paucal","second person singular (you)","second person trial","third person dual","third person genitive (their)","third person plural (they)","third person paucal","third person singular (he; she; it)","third person singular feminine (she)","third person singular masculine (he)","third person singular neuter (it)","third person trial","first person plural (we)","first person plural (we)","first person singular (i)","first person singular (i)","second person plural (you all)","second person plural (you all)","second person singular (you)","second person singular (you)","third person plural (they)","third person plural (they)","third person singular (he; she; it)","third person singular (he; she; it)","agent","abessive case","ablative case (from)","absolutive case","absolute","anticausative","accompanier","accomplishment","actor role","addressive","adelative","adessive case (at)","adjective","adjectiviser","admonitive mood (warning)","adverb(ial); adverbial case","adversative","adverbialiser","actor; agent focus; agent voice","affirmative","affective case","away from water","agent nominalisation","agreement","allative case","allocutive agreement","andative (going towards)","in front of","antessive case (before)","anticausative","antipassive","agent-orientated verb","aorist","antipassive voice","applicative","approximative","near; in the vicinity of","argumentative","article","assertive mood","assumptive mood; assumed","agent trigger","attributive","attenuative","auditory evidential","augmentative","auxiliary","avertive","aversative",
-	"benefactive case (for)","beneficiary focus","caritive case","cardinal numeral","causative","centric case","certainty (evidential)","cessative","circumstantial focus","comparative","compound","conjunction","construct state","consequential mood","counterfactual conditional","collective number","comitative case (together with)","comitative case (together with)","complementiser","completive aspect","complementiser","compulsional","concessive","conditional mood","confirmational","conjectural (evidential)","connective particle","connector","continuous aspect; continuative aspect","contemporative (at that/the same time)","contrastive; contranstive focus","converb","cooperative","coordination","copula","coreference; coreferential","coreference; coreferential","contemporative (at that/the same time)","crastinal tense (tomorrow)","contingent mood","contemporative (at that/the same time)","converb","different event; change of event","debitive","declarative mood","deductive evidential","definite","definitive","defocus","delative case (off of)","demonstrative","denominal","deontic mood","deobjective","deontic mood","dependent","derivation; derivational","derivation; derivational","desiderative mood","determiner","detransitiviser; detransitive","downhill; seaward","diminutive","diminutive","distal; distant","disjunction; disjunctive","distal; distant","distributive","ditransitive","donative","doxastic","distant past","downriver; toward the water","detrimentary","dual","dubitative mood","dubitative mood","duplicative","durative aspect","dynamic aspect","dynamic aspect","elative case (out of)","elative case (out of)","elative case (out of)","emphatic; emphasiser","emphatic; emphasiser","epithet","essive case","evitative case","exclusive person","exaltive; deferential (high-status register )","exclusive person","exclusive","exclamative","exessive case","existential (there is)","exocentric case","experiential; eyewitness; direct evidential","expressive","existential (there is)","extended aspect; extendible","factive","familiar; familiar register","feminine gender","finite verb","focus","future participle","fraction; fractional (numeral)","frequentative aspect","frequentative aspect","frustrative","frustrative","false start","functive case","gerund; gerundive","goal focus","given","gnomic (generic) aspect","gnomic (generic) aspect","general tense","goal trigger","habitual aspect","habitual aspect","habilitive","hesitation; hesitation particle","hesternal tense (yesterday)","historic(al) tense","humiliative (humble/low-status register)","hodiernal tense","honorific","hortative","hearsay; reported evidential","hypothetical mood","hypothetical mood",
-	"iamitive","involuntary causative","involuntary comitative","ideophone","ideophone","ideophone","instrument focus","indefinite future","ignorative","illative case (into)","illative case (into)","immediate past","imperative mood","imperative mood","imperfect","modal impossibility","imprecative mood","inclusive person","impotential","inablative","inactive","inalienable possession","inanimate gender","inclusive person","inceptive aspect","inchoative aspect","inchoative aspect","inclusive","indicative","indeterminate","indefinite","indefinite","indicative mood","indirect; indirective","inelative case (from within)","inessive case (in)","infinitive","inferential mood","inflectional","inferential mood","ingressive case","instrumental","intensifier; intensive","intentive","interrogative","interessive","interjection","interpellative mood","interjection","intentional","intransitive","introversive","intensifier; intensive","intentive","inverse","involuntative; involitive","indirect object (ive)","indirect object","immediate past","imperfective","irrealis","iterative aspect","jussive mood","limitative","masculine gender","middle voice; medio-passive","mitigation","momentane (single-event verb)","narrative tense","necessitative","non-finite","non-human","nominaliser; nominalisation","numeral; numerative","nonvisual experiential (evidential)","object(ive)","obligative mood","object(ive)","obviative","object focus","onomatopoeia","ordinal numeral","passive voice","paucal number","pausal","pegative case (a special case for the giver)","perfective aspect","perlative case","patient focus; patient voice","perfective aspect","pluperfect","pluractional","polite register","possible; modal possibility","past perfective","polar question particle","precative mood (requests)","predicative affix; predicative","preposition; prepositional case","perfect","progressive aspect","prohibitive mood (do not!)","proprietive case","past tense","participle","partitive case","purposive case","preverb","quotative","reciprocal voice","reduplication","reduplication","referential","reflexive (reflexive pronoun; reflexive voice)","relative clause marker","remote","repetitive aspect","resultative","respect","reported evidential","rhetorical question","subject; subject agreement","sceptical","semelfactive aspect (once)","sensory evidential mood","simultaneous aspect; simultaneity","subjunctive mood","speculative mood","stative aspect","sublocative (under)","sublative case (onto; down onto)","suggestive mood","superelative case (on)","superlative","tentative","topic marker","trial number","uncertain future","uphill; inland","uncertain mood","upriver","unwitnessed past","valency increasing; valence marker","verbaliser","vegetable (food) gender","venitive (coming towards; andative)","ventive; ventitive","vertical","vialis case","verbal noun","vocative case","volitive mood; volitional","interrogative pronoun","wh- question","witnessed evidential","witnessed past","witnessed past","yes-no question","detransitiviser","ergative","exhortative","hearsay","malefactive","previous different subject","frustrative","subsequent different subject","subsequent same subject intransitive","subsequent same subject transitive","previous same subject intransitive","previous same subject transitive","simultaneous different subject","simultaneous same subject intransitive","simultaneous same subject transitive","absolutive","aniapplicative","temporal converb","perfective converb","aseverative","second person possessive","second person possessive","first person possessive","possessor","simultaneous event different subject","same event","same-subject","uninflected","upcoast","relational","self-benefactive","personal experience","expectational"];
+	var origAbbreviations = ["1", "2", "3", "4", "12", "ACC", "AN", "ANIM", "C", "CLF", "DAT", "ERG", "F", "FUT", "GEN", "HUM", "INAN", "INST", "INSTR", "LOC", "M", "N", "NEG", "NEUT", "NOM", "OBL", "PAST", "PL", "POSS", "PRS", "Q", "R", "SG", "?", "12DU", "12P", "12PAU", "12S", "12T", "1DU", "1E", "1EDU", "1EP", "1EPAU", "1ES", "1GEN", "1P", "1PAU", "1S", "1T", "2DU", "2GEN", "2P", "2PAU", "2S", "2T", "3DU", "3GEN", "3P", "3PAU", "3S", "3SF", "3SM", "3SN", "3T", "1p", "1pl", "1s", "1sg", "2p", "2pl", "2s", "2sg", "3p", "3pl", "3s", "3sg", "A", "ABESS", "ABL", "ABS", "ABSL", "AC", "ACCOM", "ACP", "ACR", "ADDR", "ADEL", "ADESS", "ADJ", "ADJZ", "ADM", "ADV", "ADVS", "ADVZ", "AF", "AFF", "AFFT", "AFW", "AGN", "AGR", "ALL", "ALLOC", "AND", "ANTE", "ANTESS", "ANTIC", "ANTIP", "AO", "AOR", "AP", "APPL", "APRX", "APUD", "ARG", "ART", "ASRT", "ASSUM", "AT", "ATR", "ATTEN", "AUD", "AUG", "AUX", "AVERT", "AVR", "BEN", "BF", "CAR", "CARD", "CAUS", "CENT", "CERT", "CESS", "CF", "CMP", "CMPD", "CNJ", "CNS", "CNSQ", "CNTF", "COL", "COM", "COMIT", "COMP", "COMPL", "COMPLR", "COMPUL", "CONC", "COND", "CONF", "CONJC", "CONN", "CONR", "CONT", "CONTEMP", "CONTR", "CONV", "COOP", "COORD", "COP", "COR", "COREF", "COTEMP", "CRAS", "CTG", "CTM", "CVB", "DE", "DEB", "DECL", "DED", "DEF", "DEFIN", "DEFOC", "DEL", "DEM", "DENOM", "DEO", "DEOBJ", "DEONT", "DEP", "DER", "DERIV", "DES", "DET", "DETR", "DH", "DIM", "DIMIN", "DIS", "DISJ", "DIST", "DISTR", "DITR", "DON", "DOX", "DP", "DR", "DTR", "DU", "DUB", "DUBIT", "DUPLIC", "DUR", "DYN", "DYNM", "EL", "ELA", "ELAT", "EMP", "EMPH", "EPIT", "ESS", "EVIT", "EX", "EXAL", "EXC", "EXCL", "EXCLAM", "EXESS", "EXIST", "EXO", "EXP", "EXPR", "EXST", "EXT", "FACT", "FAM", "FEM", "FIN", "FOC", "FPRT", "FRACT", "FREQ", "FRQ ", "FRUS", "FRUST", "FS", "FUNC", "GER", "GF", "GIV", "GNO", "GNOMIC", "GNT", "GT", "HAB", "HABIT", "HBL", "HES", "HEST", "HIST", "HML", "HOD", "HON", "HORT", "HRS", "HYP", "HYPO", "IAM", "IC", "ICOM", "IDEO", "IDEOPH", "IDPH", "IF", "IFUT", "IGNOR", "ILL", "ILLA", "IMMED", "IMP", "IMPER", "IMPF", "IMPOSS", "IMPR", "IN", "INAB", "INABL", "INACT", "INAL", "INANIM", "INC", "INCEP", "INCH", "INCHO", "INCL", "IND", "INDET", "INDF", "INDEF", "INDIC", "INDIR", "INEL", "INESS", "INF", "INFER", "INFL", "INFR", "ING", "INS", "INTENS", "INTENTV", "INTER", "INTERESS", "INTERJ", "INTERP", "INTJ", "INTL", "INTR", "INTRV", "INTS", "INTV", "INV", "INVOL", "IO", "IOBJ", "IP", "IPFV", "IRR", "ITER", "JUS", "LIM", "MASC", "MID", "MIT", "MOM", "NARR", "NEC", "NFIN", "NH", "NMLZ", "NUM", "NVEXP", "O", "OBLIG", "OBJ", "OBV", "OFC", "ONOM", "OPT", "ORD", "PASS", "PAU", "PAUS", "PEG", "PERFV", "PERL", "PF", "PFV", "PLUP", "PLUR", "POL", "POSB", "PPFV", "PQP", "PREC", "PRED", "PREP", "PRF", "PROG", "PROH", "PROP", "PST", "PTCP", "PTV", "PURP", "PVB", "QUOT", "RECP", "RED", "REDUP", "REF", "REFL", "REL", "REM", "REP", "RES", "RESP", "RPRT", "RQ", "SBJ", "SCEP", "SEM", "SENS", "SIM", "SJV", "SPECL", "STAT", "SUB", "SUBL", "SUG", "SUPEL", "SUPL", "TENT", "TOP", "TRI", "UF", "UH", "UNCERT", "UR", "UWPST", "V", "VAL", "VBLZR", "VEG", "VEN", "VENT", "VERT", "VIA", "VN", "VOC", "VOL", "WH", "WHQ", "WIT", "WP", "WPST", "YNQ", "DTRNZ", "ER", "EXH", "HSY", "MAL", "PDS", "FRUSTR", "FDS ", "FSSI", "FSST", "PSSI", "PSST", "SDS", "SSSI", "SSST", "AB", "ANTIAPP", "TCV", "PFVCVB", "AS", "2POSS", "3POSS", "1POSS", "PSR", "SDS", "SE", "SS", "U", "UC", "RLN", "SBEN", "PERSE", "EXPECT"];
+	var origExplanations = ["first person (speaker)", "second person (listener)", "third person (referent)", "fourth person (obviative or generic)", "first person inclusive", "accusative case", "animate gender", "animate gender", "common gender", "classifier", "dative case", "ergative case", "feminine gender", "future", "genitive case", "human gender; anthropic gender", "inanimate gender", "instrumental case", "instrumental case", "locative case", "masculine gender", "neuter gender", "negation; negative", "neuter", "nominative case", "oblique case", "past", "plural", "possessive; possessor", "present tense", "question word or particle", "rational gender (thinking beings)", "singular", "zero (null) morpheme", "first person inclusive dual", "first person inclusive plural", "first person inclusive paucal", "first person inclusive singular", "first person inclusive trial", "first person dual (you two)", "first person exclusive", "first person exclusive dual", "first person exclusive plural", "first person exclusive paucal", "first person inclusive singular", "first person genitive (my or our)", "first person plural (we)", "first person paucal", "first person singular (i; me)", "first person trial", "second person dual", "second person genitive (your)", "second person plural", "second person paucal", "second person singular (you)", "second person trial", "third person dual", "third person genitive (their)", "third person plural (they)", "third person paucal", "third person singular (he; she; it)", "third person singular feminine (she)", "third person singular masculine (he)", "third person singular neuter (it)", "third person trial", "first person plural (we)", "first person plural (we)", "first person singular (i)", "first person singular (i)", "second person plural (you all)", "second person plural (you all)", "second person singular (you)", "second person singular (you)", "third person plural (they)", "third person plural (they)", "third person singular (he; she; it)", "third person singular (he; she; it)", "agent", "abessive case", "ablative case (from)", "absolutive case", "absolute", "anticausative", "accompanier", "accomplishment", "actor role", "addressive", "adelative", "adessive case (at)", "adjective", "adjectiviser", "admonitive mood (warning)", "adverb(ial); adverbial case", "adversative", "adverbialiser", "actor; agent focus; agent voice", "affirmative", "affective case", "away from water", "agent nominalisation", "agreement", "allative case", "allocutive agreement", "andative (going towards)", "in front of", "antessive case (before)", "anticausative", "antipassive", "agent-orientated verb", "aorist", "antipassive voice", "applicative", "approximative", "near; in the vicinity of", "argumentative", "article", "assertive mood", "assumptive mood; assumed", "agent trigger", "attributive", "attenuative", "auditory evidential", "augmentative", "auxiliary", "avertive", "aversative",
+		"benefactive case (for)", "beneficiary focus", "caritive case", "cardinal numeral", "causative", "centric case", "certainty (evidential)", "cessative", "circumstantial focus", "comparative", "compound", "conjunction", "construct state", "consequential mood", "counterfactual conditional", "collective number", "comitative case (together with)", "comitative case (together with)", "complementiser", "completive aspect", "complementiser", "compulsional", "concessive", "conditional mood", "confirmational", "conjectural (evidential)", "connective particle", "connector", "continuous aspect; continuative aspect", "contemporative (at that/the same time)", "contrastive; contranstive focus", "converb", "cooperative", "coordination", "copula", "coreference; coreferential", "coreference; coreferential", "contemporative (at that/the same time)", "crastinal tense (tomorrow)", "contingent mood", "contemporative (at that/the same time)", "converb", "different event; change of event", "debitive", "declarative mood", "deductive evidential", "definite", "definitive", "defocus", "delative case (off of)", "demonstrative", "denominal", "deontic mood", "deobjective", "deontic mood", "dependent", "derivation; derivational", "derivation; derivational", "desiderative mood", "determiner", "detransitiviser; detransitive", "downhill; seaward", "diminutive", "diminutive", "distal; distant", "disjunction; disjunctive", "distal; distant", "distributive", "ditransitive", "donative", "doxastic", "distant past", "downriver; toward the water", "detrimentary", "dual", "dubitative mood", "dubitative mood", "duplicative", "durative aspect", "dynamic aspect", "dynamic aspect", "elative case (out of)", "elative case (out of)", "elative case (out of)", "emphatic; emphasiser", "emphatic; emphasiser", "epithet", "essive case", "evitative case", "exclusive person", "exaltive; deferential (high-status register )", "exclusive person", "exclusive", "exclamative", "exessive case", "existential (there is)", "exocentric case", "experiential; eyewitness; direct evidential", "expressive", "existential (there is)", "extended aspect; extendible", "factive", "familiar; familiar register", "feminine gender", "finite verb", "focus", "future participle", "fraction; fractional (numeral)", "frequentative aspect", "frequentative aspect", "frustrative", "frustrative", "false start", "functive case", "gerund; gerundive", "goal focus", "given", "gnomic (generic) aspect", "gnomic (generic) aspect", "general tense", "goal trigger", "habitual aspect", "habitual aspect", "habilitive", "hesitation; hesitation particle", "hesternal tense (yesterday)", "historic(al) tense", "humiliative (humble/low-status register)", "hodiernal tense", "honorific", "hortative", "hearsay; reported evidential", "hypothetical mood", "hypothetical mood",
+		"iamitive", "involuntary causative", "involuntary comitative", "ideophone", "ideophone", "ideophone", "instrument focus", "indefinite future", "ignorative", "illative case (into)", "illative case (into)", "immediate past", "imperative mood", "imperative mood", "imperfect", "modal impossibility", "imprecative mood", "inclusive person", "impotential", "inablative", "inactive", "inalienable possession", "inanimate gender", "inclusive person", "inceptive aspect", "inchoative aspect", "inchoative aspect", "inclusive", "indicative", "indeterminate", "indefinite", "indefinite", "indicative mood", "indirect; indirective", "inelative case (from within)", "inessive case (in)", "infinitive", "inferential mood", "inflectional", "inferential mood", "ingressive case", "instrumental", "intensifier; intensive", "intentive", "interrogative", "interessive", "interjection", "interpellative mood", "interjection", "intentional", "intransitive", "introversive", "intensifier; intensive", "intentive", "inverse", "involuntative; involitive", "indirect object (ive)", "indirect object", "immediate past", "imperfective", "irrealis", "iterative aspect", "jussive mood", "limitative", "masculine gender", "middle voice; medio-passive", "mitigation", "momentane (single-event verb)", "narrative tense", "necessitative", "non-finite", "non-human", "nominaliser; nominalisation", "numeral; numerative", "nonvisual experiential (evidential)", "object(ive)", "obligative mood", "object(ive)", "obviative", "object focus", "onomatopoeia", "ordinal numeral", "passive voice", "paucal number", "pausal", "pegative case (a special case for the giver)", "perfective aspect", "perlative case", "patient focus; patient voice", "perfective aspect", "pluperfect", "pluractional", "polite register", "possible; modal possibility", "past perfective", "polar question particle", "precative mood (requests)", "predicative affix; predicative", "preposition; prepositional case", "perfect", "progressive aspect", "prohibitive mood (do not!)", "proprietive case", "past tense", "participle", "partitive case", "purposive case", "preverb", "quotative", "reciprocal voice", "reduplication", "reduplication", "referential", "reflexive (reflexive pronoun; reflexive voice)", "relative clause marker", "remote", "repetitive aspect", "resultative", "respect", "reported evidential", "rhetorical question", "subject; subject agreement", "sceptical", "semelfactive aspect (once)", "sensory evidential mood", "simultaneous aspect; simultaneity", "subjunctive mood", "speculative mood", "stative aspect", "sublocative (under)", "sublative case (onto; down onto)", "suggestive mood", "superelative case (on)", "superlative", "tentative", "topic marker", "trial number", "uncertain future", "uphill; inland", "uncertain mood", "upriver", "unwitnessed past", "valency increasing; valence marker", "verbaliser", "vegetable (food) gender", "venitive (coming towards; andative)", "ventive; ventitive", "vertical", "vialis case", "verbal noun", "vocative case", "volitive mood; volitional", "interrogative pronoun", "wh- question", "witnessed evidential", "witnessed past", "witnessed past", "yes-no question", "detransitiviser", "ergative", "exhortative", "hearsay", "malefactive", "previous different subject", "frustrative", "subsequent different subject", "subsequent same subject intransitive", "subsequent same subject transitive", "previous same subject intransitive", "previous same subject transitive", "simultaneous different subject", "simultaneous same subject intransitive", "simultaneous same subject transitive", "absolutive", "aniapplicative", "temporal converb", "perfective converb", "aseverative", "second person possessive", "second person possessive", "first person possessive", "possessor", "simultaneous event different subject", "same event", "same-subject", "uninflected", "upcoast", "relational", "self-benefactive", "personal experience", "expectational"];
 	var abbreviations = [];
 	var explanations = [];
 	var abbrvInput = $("#abbrvInput").val().split("\n");
@@ -50,7 +50,7 @@ function glossarize(markup) {
 	);
 
 	convert(conv);
-	$("#out").html(conv.output);
+	$("#result").html(conv.output);
 	$("#output").focus();
 	$("#output").select();
 	setLocalStorage();
@@ -69,11 +69,11 @@ function convert(conv) {
 	lines = lines.split("\n");
 	for (let i = 0; i < lines.length; i++) {
 		if (lines[i] == "") {
-			if (lines[i+1] != "") {
+			if (lines[i + 1] != "") {
 				lines[i] = "$&N;";
 			}
 		}
-		lines[i] = lines[i].replace(/ +(?= )/g,'').trim();
+		lines[i] = lines[i].replace(/ +(?= )/g, '').trim();
 	}
 	lines = lines.map($.trim).filter(function (x) { return !(x === ""); });
 	for (let i = 0; i < lines.length; i++) {
@@ -86,7 +86,7 @@ function convert(conv) {
 	// tool is very limited and most of what we're doing is enclosing
 	// elements of the input in a specific format... Anything but this approach
 	// may be over-engeneering.
-	switch(markup) {
+	switch (markup) {
 		case "htmlTable":
 			htmlTableMarkup();
 			break;
@@ -123,7 +123,7 @@ function convert(conv) {
 			var toMatch = col_num + 1;
 			toMatch.toString();
 			stringInterlinear = nonInterlinear.join(',');
-  		var includes = stringInterlinear.indexOf(toMatch);
+			var includes = stringInterlinear.indexOf(toMatch);
 			if (includes != -1) {
 				skipline = true;
 			} else if (col_num + 1 == lines.length) {
@@ -140,7 +140,7 @@ function convert(conv) {
 			var toMatch = col_num + 1;
 			toMatch.toString();
 			stringInterlinear = nonInterlinear.join(',');
-  		var includes = stringInterlinear.indexOf(toMatch);
+			var includes = stringInterlinear.indexOf(toMatch);
 			if (includes != -1) {
 				skipline = true;
 			}
@@ -237,14 +237,14 @@ function convert(conv) {
 
 				let noDiacriticsLength = noDiacritics.length
 				noDiChar = 0;
-				while (noDiChar < noDiacritics.length){
+				while (noDiChar < noDiacritics.length) {
 					noDiChar++
-					if (noDiacritics[noDiChar] == "˥"){
+					if (noDiacritics[noDiChar] == "˥") {
 						noDiChar++
-						if (noDiacritics[noDiChar] == "˥"){
+						if (noDiacritics[noDiChar] == "˥") {
 							noDiChar++
 							noDiacriticsLength--
-							if (noDiacritics[noDiChar] == "˥"){
+							if (noDiacritics[noDiChar] == "˥") {
 								noDiacriticsLength--
 							}
 						}
@@ -287,14 +287,14 @@ function convert(conv) {
 
 					let noDiacriticsLength = noDiacritics.length
 					noDiChar = 0;
-					while (noDiChar < noDiacritics.length){
+					while (noDiChar < noDiacritics.length) {
 						noDiChar++
-						if (noDiacritics[noDiChar] == "˥"){
+						if (noDiacritics[noDiChar] == "˥") {
 							noDiChar++
-							if (noDiacritics[noDiChar] == "˥"){
+							if (noDiacritics[noDiChar] == "˥") {
 								noDiChar++
 								noDiacriticsLength--
-								if (noDiacritics[noDiChar] == "˥"){
+								if (noDiacritics[noDiChar] == "˥") {
 									noDiacriticsLength--
 								}
 							}
@@ -315,7 +315,7 @@ function convert(conv) {
 		latexOutput = "";
 		for (let col_num = 0; col_num < lines.length; col_num++) {
 			// Third last line
-		  if (col_num + 3 == lines.length) {
+			if (col_num + 3 == lines.length) {
 				latexOutput += "\\begin{exe}\n\\ex\n\\gll " + lines[col_num] + "\\\\\n";
 			} else if (col_num + 2 == lines.length) {
 				if (useSmallCaps) {
@@ -357,7 +357,7 @@ function convert(conv) {
 					}
 				}
 				zbbOutput += "\n"
-			//Other lines, spit it out
+				//Other lines, spit it out
 			} else {
 				zbbOutput += lines[col_num] + "\n";
 			}
@@ -430,14 +430,14 @@ function convert(conv) {
 
 				let noDiacriticsLength = noDiacritics.length
 				noDiChar = 0;
-				while (noDiChar < noDiacritics.length){
+				while (noDiChar < noDiacritics.length) {
 					noDiChar++
-					if (noDiacritics[noDiChar] == "˥"){
+					if (noDiacritics[noDiChar] == "˥") {
 						noDiChar++
-						if (noDiacritics[noDiChar] == "˥"){
+						if (noDiacritics[noDiChar] == "˥") {
 							noDiChar++
 							noDiacriticsLength--
-							if (noDiacritics[noDiChar] == "˥"){
+							if (noDiacritics[noDiChar] == "˥") {
 								noDiacriticsLength--
 							}
 						}
@@ -480,14 +480,14 @@ function convert(conv) {
 
 					let noDiacriticsLength = noDiacritics.length
 					noDiChar = 0;
-					while (noDiChar < noDiacritics.length){
+					while (noDiChar < noDiacritics.length) {
 						noDiChar++
-						if (noDiacritics[noDiChar] == "˥"){
+						if (noDiacritics[noDiChar] == "˥") {
 							noDiChar++
-							if (noDiacritics[noDiChar] == "˥"){
+							if (noDiacritics[noDiChar] == "˥") {
 								noDiChar++
 								noDiacriticsLength--
-								if (noDiacritics[noDiChar] == "˥"){
+								if (noDiacritics[noDiChar] == "˥") {
 									noDiacriticsLength--
 								}
 							}
@@ -514,7 +514,7 @@ function convert(conv) {
 			var toMatch = col_num + 1;
 			toMatch.toString();
 			stringInterlinear = nonInterlinear.join(',');
-  		var includes = stringInterlinear.indexOf(toMatch);
+			var includes = stringInterlinear.indexOf(toMatch);
 			if (includes != -1) {
 				skipline = true;
 			} else if (col_num + 1 == lines.length) {
@@ -527,11 +527,11 @@ function convert(conv) {
 		for (let col_num = 0; col_num < lines.length; col_num++) {
 			var parsedEntry = "";
 			skipline = false;
-			
+
 			var toMatch = col_num + 1;
 			toMatch.toString();
 			stringInterlinear = nonInterlinear.join(',');
-  		var includes = stringInterlinear.indexOf(toMatch);
+			var includes = stringInterlinear.indexOf(toMatch);
 			if (includes != -1) {
 				skipline = true;
 			}
@@ -808,7 +808,7 @@ Converter.prototype.finish = function (input) {
 	this.output = "<textarea id='output' spellcheck='false'>" + input + "</textarea>";
 }
 Converter.prototype.finishAndShow = function (input) {
-	if (this.useAcknowledgement){
+	if (this.useAcknowledgement) {
 		let ack = "<i class='gmg-ack'>Gloss provided by <a href='https://neonnaut.github.io/'>Gloss My Gloss</a></i>";
 		this.output = input + ack + "<br>" + "<br><textarea id='output' spellcheck='false'>" + input + "\n" + ack + "</textarea>";
 	} else {
@@ -845,7 +845,7 @@ window.onload = function () {
 $(window).load(function () {
 	$("[name='markupButton']").click(function () {
 		glossarize($(this).attr('id'));
-		var selection = document.querySelectorAll("#switch-field input");
+		var selection = document.querySelectorAll(".switch-field input");
 		for (i = 0; i < selection.length; i++) {
 			selection[i].classList.remove('checked');
 		}

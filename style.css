@@ -22,10 +22,15 @@ section {
   height: 8em;
   width: 98%;
 }
+textarea {
+  width: 98%;
+}
+#input {
+  height: 8em;
+}
 #output {
   font-family: monospace;
   height: 12em;
-  width: 98%;
 }
 #out {
   margin: 10px 0;
@@ -118,7 +123,7 @@ label, a:link, #switch-field, #bottom-content {
 textarea, input {
   background: #Fdfbf8;
 }
-#switch-field input {
+.switch-field input {
   -webkit-appearance: none;
   background-color: #fefefe;
   border: 1px solid rgba(0, 0, 0, 0.2);
@@ -133,10 +138,11 @@ textarea, input {
   transition: all 0.1s ease-in-out;
   user-select: none;
 }
-#switch-field input:hover {
+.switch-field input:hover {
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.15), 0 1px rgba(255, 255, 255, 0.1);
   cursor: pointer;
 }
-#switch-field .checked {
+.switch-field .checked {
   background-color: #2d77d1;
   box-shadow: none;
   color: #FFF;
@@ -157,6 +163,7 @@ button {
   user-select: none;
 }
 button:hover {
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.15), 0 1px rgba(255, 255, 255, 0.1);
   cursor: pointer;
 }
 fieldset {
@@ -209,6 +216,40 @@ div .gll {
   font-variant: small-caps;
   font-variant-numeric: oldstyle-nums;
   text-transform: lowercase;
+}
+
+#errors {
+  color: red;
+}
+#number {
+  width: 4em;
+}
+
+.dropdown {
+  display: inline-block;
+  position: relative;
+}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  width: 100%;
+  overflow: auto;
+  box-shadow: 0px 10px 10px 0px rgba(0,0,0,0.4);
+}
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+.dropdown-content a {
+  background-color: #fff;
+  display: block;
+  color: #000000;
+  padding: 5px;
+  text-decoration: none;
+}
+.dropdown-content a:hover {
+  color: #FFFFFF;
+  background-color: #00A4BD;
+  cursor: pointer;
 }
 
 /* --Mobile first, because that's the hipster thing to do I guess-- */
