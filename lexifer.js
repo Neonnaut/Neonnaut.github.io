@@ -56,9 +56,9 @@ var colourText = function () {
         } else if (myLines[i].startsWith("with:")) {
             myString = myLines[i].split(":");
             parsedLines.push("<span class='purple-line'>" + myString[0] + "</span>:" + myString[1]);
-        } else if (myLines[i].startsWith("%")) {
-            myString = myLines[i].split(":");
-            parsedLines.push("<span class='purple-line'>" + myString[0] + "</span>:" + myString[1]);
+        } else if (myLines[i].startsWith("% ")) {
+            myString = myLines[i].split(" ");
+            parsedLines.push("<span class='purple-line'>" + myString[0] + "</span>" + myString[1]);
         } else if (myLines[i].startsWith("filter:")) {
             myString = myLines[i].split(":");
             parsedLines.push("<span class='purple-line'>" + myString[0] + "</span>:" + myString[1]);
