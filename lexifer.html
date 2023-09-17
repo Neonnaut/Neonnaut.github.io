@@ -4,7 +4,6 @@
   <title>Lexifer</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
   <script type="text/javascript" src="lexifer.js"></script>
-  <script type="text/javascript" src="lexifer-examples.js"></script>
   <meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1" />
   <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png" />
   <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png" />
@@ -18,7 +17,7 @@
   <div id="content">
     <section id="top">
       <h1>Lexifer Online</h1>
-      <textarea id="def" rows="17">with: std-ipa-features std-assimilations coronal-metathesis
+      <div class="fake-textbox" id="def" rows="17" spellcheck='false' contenteditable="true">with: std-ipa-features std-assimilations coronal-metathesis
 
 letters: ʔ a á b ch d e g h i k l m n o p r s t u w y
 
@@ -34,7 +33,7 @@ words: V?$S$S V?$S V?$S$S$S
 reject: (..+)\1+
 
 reject: wu yi w$ y$ h$ ʔʔ (p|t|k|ʔ)h
-filter: nr > tr; mr > pr; ŋ > n</textarea>
+filter: nr > tr; mr > pr; ŋ > n</div>
 
       <br><button id="genWords" name="lexiferButton">Generate Words</button><br>
 
@@ -72,6 +71,13 @@ filter: nr > tr; mr > pr; ŋ > n</textarea>
       <h2>Defining a Phonology</h2>
 
     </section>
+
+    <section>
+      <div>enter the text to search
+        <input type=text id=inputField />
+      </div>
+    </section>
+
   </div>
 </body>
 </html>

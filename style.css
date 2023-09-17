@@ -21,6 +21,11 @@ section {
 #input {
   height: 8em;
   width: 98%;
+  white-space: pre;
+}
+#def {
+  white-space: pre;
+  text-wrap: wrap;
 }
 textarea {
   width: 98%;
@@ -252,6 +257,16 @@ div .gll {
   cursor: pointer;
 }
 
+.purple-line {
+  color: blueviolet;
+}
+.comment-line {
+  color: rgb(2, 154, 2);
+}
+.yellow-line {
+  color: rgb(189, 88, 0);
+}
+
 /* --Mobile first, because that's the hipster thing to do I guess-- */
 @media only screen and (min-width: 600px) {
   section {
@@ -261,4 +276,18 @@ div .gll {
   #switch-field {
     display: flex;
   }
+}
+
+.fake-textbox {
+  -moz-appearance: textfield-multiline;
+  -webkit-appearance: textarea;
+  background: white;
+  resize: both;
+  box-shadow: inset 0px 1px 2px #666;
+  padding: 6px;
+  font-family: monospace;
+  font-size: 1.2em;
+}
+.fake-textbox:hover {
+  cursor: auto;
 }
