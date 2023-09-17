@@ -48,28 +48,28 @@ var colourText = function () {
         if (myLines[i].startsWith("#")) {
             parsedLines.push("<span class='comment-line'>" + myLines[i] + "</span>");
         } else if (myLines[i].startsWith("with:")) {
-            myString = myLines[i].split(":");
+            myString = myLines[i].split(/:(.+)/);
             parsedLines.push("<span class='purple-line'>" + myString[0] + "</span>:" + myString[1]);
         } else if (myLines[i].startsWith("letters:")) {
-            myString = myLines[i].split(":");
+            myString = myLines[i].split(/:(.+)/);
             parsedLines.push("<span class='purple-line'>" + myString[0] + "</span>:" + myString[1]);
         } else if (myLines[i].startsWith("with:")) {
-            myString = myLines[i].split(":");
+            myString = myLines[i].split(/:(.+)/);
             parsedLines.push("<span class='purple-line'>" + myString[0] + "</span>:" + myString[1]);
         } else if (myLines[i].startsWith("% ")) {
-            myString = myLines[i].split(" ");
-            parsedLines.push("<span class='purple-line'>" + myString[0] + "</span>" + myString[1]);
+            myString = myLines[i].split(/\s(.+)/);
+            parsedLines.push("<span class='purple-line'>" + myString[0] + "</span> " + myString[1]);
         } else if (myLines[i].startsWith("filter:")) {
-            myString = myLines[i].split(":");
+            myString = myLines[i].split(/:(.+)/);
             parsedLines.push("<span class='purple-line'>" + myString[0] + "</span>:" + myString[1]);
         } else if (myLines[i].startsWith("reject:")) {
-            myString = myLines[i].split(":");
+            myString = myLines[i].split(/:(.+)/);
             parsedLines.push("<span class='purple-line'>" + myString[0] + "</span>:" + myString[1]);
         } else if (myLines[i].startsWith("random-rate:")) {
-            myString = myLines[i].split(":");
+            myString = myLines[i].split(/:(.+)/);
             parsedLines.push("<span class='purple-line'>" + myString[0] + "</span>:" + myString[1]);
         } else if (myLines[i].startsWith("words:")) {
-            myString = myLines[i].split(":");
+            myString = myLines[i].split(/:(.+)/);
             parsedLines.push("<span class='yellow-line'>" + myString[0] + "</span>:" + myString[1]);
         } else {
             parsedLines.push(myLines[i]);
