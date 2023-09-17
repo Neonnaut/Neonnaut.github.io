@@ -93,6 +93,7 @@ const genWords = () => {
             }
         ) + "</textarea>"
     ));
+    $('#output').focus();
     colourText();
 };
 class e {
