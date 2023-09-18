@@ -268,6 +268,20 @@ div .gll {
   cursor: pointer;
 }
 
+.fake-textbox {
+  -moz-appearance: textfield-multiline;
+  -webkit-appearance: textarea;
+  background: white;
+  resize: both;
+  box-shadow: inset 0px 1px 2px #666;
+  padding: 6px;
+  font-family: monospace;
+  font-size: 1.2em;
+}
+.fake-textbox:hover {
+  cursor: auto;
+}
+
 .purple-line {
   color: blueviolet;
 }
