@@ -40,9 +40,6 @@ section {
 textarea {
   width: 98%;
 }
-#input {
-  height: 8em;
-}
 #output {
   font-family: monospace;
   height: 12em;
@@ -51,11 +48,11 @@ textarea {
   margin: 10px 0;
 }
 a:link{
-  color:#1b58a3;
+  color:#d3003f;
   text-decoration: none;
 }
 a:visited{
-  color: #1b58a3;
+  color: #d3003f;
 }
 a:hover{
   text-decoration: underline;
@@ -138,9 +135,12 @@ label, a:link, #switch-field, #bottom-content {
 textarea, input, .fake-textbox {
   background: #Fdfbf8;
 }
+input[type='checkbox'] {
+  accent-color: #e80046
+}
 .switch-field input, .switch-field label{
   -webkit-appearance: none;
-  background-color: #fefefe;
+  background-color: #fff9f9;
   border: 1px solid rgba(0, 0, 0, 0.2);
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);
   color: rgba(0, 0, 0, 0.9);
@@ -159,7 +159,7 @@ textarea, input, .fake-textbox {
   cursor: pointer;
 }
 .switch-field .checked {
-  background-color: #2d77d1;
+  background-color: #e80046;
   box-shadow: none;
   color: #FFF;
 }
