@@ -78,30 +78,34 @@ var colourText = function () {
     for (let i = 0; i < myLines.length; i++) {
         if (myLines[i].trim().startsWith("#")) {
             parsedLines.push("<span class='comment-line'>" + myLines[i] + "</span>");
-        } else if (myLines[i].trim().startsWith("with: ")) {
+        } else if (myLines[i].trim().startsWith("with:")) {
             myString = myLines[i].split(/:(.+)/);
-            parsedLines.push("<span class='purple-line'>" + myString[0] + "</span>:" + myString[1]);
-        } else if (myLines[i].trim().startsWith("letters: ")) {
+            if (myString[1] == undefined) { myString[1] = " " } else { myString[1] = ":" + myString[1] }
+            parsedLines.push("<span class='purple-line'>" + myString[0] + "</span>" + myString[1]);
+        } else if (myLines[i].trim().startsWith("letters:")) {
             myString = myLines[i].split(/:(.+)/);
-            parsedLines.push("<span class='purple-line'>" + myString[0] + "</span>:" + myString[1]);
-        } else if (myLines[i].trim().startsWith("with: ")) {
-            myString = myLines[i].split(/:(.+)/);
-            parsedLines.push("<span class='purple-line'>" + myString[0] + "</span>:" + myString[1]);
+            if (myString[1] == undefined) { myString[1] = " " } else { myString[1] = ":" + myString[1] }
+            parsedLines.push("<span class='purple-line'>" + myString[0] + "</span>" + myString[1]);
         } else if (myLines[i].trim().startsWith("% ")) {
             myString = myLines[i].split(/\s(.+)/);
+            if (myString[1] == undefined) { myString[1] = " " } else { myString[1] = ":" + myString[1] }
             parsedLines.push("<span class='purple-line'>" + myString[0] + "</span> " + myString[1]);
-        } else if (myLines[i].trim().startsWith("filter: ")) {
+        } else if (myLines[i].trim().startsWith("filter:")) {
             myString = myLines[i].split(/:(.+)/);
-            parsedLines.push("<span class='purple-line'>" + myString[0] + "</span>:" + myString[1]);
-        } else if (myLines[i].trim().startsWith("reject: ")) {
+            if (myString[1] == undefined) { myString[1] = " " } else { myString[1] = ":" + myString[1] }
+            parsedLines.push("<span class='purple-line'>" + myString[0] + "</span>" + myString[1]);
+        } else if (myLines[i].trim().startsWith("reject:")) {
             myString = myLines[i].split(/:(.+)/);
-            parsedLines.push("<span class='purple-line'>" + myString[0] + "</span>:" + myString[1]);
-        } else if (myLines[i].trim().startsWith("random-rate: ")) {
+            if (myString[1] == undefined) { myString[1] = " " } else { myString[1] = ":" + myString[1] }
+            parsedLines.push("<span class='purple-line'>" + myString[0] + "</span>" + myString[1]);
+        } else if (myLines[i].trim().startsWith("random-rate:")) {
             myString = myLines[i].split(/:(.+)/);
-            parsedLines.push("<span class='purple-line'>" + myString[0] + "</span>:" + myString[1]);
-        } else if (myLines[i].trim().startsWith("words: ")) {
+            if (myString[1] == undefined) { myString[1] = " " } else { myString[1] = ":" + myString[1] }
+            parsedLines.push("<span class='purple-line'>" + myString[0] + "</span>" + myString[1]);
+        } else if (myLines[i].trim().startsWith("words:")) {
             myString = myLines[i].split(/:(.+)/);
-            parsedLines.push("<span class='yellow-line'>" + myString[0] + "</span>:" + myString[1]);
+            if (myString[1] == undefined) { myString[1] = " " } else { myString[1] = ":" + myString[1] }
+            parsedLines.push("<span class='yellow-line'>" + myString[0] + "</span>" + myString[1]);
         } else {
             parsedLines.push(myLines[i]);
         }
