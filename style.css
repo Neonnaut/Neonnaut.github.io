@@ -1,6 +1,16 @@
 html {
   font-size: 62.5%;
 }
+
+label {
+  margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
 body {
   background: #7b7776;
   font-family: 'Public Sans', Arial, sans-serif;
@@ -125,16 +135,16 @@ label, a:link, #switch-field, #bottom-content {
 #switch-field {
   display: inline;
 }
-textarea, input {
+textarea, input, .fake-textbox {
   background: #Fdfbf8;
 }
-.switch-field input {
+.switch-field input, .switch-field label{
   -webkit-appearance: none;
   background-color: #fefefe;
   border: 1px solid rgba(0, 0, 0, 0.2);
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);
   color: rgba(0, 0, 0, 0.9);
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 500;
   line-height: 1;
   margin-bottom: 3px;
@@ -142,8 +152,9 @@ textarea, input {
   text-align: center;
   transition: all 0.1s ease-in-out;
   user-select: none;
+  margin-bottom: 3px;
 }
-.switch-field input:hover {
+.switch-field input:hover, .switch-field label:hover {
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.15), 0 1px rgba(255, 255, 255, 0.1);
   cursor: pointer;
 }
@@ -276,18 +287,4 @@ div .gll {
   #switch-field {
     display: flex;
   }
-}
-
-.fake-textbox {
-  -moz-appearance: textfield-multiline;
-  -webkit-appearance: textarea;
-  background: white;
-  resize: both;
-  box-shadow: inset 0px 1px 2px #666;
-  padding: 6px;
-  font-family: monospace;
-  font-size: 1.2em;
-}
-.fake-textbox:hover {
-  cursor: auto;
 }

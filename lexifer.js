@@ -26,8 +26,15 @@ $(window).load(function () {
     $("[name='lexiferButton']").click(function () {
         genWords();
     });
+    $("[name='fakeLoadButton']").click(function () {
+        importFile();
+    });
+    $("[name='saveButton']").click(function () {
+        downloadFile($("#def").text());
+    });
 });
 window.addEventListener("load", function () {
+    lexiferExample('basic');
     colourText();
 });
 
@@ -39,36 +46,60 @@ document.addEventListener('keydown', event => {
     }
 });
 
+function importFile() {
+    let input = document.createElement('input');
+    input.type = 'file';
+    input.onchange = _this => {
+        let file = Array.from(input.files)[0], read = new FileReader();
+        read.readAsText(file);
+
+        read.onloadend = function () {
+            $("#def").html(read.result);
+            colourText();
+        }
+    };
+    input.click();
+}
+
+const downloadFile = (content) => {
+    const link = document.createElement("a");
+    const file = new Blob([content], { type: 'text/plain' });
+    link.href = URL.createObjectURL(file);
+    link.download = "sample.def";
+    link.click();
+    URL.revokeObjectURL(link.href);
+};
+
 var colourText = function () {
     var typedText = $("#def").text();
     var myLines = typedText.split('\n');
     let myString = ''
     var parsedLines = [];
     for (let i = 0; i < myLines.length; i++) {
-        if (myLines[i].startsWith("#")) {
+        if (myLines[i].trim().startsWith("#")) {
             parsedLines.push("<span class='comment-line'>" + myLines[i] + "</span>");
-        } else if (myLines[i].startsWith("with:")) {
+        } else if (myLines[i].trim().startsWith("with: ")) {
             myString = myLines[i].split(/:(.+)/);
             parsedLines.push("<span class='purple-line'>" + myString[0] + "</span>:" + myString[1]);
-        } else if (myLines[i].startsWith("letters:")) {
+        } else if (myLines[i].trim().startsWith("letters: ")) {
             myString = myLines[i].split(/:(.+)/);
             parsedLines.push("<span class='purple-line'>" + myString[0] + "</span>:" + myString[1]);
-        } else if (myLines[i].startsWith("with:")) {
+        } else if (myLines[i].trim().startsWith("with: ")) {
             myString = myLines[i].split(/:(.+)/);
             parsedLines.push("<span class='purple-line'>" + myString[0] + "</span>:" + myString[1]);
-        } else if (myLines[i].startsWith("% ")) {
+        } else if (myLines[i].trim().startsWith("% ")) {
             myString = myLines[i].split(/\s(.+)/);
             parsedLines.push("<span class='purple-line'>" + myString[0] + "</span> " + myString[1]);
-        } else if (myLines[i].startsWith("filter:")) {
+        } else if (myLines[i].trim().startsWith("filter: ")) {
             myString = myLines[i].split(/:(.+)/);
             parsedLines.push("<span class='purple-line'>" + myString[0] + "</span>:" + myString[1]);
-        } else if (myLines[i].startsWith("reject:")) {
+        } else if (myLines[i].trim().startsWith("reject: ")) {
             myString = myLines[i].split(/:(.+)/);
             parsedLines.push("<span class='purple-line'>" + myString[0] + "</span>:" + myString[1]);
-        } else if (myLines[i].startsWith("random-rate:")) {
+        } else if (myLines[i].trim().startsWith("random-rate: ")) {
             myString = myLines[i].split(/:(.+)/);
             parsedLines.push("<span class='purple-line'>" + myString[0] + "</span>:" + myString[1]);
-        } else if (myLines[i].startsWith("words:")) {
+        } else if (myLines[i].trim().startsWith("words: ")) {
             myString = myLines[i].split(/:(.+)/);
             parsedLines.push("<span class='yellow-line'>" + myString[0] + "</span>:" + myString[1]);
         } else {

@@ -17,25 +17,16 @@
   <div id="content">
     <section id="top">
       <h1>Lexifer Online</h1>
-      <div class="fake-textbox" id="def" rows="17" spellcheck='false' contenteditable="true">with: std-ipa-features std-assimilations coronal-metathesis
+      <div class="fake-textbox" id="def" rows="17" spellcheck='false' contenteditable="true"></div>
 
-letters: ʔ a á b ch d e g h i k l m n o p r s t u w y
-
-C = t n k m ch l ʔ s r d h w b y p g
-D = n l ʔ t k r p
-V = a i e á u o
-
-$S = CVD?
-
-words: V?$S$S V?$S V?$S$S$S
-
-# haplology
-reject: (..+)\1+
-
-reject: wu yi w$ y$ h$ ʔʔ (p|t|k|ʔ)h
-filter: nr > tr; mr > pr; ŋ > n</div>
-
-      <br><button id="genWords" name="lexiferButton">Generate Words</button><br>
+      <br>
+      <div class="switch-field">
+        <input type="submit" id="genWords" name="lexiferButton" value="Generate words" name="markupButton">
+        <input type="file" name="loadButton" style="display: none;" accept=".txt, .def" />
+        <input type="submit" id="LoadFile" value="Load" name="fakeLoadButton">
+        <input type="submit" id="saveFile" value="Save" name="saveButton"> 
+      </div>
+      <br>
 
       <h3>Output</h3>
       <p id="errors"></p>
@@ -70,12 +61,6 @@ filter: nr > tr; mr > pr; ŋ > n</div>
       
       <h2>Defining a Phonology</h2>
 
-    </section>
-
-    <section>
-      <div>enter the text to search
-        <input type=text id=inputField />
-      </div>
     </section>
 
   </div>
