@@ -808,7 +808,6 @@ letters: a á b c d dz dʒ e é f g h i í j k l m n o ó p r s ʃ t ts tʃ u ú
 
 C = t n k tʃ s m r ʃ d h p ts v l d b ʒ dʒ f j z p g dz
 
-##################################################
 # Some initial fricative + C clusters
 D = s ʃ v ʒ f z
 E = t n k tʃ m r p ts l v f p
@@ -826,7 +825,6 @@ E = t n k tʃ m r p ts l v f p
 'z - - - -  -  - - - - + +
 'ʒ - - - -  -  - - - - - -
 
-##################################################
 # For initial complex clusters.
 W = s ʃ
 X = tr kr kl pr
@@ -839,7 +837,6 @@ V = a i e á u o é í ó ú
 S = s z ʃ
 R = n l r m
 
-##################################################
 # Vowel clusters
 % i e u o a í é ú ó á
 i - + + + + - + + + +
@@ -853,7 +850,6 @@ a + + + + - + - - + -
 ó - - - - - - - - - -
 á - - - - - - - - - -
 
-##################################################
 # Coda clusters
 T = t n k tʃ s m r ʃ d p ts v l d dʒ b ʒ f j z p g dz
 
@@ -881,7 +877,6 @@ l  +  +  +  +  +  +  +   +   -   +  -  +  +  -  -  +  -  +  -  -
 r  +  +  +  +  +  +  +   +   -   +  +  +  +  +  +  +  +  +  +  +
 j  +  +  +  -  +  +  +   +   -   +  +  +  +  +  +  +  +  +  -  -
 
-##################################################
 # Words
 
 # First, some basic syllable types, with clustering rules as defined
