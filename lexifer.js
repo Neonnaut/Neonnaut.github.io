@@ -38,6 +38,15 @@ window.addEventListener("load", function () {
     colourText();
 });
 
+function escapeHtml(htmlStr) {
+    return htmlStr.replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+
+}
+
 // https://stackoverflow.com/a/61237402
 document.addEventListener('keydown', event => {
     if (event.key === 'Enter') {
@@ -72,6 +81,7 @@ const downloadFile = (content) => {
 
 var colourText = function () {
     var typedText = $("#def").text();
+    typedText = escapeHtml(typedText);
     var myLines = typedText.split('\n');
     let myString = ''
     var parsedLines = [];
