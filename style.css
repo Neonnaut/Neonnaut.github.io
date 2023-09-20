@@ -421,15 +421,15 @@ mark {
 nav {
   background: #3f3f3f;
 }
-.breadcrumb{
+.breadcrumbs{
   font-size:1em;
   margin: 0;
   padding: 10px 0;
 }
-.breadcrumb li {
+.breadcrumbs li {
   display: inline-block;
 }
-.breadcrumb li:before {
+.breadcrumbs li:not(:first-child):before {
   padding: 0 5px;
   color: #ccc;
   content: "»";
@@ -441,4 +441,14 @@ nav {
     margin: 0 0 10px 0;
     padding: 30px 30px;
   }
+}
+
+video, audio, iframe, embed, object, canvas {
+  width:100%;
+  border: solid #333333 1px;
+  border-radius: 3px;
+}
+
+img {
+  width: 100%;
 }

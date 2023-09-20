@@ -1,17 +1,15 @@
 $(document).ready(function () {
-	if ($('.breadcrumb')) {
+	if ($('.breadcrumbs')) {
 		var here = location.href.replace(/(\?.*)$/, '').split('/').slice(3);
 
-		crumbs = []
-		let dock = $('.breadcrumb');
+		var crumbs = []
 
 		for (var j = 0; j < here.length; j++) {
-			var pageName = here[j].charAt(0).toUpperCase() + here[j].slice(1);
-			var link = '/' + here.slice(0, j + 1).join('/');
-			var myElement = '<li><a href="' + link + '">' + pageName.replace(/\.(htm[l]?|asp[x]?|php|jsp)$/, '') + '</a></li>';
-			crumbs.push(myElement);
+			let pageName = here[j].charAt(0).toUpperCase() + here[j].slice(1); pageName = pageName.trim();
+			let link = '/' + here.slice(0, j + 1).join('/');
+			crumbs.push('<li><a href="' + link + '">' + pageName.replace(/\.(htm[l]?|asp[x]?|php|jsp)$/, '') + '</a></li>');
 		}
-		$('.breadcrumb').html(crumbs.join('\n'));
+		$('.breadcrumbs').append(crumbs.join('\n'));
 	}
 });
 
