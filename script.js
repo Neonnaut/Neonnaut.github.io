@@ -1,3 +1,60 @@
+$(document).ready(function () {
+	if ($('.breadcrumb')) {
+		var here = location.href.replace(/(\?.*)$/, '').split('/').slice(3);
+
+		crumbs = []
+		let dock = $('.breadcrumb');
+
+		for (var j = 0; j < here.length; j++) {
+			var pageName = here[j].charAt(0).toUpperCase() + here[j].slice(1);
+			var link = '/' + here.slice(0, j + 1).join('/');
+			var myElement = '<li><a href="' + link + '">' + pageName.replace(/\.(htm[l]?|asp[x]?|php|jsp)$/, '') + '</a></li>';
+			crumbs.push(myElement);
+		}
+		$('.breadcrumb').html(crumbs.join('\n'));
+	}
+});
+
+
+// Populate input fields with data in local storage on window load if it exists
+window.onload = function () {
+	//Breadcrumbs based on URL location
+	if (localStorage.hasOwnProperty('notInterlinear')) {
+		$('#input').val(localStorage.getItem('input'));
+		$('#notInterlinear').val(localStorage.getItem('notInterlinear'));
+		$('#abbrvInput').val(localStorage.getItem('abbrvInput'));
+		$('#abbrvDelimiterInput').val(localStorage.getItem('abbrvDelimiterInput'));
+
+		// Select all text in the input
+		$('#input').focus().select();
+	}
+};
+// Check for markup submit button and colour it blue
+$(window).load(function () {
+	$("[name='markupButton']").click(function () {
+		glossarize($(this).attr('id'));
+		var selection = document.querySelectorAll(".switch-field input");
+		for (i = 0; i < selection.length; i++) {
+			selection[i].classList.remove('checked');
+		}
+		$(id = $(this)).addClass("checked");
+	});
+	// Check if use abbreviations has been unchecked and disable abbreviation input
+	$("#useAbbrv").click(function () {
+		if ($("#useAbbrv").is(':checked')) {
+			$("#abbrvInput").prop('disabled', false);
+			$("#abbrvDelimiterInput").prop('disabled', false);
+			$("#useInputAbbrv").prop('disabled', false);
+		} else {
+			$("#abbrvInput").prop('disabled', true);
+			$("#abbrvDelimiterInput").prop('disabled', true);
+			$("#useInputAbbrv").prop('disabled', true);
+		}
+	});
+});
+
+
+
 function glossarize(markup) {
 
 	//Get noninterlinear lines
@@ -753,32 +810,14 @@ function splitEntryGlossWiki(entry, conv) {
 
 function toSmallCaps(input) {
 	var table = [];
-	table["A"] = "ᴀ";
-	table["B"] = "ʙ";
-	table["C"] = "ᴄ";
-	table["D"] = "ᴅ";
-	table["E"] = "ᴇ";
-	table["F"] = "ғ";
-	table["G"] = "ɢ";
-	table["H"] = "ʜ";
-	table["I"] = "ɪ";
-	table["J"] = "ᴊ";
-	table["K"] = "ᴋ";
-	table["L"] = "ʟ";
-	table["M"] = "ᴍ";
-	table["N"] = "ɴ";
-	table["O"] = "ᴏ";
-	table["P"] = "ᴘ";
-	table["Q"] = "ǫ";
-	table["R"] = "ʀ";
-	table["S"] = "s";
-	table["T"] = "ᴛ";
-	table["U"] = "ᴜ";
-	table["V"] = "ᴠ";
-	table["W"] = "ᴡ";
-	table["X"] = "x";
-	table["Y"] = "ʏ";
-	table["Z"] = "ᴢ";
+	// small caps X is just lowercase x; small caps Q is o with ogonek.
+	table["A"] = "ᴀ"; table["B"] = "ʙ"; table["C"] = "ᴄ"; table["D"] = "ᴅ";
+	table["E"] = "ᴇ"; table["F"] = "ғ"; table["G"] = "ɢ"; table["H"] = "ʜ";
+	table["I"] = "ɪ"; table["J"] = "ᴊ"; table["K"] = "ᴋ"; table["L"] = "ʟ";
+	table["M"] = "ᴍ"; table["N"] = "ɴ"; table["O"] = "ᴏ"; table["P"] = "ᴘ";
+	table["Q"] = "ǫ"; table["R"] = "ʀ"; table["S"] = "s"; table["T"] = "ᴛ";
+	table["U"] = "ᴜ"; table["V"] = "ᴠ"; table["W"] = "ᴡ"; table["X"] = "x";
+	table["Y"] = "ʏ"; table["Z"] = "ᴢ";
 
 	var result = "";
 
@@ -829,38 +868,3 @@ function setLocalStorage() {
 	localStorage.setItem('abbrvInput', $('#abbrvInput').val());
 	localStorage.setItem('abbrvDelimiterInput', $('#abbrvDelimiterInput').val());
 }
-// Populate input fields with data in local storage on window load if it exists
-window.onload = function () {
-	if (localStorage.hasOwnProperty('notInterlinear')) {
-		$('#input').val(localStorage.getItem('input'));
-		$('#notInterlinear').val(localStorage.getItem('notInterlinear'));
-		$('#abbrvInput').val(localStorage.getItem('abbrvInput'));
-		$('#abbrvDelimiterInput').val(localStorage.getItem('abbrvDelimiterInput'));
-
-		// Select all text in the input
-		$('#input').focus().select();
-	}
-};
-// Check for markup submit button and colour it blue
-$(window).load(function () {
-	$("[name='markupButton']").click(function () {
-		glossarize($(this).attr('id'));
-		var selection = document.querySelectorAll(".switch-field input");
-		for (i = 0; i < selection.length; i++) {
-			selection[i].classList.remove('checked');
-		}
-		$(id = $(this)).addClass("checked");
-	});
-	// Check if use abbreviations has been unchecked and disable abbreviation input
-	$("#useAbbrv").click(function () {
-		if ($("#useAbbrv").is(':checked')) {
-			$("#abbrvInput").prop('disabled', false);
-			$("#abbrvDelimiterInput").prop('disabled', false);
-			$("#useInputAbbrv").prop('disabled', false);
-		} else {
-			$("#abbrvInput").prop('disabled', true);
-			$("#abbrvDelimiterInput").prop('disabled', true);
-			$("#useInputAbbrv").prop('disabled', true);
-		}
-	});
-});

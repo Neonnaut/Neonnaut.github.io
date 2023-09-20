@@ -81,9 +81,9 @@ ul, ol {
   padding-left:20px;
 }
 h1 {
-  background: #333333;
+  background: #3f3f3f;
   border-radius: 6px;
-  color: #eee;
+  color: #f3f3f3;
   font-family: Candara, 'Public Sans', Arial, sans-serif;
   font-size: 2.618rem;
   font-style: normal;
@@ -416,6 +416,23 @@ thead .sorttable_nosort {
 mark {
   background: #3de5ff;
   padding: 2px 2px
+}
+
+nav {
+  background: #3f3f3f;
+}
+.breadcrumb{
+  font-size:1em;
+  margin: 0;
+  padding: 10px 0;
+}
+.breadcrumb li {
+  display: inline-block;
+}
+.breadcrumb li:before {
+  padding: 0 5px;
+  color: #ccc;
+  content: "»";
 }
 
 /* --Mobile first, because that's the hipster thing to do I guess-- */
