@@ -103,8 +103,8 @@ var colourText = function () {
             parsedLines.push("<span class='purple-line'>" + myString[0] + "</span>" + myString[1]);
         } else if (myLines[i].trim().startsWith("% ")) {
             myString = myLines[i].split(/\s(.+)/);
-            if (myString[1] == undefined) { myString[1] = " " } else { myString[1] = ":" + myString[1] }
-            parsedLines.push("<span class='purple-line'>" + myString[0] + "</span> " + myString[1]);
+            if (myString[1] == undefined) { myString[1] = " " } else { myString[1] = " " + myString[1] }
+            parsedLines.push("<span class='purple-line'>" + myString[0] + "</span>" + myString[1]);
         } else if (myLines[i].trim().startsWith("filter:")) {
             myString = myLines[i].split(/:(.+)/);
             if (myString[1] == undefined) { myString[1] = " " } else { myString[1] = ":" + myString[1] }

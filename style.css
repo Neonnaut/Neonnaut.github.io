@@ -210,6 +210,15 @@ button:hover {
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.15), 0 1px rgba(255, 255, 255, 0.1);
   cursor: pointer;
 }
+
+select option:hover {
+  background-color: #c28194;
+}
+select option:active {
+  background-color: #ffff00;
+}
+
+
 fieldset {
   border: 2px ridge #aaa;
   margin-bottom: 8px;
