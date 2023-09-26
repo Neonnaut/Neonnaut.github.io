@@ -11,6 +11,7 @@
   <!-- Scripts and stylings -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
   <script src="script.js"></script>
+  <script src="breadcrumbs.js"></script>
   <link href="style.css" rel="stylesheet" type="text/css" media="all">
   <script src="sort-table.js"></script>
   <!-- Fonts -->
@@ -19,22 +20,20 @@
   <link rel="apple-touch-icon" sizes="57x57" href="../img/ico/apple-icon-57x57.png"><link rel="apple-touch-icon" sizes="60x60" href="../img/ico/apple-icon-60x60.png"><link rel="apple-touch-icon" sizes="72x72" href="../img/ico/apple-icon-72x72.png"><link rel="apple-touch-icon" sizes="76x76" href="../img/ico/apple-icon-76x76.png"><link rel="apple-touch-icon" sizes="114x114" href="../img/ico/apple-icon-114x114.png"><link rel="apple-touch-icon" sizes="120x120" href="../img/ico/apple-icon-120x120.png"><link rel="apple-touch-icon" sizes="144x144" href="../img/ico/apple-icon-144x144.png"><link rel="apple-touch-icon" sizes="152x152" href="../img/ico/apple-icon-152x152.png"><link rel="apple-touch-icon" sizes="180x180" href="../img/ico/apple-icon-180x180.png"><link rel="icon" type="image/png" sizes="192x192"  href="../img/ico/android-icon-192x192.png"><link rel="icon" type="image/png" sizes="32x32" href="../img/ico/favicon-32x32.png"><link rel="icon" type="image/png" sizes="96x96" href="../img/ico/favicon-96x96.png"><link rel="icon" type="image/png" sizes="16x16" href="../img/ico/favicon-16x16.png"><link rel="manifest" href="../img/ico/manifest.json"><meta name="msapplication-TileColor" content="#ffffff"><meta name="msapplication-TileImage" content="../img/ico/ms-icon-144x144.png"><meta name="theme-color" content="#ffffff">
   -->
 </head>
-<body id="body" class="dark-theme">
+<body id="body">
   <nav>
     <ol class="breadcrumbs">
       <li>
         <a href="https://neocities.org/browse">Neocities</a>
       </li>
       <li>
-        <a href="index.html">Home</a>
+        <a href="index.html">Menu</a>
       </li>
     </ol>
   </nav>
-  <header>
-    <a href="conlangs.html"></a>
-  </header>
   <div id="content">
     <section id="top">
+      <h1>Testing Elements</h1>
       <ul>
         <li>
           <a href="#text">Text</a>
@@ -141,9 +140,9 @@
       </ul>
     </section>
     <section id="text">
-      <h1>Text</h1>
+      <h2>Text</h2>
       <article id="text__headings">
-        <h2>Headings</h2>
+        <h3>Headings</h3>
         <h1>Heading 1</h1>
         <h2>Heading 2</h2>
         <h3>Heading 3</h3>
@@ -152,11 +151,11 @@
         <h6>Heading 6</h6>
       </article>
       <article id="text__paragraphs">
-        <h2>Paragraphs</h2>
+        <h3>Paragraphs</h3>
         <p>A paragraph (from the Greek paragraphos, “to write beside” or “written beside”) is a self-contained unit of a discourse in writing dealing with a particular point or idea. A paragraph consists of one or more sentences. Though not required by the syntax of any language, paragraphs are usually an expected part of formal writing, used to organize longer prose.</p>
       </article>
       <article id="text__blockquotes">
-        <h2>Blockquotes</h2>
+        <h3>Blockquotes</h3>
         <blockquote>
           <p>A block quotation (also known as a long quotation or extract) is a quotation in a written document, that is set off from the main text as a paragraph, or block of text.</p>
           <p>It is typically distinguished visually using indentation and a different typeface or smaller size quotation. It may or may not include a citation, usually placed at the bottom.</p>
@@ -166,14 +165,14 @@
         </blockquote>
       </article>
       <article id="text__lists">
-        <h2>Lists</h2>
+        <h3>Lists</h3>
         <div>
-          <h3>Definition list</h3>
+          <h4>Definition list</h4>
           <dl>
             <dt>Definition List Title</dt>
             <dd>This is a definition list division.</dd>
           </dl>
-          <h3>Ordered List</h3>
+          <h4>Ordered List</h4>
           <ol type="1">
             <li>List Item 1</li>
             <li> List Item 2 <ol type="A">
@@ -199,7 +198,7 @@
             </li>
             <li>List Item 3</li>
           </ol>
-          <h3>Unordered List</h3>
+          <h4>Unordered List</h4>
           <ul>
             <li>List Item 1</li>
             <li> List Item 2 <ul>
@@ -228,22 +227,22 @@
         </div>
       </article>
       <article id="text__details">
-        <h2>Details / Summary</h2>
+        <h3>Details / Summary</h3>
         <details>
           <summary>Expand for details</summary>
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum, odio! Odio natus ullam ad quaerat, eaque necessitatibus, aliquid distinctio similique voluptatibus dicta consequuntur animi. Quaerat facilis quidem unde eos! Ipsa.</p>
         </details>
       </article>
       <article id="text__address">
-        <h2>Address</h2>
+        <h3>Address</h3>
         <address> Written by <a href="mailto:webmaster@example.com">Jon Doe</a>. <br> Visit us at: <br> Example.com <br> Box 564, Disneyland <br> USA </address>
       </article>
       <article id="text__hr">
-        <h2>Horizontal rules</h2>
+        <h3>Horizontal rules</h3>
         <hr>
       </article>
       <article id="text__tables">
-        <h2>Tabular data</h2>
+        <h3>Tabular data</h3>
         <table class="sortable styled-table">
           <caption>Table Caption</caption>
           <thead>
@@ -272,13 +271,13 @@
               <td>Table Cell C</td>
             </tr>
             <tr>
-              <td>Table Cell 1</td>
-              <td>Table Cell 2</td>
-              <td>Table Cell 3</td>
+              <td>Table Cell X</td>
+              <td>Table Cell 0Y</td>
+              <td>Table Cell Z</td>
             </tr>
           </tbody>
         </table>
-        <h2>Table without thead</h2>
+        <h3>Table without thead</h3>
         <table class="styled-table">
           <caption>Table Caption</caption>
           <tbody>
@@ -292,11 +291,11 @@
             </tr>
           </tbody>
         </table>
-        <h2>Table without style</h2>
+        <h3>Table without style</h3>
         <table>
           <tbody>
             <tr>
-              <td>v</td>
+              <td>vvc</td>
               <td>x</td>
             </tr>
             <tr>
@@ -307,7 +306,7 @@
         </table>
       </article>
       <article id="text__code">
-        <h2>Code</h2>
+        <h3>Code</h3>
         <p>
           <strong>Keyboard input:</strong>
           <kbd>Cmd</kbd>
@@ -320,7 +319,7 @@
           <strong>Sample output:</strong>
           <samp>This is sample output from a computer program.</samp>
         </p>
-        <h2>Pre-formatted text</h2>
+        <h3>Pre-formatted text</h3>
         <pre>P R E F O R M A T T E D T E X T
   ! " # $ % &amp; ' ( ) * + , - . /
   0 1 2 3 4 5 6 7 8 9 : ; &lt; = &gt; ?
@@ -330,7 +329,7 @@
   p q r s t u v w x y z { | } ~ </pre>
       </article>
       <article id="text__inline">
-        <h2>Inline elements</h2>
+        <h3>Inline elements</h3>
         <p>
           <a href="#!">This is a text link</a>.
         </p>
@@ -369,7 +368,7 @@
         </p>
       </article>
       <article id="text__comments">
-        <h2>HTML Comments</h2>
+        <h3>HTML Comments</h3>
         <p>There is comment here:
           <!--This comment should not be displayed-->
         </p>
@@ -379,27 +378,27 @@
     </section>
 
     <section id="embedded">
-      <h1>Embedded content</h1>
+      <h3>Embedded content</h3>
       <article id="embedded__images">
-        <h2>Images</h2>
-        <h3>Plain <code>&lt;img&gt;</code> element </h3>
+        <h4>Images</h4>
+        <h5>Plain <code>&lt;img&gt;</code> element </h5>
         <img src="https://placekitten.com/480/480" alt="Photo of a kitten">
-        <h3>
+        <h5>
           <code>&lt;figure&gt;</code> element with <code>&lt;img&gt;</code> element
-        </h3>
+        </h5>
         <figure>
           <img src="https://placekitten.com/420/420" alt="Photo of a kitten">
         </figure>
-        <h3>
+        <h5>
           <code>&lt;figure&gt;</code> element with <code>&lt;img&gt;</code> and <code>&lt;figcaption&gt;</code> elements
-        </h3>
+        </h5>
         <figure>
           <img src="https://placekitten.com/420/420" alt="Photo of a kitten">
           <figcaption>Here is a caption for this image.</figcaption>
         </figure>
-        <h3>
+        <h5>
           <code>&lt;figure&gt;</code> element with a <code>&lt;picture&gt;</code> element
-        </h3>
+        </h5>
         <figure>
           <picture>
             <source srcset="https://placekitten.com/800/800" media="(min-width: 800px)">
@@ -409,43 +408,43 @@
       </article>
 
       <article id="embedded__bgimages">
-        <h2>Background images</h2>
+        <h4>Background images</h4>
         <div style="background-image:url('https://placekitten.com/300/300'); width:300px; height: 300px;"></div>
       </article>
       <article id="embedded__audio">
-        <h2>Audio</h2>
+        <h4>Audio</h4>
         <audio controls="">audio</audio>
       </article>
       <article id="embedded__video">
-        <h2>Video</h2>
+        <h4>Video</h4>
         <video controls="">video</video>
       </article>
       <article id="embedded__iframe">
-        <h2>IFrame</h2>
+        <h4>IFrame</h4>
         <iframe src="index.html" height="300"></iframe>
       </article>
       <article id="embedded__embed">
-        <h2>Embed</h2>
+        <h4>Embed</h4>
         <embed src="index.html" height="300">
       </article>
       <article id="embedded__object">
-        <h2>Object</h2>
+        <h4>Object</h4>
         <object data="index.html" height="300"></object>
       </article>
       <article id="embedded__canvas">
-        <h2>Canvas</h2>
+        <h4>Canvas</h4>
         <canvas>canvas</canvas>
       </article>
       <article id="embedded__meter">
-        <h2>Meter</h2>
+        <h4>Meter</h4>
         <meter value="2" min="0" max="10">2 out of 10</meter>
       </article>
       <article id="embedded__progress">
-        <h2>Progress</h2>
+        <h4>Progress</h4>
         <progress>progress</progress>
       </article>
       <article id="embedded__svg">
-        <h2>Inline SVG</h2>
+        <h4>Inline SVG</h4>
         <svg width="100px" height="100px">
           <circle cx="100" cy="100" r="100" fill="#e80046"></circle>
         </svg>
@@ -453,7 +452,7 @@
     </section>
 
     <section id="forms">
-      <h1>Form elements</h1>
+      <h3>Form elements</h3>
       <form>
         <fieldset id="forms__checkbox">
           <legend>Checkboxes</legend>
@@ -580,23 +579,6 @@
             </optgroup>
           </select>
 
-          <div class="custom-select" style="width:200px;">
-            <select>
-              <option value="0">Select car:</option>
-              <option value="1">Audi</option>
-              <option value="2">BMW</option>
-              <option value="3">Citroen</option>
-              <option value="4">Ford</option>
-              <option value="5">Honda</option>
-              <option value="6">Jaguar</option>
-              <option value="7">Land Rover</option>
-              <option value="8">Mercedes</option>
-              <option value="9">Mini</option>
-              <option value="10">Nissan</option>
-              <option value="11">Toyota</option>
-              <option value="12">Volvo</option>
-            </select>
-          </div>
           <p>
             <label for="select_multiple">Select (multiple)</label>
             <br>
@@ -612,7 +594,7 @@
           <label for="select">Fake Dropdown</label>
           <br>
           <div class="dropdown">
-            <input value="▼ Examples (clears input) foo bar baz"></input>
+            <input type="button" value="▼ A dropdown menu to hover over"></input>
             <div class="dropdown-content">
               <a>Item A</a>
               <a>Item B</a>

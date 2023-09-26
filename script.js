@@ -1,22 +1,6 @@
-$(document).ready(function () {
-	if ($('.breadcrumbs')) {
-		var here = location.href.replace(/(\?.*)$/, '').split('/').slice(3);
-
-		var crumbs = []
-
-		for (var j = 0; j < here.length; j++) {
-			let pageName = here[j].charAt(0).toUpperCase() + here[j].slice(1); pageName = pageName.trim();
-			let link = '/' + here.slice(0, j + 1).join('/');
-			crumbs.push('<li><a href="' + link + '">' + pageName.replace(/\.(htm[l]?|asp[x]?|php|jsp)$/, '') + '</a></li>');
-		}
-		$('.breadcrumbs').append(crumbs.join('\n'));
-	}
-});
-
 
 // Populate input fields with data in local storage on window load if it exists
 window.onload = function () {
-	//Breadcrumbs based on URL location
 	if (localStorage.hasOwnProperty('notInterlinear')) {
 		$('#input').val(localStorage.getItem('input'));
 		$('#notInterlinear').val(localStorage.getItem('notInterlinear'));

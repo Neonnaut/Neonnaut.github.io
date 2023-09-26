@@ -20,6 +20,24 @@ table {
 	border-spacing: 0;
 }
 
+/*-- Form Elements --*/
+fieldset {
+  border: 2px ridge #aaa;
+  margin-bottom: 8px;
+}
+fieldset legend {
+  font-weight: bold;
+  padding: 0 2px;
+}
+input[type='checkbox'], input[type='radio'], input[type='range'], progress {
+  accent-color: #e80046;
+}
+meter::-webkit-meter-optimum-value {
+  background: #e80046;
+}
+meter::-moz-meter-bar {
+  background: #e80046;
+}
 
 
 label {
@@ -67,6 +85,7 @@ textarea {
 #out {
   margin: 10px 0;
 }
+
 a:link{
   color:#d3003f;
   text-decoration: none;
@@ -84,7 +103,6 @@ h1 {
   background: #3f3f3f;
   border-radius: 6px;
   color: #f3f3f3;
-  font-family: Candara, 'Public Sans', Arial, sans-serif;
   font-size: 2.618rem;
   font-style: normal;
   font-variant: normal;
@@ -93,26 +111,30 @@ h1 {
   margin: 0 0 5px 0;
   padding: 15px 10px;
 }
-h2,h3,h4,h5,h6 { 
+h1, h2,h3,h4,h5,h6 { 
   font-family: 'Public Sans', Arial, sans-serif;
 }
 h2 {
-  font-size: 2.5rem;
+  font-size: 2.618rem;
   margin: 9px 0 9px 0;
 }
 h3 {
-  font-size: 2.3rem;
+  color: #4a2100;
+  font-size: 2.4rem;
   margin: 7px 0 7px 0;
 }
 h4 {
-  font-size: 2.15rem;
+  color: #4a4a00;
+  font-size: 2.2rem;
   margin: 7px 0 7px 0;
 }
 h5 {
+  color: #004a0b;
   font-size: 2rem;
   margin: 7px 0 7px 0;
 }
 h6 {
+  color: #00104a;
   font-size: 1.7rem;
   margin: 7px 0 7px 0;
 }
@@ -129,7 +151,7 @@ img {
 
 /* --Input Stuff-- */
 
-label, a:link, #switch-field, #bottom-content {
+label, a:link, #bottom-content {
   font-family: "Segoe UI", Arial, sans-serif;
   -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none; /* Safari */
@@ -156,77 +178,22 @@ label, a:link, #switch-field, #bottom-content {
 textarea, input, .fake-textbox {
   background: #Fdfbf8;
 }
-input[type='checkbox'], input[type='radio'], input[type='range'], progress {
-  accent-color: #e80046;
-}
-meter::-webkit-meter-optimum-value {
-  background: #e80046;
-}
-meter::-moz-meter-bar {
-  background: #e80046;
-}
 
-.switch-field input {
-  -webkit-appearance: none;
-  background-color: #fff9f9;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  border-radius: 4px;
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);
-  color: rgba(0, 0, 0, 0.9);
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 1;
-  margin-bottom: 3px;
-  padding: 8px 13px 6px 13px;
-  text-align: center;
-  transition: all 0.1s ease-in-out;
-  user-select: none;
-}
-.switch-field input:hover {
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.15), 0 1px rgba(255, 255, 255, 0.1);
-  cursor: pointer;
-}
+
+
 .switch-field .checked {
   background-color: #e80046;
   box-shadow: none;
   color: #FFF;
 }
-button {
-  -webkit-appearance: none;
-  background-color: #e4e4e4;
-  border: 1px solid rgba(0, 0, 0, 0.4);
-  box-shadow: inset 0 2px 3px rgb(0 0 0 / 40%), 0 1px rgb(0 0 0 / 10%);
-  color: rgba(0, 0, 0, 0.9);
-  font-size: 1.4em;
-  font-weight: 500;
-  line-height: 1;
-  margin-bottom: 3px;
-  padding: 8px 10px 6px 10px;
-  text-align: center;
-  transition: all 0.1s ease-in-out;
-  user-select: none;
-}
-button:hover {
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.15), 0 1px rgba(255, 255, 255, 0.1);
-  cursor: pointer;
-}
+
 
 select option:hover {
-  background-color: #c28194;
-}
-select option:active {
-  background-color: #ffff00;
+  background-color: #00A4BD;
+  color: #FFF;
 }
 
 
-fieldset {
-  border: 2px ridge #aaa;
-  margin-bottom: 8px;
-}
-fieldset legend {
-  font-weight: bold;
-  padding: 0 2px;
-}
 
 /* --Displaying table method-- */
 
@@ -334,7 +301,7 @@ div .gll {
   color: rgb(189, 88, 0);
 }
 
-input[type="submit"], fieldset, textarea .fake-textbox {
+button, input[type="submit"], input[type="button"], input[type="reset"], input[type="disabled"], fieldset, textarea .fake-textbox {
   border-radius: 3px;
 }
 
@@ -429,11 +396,12 @@ mark {
 
 nav {
   background: #3f3f3f;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 2px 0;
 }
 .breadcrumbs{
   font-size:1em;
-  margin: 0;
-  padding: 10px 0;
 }
 .breadcrumbs li {
   display: inline-block;
@@ -443,6 +411,7 @@ nav {
   color: #ccc;
   content: "»";
 }
+
 
 /* --Mobile first, because that's the hipster thing to do I guess-- */
 @media only screen and (min-width: 600px) {
@@ -460,4 +429,35 @@ video, audio, iframe, embed, object, canvas {
 
 img {
   width: 100%;
+}
+
+button, input[type="submit"], input[type="button"], input[type="reset"], input[type="disabled"] {
+  -webkit-appearance: none;
+  background-color: #e4e4e4;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  box-shadow: inset 0 1px 3px rgb(0 0 0 / 40%), 0 1px rgb(0 0 0 / 10%);
+  color: rgba(0, 0, 0, 0.9);
+  font-size: 1.2em;
+  font-weight: 500;
+  line-height: 1;
+  margin-top: 3px;
+  padding: 8px 10px 6px 10px;
+  text-align: center;
+  transition: all 0.1s ease-in-out;
+  user-select: none;
+}
+button:hover, input[type="submit"]:hover, input[type="button"]:hover, input[type="reset"]:hover, input[type="disabled"]:hover {
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.15), 0 1px rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+}
+button:active, input[type="submit"]:active, input[type="button"]:active, input[type="reset"]:active, input[type="disabled"]:active {
+  color: #fff;
+  background: #d3003f;
+}
+
+code {
+  padding: 1px 2px;
+  background: #cfcfcf;
+  color: #000;
+  border-radius: 3px;
 }

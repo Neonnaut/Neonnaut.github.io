@@ -22,14 +22,14 @@
 
     <section id="top">
       <h1>Linguistic Gloss Generator</h1>
-      <h3>Input to be Glossed</h3>
+      <h2>Input to be Glossed</h2>
       <textarea id="input" name="input" spellcheck="false" placeholder='Astra inclinant, sed non obligant.
 [astra inkliːnant sed non obligant]
 star.ACC.PL incline.PRS.PTCP but NEG bind.3P.PRS.ACT.IND
 "The stars incline us, they do not bind us."'>
       </textarea>
       
-      <h3>Generate Markup</h3>
+      <h2>Generate Markup</h2>
       <div class="switch-field">
         <input type="submit" id="plainText" value="Plain text" name="markupButton">
         <input type="submit" id="htmlTable" value="HTML table" name="markupButton">
@@ -40,7 +40,7 @@ star.ACC.PL incline.PRS.PTCP but NEG bind.3P.PRS.ACT.IND
         <input type="submit" id="wikiTable" value="Wiki" name="markupButton">
       </div>
     
-      <h3>Output</h3>
+      <h2>Output</h2>
       <div id="result"></div>
       <hr>
 
@@ -113,10 +113,10 @@ sun     SUBJECT east    POSSESSIVE sky  LOCATIVE rise
 
       <p> It should be noted that this tool saves the data of the input to the "local storage" of your browser for the next time you visit this page.</p>
 
-      <h4>Plain Text</h4>
+      <h3>Plain Text</h3>
       <p>To align the plain text output properly you need to use a fixed-width font. You can do this by using a &lt;pre&gt; element. Be careful when using the small caps option, as the characters may not display correctly on all devices, especially F, S, X, and Q. My advice is to not use the small caps option using plain text, but the option is there.</p>
 
-      <h4>HTML Table</h4>
+      <h3>HTML Table</h3>
       <p>When using the HTML markup method, use the following CSS on your website to get the desired output:</p>
 
       <pre><blockquote>.abbrv {
@@ -139,7 +139,7 @@ table tr td {
 
       <p>If you wish to style the table element, such as with italics or bold, use css classes on an individual word. If you wish to style an entire line, the best way is to add a class to &lt;tr> and add styles with CSS.</p>
 
-      <h4>HTML Interlinear Div</h4>
+      <h3>HTML Interlinear Div</h3>
       <p>When using the 'HTML Interlinear Div' method, use the following CSS on your website to get the desired output:</p>
       
       <pre><blockquote>.abbrv {
@@ -157,14 +157,14 @@ div .gll {
 
       <p>'Single column lines' does not work with this method. Even if you were to edit the output, a div without the .gll class will only work at the end or the beggining of a block of .gll divs.</p>
 
-      <h4>Latex</h4>
+      <h3>Latex</h3>
       <p>Using Latex's gb4e package, this method normally takes only three lines, therefore this generator only configures three lines.
       <p>make sure to put \usepackage{gb4e} in your preamble. And if you are using small caps, the font you are using has to support small caps.
       
-      <h4>ZBB</h4>
+      <h3>ZBB</h3>
       <p>This method outputs to the ZBB Board's gloss markup. If you provide more than two lines, the third last line must not be empty.
 
-      <h4>Wiki Table</h4>
+      <h3>Wiki Table</h3>
       <p>If your wiki does not have the abbr template, you will need to start a page called template:abbr, with the following code:</p>
 
       <pre><blockquote>&lt;abbr title="{{{2}}}">{{{1|[?]}}}&lt;/abbr>&lt;noinclude>{{documentation}}&lt;/noinclude>

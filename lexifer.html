@@ -45,7 +45,7 @@
         <label for="verbose">Display all generation steps</label><br>
 
         <div class="dropdown switch-field">
-          <input value="▼ Examples (clears input)"></input>
+          <input type="button" value="▼ Examples (clears input)"></input>
           <div class="dropdown-content">
             <a onclick="lexiferExample('basic')">Default</a>
             <a onclick="lexiferExample('basic-ex')">Default with Comments</a>
@@ -60,6 +60,35 @@
       <p>This is a TypeScript version of <a href="https://lingweenie.org/conlang/lexifer.html">Lexifer</a> written by u/bbrk24. Software Copyright (c) 2021-2022 bbrk24Copyright (c), 2006-2023 William S. Annis.</p>
       
       <h2>Defining a Phonology</h2>
+      <p>The phonology definition is the main input to the wordgen. These are saved as .def files.</p>
+
+      <h3>Comments</h3>
+      <p>If a line contains a <code>#</code> sign, everything after it on that line is ignored. You can use this to leave notes about what the def file does or why you made certain decisions.</p>
+
+      <h3>The With: Directory</h3>
+
+      <h4>Featuresets</h4>
+
+      <h4>std-assimilations</h4>
+
+      <h4>coronal-metathesis</h4>
+
+      <h3>Alphabetization – the letters: directive</h3>
+
+      <h3>Describing words</h3>
+
+      <h4>Phoneme classes</h4>
+
+      <h4>Building word shapes</h4>
+
+      <h4>Macros</h4>
+
+      <h4>Categories</h4>
+    
+      <h3>Cluster Fields</h3>
+      <p>Cluster fields are a way to put a lot of related filters or rejections in a smaller space. They are laid out like tables, and start with <code>%</code>. For example, a cluster field could look like:</p>
+    
+      <h3>Filters and Rejections</h3>
 
     </section>
 
