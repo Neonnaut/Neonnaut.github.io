@@ -93,10 +93,6 @@ var colourText = function () {
     for (let i = 0; i < myLines.length; i++) {
         if (myLines[i].trim().startsWith("#")) {
             parsedLines.push("<span class='comment-line'>" + myLines[i] + "</span>");
-        } else if (myLines[i].trim().startsWith("categories:")) {
-            myString = myLines[i].split(/:(.+)/);
-            if (myString[1] == undefined) { myString[1] = " " } else { myString[1] = ":" + myString[1] }
-            parsedLines.push("<span class='purple-line'>" + myString[0] + "</span>" + myString[1]);
         } else if (myLines[i].trim().startsWith("with:")) {
             myString = myLines[i].split(/:(.+)/);
             if (myString[1] == undefined) { myString[1] = " " } else { myString[1] = ":" + myString[1] }
@@ -118,6 +114,10 @@ var colourText = function () {
             if (myString[1] == undefined) { myString[1] = " " } else { myString[1] = ":" + myString[1] }
             parsedLines.push("<span class='purple-line'>" + myString[0] + "</span>" + myString[1]);
         } else if (myLines[i].trim().startsWith("random-rate:")) {
+            myString = myLines[i].split(/:(.+)/);
+            if (myString[1] == undefined) { myString[1] = " " } else { myString[1] = ":" + myString[1] }
+            parsedLines.push("<span class='purple-line'>" + myString[0] + "</span>" + myString[1]);
+        } else if (myLines[i].trim().startsWith("categories:")) {
             myString = myLines[i].split(/:(.+)/);
             if (myString[1] == undefined) { myString[1] = " " } else { myString[1] = ":" + myString[1] }
             parsedLines.push("<span class='purple-line'>" + myString[0] + "</span>" + myString[1]);
