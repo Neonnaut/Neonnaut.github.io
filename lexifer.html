@@ -70,7 +70,7 @@
       <h4>Featuresets</h4>
       <p>If you have a <code>with:</code> statement, you must use exactly one featureset. Currently, there are two options: <code>std-ipa-features</code> and <code>std-digraph-features</code>. The former is IPA, and the latter is ASCII-friendly. The recognized consonants are as follows:</p>
 
-      <table class="styled-table">
+      <table class="styled-table" style="max-height: 500px;">
         <thead>
           <tr>
             <th align="center">IPA</th>
@@ -339,12 +339,12 @@
       <h4>std-assimilations</h4>
       <p>This engine has two behaviors.</p>
 
-      <p>The first affects all consonants for which both voiced and voiceless versions exist. It applies leftward assimilation of voicing. For example, it would turn <code>akda</code> into *agda* and <code>abta</code> into *apta*.</p>
+      <p>The first affects all consonants for which both voiced and voiceless versions exist. It applies leftward assimilation of voicing. For example, it would turn <code>akda</code> into <tag>agda</tag> and <code>abta</code> into <tag>apta</tag>.</p>
 
-      <p>The second only changes nasals, but considers all consonants except for approximants, lateral approximants, and trills. It applies leftward assimilation of place of articulation. For example, it would turn <code>amta</code> into *anta* and <code>anka</code> into *aŋka*.</p>
+      <p>The second only changes nasals, but considers all consonants except for approximants, lateral approximants, and trills. It applies leftward assimilation of place of articulation. For example, it would turn <code>amta</code> into <tag>anta</tag> and <code>anka</code> into <tag>aŋka</tag>.</p>
 
       <h4>coronal-metathesis</h4>
-      <p>This engine only affects bilabial, alveolar, and velar plosives and nasals. It ensures that clusters of these segments have the alveolar element last. For example, it would turn <code>atka</code> into *akta* and <code>anma</code> into *amna*. It does not metathesize a nasal with a plosive; <code>anpa</code> would not become *apna*.</p>
+      <p>This engine only affects bilabial, alveolar, and velar plosives and nasals. It ensures that clusters of these segments have the alveolar element last. For example, it would turn <code>atka</code> into <tag>akta</tag> and <code>anma</code> into <tag>amna</tag>. It does not metathesize a nasal with a plosive; <code>anpa</code> would not become <tag>apna</tag>.</p>
 
       <h3>Alphabetization – the letters: directive</h3>
       <p>If you have a <code>with:</code> directive, there must also be <code>letters:</code>. If not, <code>letters:</code> is optional. <code>letters:</code> tells Lexifer what symbols you use and how to alphabetize them. It also affects how digraphs are parsed, even if <code>std-ipa-features</code> was chosen. For example, consider the following statements:</p>
@@ -407,7 +407,7 @@ words: CVD?</pre></p>
 
       <p>The default random-rate is 10%.</p>
 
-      <p>If you choose from the same class twice in a row, you may put an <code>!</code> after the second one, to indicate they must not be the same phoneme. For example, <code>CC</code> may generate *tt*, but <code>CC!</code> never will.</p>
+      <p>If you choose from the same class twice in a row, you may put an <code>!</code> after the second one, to indicate they must not be the same phoneme. For example, <code>CC</code> may generate <tag>tt</tag>, but <code>CC!</code> never will.</p>
 
       <h4>Macros</h4>
       <p>Macros are a system designed to provide an abbreviation for syllable shapes. They are defined similarly to phoneme classes, but with several important differences:</p>

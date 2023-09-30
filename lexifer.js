@@ -698,7 +698,6 @@ const y = (() => {
                         n && (!1 === o && (l("** 'Unsorted' option always enabled in verbose mode."), (o = !0)), a && l("** 'One per line' option ignored in verbose mode."));
                     const e = r.generate(i, n, o);
                     for (const t in e) "words:" !== t && (h += `\n\n${t}:\n`), (h += e[t].join(a || n ? "\n" : " "));
-                    h = m(h);
                 }
             else n && l("** 'Verbose' option ignored in paragraph mode."), o && l("** 'Unsorted' option ignored in paragraph mode."), a && l("** 'One per line' option ignored in paragraph mode."), (h = r.paragraph());
         } catch (e) { l(e); }

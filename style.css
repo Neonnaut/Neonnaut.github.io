@@ -193,7 +193,6 @@ thead {
   font-size: 1em;
   margin-bottom: 2px;
   margin-right: auto;
-  max-height: 1000px;
   overflow-x: auto;
   overflow-y: auto;
   white-space: nowrap;
@@ -201,6 +200,22 @@ thead {
 }
 .styled-table a {
   text-decoration: none;
+}
+.fixed-header{
+  width: 400px;
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+
+.fixed-header tbody{
+display:block;
+width: 100%;
+overflow: auto;
+height: 100px;
+}
+
+.fixed-header thead tr {
+ display: block;
 }
 code {
   font-family: monospace;
