@@ -45,10 +45,10 @@
               <a href="#text__paragraphs">Paragraphs</a>
             </li>
             <li>
-              <a href="#text__lists">Lists</a>
+              <a href="#text__blockquotes">Blockquotes</a>
             </li>
             <li>
-              <a href="#text__blockquotes">Blockquotes</a>
+              <a href="#text__lists">Lists</a>
             </li>
             <li>
               <a href="#text__details">Details / Summary</a>
@@ -74,8 +74,43 @@
           </ul>
         </li>
         <li>
+          <a href="#forms">Form elements</a>
+          <ul>
+            <li>
+              <a href="#forms__checkbox">Checkboxes</a>
+            </li>
+            <li>
+              <a href="#forms__radio">Radio buttons</a>
+            </li>
+            <li>
+              <a href="#forms__input">Input fields</a>
+            </li>
+            <li>
+              <a href="#forms__textareas">Textareas</a>
+            </li>
+            <li>
+              <a href="#forms__select">Select menus</a>
+            </li>
+            <li>
+              <a href="#forms__action">Action buttons</a>
+            </li>
+            <li>
+              <a href="#forms__html5">HTML5 inputs</a>
+            </li>
+          </ul>
+        </li>
+        <li>
           <a href="#embedded">Embedded content</a>
           <ul>
+            <li>
+              <a href="#embedded__meter">Meter</a>
+            </li>
+            <li>
+              <a href="#embedded__progress">Progress</a>
+            </li>
+            <li>
+              <a href="#embedded__svg">Inline SVG</a>
+            </li>
             <li>
               <a href="#embedded__images">Images</a>
             </li>
@@ -89,18 +124,6 @@
               <a href="#embedded__video">Video</a>
             </li>
             <li>
-              <a href="#embedded__canvas">Canvas</a>
-            </li>
-            <li>
-              <a href="#embedded__meter">Meter</a>
-            </li>
-            <li>
-              <a href="#embedded__progress">Progress</a>
-            </li>
-            <li>
-              <a href="#embedded__svg">Inline SVG</a>
-            </li>
-            <li>
               <a href="#embedded__iframe">IFrames</a>
             </li>
             <li>
@@ -109,31 +132,8 @@
             <li>
               <a href="#embedded__object">Object</a>
             </li>
-          </ul>
-        </li>
-        <li>
-          <a href="#forms">Form elements</a>
-          <ul>
             <li>
-              <a href="#forms__input">Input fields</a>
-            </li>
-            <li>
-              <a href="#forms__select">Select menus</a>
-            </li>
-            <li>
-              <a href="#forms__checkbox">Checkboxes</a>
-            </li>
-            <li>
-              <a href="#forms__radio">Radio buttons</a>
-            </li>
-            <li>
-              <a href="#forms__textareas">Textareas</a>
-            </li>
-            <li>
-              <a href="#forms__html5">HTML5 inputs</a>
-            </li>
-            <li>
-              <a href="#forms__action">Action buttons</a>
+              <a href="#embedded__canvas">Canvas</a>
             </li>
           </ul>
         </li>
@@ -377,80 +377,6 @@
       </article>
     </section>
 
-    <section id="embedded">
-      <h3>Embedded content</h3>
-      <article id="embedded__images">
-        <h4>Images</h4>
-        <h5>Plain <code>&lt;img&gt;</code> element </h5>
-        <img src="https://placekitten.com/480/480" alt="Photo of a kitten">
-        <h5>
-          <code>&lt;figure&gt;</code> element with <code>&lt;img&gt;</code> element
-        </h5>
-        <figure>
-          <img src="https://placekitten.com/420/420" alt="Photo of a kitten">
-        </figure>
-        <h5>
-          <code>&lt;figure&gt;</code> element with <code>&lt;img&gt;</code> and <code>&lt;figcaption&gt;</code> elements
-        </h5>
-        <figure>
-          <img src="https://placekitten.com/420/420" alt="Photo of a kitten">
-          <figcaption>Here is a caption for this image.</figcaption>
-        </figure>
-        <h5>
-          <code>&lt;figure&gt;</code> element with a <code>&lt;picture&gt;</code> element
-        </h5>
-        <figure>
-          <picture>
-            <source srcset="https://placekitten.com/800/800" media="(min-width: 800px)">
-            <img src="https://placekitten.com/420/420" alt="Photo of a kitten" />
-          </picture>
-        </figure>
-      </article>
-
-      <article id="embedded__bgimages">
-        <h4>Background images</h4>
-        <div style="background-image:url('https://placekitten.com/300/300'); width:300px; height: 300px;"></div>
-      </article>
-      <article id="embedded__audio">
-        <h4>Audio</h4>
-        <audio controls="">audio</audio>
-      </article>
-      <article id="embedded__video">
-        <h4>Video</h4>
-        <video controls="">video</video>
-      </article>
-      <article id="embedded__iframe">
-        <h4>IFrame</h4>
-        <iframe src="index.html" height="300"></iframe>
-      </article>
-      <article id="embedded__embed">
-        <h4>Embed</h4>
-        <embed src="index.html" height="300">
-      </article>
-      <article id="embedded__object">
-        <h4>Object</h4>
-        <object data="index.html" height="300"></object>
-      </article>
-      <article id="embedded__canvas">
-        <h4>Canvas</h4>
-        <canvas>canvas</canvas>
-      </article>
-      <article id="embedded__meter">
-        <h4>Meter</h4>
-        <meter value="2" min="0" max="10">2 out of 10</meter>
-      </article>
-      <article id="embedded__progress">
-        <h4>Progress</h4>
-        <progress>progress</progress>
-      </article>
-      <article id="embedded__svg">
-        <h4>Inline SVG</h4>
-        <svg width="100px" height="100px">
-          <circle cx="100" cy="100" r="100" fill="#e80046"></circle>
-        </svg>
-      </article>
-    </section>
-
     <section id="forms">
       <h3>Form elements</h3>
       <form>
@@ -623,6 +549,80 @@
           </p>
         </fieldset>
       </form>
+    </section>
+
+    <section id="embedded">
+      <h3>Embedded content</h3>
+      <article id="embedded__meter">
+        <h4>Meter</h4>
+        <meter value="2" min="0" max="10">2 out of 10</meter>
+      </article>
+      <article id="embedded__progress">
+        <h4>Progress</h4>
+        <progress>progress</progress>
+      </article>
+      <article id="embedded__svg">
+        <h4>Inline SVG</h4>
+        <svg width="100px" height="100px">
+          <circle cx="100" cy="100" r="100" fill="#e80046"></circle>
+        </svg>
+      </article>
+      <article id="embedded__images">
+        <h4>Images</h4>
+        <h5>Plain <code>&lt;img&gt;</code> element </h5>
+        <img src="https://placekitten.com/480/480" alt="Photo of a kitten">
+        <h5>
+          <code>&lt;figure&gt;</code> element with <code>&lt;img&gt;</code> element
+        </h5>
+        <figure>
+          <img src="https://placekitten.com/420/420" alt="Photo of a kitten">
+        </figure>
+        <h5>
+          <code>&lt;figure&gt;</code> element with <code>&lt;img&gt;</code> and <code>&lt;figcaption&gt;</code> elements
+        </h5>
+        <figure>
+          <img src="https://placekitten.com/420/420" alt="Photo of a kitten">
+          <figcaption>Here is a caption for this image.</figcaption>
+        </figure>
+        <h5>
+          <code>&lt;figure&gt;</code> element with a <code>&lt;picture&gt;</code> element
+        </h5>
+        <figure>
+          <picture>
+            <source srcset="https://placekitten.com/800/800" media="(min-width: 800px)">
+            <img src="https://placekitten.com/420/420" alt="Photo of a kitten" />
+          </picture>
+        </figure>
+      </article>
+
+      <article id="embedded__bgimages">
+        <h4>Background images</h4>
+        <div style="background-image:url('https://placekitten.com/300/300'); width:300px; height: 300px;"></div>
+      </article>
+      <article id="embedded__audio">
+        <h4>Audio</h4>
+        <audio controls="">audio</audio>
+      </article>
+      <article id="embedded__video">
+        <h4>Video</h4>
+        <video controls="">video</video>
+      </article>
+      <article id="embedded__iframe">
+        <h4>IFrame</h4>
+        <iframe src="index.html" height="300"></iframe>
+      </article>
+      <article id="embedded__embed">
+        <h4>Embed</h4>
+        <embed src="index.html" height="300">
+      </article>
+      <article id="embedded__object">
+        <h4>Object</h4>
+        <object data="index.html" height="300"></object>
+      </article>
+      <article id="embedded__canvas">
+        <h4>Canvas</h4>
+        <canvas>canvas</canvas>
+      </article>
     </section>
 
   </div>

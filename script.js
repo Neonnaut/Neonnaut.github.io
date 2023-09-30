@@ -11,11 +11,11 @@ window.onload = function () {
 		$('#input').focus().select();
 	}
 };
-// Check for markup submit button and colour it blue
+// Check for markup submit button and colour it
 $(window).load(function () {
 	$("[name='markupButton']").click(function () {
 		glossarize($(this).attr('id'));
-		var selection = document.querySelectorAll(".switch-field input");
+		var selection = document.querySelectorAll("#switch-field input");
 		for (i = 0; i < selection.length; i++) {
 			selection[i].classList.remove('checked');
 		}

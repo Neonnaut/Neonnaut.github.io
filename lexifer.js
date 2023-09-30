@@ -22,10 +22,6 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.*/
 
 
-
-
-
-
 // Check for markup submit button and colour it blue
 $(window).load(function () {
     $("[name='lexiferButton']").click(function () {
@@ -58,6 +54,10 @@ document.addEventListener('keydown', event => {
         document.execCommand('insertLineBreak')
         event.preventDefault()
     }
+});
+//https://stackoverflow.com/questions/12027137/
+$("#def").on("paste", function (e) {
+    colourText();
 });
 
 function importFile() {
@@ -129,19 +129,21 @@ var colourText = function () {
 };
 
 const genWords = () => {
-    ($("#errors").html(""));
+    let f = "";
+    let r = y(
+        $("#def").text(),
+        parseInt($("#number").val()),
+        $("#verbose").is(":checked"),
+        $("#unsorted").is(":checked"),
+        $("#one-per-line").is(":checked"),
+        (e) => {
+            f += e + "<br>";
+        }
+    );
+
     ($("#result").html(
-        "<textarea id='output' spellcheck='false'>" +
-        y(
-            $("#def").text(),
-            parseInt($("#number").val()),
-            $("#verbose").is(":checked"),
-            $("#unsorted").is(":checked"),
-            $("#one-per-line").is(":checked"),
-            (e) => {
-                $("#errors").append(e + "<br>");
-            }
-        ) + "</textarea>"
+        "<p class='error-message'>" + f + "</p>" +
+        "<textarea id='output' spellcheck='false'>" + r + "</textarea>"
     ));
     $('#output').focus();
     colourText();
@@ -923,8 +925,6 @@ filter: ' > !
 `;
     }
     // Move back to the top.
-    def.scrollTop = 0;
-    def.scrollLeft = 0;
-
+    $("#def").focus().select();
     colourText();
 }
