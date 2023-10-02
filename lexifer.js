@@ -284,7 +284,7 @@ class s {
     }
     parseClusterfield() {
         var e;
-        const t = this.defFileArr[this.defFileLineNum].split(/\s+/gu);
+        const t = this.defFileArr[this.defFileLineNum].trimEnd().split(/\s+/gu);
         t.shift();
         const s = t.length;
         for (; !["", "\n", void 0].includes(this.defFileArr[this.defFileLineNum]);) {
@@ -296,6 +296,7 @@ class s {
             for (let e = 0; e < s; ++e) "+" !== i[e] && ("-" === i[e] ? this.soundsys.addFilter(n + t[e], "REJECT") : this.soundsys.addFilter(n + t[e], i[e]));
         }
     }
+
     parseClass(e) {
         const [t, s] = e.split("=").map((e) => e.trim());
         if ("$" === t[0]) /\s/u.test(s) && this.stderr(`Unexpected whitespace in macro '${t}'. Macros cannot make choices, so this may give very unexpected output.`), this.macros.push([RegExp("\\" + t, "gu"), s]);
