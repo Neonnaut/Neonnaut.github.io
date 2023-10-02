@@ -18,20 +18,7 @@
     <section id="top">
       <h1>Lexifer Online</h1>
       <div class="fake-textbox" id="def" rows="17" spellcheck='false' contenteditable="true"></div>
-
       <br>
-      <div class="switch-field">
-        <input type="submit" id="genWords" name="lexiferButton" value="Generate words" name="markupButton">
-        <input type="file" name="loadButton" style="display: none;" accept=".txt, .def" />
-        <input type="submit" id="LoadFile" value="Load" name="fakeLoadButton">
-        <input type="submit" id="saveFile" value="Save" name="saveButton"> 
-      </div>
-      <br>
-
-      <h3>Output</h3>
-      <div id="result"></div>
-      <hr>
-
       <fieldset id="bottom-content">
         <legend>Options</legend>
         <label for="number">Number of words (leave blank for a paragraph)</label><br>
@@ -53,6 +40,19 @@
           </div>
         </div>
       </fieldset>
+
+      <br>
+      <div class="switch-field">
+        <input type="submit" id="genWords" name="lexiferButton" value="Generate words" name="markupButton">
+        <input type="file" name="loadButton" style="display: none;" accept=".txt, .def" />
+        <input type="submit" id="LoadFile" value="Load" name="fakeLoadButton">
+        <input type="submit" id="saveFile" value="Save" name="saveButton"> 
+      </div>
+      <br>
+      <hr>
+      <h3>Output</h3>
+      <div id="result"></div>
+
     </section>
 
     <section>

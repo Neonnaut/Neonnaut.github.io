@@ -287,6 +287,7 @@ textarea, input, .fake-textbox {
   -moz-appearance: textfield-multiline;
   -webkit-appearance: textarea;
   background: #Fdfbf8;
+  border: transparent solid 1px;
   resize: both;
   box-shadow: inset 0px 1px 2px #666;
   padding: 6px;
@@ -296,6 +297,11 @@ textarea, input, .fake-textbox {
 }
 .fake-textbox:hover {
   cursor: auto;
+}
+.fake-textbox:focus {
+  outline: none;
+  border: none;
+  border: #ccc solid 1px;
 }
 .dropdown {
   display: inline-block;
