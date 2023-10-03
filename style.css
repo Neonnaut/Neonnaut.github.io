@@ -306,6 +306,7 @@ textarea, input, .fake-textbox {
 .dropdown {
   display: inline-block;
   position: relative;
+  margin-bottom: 5px;
 }
 .dropdown-content {
   display: none;
@@ -437,7 +438,10 @@ div .gll {
 #out {
   margin: 10px 0;
 }
-#switch-field .checked {
+.switch-field {
+  margin-top: 10px;
+}
+.switch-field .checked {
   background: #e80046;
   box-shadow: none;
   color: white;
