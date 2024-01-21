@@ -43,8 +43,8 @@ section:not(#top) {
   border-radius: 3px;
 }
 #content,header,footer {
-  margin: 0 auto;
   max-width: 700px;
+  margin: 0 auto;
 }
 
 /* HTML5 display-role reset for older browsers */
@@ -445,6 +445,10 @@ div .gll {
   background: #e80046;
   box-shadow: none;
   color: white;
+}
+
+.large-section {
+  max-width: 1000px;;
 }
 
 
