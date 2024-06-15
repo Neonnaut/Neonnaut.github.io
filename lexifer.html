@@ -4,6 +4,7 @@
   <title>Lexifer</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
   <script type="text/javascript" src="lexifer.js"></script>
+  <!-- <script type="text/javascript" src="prism.js"></script> -->
   <meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1" />
   <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png" />
   <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png" />
@@ -26,8 +27,14 @@
           <a onclick="lexiferExample('hungarian')">(Fake) Hungarian</a>
         </div>
       </div><br>
-      <div class="fake-textbox" id="def" rows="17" spellcheck='false' contenteditable="true"></div>
-      <div class="switch-field">
+
+	    <div class="lexifer-box-group">
+	      <pre class="lexifer-box-fake" id="highlighting" aria-hidden="true">
+<code class="language-lexifer" id="highlighting-content"></code></pre>
+        <textarea class="lexifer-box-real" id="editing" spellcheck="false" oninput="update(this.value); sync_scroll(this);" onscroll="sync_scroll(this);" onkeydown="check_tab(this, event);"></textarea>
+      </div>
+      
+	    <div class="switch-field">
         <input type="submit" id="genWords" name="lexiferButton" value="Generate words" name="markupButton">
         <input type="file" name="loadButton" style="display: none;" accept=".txt, .def" />
         <input type="submit" id="LoadFile" value="Load" name="fakeLoadButton">
@@ -58,13 +65,13 @@
       <p>The phonology definition is the main input to the wordgen. These are saved as .def files.</p>
 
       <h3>Comments</h3>
-      <p>If a line contains a <code>#</code> sign, everything after it on that line is ignored. You can use this to leave notes about what the def file does or why you made certain decisions.</p>
+      <p>If a line contains a <code class="example">#</code> sign, everything after it on that line is ignored. You can use this to leave notes about what the def file does or why you made certain decisions.</p>
 
       <h3>The With: Directory</h3>
-      <p>The first line of the default definition starts with <code>with:</code>. If you have such a directive, it should be at the start of the file.</p>
+      <p>The first line of the default definition starts with <code class="example">with:</code>. If you have such a directive, it should be at the start of the file.</p>
 
       <h4>Featuresets</h4>
-      <p>If you have a <code>with:</code> statement, you must use exactly one featureset. Currently, there are two options: <code>std-ipa-features</code> and <code>std-digraph-features</code>. The former is IPA, and the latter is ASCII-friendly. The recognized consonants are as follows:</p>
+      <p>If you have a <code class="example">with:</code> statement, you must use exactly one featureset. Currently, there are two options: <code class="example">std-ipa-features</code> and <code class="example">std-digraph-features</code>. The former is IPA, and the latter is ASCII-friendly. The recognized consonants are as follows:</p>
 
       <table class="styled-table" style="max-height: 500px;">
         <thead>
@@ -328,32 +335,32 @@
         </tbody>
       </table>
 
-      <p>¹These are both bilabial and labiodental. For example, the assimilations engine turns nf into mf and <code>nɸ</code> into <i>mɸ</i>, even though <code>f</code> and <code>ɸ</code> have different places of articulation. ²Yes, I realize that the IPA describes these as dental. However, the IPA does not make the dental/alveolar distinction elsewhere, so it is simpler to say that these are alveolar.</p>
+      <p>¹These are both bilabial and labiodental. For example, the assimilations engine turns nf into mf and <code class="example">nɸ</code> into <i>mɸ</i>, even though <code class="example">f</code> and <code class="example">ɸ</code> have different places of articulation. ²Yes, I realize that the IPA describes these as dental. However, the IPA does not make the dental/alveolar distinction elsewhere, so it is simpler to say that these are alveolar.</p>
       <p>Choosing a specific featureset does not mean you have to use it for everything. Rather, you only need to use it for the consonants that will be considered by the engines you use (see below). Any unrecognized segments will be ignored.</p>
 
 
       <h4>std-assimilations</h4>
       <p>This engine has two behaviors.</p>
 
-      <p>The first affects all consonants for which both voiced and voiceless versions exist. It applies leftward assimilation of voicing. For example, it would turn <code>akda</code> into <tag>agda</tag> and <code>abta</code> into <tag>apta</tag>.</p>
+      <p>The first affects all consonants for which both voiced and voiceless versions exist. It applies leftward assimilation of voicing. For example, it would turn <code class="example">akda</code> into <tag>agda</tag> and <code class="example">abta</code> into <tag>apta</tag>.</p>
 
-      <p>The second only changes nasals, but considers all consonants except for approximants, lateral approximants, and trills. It applies leftward assimilation of place of articulation. For example, it would turn <code>amta</code> into <tag>anta</tag> and <code>anka</code> into <tag>aŋka</tag>.</p>
+      <p>The second only changes nasals, but considers all consonants except for approximants, lateral approximants, and trills. It applies leftward assimilation of place of articulation. For example, it would turn <code class="example">amta</code> into <tag>anta</tag> and <code class="example">anka</code> into <tag>aŋka</tag>.</p>
 
       <h4>coronal-metathesis</h4>
-      <p>This engine only affects bilabial, alveolar, and velar plosives and nasals. It ensures that clusters of these segments have the alveolar element last. For example, it would turn <code>atka</code> into <tag>akta</tag> and <code>anma</code> into <tag>amna</tag>. It does not metathesize a nasal with a plosive; <code>anpa</code> would not become <tag>apna</tag>.</p>
+      <p>This engine only affects bilabial, alveolar, and velar plosives and nasals. It ensures that clusters of these segments have the alveolar element last. For example, it would turn <code class="example">atka</code> into <tag>akta</tag> and <code class="example">anma</code> into <tag>amna</tag>. It does not metathesize a nasal with a plosive; <code class="example">anpa</code> would not become <tag>apna</tag>.</p>
 
       <h3>Alphabetization – the letters: directive</h3>
-      <p>If you have a <code>with:</code> directive, there must also be <code>letters:</code>. If not, <code>letters:</code> is optional. <code>letters:</code> tells Lexifer what symbols you use and how to alphabetize them. It also affects how digraphs are parsed, even if <code>std-ipa-features</code> was chosen. For example, consider the following statements:</p>
+      <p>If you have a <code class="example">with:</code> directive, there must also be <code class="example">letters:</code>. If not, <code class="example">letters:</code> is optional. <code class="example">letters:</code> tells Lexifer what symbols you use and how to alphabetize them. It also affects how digraphs are parsed, even if <code class="example">std-ipa-features</code> was chosen. For example, consider the following statements:</p>
 
-      <p><pre>with: std-ipa-features
+      <p><pre class="example">with: std-ipa-features
 letters: t ʃ</pre></p>
 
-      <p>In this case, if <code>tʃ</code> occurs, it will not be treated as an affricate <i>tʃ</i>, but as a plosive <i>t</i> followed by a sibilant <i>ʃ</i>. Additionally, words starting with <i>t</i> will be sorted alphabetically above words starting with <i>ʃ</i>. Contrast this with the following statements:</p>
+      <p>In this case, if <code class="example">tʃ</code> occurs, it will not be treated as an affricate <i>tʃ</i>, but as a plosive <i>t</i> followed by a sibilant <i>ʃ</i>. Additionally, words starting with <i>t</i> will be sorted alphabetically above words starting with <i>ʃ</i>. Contrast this with the following statements:</p>
 
-      <p><pre>with: std-ipa-features
+      <p><pre class="example">with: std-ipa-features
 letters: tʃ t ʃ</pre></p>
 
-      <p>In this case, <code>tʃ</code> is treated as an affricate. Additionally, words starting with <i>tʃ</i> will be sorted above words starting with <i>tt</i>, even though <i>t</i> by itself comes before <i>ʃ</i>.</p>
+      <p>In this case, <code class="example">tʃ</code> is treated as an affricate. Additionally, words starting with <i>tʃ</i> will be sorted above words starting with <i>tt</i>, even though <i>t</i> by itself comes before <i>ʃ</i>.</p>
 
       <h3>Describing words</h3>
       <p>This is the main purpose of the def file. There are many parts to this.</p>
@@ -361,132 +368,132 @@ letters: tʃ t ʃ</pre></p>
       <h4>Phoneme classes</h4>
       <p>These are groupings of phonemes that have one-letter names. For example, here are the classes from the default definition:</p>
 
-      <p><pre>C = t n k m ch l ʔ s r d h w b y p g
+      <p><pre class="example">C = t n k m ch l ʔ s r d h w b y p g
 D = n l ʔ t k r p
 V = a i e á u o</pre></p>
 
-      <p>This creates three groupings. <code>C</code> is the group of all consonants, <code>V</code> is the group of all vowels, and <code>D</code> is a group of some of the consonants. A class cannot contain another class; this is not legal:</p>
+      <p>This creates three groupings. <code class="example">C</code> is the group of all consonants, <code class="example">V</code> is the group of all vowels, and <code class="example">D</code> is a group of some of the consonants. A class cannot contain another class; this is not legal:</p>
 
-      <p><pre>C = D m ch s d h w b y g</pre></p>
+      <p><pre class="example">C = D m ch s d h w b y g</pre></p>
 
-      <p>If you do this, and you have a <code>letters:</code> directive, Lexifer will warn you:</p>
+      <p>If you do this, and you have a <code class="example">letters:</code> directive, Lexifer will warn you:</p>
 
       <p>A phoneme class contains 'D' missing from 'letters'. Strange word shapes are likely to result.</p>
 
-      <p>By default, the phonemes' frequencies decrease as they go to the right. In the above example, when Lexifer needs to choose a <code>C</code>, it will choose <code>t</code> the most, <code>n</code> the second-most, <code>k</code> the third-most, and so on. If you are not satisfied with the frequencies, you can use a colon (<code>:</code>) to specify the weight for each phoneme, like so:</p>
+      <p>By default, the phonemes' frequencies decrease as they go to the right. In the above example, when Lexifer needs to choose a <code class="example">C</code>, it will choose <code class="example">t</code> the most, <code class="example">n</code> the second-most, <code class="example">k</code> the third-most, and so on. If you are not satisfied with the frequencies, you can use a colon (<code class="example">:</code>) to specify the weight for each phoneme, like so:</p>
 
-      <p><pre>V = a e i o u
+      <p><pre class="example">V = a e i o u
 # V has approximately the following probabilities:
 # a: 43%, e: 26%, i: 17%, o: 10%, u: 4%
 U = a:5 e:4 i:3 o:2 u:1
 # U has approximately the following probabilities:
 # a: 33%, e: 27%, i: 20%, o: 13%, u: 7%</pre></p>
 
-      <p>Weights are relative, so <code>a:5 e:4 i:3 o:2 u:1</code> is the same as <code>a:50 e:40 i:30 o:20 u:10</code>. Changing the order or weights of phonemes is a good way to change the feel of the language without changing the phonotactics.</p>
+      <p>Weights are relative, so <code class="example">a:5 e:4 i:3 o:2 u:1</code> is the same as <code class="example">a:50 e:40 i:30 o:20 u:10</code>. Changing the order or weights of phonemes is a good way to change the feel of the language without changing the phonotactics.</p>
 
-      <p>If you specify a weight for any phoneme in a class, you must specify the weight for all of them. If you specify a weight of <code>0</code>, the phoneme will never be selected.</p>
+      <p>If you specify a weight for any phoneme in a class, you must specify the weight for all of them. If you specify a weight of <code class="example">0</code>, the phoneme will never be selected.</p>
 
 
       <h4>Building word shapes</h4>
-      <p>The most common way to make a word is to use the <code>words:</code> directive. Words are weighted similarly to how phonemes are weighted in classes.</p>
+      <p>The most common way to make a word is to use the <code class="example">words:</code> directive. Words are weighted similarly to how phonemes are weighted in classes.</p>
 
       <p>A word can consist of indiviual phonemes, phoneme classes, or a mixture of both.</p>
 
-      <p>Phonemes or classes that are optional can be indicated by a <code>?</code>. For example, <code>words: CVD?</code> is similar to <code>words: CV CVD</code>, although the weights are quite different. The <code>random-rate:</code> directive specifies how common these are. For example,</p>
+      <p>Phonemes or classes that are optional can be indicated by a <code class="example">?</code>. For example, <code class="example">words: CVD?</code> is similar to <code class="example">words: CV CVD</code>, although the weights are quite different. The <code class="example">random-rate:</code> directive specifies how common these are. For example,</p>
 
-      <p><pre>random-rate: 25
+      <p><pre class="example">random-rate: 25
 words: CVD?</pre></p>
 
       <p>is equivalent to</p>
 
-      <p><pre>words: CV:75 CVD:25</pre></p>
+      <p><pre class="example">words: CV:75 CVD:25</pre></p>
 
       <p>The default random-rate is 10%.</p>
 
-      <p>If you choose from the same class twice in a row, you may put an <code>!</code> after the second one, to indicate they must not be the same phoneme. For example, <code>CC</code> may generate <tag>tt</tag>, but <code>CC!</code> never will.</p>
+      <p>If you choose from the same class twice in a row, you may put an <code class="example">!</code> after the second one, to indicate they must not be the same phoneme. For example, <code class="example">CC</code> may generate <tag>tt</tag>, but <code class="example">CC!</code> never will.</p>
 
       <h4>Macros</h4>
       <p>Macros are a system designed to provide an abbreviation for syllable shapes. They are defined similarly to phoneme classes, but with several important differences:</p>
 
       <p>
         <ul>
-          <li>Every macro's name must start with <code>$</code>. <code>S = s</code> is a phoneme class; <code>$S = s</code> is a macro.</li>
-          <li>Macros allow phoneme classes inside of them. <code>C = D</code> is not valid, but <code>$C = D</code> works as expected.</li>
-          <li>Macros do not support multiple possibilities. <code>$M = a b c</code> will not work the way you may think.</li>
+          <li>Every macro's name must start with <code class="example">$</code>. <code class="example">S = s</code> is a phoneme class; <code class="example">$S = s</code> is a macro.</li>
+          <li>Macros allow phoneme classes inside of them. <code class="example">C = D</code> is not valid, but <code class="example">$C = D</code> works as expected.</li>
+          <li>Macros do not support multiple possibilities. <code class="example">$M = a b c</code> will not work the way you may think.</li>
         </ul>
       </p>
 
       <p>The default definition has one macro:</p>
 
-      <p><pre>$S = CVD?
+      <p><pre class="example">$S = CVD?
 words: V?$S$S V?$S V?$S$S$S</pre></p>
 
       <p>This is exactly equivalent to the following definition:</p>
 
-      <p><pre>words: V?CVD?CVD? V?CVD? V?CVD?CVD?CVD?</pre></p>
+      <p><pre class="example">words: V?CVD?CVD? V?CVD? V?CVD?CVD?CVD?</pre></p>
 
-      <p>However, since most syllables are <code>CVD?</code>, it is quicker to use a macro.</p>
+      <p>However, since most syllables are <code class="example">CVD?</code>, it is quicker to use a macro.</p>
 
       <h4>Categories</h4>
-      <p>The <code>categories:</code> directive is an alternative to <code>words:</code>. You may not include both directives in the same definition.</p>
+      <p>The <code class="example">categories:</code> directive is an alternative to <code class="example">words:</code>. You may not include both directives in the same definition.</p>
 
-      <p><code>categories:</code> lets you define multiple types of words. The general syntax is:</p>
+      <p><code class="example">categories:</code> lets you define multiple types of words. The general syntax is:</p>
 
-      <p><pre>categories: cat1 cat2 # ...etc
+      <p><pre class="example">categories: cat1 cat2 # ...etc
 cat1 = # word shapes for cat1
 cat2 = # word shapes for cat2</pre></p>
 
       <p>The categories themselves can also be weighted, but these weights only apply in paragraph mode. If you give a number of words, that is the number of words generated per category. This is where a weight of 0 could be helpful. If you want to generate parts of a word when you enter a number, but only show complete words in paragraph mode, you could have something like:</p>
 
-      <p><pre>categories: root:0 prefix:0 suffix:0 full-word:1
+      <p><pre class="example">categories: root:0 prefix:0 suffix:0 full-word:1
 # ...definitions of each category...</pre></p>
 
       <p>The order that the categories are declared is the order they are presented when generating a specific number of words.</p>
     
       <h3>Cluster Fields</h3>
-      <p>Cluster fields are a way to put a lot of related filters or rejections in a smaller space. They are laid out like tables, and start with <code>%</code>. For example, a cluster field could look like:</p>
+      <p>Cluster fields are a way to put a lot of related filters or rejections in a smaller space. They are laid out like tables, and start with <code class="example">%</code>. For example, a cluster field could look like:</p>
 
-      <p><pre>% a  i  u
+      <p><pre class="example">% a  i  u
 a +  +  o
 i -  +  uu
 u -  -  +</pre></p>
 
-      <p>The first character is the row, and the second character is the column. In this example, <code>au</code> becomes <i>o</i> and <code>iu</code> becomes <i>uu</i>. <code>+</code> means to leave the combination as-is, and <code>-</code> means to reject it. This table would permit <code>ai</code> but reject <code>ia</code>.</p>
+      <p>The first character is the row, and the second character is the column. In this example, <code class="example">au</code> becomes <i>o</i> and <code class="example">iu</code> becomes <i>uu</i>. <code class="example">+</code> means to leave the combination as-is, and <code class="example">-</code> means to reject it. This table would permit <code class="example">ai</code> but reject <code class="example">ia</code>.</p>
 
       <p>As with filters, these are parsed in the order presented. The cluster field ends at a blank line.</p>
     
       <h3>Filters and Rejections</h3>
       <p>Filters are a way to change a word after it has been generated and run though the cluster engines. If your spelling doesn't match up with a featureset exactly, you can use filters to achieve this.
       
-      <p></p>Filters are expressed as <code>filter: pattern > replacement</code>, and run in the order they are encountered. For example, if you want to spell [ŋ] the same as [n], you would say:</p>
+      <p></p>Filters are expressed as <code class="example">filter: pattern > replacement</code>, and run in the order they are encountered. For example, if you want to spell [ŋ] the same as [n], you would say:</p>
 
-      <p><pre>filter: ŋ > n</pre></p>
+      <p><pre class="example">filter: ŋ > n</pre></p>
 
       <p>Multiple filters on one line are separated by semicolons:</p>
-      <p><code>filter: pattern1 > replacement1; pattern2 > replacement2</code></p>
+      <p><code class="example">filter: pattern1 > replacement1; pattern2 > replacement2</code></p>
 
       <p>This does not mean that the two filters are run at the same time. It is identical to:</p>
-      <p><pre>filter: pattern1 > replacement1
+      <p><pre class="example">filter: pattern1 > replacement1
 filter: pattern2 > replacement2</pre></p>
 
-      <p>If the replacement is <code>!</code>, the pattern is removed from the word, but the rest of the word is left alone. To outright forbid a sequence from occurring, use the reject: directive. The default definition contains a few of these. The first two are:</p>
-      <p><code>reject: wu yi</code></p>
+      <p>If the replacement is <code class="example">!</code>, the pattern is removed from the word, but the rest of the word is left alone. To outright forbid a sequence from occurring, use the reject: directive. The default definition contains a few of these. The first two are:</p>
+      <p><code class="example">reject: wu yi</code></p>
 
       <p>This prevents any word from having wu or yi. In reality, reject: is an abbreviation, and that statement is equivalent to:</p>
-      <p><code>filter: wu > REJECT; yi > REJECT</code></p>
+      <p><code class="example">filter: wu > REJECT; yi > REJECT</code></p>
 
       <p>As such, you can intersperse filters and rejections, and they will be performed in order.</p>
 
-      <p><code>filter:</code> and <code></code>reject:</code> use ECMAScript regular expressions. If you know what that means, great; but if not, don't worry about it. The important things are:
+      <p><code class="example">filter:</code> and <code class="example"></code>reject:</code> use ECMAScript regular expressions. If you know what that means, great; but if not, don't worry about it. The important things are:
       <ul>
-        <li><code>^</code> matches the beginning of the word. <code>reject: ^a</code> would prevent a word from starting with a.</li>
-        <li><code>$</code> matches the end of the word. <code>reject: a$</code> would prevent a word from ending with a.</li>
-        <li><code>(a|b|c)</code> etc match multiple segments. The default phonology definition prevents a word from having a voiceless plosive followed by h by rejecting <code>(p|t|k|ʔ)h</code>.</li>
+        <li><code class="example">^</code> matches the beginning of the word. <code class="example">reject: ^a</code> would prevent a word from starting with a.</li>
+        <li><code class="example">$</code> matches the end of the word. <code class="example">reject: a$</code> would prevent a word from ending with a.</li>
+        <li><code class="example">(a|b|c)</code> etc match multiple segments. The default phonology definition prevents a word from having a voiceless plosive followed by h by rejecting <code class="example">(p|t|k|ʔ)h</code>.</li>
       </ul>
       </p>
 
-      <p>If you want to prevent an entire part of a word from appearing twice in a row, you can <code>reject: (..+)\1</code>. This would prevent e.g. kiki from being generated, as it is just ki twice.</p>
-      <p>If you're confident that it is okay to simplify such occurrences, you may instead <code>filter: (..+)\1+ > $1</code>. This would simplify <i>kiki</i> into simply <i>ki</i>. This may not be desirable as it can make words that are significantly shorter than expected.</p>
+      <p>If you want to prevent an entire part of a word from appearing twice in a row, you can <code class="example">reject: (..+)\1</code>. This would prevent e.g. kiki from being generated, as it is just ki twice.</p>
+      <p>If you're confident that it is okay to simplify such occurrences, you may instead <code class="example">filter: (..+)\1+ > $1</code>. This would simplify <i>kiki</i> into simply <i>ki</i>. This may not be desirable as it can make words that are significantly shorter than expected.</p>
     </section>
 
   </div>
