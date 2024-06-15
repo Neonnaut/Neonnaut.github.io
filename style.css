@@ -597,7 +597,7 @@ https://prismjs.com/download.html#themes=prism&languages=python */
  .token.char,
  .token.builtin,
  .token.inserted {
-     color: #bd5800;
+     color: #0045bd;
  }
  
  .token.operator,
