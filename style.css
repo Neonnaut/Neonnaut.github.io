@@ -415,15 +415,6 @@ div .gll {
 .error-message {
   color: red;
 }
-.purple-line {
-  color: blueviolet;
-}
-.comment-line {
-  color: #029a02;
-}
-.yellow-line {
-  color: #bd5800;
-}
 
 
 #input {
@@ -447,15 +438,21 @@ div .gll {
   color: white;
 }
 
-.large-section {
-  max-width: 1000px;;
-}
-
 /* Please see the article */
+
+#editing-highlighting-group {
+  height: 500px;
+  display: grid;
+  grid-template-columns: 1fr;
+}
 
 #editing, #highlighting {
   /* Both elements need the same text and space styling so they are directly on top of each other */
   border: 0;
+  overflow-y:auto;
+  grid-row-start: 1; 
+  grid-column-start: 1;
+  width: 98%;
 }
 #editing, #highlighting, #highlighting * {
   /* Also add text styles to highlighing tokens */
@@ -464,30 +461,25 @@ div .gll {
   line-height: 1.5!important;
   tab-size: 2!important;
 }
-
 /* Make textarea almost completely transparent */
 #editing {
   color: transparent;
   background: transparent;
-  caret-color: black; /* Or choose your favourite color */
+  caret-color: black; /* Show caret */
+  resize: none; /* No resize on textarea */
+  padding: 1em;
+  margin: .5em 0;
 }
-
-/* Can be scrolled */
-#editing, #highlighting {
-  overflow: auto;
-  white-space: normal; /* Allows textarea to scroll horizontally */
+#highlighting {
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  width: 98%;
 }
-
-/* No resize on textarea */
-#editing {
-  resize: none;
-}
-
-/* Paragraphs; First Image */
-p code {
-  border-radius: 2px;
-  background-color: #eee;
-  color: #111;
+#highlighting code{
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  display: block;
+  width: 98%;
 }
 
 
@@ -511,7 +503,6 @@ https://prismjs.com/download.html#themes=prism&languages=python */
      white-space: pre;
      word-spacing: normal;
      word-break: normal;
-     word-wrap: normal;
      line-height: 1.5;
  
      -moz-tab-size: 4;
@@ -547,7 +538,6 @@ https://prismjs.com/download.html#themes=prism&languages=python */
  pre[class*="language-"] {
      padding: 1em;
      margin: .5em 0;
-     overflow: auto;
  }
  
  :not(pre) > code[class*="language-"],
@@ -562,132 +552,46 @@ https://prismjs.com/download.html#themes=prism&languages=python */
      white-space: normal;
  }
  
- .token.comment,
- .token.prolog,
- .token.doctype,
- .token.cdata {
+ .token.comment {
      color: #029a02
  }
- 
- .token.punctuation {
-     color: #999;
- }
- 
- .token.namespace {
-     opacity: .7;
- }
- 
- .token.property,
- .token.tag,
- .token.boolean,
- .token.number,
- .token.constant,
- .token.symbol,
- .token.deleted {
-     color: #ed2525;
- }
- 
- .token.selector,
- .token.attr-name,
- .token.string,
- .token.char,
- .token.builtin,
- .token.inserted {
-     color: #0045bd;
- }
- 
- .token.operator,
- .token.entity,
- .token.url,
- .language-css .token.string,
- .style .token.string {
-     color: #9a6e3a;
-     /* This background color was intended by the author of this theme. */
- }
- 
  .token.atrule,
  .token.attr-value,
  .token.keyword {
      color: blueviolet;
  }
- 
- .token.function,
- .token.class-name {
-     color: #DD4A68;
+ .token.selector,
+ .token.attr-name,
+ .token.builtin {
+     color: #0045bd;
+ }
+ .token.property,
+ .token.tag,
+ .token.boolean,
+ .token.number,
+ .token.constant,
+ .token.symbol {
+     color: #ed2525;
+ }
+ .token.operator,
+ .token.entity {
+     color: #9a6e3a;
+ }
+ .token.punctuation {
+     color: #999;
  }
  
- .token.regex,
- .token.important,
- .token.variable {
-     color: #e90;
- }
- 
- .token.important,
- .token.bold {
+ .token.important, .token.bold {
      font-weight: bold;
  }
  .token.italic {
      font-style: italic;
  }
- 
  .token.entity {
      cursor: help;
  }
 
 /* End of prism.js syntax highlighting*/
-
-
-#input {
-  height: 8em;
-  width: 98%;
-  white-space: pre;
-}
-#output {
-  font-family: monospace;
-  height: 12em;
-}
-#out {
-  margin: 10px 0;
-}
-.switch-field {
-  margin-top: 10px;
-}
-.switch-field .checked {
-  background: #e80046;
-  box-shadow: none;
-  color: white;
-}
-
-.large-section {
-  max-width: 1000px;;
-}
-
-
-.lexifer-box-group {
-height: 500px;
-display: grid;
-grid-template-columns: 1fr;
-}
-.lexifer-box-real {
-grid-row-start: 1;
-grid-column-start: 1;
-
-padding: 1em;
-margin: .5em 0;
-overflow: none!important;
-}
-.lexifer-box-fake {
-grid-row-start: 1;
-grid-column-start: 1;
-width: 98%;
-white-space: normal;
-overflow: auto;
-}
-
-#editing, #highlighting {
-  overflow: auto;
-  white-space: nowrap;
-}
 
 
 /* --Mobile first, because that's the hipster thing to do I guess-- */
