@@ -452,7 +452,7 @@ div .gll {
   overflow-y:auto;
   grid-row-start: 1; 
   grid-column-start: 1;
-  width: 98%;
+  width: 94%;
 }
 #editing, #highlighting, #highlighting * {
   /* Also add text styles to highlighing tokens */
@@ -473,13 +473,11 @@ div .gll {
 #highlighting {
   word-wrap: break-word;
   white-space: pre-wrap;
-  width: 98%;
 }
 #highlighting code{
   word-wrap: break-word;
   white-space: pre-wrap;
   display: block;
-  width: 98%;
 }
 
 
