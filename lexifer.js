@@ -859,7 +859,7 @@ filter: ' > !
     }
     // Move back to the top.
     update($("#editing").val());
-    $("#editing").focus().select();
+    $("#editing").focus();
 }
 
 

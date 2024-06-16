@@ -475,16 +475,12 @@ div .gll {
 /* Can be scrolled */
 #editing, #highlighting {
   overflow: auto;
-  white-space: nowrap; /* Allows textarea to scroll horizontally */
+  white-space: normal; /* Allows textarea to scroll horizontally */
 }
 
 /* No resize on textarea */
 #editing {
   resize: none;
-}
-
-#highlighting {
-  overflow: hidden;
 }
 
 /* Paragraphs; First Image */
@@ -678,12 +674,19 @@ grid-column-start: 1;
 
 padding: 1em;
 margin: .5em 0;
-overflow: auto;
-
+overflow: none!important;
 }
 .lexifer-box-fake {
 grid-row-start: 1;
 grid-column-start: 1;
+width: 98%;
+white-space: normal;
+overflow: auto;
+}
+
+#editing, #highlighting {
+  overflow: auto;
+  white-space: nowrap;
 }
 
 
