@@ -551,12 +551,13 @@ https://prismjs.com/download.html#themes=prism&languages=python */
  .token.atrule,
  .token.attr-value,
  .token.keyword {
-     color: blueviolet;
+     color: #8025d6;
  }
  .token.selector,
  .token.attr-name,
  .token.builtin {
-     color: #0045bd;
+    color: #ed2525;
+     
  }
  .token.property,
  .token.tag,
@@ -564,11 +565,12 @@ https://prismjs.com/download.html#themes=prism&languages=python */
  .token.number,
  .token.constant,
  .token.symbol {
-     color: #ed2525;
+  color: #be6d2b;
+  
  }
  .token.operator,
  .token.entity {
-     color: #9a6e3a;
+  color: #00558e;
  }
  .token.punctuation {
      color: #999;
