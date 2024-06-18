@@ -31,7 +31,7 @@ $(window).load(function () {
         importFile();
     });
     $("[name='saveButton']").click(function () {
-        downloadFile($("#editing").text());
+        downloadFile($("#editing").val());
     });
 });
 window.addEventListener("load", function () {
@@ -46,7 +46,7 @@ function importFile() {
         read.readAsText(file);
 
         read.onloadend = function () {
-            $("#editing").html(read.result);
+            $("#editing").val(read.result);
             update(read.result);
         }
     };
