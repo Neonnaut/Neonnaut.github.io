@@ -14,7 +14,7 @@ body {
 }
 nav {
   background: #3f3f3f;
-  max-width: 700px;
+  max-width: 800px;
   margin: 0 auto;
   padding: 2px 0;
 }
@@ -43,7 +43,7 @@ section:not(#top) {
   border-radius: 3px;
 }
 #content,header,footer {
-  max-width: 700px;
+  max-width: 800px;
   margin: 0 auto;
 }
 
@@ -470,16 +470,9 @@ div .gll {
   padding: 1em;
   padding-right: 0;
   margin: .5em 0;
+  text-wrap: nowrap;
 }
-#highlighting {
-  word-wrap: break-word;
-  white-space: pre-wrap;
-}
-#highlighting code{
-  word-wrap: break-word;
-  white-space: pre-wrap;
-  display: block;
-}
+
 
 
 /* Syntax Highlighting from prism.js starts below, partly modified: */
