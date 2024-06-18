@@ -35,7 +35,7 @@ $(window).load(function () {
     });
 });
 window.addEventListener("load", function () {
-    lexiferExample('basic');
+    lexiferExample('basic', false);
 });
 
 function importFile() {
@@ -641,11 +641,11 @@ const y = (() => {
 })();
 
 
-function lexiferExample(example) {
-    var def = document.getElementById("editing");
+function lexiferExample(example, option) {
+    var choice = '';
 
     if (example == "basic") {
-        def.innerHTML = `with: std-ipa-features std-assimilations coronal-metathesis
+        choice = `with: std-ipa-features std-assimilations coronal-metathesis
 
 letters: ʔ a á b ch d e g h i k l m n o p r s t u w y
 
@@ -661,10 +661,9 @@ words: V?$S$S V?$S V?$S$S$S
 reject: (..+)\\1+
 
 reject: wu yi w$ y$ h$ ʔʔ (p|t|k|ʔ)h
-filter: nr > tr; mr > pr; ŋ > n
-`;
+filter: nr > tr; mr > pr; ŋ > n`;
     } else if (example == "basic-ex") {
-        def.innerHTML = `# See the documentation linked above for full details.
+        choice = `# See the documentation linked above for full details.
 
 # These set up assimilations ("np" will be changed to "mp") and a few other
 # minor things.  It is possible for assimilations to produce phonemes you
@@ -699,11 +698,9 @@ reject: wu yi w$ y$ h$ ʔʔ (p|t|k|ʔ)h
 filter: nr > tr; mr > pr; ŋ > n
 
 # Haplology - remove repeats.
-reject: (..+)\\1+
-
-`;
+reject: (..+)\\1+`;
     } else if (example == "tonal") {
-        def.innerHTML = `# A tonal language with a slightly odd phoneme inventory.
+        choice = `# A tonal language with a slightly odd phoneme inventory.
 # Turn on "Display all generation steps" and select a number of words to
 # see how this operates.
 
@@ -740,10 +737,9 @@ a a á à ǎ
 e e é è ě
 i i í ì ǐ
 o o ó ò ǒ
-u u ú ù ǔ
-`;
+u u ú ù ǔ`;
     } else if (example == "hungarian") {
-        def.innerHTML = `# This isn't quite Hungarian, but approximates it for demonstration
+        choice = `# This isn't quite Hungarian, but approximates it for demonstration
 # purposes.  The cluster restrictions, in particular, are based on
 # Hungarian data:
 #
@@ -854,11 +850,17 @@ reject: j(i|í) j' h' h$ ʃs sʃ zʒ ʒz sz
 filter: ts > c; s > sz; tʃ > cs; ʒ > zs; ʃ > s; ss > s; ŋ > n
 
 # Remove syllable boundaries.
-filter: ' > !
-`;
+filter: ' > !`;
     }
-    // Move back to the top.
-    update($("#editing").val());
+    confirm = true;
+    if (option === true) {
+        var confirm = window.confirm("Clear input with example?");
+    }
+    if (confirm) {
+        $("#editing").val(choice);
+        update(choice);
+    }
+
     $("#editing").focus();
 }
 

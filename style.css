@@ -452,7 +452,7 @@ div .gll {
   overflow-y:auto;
   grid-row-start: 1; 
   grid-column-start: 1;
-  width: 94%;
+  width: 96%;
 }
 #editing, #highlighting, #highlighting * {
   /* Also add text styles to highlighing tokens */
@@ -468,6 +468,7 @@ div .gll {
   caret-color: black; /* Show caret */
   resize: none; /* No resize on textarea */
   padding: 1em;
+  padding-right: 0;
   margin: .5em 0;
 }
 #highlighting {
@@ -535,6 +536,7 @@ https://prismjs.com/download.html#themes=prism&languages=python */
  /* Code blocks */
  pre[class*="language-"] {
      padding: 1em;
+     padding-right: 0;
      margin: .5em 0;
  }
  
