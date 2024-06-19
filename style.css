@@ -131,10 +131,8 @@ thead {
   border-bottom-width: thin;
   flex-wrap: nowrap;
   font-size: 1.4em;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  -khtml-user-select: none;
-  -webkit-user-select: none;
+  -moz-user-select: none; -ms-user-select: none;
+  -khtml-user-select: none; -webkit-user-select: none;
   user-select: none;
 }
 .sortable thead {
@@ -208,14 +206,14 @@ thead {
 }
 
 .fixed-header tbody{
-display:block;
-width: 100%;
-overflow: auto;
-height: 100px;
+  display:block;
+  width: 100%;
+  overflow: auto;
+  height: 100px;
 }
 
 .fixed-header thead tr {
- display: block;
+  display: block;
 }
 code.example {
   font-family: monospace;
@@ -438,7 +436,7 @@ div .gll {
   color: white;
 }
 
-/* Please see the article */
+/* Code highlighting */
 
 #editing-highlighting-group {
   height: 500px;
@@ -447,12 +445,15 @@ div .gll {
 }
 
 #editing, #highlighting {
-  /* Both elements need the same text and space styling so they are directly on top of each other */
+  /* Both elements need same text/styling so they are directly on top of each other */
   border: 0;
   overflow-y:auto;
   grid-row-start: 1; 
   grid-column-start: 1;
-  width: 96%;
+  width: 98%;
+  padding: 7px;
+  padding-right: 0;
+  margin: .5em 0;
 }
 #editing, #highlighting, #highlighting * {
   /* Also add text styles to highlighing tokens */
@@ -461,131 +462,79 @@ div .gll {
   line-height: 1.5!important;
   tab-size: 2!important;
 }
-/* Make textarea almost completely transparent */
 #editing {
+  /* Make textarea almost completely transparent */
   color: transparent;
   background: transparent;
   caret-color: black; /* Show caret */
   resize: none; /* No resize on textarea */
-  padding: 1em;
-  padding-right: 0;
-  margin: .5em 0;
   text-wrap: nowrap;
 }
-
-
 
 /* Syntax Highlighting from prism.js starts below, partly modified: */
 
 /* PrismJS 1.29.0
 https://prismjs.com/download.html#themes=prism&languages=python */
-/**
+/*
  * prism.js default theme for JavaScript, CSS and HTML
  * Based on dabblet (http://dabblet.com)
  * @author Lea Verou
- */
+*/
 
- code[class*="language-"],
- pre[class*="language-"] {
-     color: black;
-     background: none;
-     font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
-     font-size: 1em;
-     text-align: left;
-     white-space: pre;
-     word-spacing: normal;
-     word-break: normal;
-     line-height: 1.5;
- 
-     -moz-tab-size: 4;
-     -o-tab-size: 4;
-     tab-size: 4;
- 
-     -webkit-hyphens: none;
-     -moz-hyphens: none;
-     -ms-hyphens: none;
-     hyphens: none;
- }
- 
- pre[class*="language-"]::-moz-selection, pre[class*="language-"] ::-moz-selection,
- code[class*="language-"]::-moz-selection, code[class*="language-"] ::-moz-selection {
-     text-shadow: none;
-     background: #b3d4fc;
- }
- 
- pre[class*="language-"]::selection, pre[class*="language-"] ::selection,
- code[class*="language-"]::selection, code[class*="language-"] ::selection {
-     text-shadow: none;
-     background: #b3d4fc;
- }
- 
- @media print {
-     code[class*="language-"],
-     pre[class*="language-"] {
-         text-shadow: none;
-     }
- }
- 
- /* Code blocks */
- pre[class*="language-"] {
-     padding: 1em;
-     padding-right: 0;
-     margin: .5em 0;
- }
- 
- :not(pre) > code[class*="language-"],
- pre[class*="language-"] {
-     background: #Fdfbf8
- }
- 
- /* Inline code */
- :not(pre) > code[class*="language-"] {
-     padding: .1em;
-     border-radius: .3em;
-     white-space: normal;
- }
- 
- .token.comment {
-     color: #029a02
- }
- .token.atrule,
- .token.attr-value,
- .token.keyword {
-     color: #8025d6;
- }
- .token.selector,
- .token.attr-name,
- .token.builtin {
-    color: #ed2525;
-     
- }
- .token.property,
- .token.tag,
- .token.boolean,
- .token.number,
- .token.constant,
- .token.symbol {
+#highlighting, #highlighting-content {
+  color: black;
+  background: #Fdfbf8;
+  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  font-size: 1em;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  line-height: 1.5;
+
+  -moz-tab-size: 4;-o-tab-size: 4;
+  tab-size: 4;
+  -webkit-hyphens: none;-moz-hyphens: none;-ms-hyphens: none;
+  hyphens: none;
+}
+
+#highlighting::-moz-selection, #highlighting ::-moz-selection,
+#highlighting-content::-moz-selection, #highlighting-content ::-moz-selection,
+#highlighting::selection, #highlighting ::selection,
+#highlighting-content::selection, #highlighting-content ::selection {
+  text-shadow: none;
+}
+@media print {.highlighting, .highlighting-content {
+  text-shadow: none;
+}}
+
+.token.comment {
+  color: #029a02;
+}
+.token.atrule, .token.attr-value, .token.keyword {
+  color: #8025d6;
+}
+.token.selector, .token.attr-name, .token.builtin {
+  color: #ed2525; 
+}
+.token.property, .token.tag, .token.boolean, .token.number, .token.constant, .token.symbol {
   color: #be6d2b;
-  
- }
- .token.operator,
- .token.entity {
+}
+.token.operator, .token.entity {
   color: #00558e;
- }
- .token.punctuation {
-     color: #999;
- }
- 
- .token.important, .token.bold {
-     font-weight: bold;
- }
- .token.italic {
-     font-style: italic;
- }
- .token.entity {
-     cursor: help;
- }
-
+}
+.token.punctuation {
+  color: #999;
+}
+.token.important, .token.bold {
+  font-weight: bold;
+}
+.token.italic {
+  font-style: italic;
+}
+.token.entity {
+  cursor: help;
+}
 /* End of prism.js syntax highlighting*/
 
 

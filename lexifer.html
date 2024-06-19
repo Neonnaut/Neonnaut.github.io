@@ -18,15 +18,6 @@
   <div id="content">
     <section id="top">
       <h1>Lexifer Online</h1>
-      <div class="dropdown switch-field">
-        <input type="button" value="▼ Examples (clears input)"></input>
-        <div class="dropdown-content">
-          <a onclick="lexiferExample('basic',true)">Default</a>
-          <a onclick="lexiferExample('basic-ex',true)">Default with Comments</a>
-          <a onclick="lexiferExample('tonal',true)">Tonal</a>
-          <a onclick="lexiferExample('hungarian',true)">(Fake) Hungarian</a>
-        </div>
-      </div><br>
 
 	    <div id="editing-highlighting-group">
 	      <pre id="highlighting" aria-hidden="true">
@@ -39,6 +30,17 @@
         <input type="file" name="loadButton" style="display: none;" accept=".txt, .def" />
         <input type="submit" id="LoadFile" value="Load" name="fakeLoadButton">
         <input type="submit" id="saveFile" value="Save" name="saveButton"> 
+
+        <div class="dropdown">
+          <input type="button" value="▼ Examples"></input>
+          <div class="dropdown-content">
+            <a onclick="lexiferExample('basic',true)">Default</a>
+            <a onclick="lexiferExample('basic-ex',true)">Default with Comments</a>
+            <a onclick="lexiferExample('tonal',true)">Tonal</a>
+            <a onclick="lexiferExample('hungarian',true)">(Fake) Hungarian</a>
+          </div>
+        </div>
+
       </div>
       <br>
       <fieldset id="bottom-content">
