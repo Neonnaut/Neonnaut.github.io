@@ -502,7 +502,7 @@ https://prismjs.com/download.html#themes=prism&languages=python */
 
 #highlighting, #highlighting-content {
   color: black;
-  background: #Fdfbf8;
+  background: #f6f6f6;
   font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
   font-size: 1em;
   text-align: left;
