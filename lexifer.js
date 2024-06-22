@@ -738,6 +738,95 @@ e e é è ě
 i i í ì ǐ
 o o ó ò ǒ
 u u ú ù ǔ`;
+    } else if (example == "japanese") {
+        choice = `# Japanese-like based on interpreting wikipedia.org/wiki/Japanese_phonology 
+# and link.springer.com/content/pdf/10.3758/BF03195600.pdf
+
+# <x> gives me onsetless morae later on
+C = k:45 t:39 s:33 r:25 n:20 x:15 h:10 m:10 d:8 g:8 z:4 b:4 w:3 p:2
+I = k:45 x:40 t:39 s:33 r:20 n:20 m:10 h:8 d:6 g:6 z:2 b:2 w:2 p:2
+V = a:233 i:226 u:215 o:204 e:190 ya:8 yu:8 yo:8 oo:2 ai:3 aa:2 ii:2 ee:2 uu:1
+W = a:223 i:216 u:205 o:194 e:180 ya:5 yu:5 yo:5
+X = oo:12 ai:10 aa:12 ii:12 ee:11 uu:1 yoo:2 yai:1 yaa:1 yuu:1
+F = N Q
+
+random-rate: 9
+
+$S = CVF? # Gives type C(y/V)V(N/Q).
+$A = IVF? # First syllable of slightly different consonant distribution.
+
+$L = CW # C(y)V, light syllable type
+$H = CX # C(y)VV, Heavy syllable of long vowel
+$J = CVF # C(y)V[N/Q], heavy syllable with <N> or <Q>
+
+# Where light syllable are of type (C)V, and heavy is (C)V[N/Q] or (C)VR(N/Q).
+# The final two syllable are least likely to be light followed by heavy.
+# I will be sneaking in one-syllable-word into LH class as well.
+
+#words: $A$S$S $A$S$L $A$S$S$S $A$S$S$L $A$S$S$S$L $A$S$S$L$L $A$L
+
+categories: LL:30 LH-a:1 LH-b:1 HL-a:10 HL-b:10 HH-a:1 HH-b:1 HH-c:1 HH-d:1 
+LL = $A$L$L $A$S$L$L $A$S$S$L$L $A$L
+LH-a = $S $A$L$H $A$S$L$H $A$S$S$L$H $A$H
+LH-b = $S $A$L$J $A$S$L$J $A$S$S$L$J $A$J
+HL-a = $A$H$L $A$S$H$L $A$S$S$H$L $A$L
+HL-b = $A$J$L $A$S$J$L $A$S$S$J$L $A$L
+HH-a = $A$H$H $A$S$H$H $A$S$S$H$H $A$H
+HH-b = $A$H$J $A$S$H$J $A$S$S$H$J $A$J
+HH-c = $A$J$J $A$S$J$J $A$S$S$J$J $A$J
+HH-d = $A$J$H $A$S$J$H $A$S$S$J$H $A$J
+
+filter: axa > a; ixi > i; uxu > u; oxo > o; uxu > u; exe > e
+filter: x > !;
+
+# These changes historically happened
+%  u   
+a  oo  
+i  yuu 
+u  +  
+e  yoo 
+o  oo
+
+# Allowed C(y)V morae
+# Yotsugana: <dz> and <dj> neutralise to <z> and <j>
+%  a   i    u   e   o   ya   yu   yo
+k  ka  ki   ku  ke  ko  kya  kyu  kyo
+ɡ  ɡa  ɡi   gu  ge  go  ɡya  ɡyu  gyo
+s  sa  ši   su  se  so  ša   šu   šo
+z  za  ji   zu  ze  zo  ja   ju   jo 
+t  ta  či   cu  te  to  ča   ču   čo
+d  da  ji   zu  de  do  ja   ju   jo
+n  na  ni   nu  ne  no  nya  nyu  nyo
+h  ha  hi   fu  he  ho  hya  hyu  hyo
+b  ba  bi   bu  be  bo  bya  byu  byo
+p  pa  pi   pu  pe  po  pya  pyu  pyo
+m  ma  mi   mu  me  mo  mya  myu  myo
+r  ra  ri   ru  re  ro  rya  ryu  ryo
+w  wa  i    wa  e   o   ya   yu   yo
+
+# Long-vowel + <Q> is ilegal.
+filter: aaQ > aa; iiQ > ii; uuQ > uu; ooQ > oo; eeQ > ee;
+
+# <N> assimilation and <Q> gemination.
+# Only <k s (š) t (c) p h> can geminate. <hQ fQ wQ> is <pp> for historic reason.
+% č  š  c   j  k  g  s  z  t  d  n  h  b  p  m  r  l  f   w   y
+Q tč šš tc  j  kk g  ss z  tt d  n  pp b  pp m  r  l  pp  pp  y
+N nč nš nc  nj nk ng ns nz nt nd nn nh mb mp mm nr nl nf  nw  ny
+
+# Phonetically, <N> word finally is [ɴ],
+# except after /i/ or /e/ is [ŋ]. Between vowel or before
+# /j, w, ɸ, s, ɕ, ç, h], is a nasalized vowel/semivowel. <'> will be used here. 
+% a    e    i    o    u    y
+N n'a  n'e  n'i  n'o  n'u  n'y
+
+filter: N > n; Q > !; niga > nega
+
+filter: c> ts; č > ch; š > sh; # This was to stop <chu> becoming <cfu>.
+
+# There some other phonetic thing such as /r/ becoming lateral/retroflex after
+# /i, e/ or at the bigginning of a word. /b/, /g/ becoming [β], [ɣ/ŋ]
+# between vowel. And the pitch accent. But these are all dependant on dialect,
+# and are not shown in any writing system of Japanese.`;
     } else if (example == "hungarian") {
         choice = `# This isn't quite Hungarian, but approximates it for demonstration
 # purposes.  The cluster restrictions, in particular, are based on
@@ -2190,7 +2279,7 @@ Prism.languages.lexifer = {
         }
     },
     'number': /\b0(?:b(?:_?[01])+|o(?:_?[0-7])+|x(?:_?[a-f0-9])+)\b|(?:\b\d+(?:_\d+)*(?:\.(?:\d+(?:_\d+)*)?)?|\B\.\d+(?:_\d+)*)(?:e[+-]?\d+(?:_\d+)*)?j?(?!\w)/i,
-    'operator': /[=]=?|!|:|\?|<[<=>]?|>[=>]?|[&|^~]|\(|\)|;|\+|\-|\\|\||\.|\$|\*|\[|\]|\{|\}/,
+    'operator': /[=]=?|!|:|\?|<[<=>]?|>[=>]?|[&|^~]|\(|\)|;|\+|\\|\||\.|\$|\*|\[|\]|\{|\}/,
 };
 
 
