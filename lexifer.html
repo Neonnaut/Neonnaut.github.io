@@ -3,8 +3,9 @@
 <head>
   <title>Lexifer</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="cm6.bundle.js"></script>
   <script type="text/javascript" src="lexifer.js"></script>
-  <!-- <script type="text/javascript" src="prism.js"></script> -->
+
   <meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1" />
   <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png" />
   <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png" />
@@ -21,18 +22,81 @@
 
       <details class="dropdown-group">
         <summary class="dropdown-btn">Examples</summary>
-        <a onclick="lexiferExample('basic',true)">Default</a>
-        <a onclick="lexiferExample('basic-ex',true)">Default with Comments</a>
-        <a onclick="lexiferExample('tonal',true)">Tonal</a>
-        <a onclick="lexiferExample('hungarian',true)">(Fake) Hungarian</a>
-        <a onclick="lexiferExample('japanese',true)">(Fake) Japanese</a>
+        <a class="lexifer-example" name="basic">Default</a>
+        <a class="lexifer-example" name="basic-ex">Default with Comments</a>
+        <a class="lexifer-example" name="tonal">Tonal</a>
+        <a class="lexifer-example" name="hungarian">(Fake) Hungarian</a>
+        <a class="lexifer-example" name="japanese">(Fake) Japanese</a>
       </details>
 
-	    <div id="editing-highlighting-group">
-	      <pre id="highlighting" aria-hidden="true">
-<code class="language-lexifer" id="highlighting-content"></code></pre>
-        <textarea id="editing" spellcheck="false" oninput="update(this.value); sync_scroll(this);" onscroll="sync_scroll(this);" onkeydown="check_tab(this, event);"></textarea>
-      </div>
+      <div id="editor"></div>
+      
+      <script>
+        const view = cm6.createEditorView( //Initial editor
+          cm6.createEditorState(lexiferExample('basic', false)),
+          document.getElementById("editor"));
+          
+        $(window).load(function () {
+          $("[class='lexifer-example']").click(function () { //Examples
+            const choice = $(this).attr('name');
+            const text = lexiferExample(choice, true);
+            view.dispatch({changes: {
+              from: 0,
+              to: view.state.doc.length,
+              insert: text
+            }})
+          });
+
+          $("[name='fakeLoadButton']").click(function () { //Load button
+            let input = document.createElement('input');
+            input.type = 'file';
+            input.onchange = _this => {
+              let file = Array.from(input.files)[0], read = new FileReader();
+              read.readAsText(file);
+
+              read.onloadend = function () {
+                view.dispatch({changes: {
+                from: 0,
+                to: view.state.doc.length,
+                insert: read.result
+              }})
+              }
+            };
+            input.click();
+
+            $("#editor").focus();
+          });
+
+          $("[name='saveButton']").click(function () { // Save button
+            const link = document.createElement("a");
+            const text = view.state.doc.toString();
+            const file = new Blob([text], { type: 'text/plain' });
+            link.href = URL.createObjectURL(file);
+            link.download = "sample.def";
+            link.click();
+            URL.revokeObjectURL(link.href);
+          });
+
+          $("[name='lexiferButton']").click(function () { //Generate button
+          const [myWords, myMessage] = genWords(
+            view.state.doc.toString(), 
+            parseInt($("#number").val()),
+            $("#verbose").is(":checked"),
+            $("#unsorted").is(":checked"),
+            $("#one-per-line").is(":checked"),
+          );
+
+          $("#result").html(
+            "<p class='error-message'>" + myMessage + "</p>" +
+            "<textarea id='output' spellcheck='false'>" + myWords + "</textarea>"
+          );
+
+          $('#output').focus();
+        });
+
+      });      
+
+      </script>
       
 	    <div class="switch-field">
         <input type="submit" id="genWords" name="lexiferButton" value="Generate words" name="markupButton">

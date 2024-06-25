@@ -455,78 +455,19 @@ div .gll {
   color: white;
 }
 
-/* Code highlighting */
-
-#editing-highlighting-group {
+#editor {
   height: 500px;
-  display: grid;
-  grid-template-columns: 1fr;
+  margin-top: 10px;
+  background: #f8f8f8;
 }
 
-#editing, #highlighting {
-  /* Both elements need same text/styling so they are directly on top of each other */
-  border: 0;
-  overflow-y:auto;
-  grid-row-start: 1; 
-  grid-column-start: 1;
-  width: 98%;
-  padding: 7px;
-  padding-right: 0;
-  margin: .5em 0;
-}
-#editing, #highlighting, #highlighting * {
-  /* Also add text styles to highlighing tokens */
-  font-size: 12pt!important;
-  font-family: monospace;
-  line-height: 1.5!important;
-  tab-size: 2!important;
-}
-#editing {
-  /* Make textarea almost completely transparent */
-  color: transparent;
-  background: transparent;
-  caret-color: black; /* Show caret */
-  resize: none; /* No resize on textarea */
-  text-wrap: nowrap;
+/* Stretch editor to fit inside its containing div */
+.cm-editor {
+  height: 100%;
+  width: 100%;
 }
 
-/* Syntax Highlighting from prism.js starts below, partly modified: */
-
-/* PrismJS 1.29.0
-https://prismjs.com/download.html#themes=prism&languages=python */
 /*
- * prism.js default theme for JavaScript, CSS and HTML
- * Based on dabblet (http://dabblet.com)
- * @author Lea Verou
-*/
-
-#highlighting, #highlighting-content {
-  color: black;
-  background: #f6f6f6;
-  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
-  font-size: 1em;
-  text-align: left;
-  white-space: pre;
-  word-spacing: normal;
-  word-break: normal;
-  line-height: 1.5;
-
-  -moz-tab-size: 4;-o-tab-size: 4;
-  tab-size: 4;
-  -webkit-hyphens: none;-moz-hyphens: none;-ms-hyphens: none;
-  hyphens: none;
-}
-
-#highlighting::-moz-selection, #highlighting ::-moz-selection,
-#highlighting-content::-moz-selection, #highlighting-content ::-moz-selection,
-#highlighting::selection, #highlighting ::selection,
-#highlighting-content::selection, #highlighting-content ::selection {
-  text-shadow: none;
-}
-@media print {.highlighting, .highlighting-content {
-  text-shadow: none;
-}}
-
 .token.comment {
   color: #029a02;
 }
@@ -554,7 +495,7 @@ https://prismjs.com/download.html#themes=prism&languages=python */
 .token.entity {
   cursor: help;
 }
-/* End of prism.js syntax highlighting*/
+ End of prism.js syntax highlighting */
 
 
 /* --Mobile first, because that's the hipster thing to do I guess-- */
