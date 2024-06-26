@@ -713,9 +713,9 @@ $L = CW # C(y)V, light syllable type
 $H = CX # C(y)VV, Heavy syllable of long vowel
 $J = CVF # C(y)V[N/Q], heavy syllable with <N> or <Q>
 
-# Where light syllable are of type (C)V, and heavy is (C)V[N/Q] or (C)VR(N/Q).
-# The final two syllable are least likely to be light followed by heavy.
-# I will be sneaking in one-syllable-word into LH class as well.
+# Where light syllable is of type (C)V, and heavy is (C)V[N/Q] or (C)VR(N/Q).
+# The final two syllables are least likely to be light followed by heavy.
+# I will be sneaking in one-syllable word into the LH class as well.
 
 #words: $A$S$S $A$S$L $A$S$S$S $A$S$S$L $A$S$S$S$L $A$S$S$L$L $A$L
 
@@ -762,24 +762,24 @@ w  wa  i    wa  e   o   ya   yu   yo
 filter: aaQ > aa; iiQ > ii; uuQ > uu; ooQ > oo; eeQ > ee;
 
 # <N> assimilation and <Q> gemination.
-# Only <k s (š) t (c) p h> can geminate. <hQ fQ wQ> is <pp> for historic reason.
+# Only <k s (š) t (c) p h> can geminate. <hQ fQ wQ> is <pp>; historically.
 % č  š  c   j  k  g  s  z  t  d  n  h  b  p  m  r  l  f   w   y
 Q tč šš tc  j  kk g  ss z  tt d  n  pp b  pp m  r  l  pp  pp  y
 N nč nš nc  nj nk ng ns nz nt nd nn nh mb mp mm nr nl nf  nw  ny
 
 # Phonetically, <N> word finally is [ɴ],
 # except after /i/ or /e/ is [ŋ]. Between vowel or before
-# /j, w, ɸ, s, ɕ, ç, h], is a nasalized vowel/semivowel. <'> will be used here. 
+# /j, w, ɸ, s, ɕ, ç, h], is a nasalized vowel/semivowel. I'll use <'> here. 
 % a    e    i    o    u    y
 N n'a  n'e  n'i  n'o  n'u  n'y
 
-filter: N > n; Q > !; niga > nega
+filter: N > n; Q > !; niga$ > nega
 
 filter: c> ts; č > ch; š > sh; # This was to stop <chu> becoming <cfu>.
 
-# There some other phonetic thing such as /r/ becoming lateral/retroflex after
+# There some other phonetic stuff such as /r/ becoming lateral/retroflex after
 # /i, e/ or at the bigginning of a word. /b/, /g/ becoming [β], [ɣ/ŋ]
-# between vowel. And the pitch accent. But these are all dependant on dialect,
+# between vowels. And the pitch accent. But these are dependant on dialect,
 # and are not shown in any writing system of Japanese.`;
     } else if (example == "hungarian") {
         choice = `# This isn't quite Hungarian, but approximates it for demonstration
@@ -793,7 +793,7 @@ filter: c> ts; č > ch; š > sh; # This was to stop <chu> becoming <cfu>.
 
 with: std-ipa-features std-assimilations coronal-metathesis
 
-letters: a á b c d dz dʒ e é f g h i í j k l m n o ó p r s ʃ t ts tʃ u ú v z ʒ '
+letters: a á b c d dz dʒ e é f g h i í j k kl kr l m n o ó p pr r s ʃ t tr ts tʃ u ú v z ʒ '
 
 C = t n k tʃ s m r ʃ d h p ts v l d b ʒ dʒ f j z p g dz
 

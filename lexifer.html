@@ -40,11 +40,13 @@
           $("[class='lexifer-example']").click(function () { //Examples
             const choice = $(this).attr('name');
             const text = lexiferExample(choice, true);
-            view.dispatch({changes: {
-              from: 0,
-              to: view.state.doc.length,
-              insert: text
-            }})
+            if (text != false) {
+              view.dispatch({changes: {
+                from: 0,
+                to: view.state.doc.length,
+                insert: text
+              }})
+            }
           });
 
           $("[name='fakeLoadButton']").click(function () { //Load button

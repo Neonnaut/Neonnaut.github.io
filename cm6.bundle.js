@@ -23649,7 +23649,7 @@ var cm6 = (function (exports) {
 
    const myHighlightStyle = HighlightStyle.define([
        // Comment / GREEN / #
-       { tag: tags.comment, color: "#2E7D33" },
+       { tag: tags.comment, color: "#005e06" },
        // Number / BROWN / 6 6.6
        { tag: tags.number, color: "#803900" },
        // Operator / BLUE / = > : 
