@@ -33,8 +33,29 @@
       
       <script>
         const view = cm6.createEditorView( //Initial editor
-          cm6.createEditorState(lexiferExample('basic', false)),
-          document.getElementById("editor"));
+          cm6.createEditorState(''),
+          document.getElementById("editor")
+        );
+        lexiferExample('basic', false)
+
+        // Populate input fields with data in local storage on window load if it exists
+        window.onload = function () {
+          if (localStorage.hasOwnProperty('lexifer')) {
+            view.dispatch({changes: {
+              from: 0,
+              to: view.state.doc.length,
+              insert: localStorage.getItem('lexifer')
+            }})
+          } else {
+            view.dispatch({changes: {
+              from: 0,
+              to: view.state.doc.length,
+              insert: lexiferExample('basic', false)
+            }})
+          }
+          // Select all text in the input
+          $('#input').focus().select();
+        };
           
         $(window).load(function () {
           $("[class='lexifer-example']").click(function () { //Examples
@@ -47,6 +68,7 @@
                 insert: text
               }})
             }
+            localStorage.setItem('lexifer', text);
           });
 
           $("[name='fakeLoadButton']").click(function () { //Load button
@@ -55,17 +77,16 @@
             input.onchange = _this => {
               let file = Array.from(input.files)[0], read = new FileReader();
               read.readAsText(file);
-
               read.onloadend = function () {
                 view.dispatch({changes: {
-                from: 0,
-                to: view.state.doc.length,
-                insert: read.result
-              }})
+                  from: 0,
+                  to: view.state.doc.length,
+                  insert: read.result
+                }})
+                localStorage.setItem('lexifer', read.result);
               }
             };
             input.click();
-
             $("#editor").focus();
           });
 
@@ -77,26 +98,26 @@
             link.download = "sample.def";
             link.click();
             URL.revokeObjectURL(link.href);
+            // Save input text in user's localstorage for next session
+            localStorage.setItem('lexifer', text);
           });
 
           $("[name='lexiferButton']").click(function () { //Generate button
-          const [myWords, myMessage] = genWords(
-            view.state.doc.toString(), 
-            parseInt($("#number").val()),
-            $("#verbose").is(":checked"),
-            $("#unsorted").is(":checked"),
-            $("#one-per-line").is(":checked"),
-          );
-
-          $("#result").html(
-            "<p class='error-message'>" + myMessage + "</p>" +
-            "<textarea id='output' spellcheck='false'>" + myWords + "</textarea>"
-          );
-
-          $('#output').focus();
-        });
-
-      });      
+            const [myWords, myMessage] = genWords(
+              view.state.doc.toString(), 
+              parseInt($("#number").val()),
+              $("#verbose").is(":checked"),
+              $("#unsorted").is(":checked"),
+              $("#one-per-line").is(":checked"),
+            );
+            $("#result").html(
+              "<p class='error-message'>" + myMessage + "</p>" +
+              "<textarea id='output' spellcheck='false'>" + myWords + "</textarea>"
+            );
+            localStorage.setItem('lexifer', view.state.doc.toString());
+            $('#output').focus();
+          });
+        });      
 
       </script>
       

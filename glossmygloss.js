@@ -1,4 +1,3 @@
-
 // Populate input fields with data in local storage on window load if it exists
 window.onload = function () {
 	if (localStorage.hasOwnProperty('notInterlinear')) {
@@ -34,7 +33,6 @@ $(window).load(function () {
 		}
 	});
 });
-
 
 
 function glossarize(markup) {
@@ -90,7 +88,11 @@ function glossarize(markup) {
 	$("#result").html(conv.output);
 	$("#output").focus();
 	$("#output").select();
-	setLocalStorage();
+	// Save input text in user's localstorage for next session
+	localStorage.setItem('input', $('#input').val());
+	localStorage.setItem('notInterlinear', $('#notInterlinear').val());
+	localStorage.setItem('abbrvInput', $('#abbrvInput').val());
+	localStorage.setItem('abbrvDelimiterInput', $('#abbrvDelimiterInput').val());
 }
 
 function convert(conv) {
@@ -839,12 +841,4 @@ Converter.prototype.finishPlainText = function (input) {
 }
 Converter.prototype.finishBlock = function (input) {
 	this.output = "<textarea id='output' spellcheck='false'>`\n" + input + "`</textarea>";
-}
-
-// Save input text in user's localstorage for next session
-function setLocalStorage() {
-	localStorage.setItem('input', $('#input').val());
-	localStorage.setItem('notInterlinear', $('#notInterlinear').val());
-	localStorage.setItem('abbrvInput', $('#abbrvInput').val());
-	localStorage.setItem('abbrvDelimiterInput', $('#abbrvDelimiterInput').val());
 }
