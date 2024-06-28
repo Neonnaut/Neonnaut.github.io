@@ -32,20 +32,8 @@
 
 <h1>IPA Keyboard and X-Sampa Converter</h1>
 
-<table class="btns" id="IPA">
-
- </table>
-
-
- <table class="btns styled-table" id="IPA">
+ <table class="btns xipa-table" id="IPA">
    <tr>
-      <td><button class="Vowel" title="close front unrounded vowel" onclick="writeSampa(event, 'i')">i</button></td>
-      <td><button class="Vowel" title="close front rounded vowel" onclick="writeSampa(event, 'y')">y</button></td>
-      <td><button class="Vowel" title="close central unrounded vowel" onclick="writeSampa(event, '&#616;')">&#616;</button></td>
-      <td><button class="Vowel" title="close central rounded vowel" onclick="writeSampa(event, '&#649;')">&#649;</button></td>
-      <td><button class="Vowel" title="close back unrounded vowel" onclick="writeSampa(event, '&#623;')">&#623;</button></td>
-      <td><button class="Vowel" title="close back rounded vowel" onclick="writeSampa(event, 'u')">u</button></td>
-      <td></td>
       <td><button class="Supra" title="primary stress" onclick="writeSampa(event, '&#712;')">&#712;&#9676;</button></td>
       <td><button class="Supra" title="secondary stress" onclick="writeSampa(event, '&#716;')">&#716;&#9676;</button></td>
       <td><button class="Supra" title="long" onclick="writeSampa(event, '&#720;')">&#9676;&#720;</button></td>
@@ -58,9 +46,41 @@
       <td></td>
       <td><button class="Supra" title="superscript 1 (nonIPA)" onclick="writeSampa(event, '&#185;')">&#185;&#9676;</button></td>
       <td><button class="Supra" title="superscript 2 (nonIPA)" onclick="writeSampa(event, '&#178;')">&#178;&#9676;</button></td>
-      <td><button class="Supra" title="dotted circle (nonIPA)" onclick="writeSampa(event, '&#9676;')">&#9676;</button></td>
+      
       <td><button class="Supra" title="zero (nonIPA)" onclick="writeSampa(event, '&#8709;')">&#8709;</button></td>
-      <td><button class="Supra" title="voiced velar plosive (opentail)" onclick="writeSampa(event, '&#609;')">&#609;</button></td>
+      <td></td>  <td></td>
+      <td></td>  <td></td>  <td></td>
+      <td></td>  <td></td>  <td></td>
+      <td></td>
+   </tr>
+   <tr>
+      <td>e</td>   <td></td>   <td></td>
+      <td></td>   <td></td>   <td></td>
+      <td></td>   <td></td>   <td></td>
+      <td></td>   <td></td>   <td></td>
+      <td></td>   <td></td>   <td></td>
+      <td></td>   <td></td>   <td></td>
+      <td></td>   <td></td>   <td></td>
+      <td></td>
+   </tr>
+
+   <tr>
+      <td><button class="Vowel" title="close front unrounded vowel" onclick="writeSampa(event, 'i')">i</button></td>
+      <td><button class="Vowel" title="close front rounded vowel" onclick="writeSampa(event, 'y')">y</button></td>
+      <td><button class="Vowel" title="close central unrounded vowel" onclick="writeSampa(event, '&#616;')">&#616;</button></td>
+      <td><button class="Vowel" title="close central rounded vowel" onclick="writeSampa(event, '&#649;')">&#649;</button></td>
+      <td><button class="Vowel" title="close back unrounded vowel" onclick="writeSampa(event, '&#623;')">&#623;</button></td>
+      <td><button class="Vowel" title="close back rounded vowel" onclick="writeSampa(event, 'u')">u</button></td>
+      <td></td>
+      <td><button class="Tone" title="extra high tone" onclick="writeSampa(event, '&#779;')">&#9676;&#779;</button></td>
+      <td><button class="Tone" title="high tone" onclick="writeSampa(event, '&#769;')">&#9676;&#769;</button></td>
+      <td><button class="Tone" title="mid tone" onclick="writeSampa(event, '&#772;')">&#9676;&#772;</button></td>
+      <td><button class="Tone" title="low tone" onclick="writeSampa(event, '&#768;')">&#9676;&#768;</button></td>
+      <td><button class="Tone" title="extra low tone" onclick="writeSampa(event, '&#783;')">&#9676;&#783;</button></td>
+      <td><button class="Tone" title="downstep" onclick="writeSampa(event, '&#42780;')">&#42780;</button></td>
+      <td></td>  <td></td>  <td></td>
+      <td></td>  <td></td>  <td></td>
+      <td></td>
    </tr>
    <tr>
       <td><button class="Vowel" title="near-close near-front unrounded vowel" onclick="writeSampa(event, '&#618;')">&#618;</button></td>
@@ -69,11 +89,13 @@
       <td><button class="Vowel" title="close-mid central rounded vowel" onclick="writeSampa(event, '&#629;')">&#629;</button></td>
       <td></td>
       <td><button class="Vowel" title="near-close near-back rounded vowel" onclick="writeSampa(event, '&#650;')">&#650;</button></td>
-      <td></td>   <td></td>   <td></td>
-      <td></td>   <td></td>   <td></td>
-      <td></td>   <td></td>   <td></td>
-      <td></td>   <td></td>   <td></td>
-      <td></td>   <td></td>   <td></td>
+      <td></td>
+      <td><button class="Tone" title="extra high tone (Chao letter)" onclick="writeSampa(event, '&#741;')">&#741;</button></td>
+      <td><button class="Tone" title="high tone (Chao letter)" onclick="writeSampa(event, '&#742;')">&#742;</button></td>
+      <td><button class="Tone" title="mid tone (Chao letter)" onclick="writeSampa(event, '&#743;')">&#743;</button></td>
+      <td><button class="Tone" title="low tone (Chao letter)" onclick="writeSampa(event, '&#744;')">&#744;</button></td>
+      <td><button class="Tone" title="extra low tone (Chao letter)" onclick="writeSampa(event, '&#745;')">&#745;</button></td>
+      <td><button class="Tone" title="upstep" onclick="writeSampa(event, '&#42779;')">&#42779;</button></td>
       <td></td>
    </tr>
    <tr>
@@ -83,34 +105,24 @@
       <td></td>
       <td><button class="Vowel" title="close-mid back unrounded vowel" onclick="writeSampa(event, '&#612;')">&#612;</button></td>
       <td><button class="Vowel" title="close-mid back rounded vowel" onclick="writeSampa(event, 'o')">o</button></td>
-      <td></td>   <td></td>   <td></td>
-      <td></td>   <td></td>   <td></td>
-      <td></td>   <td></td>   <td></td>
-      <td></td>   <td></td>   <td></td>
-      <td></td>   <td></td>   <td></td>
+      <td></td>
+
       <td></td>
    </tr>
    <tr>
-      <td><button class="VowelX" title="mid front unrounded vowel" onclick="writeSampa(event, 'e&#798;')">e&#798;</button></td>
-      <td><button class="VowelX" title="mid front rounded vowel" onclick="writeSampa(event, '&#248;&#798;')">&#248;&#798;</button></td>
+      <td><button class="Vowel" title="mid front unrounded vowel" onclick="writeSampa(event, 'e&#798;')">e&#798;</button></td>
+      <td><button class="Vowel" title="mid front rounded vowel" onclick="writeSampa(event, '&#248;&#798;')">&#248;&#798;</button></td>
       <td><button class="Vowel" title="mid central (unrounded) vowel (schwa)" onclick="writeSampa(event, '&#601;')">&#601;</button></td>
       <td></td>
       <td></td>
-      <td><button class="VowelX" title="mid front rounded vowel" onclick="writeSampa(event, 'o&#798;')">o&#798;</button></td>
+      <td><button class="Vowel" title="mid front rounded vowel" onclick="writeSampa(event, 'o&#798;')">o&#798;</button></td>
       <td></td>
-      <td><button class="Tone" title="extra high tone" onclick="writeSampa(event, '&#779;')">&#9676;&#779;</button></td>
-      <td><button class="Tone" title="high tone" onclick="writeSampa(event, '&#769;')">&#9676;&#769;</button></td>
-      <td><button class="Tone" title="mid tone" onclick="writeSampa(event, '&#772;')">&#9676;&#772;</button></td>
-      <td><button class="Tone" title="low tone" onclick="writeSampa(event, '&#768;')">&#9676;&#768;</button></td>
-      <td><button class="Tone" title="extra low tone" onclick="writeSampa(event, '&#783;')">&#9676;&#783;</button></td>
-      <td><button class="Tone" title="downstep" onclick="writeSampa(event, '&#42780;')">&#42780;</button></td>
-      <td><button class="Tone" title="rising tone" onclick="writeSampa(event, '&#780;')">&#9676;&#780;</button></td>
+            <td><button class="Tone" title="rising tone" onclick="writeSampa(event, '&#780;')">&#9676;&#780;</button></td>
       <td><button class="Tone" title="falling tone" onclick="writeSampa(event, '&#770;')">&#9676;&#770;</button></td>
       <td><button class="Tone" title="high rising tone" onclick="writeSampa(event, '&#7620;')">&#9676;&#7620;</button></td>
       <td><button class="Tone" title="low rising tone" onclick="writeSampa(event, '&#7622;')">&#9676;&#7622;</button></td>
       <td><button class="Tone" title="rising-falling tone" onclick="writeSampa(event, '&#7624;')">&#9676;&#7624;</button></td>
       <td><button class="Tone" title="global rise" onclick="writeSampa(event, '&#8599;')">&#8599;</button></td>
-      <td></td>    <td></td>    <td></td>
    </tr>
    <tr>
       <td><button class="Vowel" title="open-mid front unrounded vowel" onclick="writeSampa(event, '&#603;')">&#603;</button></td>
@@ -120,12 +132,7 @@
       <td><button class="Vowel" title="open-mid back unrounded vowel" onclick="writeSampa(event, '&#652;')">&#652;</button></td>
       <td><button class="Vowel" title="open-mid back rounded vowel" onclick="writeSampa(event, '&#596;')">&#596;</button></td>
       <td></td>
-      <td><button class="Tone" title="extra high tone (Chao letter)" onclick="writeSampa(event, '&#741;')">&#741;</button></td>
-      <td><button class="Tone" title="high tone (Chao letter)" onclick="writeSampa(event, '&#742;')">&#742;</button></td>
-      <td><button class="Tone" title="mid tone (Chao letter)" onclick="writeSampa(event, '&#743;')">&#743;</button></td>
-      <td><button class="Tone" title="low tone (Chao letter)" onclick="writeSampa(event, '&#744;')">&#744;</button></td>
-      <td><button class="Tone" title="extra low tone (Chao letter)" onclick="writeSampa(event, '&#745;')">&#745;</button></td>
-      <td><button class="Tone" title="upstep" onclick="writeSampa(event, '&#42779;')">&#42779;</button></td>
+
       <td><button class="Tone" title="rising tone (Chao letter)" onclick="writeSampa(event, '&#745;&#741;')">&#745;&#741;</button></td>
       <td><button class="Tone" title="falling tone (Chao letter)" onclick="writeSampa(event, '&#741;&#745;')">&#741;&#745;</button></td>
       <td><button class="Tone" title="high rising tone (Chao letter)" onclick="writeSampa(event, '&#743;&#741;')">&#743;&#741;</button></td>
@@ -136,9 +143,9 @@
    </tr>
    <tr>
       <td><button class="Vowel" title="near-open front unrounded vowel" onclick="writeSampa(event, '&#230;')">&#230;</button></td>
-      <td><button class="VowelX" title="near-open front rounded vowel" onclick="writeSampa(event, '&#339;&#798;')">&#339;&#798;</button></td>
+      <td><button class="Vowel" title="near-open front rounded vowel" onclick="writeSampa(event, '&#339;&#798;')">&#339;&#798;</button></td>
       <td><button class="Vowel" title="near-open central (unrounded) vowel" onclick="writeSampa(event, '&#592;')">&#592;</button></td>
-      <td><button class="VowelX" title="near-open central rounded vowel" onclick="writeSampa(event, '&#606;&#798;')">&#606;&#798;</button></td>
+      <td><button class="Vowel" title="near-open central rounded vowel" onclick="writeSampa(event, '&#606;&#798;')">&#606;&#798;</button></td>
       <td></td>    <td></td>
       <td></td>   <td></td>   <td></td>
       <td></td>   <td></td>   <td></td>
@@ -150,7 +157,7 @@
    <tr>
       <td><button class="Vowel" title="open front unrounded vowel" onclick="writeSampa(event, 'a')">a</button></td>
       <td><button class="Vowel" title="open front rounded vowel" onclick="writeSampa(event, '&#630;')">&#630;</button></td>
-      <td><button class="VowelX" title="open central unrounded vowel" onclick="writeSampa(event, 'a&#776;')">a&#776;</button></td>
+      <td><button class="Vowel" title="open central unrounded vowel" onclick="writeSampa(event, 'a&#776;')">a&#776;</button></td>
       <td></td>
       <td><button class="Vowel" title="open back unrounded vowel" onclick="writeSampa(event, '&#593;')">&#593;</button></td>
       <td><button class="Vowel" title="open back rounded vowel" onclick="writeSampa(event, '&#594;')">&#594;</button></td>
@@ -176,8 +183,8 @@
       <td><button class="Cons" title="voiced bilabial plosive" onclick="writeSampa(event, 'b')">b</button></td>
       <td></td>
       <td></td>
-      <td><button class="ConsX" title="voiceless dental plosive" onclick="writeSampa(event, 't&#810;')">t&#810;</button></td>
-      <td><button class="ConsX" title="voiced dental plosive" onclick="writeSampa(event, 'd&#810;')">d&#810;</button></td>
+      <td><button class="Cons" title="voiceless dental plosive" onclick="writeSampa(event, 't&#810;')">t&#810;</button></td>
+      <td><button class="Cons" title="voiced dental plosive" onclick="writeSampa(event, 'd&#810;')">d&#810;</button></td>
       <td><button class="Cons" title="voiceless alveolar plosive" onclick="writeSampa(event, 't')">t</button></td>
       <td><button class="Cons" title="voiced alveolar plosive" onclick="writeSampa(event, 'd')">d</button></td>
       <td></td>
@@ -196,20 +203,20 @@
       <td></td>
    </tr>
    <tr>
-      <td><button class="ConsX" title="voiceless bilabial nasal" onclick="writeSampa(event, 'm&#805;')">m&#805;</button></td>
+      <td><button class="Cons" title="voiceless bilabial nasal" onclick="writeSampa(event, 'm&#805;')">m&#805;</button></td>
       <td><button class="Cons" title="voiced bilabial nasal" onclick="writeSampa(event, 'm')">m</button></td>
       <td></td>
       <td><button class="Cons" title="voiced labiodental nasal" onclick="writeSampa(event, '&#625;')">&#625;</button></td>
       <td></td>
-      <td><button class="ConsX" title="voiced dental nasal" onclick="writeSampa(event, 'n&#810;')">n&#810;</button></td>
-      <td><button class="ConsX" title="voiceless alveolar nasal" onclick="writeSampa(event, 'n&#805;')">n&#805;</button></td>
+      <td><button class="Cons" title="voiced dental nasal" onclick="writeSampa(event, 'n&#810;')">n&#810;</button></td>
+      <td><button class="Cons" title="voiceless alveolar nasal" onclick="writeSampa(event, 'n&#805;')">n&#805;</button></td>
       <td><button class="Cons" title="voiced alveolar nasal" onclick="writeSampa(event, 'n')">n</button></td>
       <td></td>    <td></td>
       <td></td>
       <td><button class="Cons" title="voiced retroflex nasal" onclick="writeSampa(event, '&#627;')">&#627;</button></td>
       <td></td>
       <td><button class="Cons" title="voiced palatal nasal" onclick="writeSampa(event, '&#626;')">&#626;</button></td>
-      <td><button class="ConsX" title="voiceless velar nasal" onclick="writeSampa(event, '&#331;&#778;')">&#331;&#778;</button></td>
+      <td><button class="Cons" title="voiceless velar nasal" onclick="writeSampa(event, '&#331;&#778;')">&#331;&#778;</button></td>
       <td><button class="Cons" title="voiced velar nasal" onclick="writeSampa(event, '&#331;')">&#331;</button></td>
       <td></td>
       <td><button class="Cons" title="voiced uvular nasal" onclick="writeSampa(event, '&#628;')">&#628;</button></td>
@@ -220,7 +227,7 @@
       <td><button class="Cons" title="voiced bilabial trill" onclick="writeSampa(event, '&#665;')">&#665;</button></td>
       <td></td>    <td></td>    <td></td>
       <td></td>
-      <td><button class="ConsX" title="voiceless alveolar trill" onclick="writeSampa(event, 'r&#805;')">r&#805;</button></td>
+      <td><button class="Cons" title="voiceless alveolar trill" onclick="writeSampa(event, 'r&#805;')">r&#805;</button></td>
       <td><button class="Cons" title="voiced alveolar trill" onclick="writeSampa(event, 'r')">r</button></td>
       <td></td>    <td></td>    <td></td>    <td></td>    <td></td>
       <td></td>    <td></td>    <td></td>    <td></td>
@@ -267,25 +274,25 @@
       <td><button class="Cons" title="voiced glottal fricative" onclick="writeSampa(event, '&#614;')">&#614;</button></td>
    </tr>
    <tr>
-      <td><button class="Cons" title="voiceless bilabial fricative" class="bilabial" onclick="writeSampa(event, 'p&#865;&#632;')">p&#865;&#632;</button></td>
-      <td><button class="Cons" title="voiced bilabial fricative" class="bilabial" onclick="writeSampa(event, 'b&#865;&#946;')">b&#865;&#946;</button></td>
-      <td><button class="Cons" title="voiceless labiodental fricative" onclick="writeSampa(event, 'p&#865;f')">p&#865;f</button></td>
-      <td><button class="Cons" title="voiced labiodental fricative" onclick="writeSampa(event, 'b&#865;v')">b&#865;v</button></td>
-      <td><button class="Cons" title="voiceless dental fricative" onclick="writeSampa(event, 't&#810;&#865;&#952;')">t&#810;&#865;&#952;</button></td>
-      <td><button class="Cons" title="voiced dental fricative" onclick="writeSampa(event, 'd&#810;&#865;&#240;')">d&#810;&#865;&#240;</button></td>
-      <td><button class="Cons" title="voiceless alveolar fricative" onclick="writeSampa(event, 't&#865;s')">t&#865;s</button></td>
-      <td><button class="Cons" title="voiced alveolar fricative" onclick="writeSampa(event, 'd&#865;z')">d&#865;z</button></td>
+      <td><button class="Cons" title="voiceless bilabial affricate" class="bilabial" onclick="writeSampa(event, 'p&#865;&#632;')">p&#865;&#632;</button></td>
+      <td><button class="Cons" title="voiced bilabial affricate" class="bilabial" onclick="writeSampa(event, 'b&#865;&#946;')">b&#865;&#946;</button></td>
+      <td><button class="Cons" title="voiceless labiodental affricate" onclick="writeSampa(event, 'p&#865;f')">p&#865;f</button></td>
+      <td><button class="Cons" title="voiced labiodental affricate" onclick="writeSampa(event, 'b&#865;v')">b&#865;v</button></td>
+      <td><button class="Cons" title="voiceless dental affricate" onclick="writeSampa(event, 't&#810;&#865;&#952;')">t&#810;&#865;&#952;</button></td>
+      <td><button class="Cons" title="voiced dental affricate" onclick="writeSampa(event, 'd&#810;&#865;&#240;')">d&#810;&#865;&#240;</button></td>
+      <td><button class="Cons" title="voiceless alveolar affricate" onclick="writeSampa(event, 't&#865;s')">t&#865;s</button></td>
+      <td><button class="Cons" title="voiced alveolar affricate" onclick="writeSampa(event, 'd&#865;z')">d&#865;z</button></td>
       <td><button class="Cons" title="voiceless palatoalveolar affricate" onclick="writeSampa(event, 't&#865;&#643;')">t&#865;&#643;</button></td>
       <td><button class="Cons" title="voiced palatoalveolar affricate" onclick="writeSampa(event, 'd&#865;&#658;')">d&#865;&#658;</button></td>
       
-      <td><button class="Cons" title="voiceless retroflex fricative" onclick="writeSampa(event, '&#648;&#865;&#642;')">&#648;&#865;&#642;</button></td>
-      <td><button class="Cons" title="voiced retroflex fricative" onclick="writeSampa(event, '&#598;&#865;&#656;')">&#598;&#865;&#656;</button></td>
-      <td><button class="Cons" title="voiceless palatal fricative" onclick="writeSampa(event, 'c&#865;&#669;')">c&#865;&#231;</button></td>
-      <td><button class="Cons" title="voiced palatal fricative" onclick="writeSampa(event, 'c&#865;&#669;')">&#607;&#865;&#669;</button></td>
-      <td><button class="Cons" title="voiceless velar fricative" onclick="writeSampa(event, 'k&#865;x')">k&#865;x</button></td>
-      <td><button class="Cons" title="voiced velar fricative" onclick="writeSampa(event, 'g&#865;&#611;')">g&#865;&#611;</button></td>
-      <td><button class="Cons" title="voiceless uvular fricative" onclick="writeSampa(event, 'q&#865;&#967;')">q&#865;&#967;</button></td>
-      <td><button class="Cons" title="voiced uvular fricative" onclick="writeSampa(event, '&#598;&#865;&#641;')">&#598;&#865;&#641;</button></td>
+      <td><button class="Cons" title="voiceless retroflex affricate" onclick="writeSampa(event, '&#648;&#865;&#642;')">&#648;&#865;&#642;</button></td>
+      <td><button class="Cons" title="voiced retroflex affricate" onclick="writeSampa(event, '&#598;&#865;&#656;')">&#598;&#865;&#656;</button></td>
+      <td><button class="Cons" title="voiceless palatal affricate" onclick="writeSampa(event, 'c&#865;&#669;')">c&#865;&#231;</button></td>
+      <td><button class="Cons" title="voiced palatal affricate" onclick="writeSampa(event, 'c&#865;&#669;')">&#607;&#865;&#669;</button></td>
+      <td><button class="Cons" title="voiceless velar affricate" onclick="writeSampa(event, 'k&#865;x')">k&#865;x</button></td>
+      <td><button class="Cons" title="voiced velar affricate" onclick="writeSampa(event, 'g&#865;&#611;')">g&#865;&#611;</button></td>
+      <td><button class="Cons" title="voiceless uvular affricate" onclick="writeSampa(event, 'q&#865;&#967;')">q&#865;&#967;</button></td>
+      <td><button class="Cons" title="voiced uvular affricate" onclick="writeSampa(event, '&#610;&#865;&#641;')">&#610;&#865;&#641;</button></td>
       <td></td>  <td></td>  <td></td>  <td></td>
    </tr> 
    <tr>
@@ -318,7 +325,7 @@
    <tr>
       <td></td>    <td></td>    <td></td>    <td></td>    <td></td>
       <td></td>
-      <td><button class="ConsX" title="voiceless alveolar lateral approximant" onclick="writeSampa(event, 'l&#805;')">l&#805;</button></td>
+      <td><button class="Cons" title="voiceless alveolar lateral approximant" onclick="writeSampa(event, 'l&#805;')">l&#805;</button></td>
       <td><button class="Cons" title="voiced alveolar lateral approximant" onclick="writeSampa(event, 'l')">l</button></td>
       <td></td>    <td></td>
       <td></td>
@@ -382,7 +389,17 @@
       <td></td>  <td></td>  <td></td>  <td></td>  <td></td>
       <td></td>  <td></td>  <td></td>  <td></td>  <td></td>
       <td></td>  <td></td>
-   
+   </tr>
+
+   <tr>
+      <td>e</td>   <td></td>   <td></td>
+      <td></td>   <td></td>   <td></td>
+      <td></td>   <td></td>   <td></td>
+      <td></td>   <td></td>   <td></td>
+      <td></td>   <td></td>   <td></td>
+      <td></td>   <td></td>   <td></td>
+      <td></td>   <td></td>   <td></td>
+      <td></td>
    </tr>
 
    <tr>
@@ -409,19 +426,19 @@
       <td><button class="Diac" title="voiced glottal fricative (superscript)" onclick="writeSampa(event, '&#689;')">&#9676;&#689;</button></td>
       <td><button class="Diac" title="dental" onclick="writeSampa(event, '&#810;')">&#9676;&#810;</button></td>
    </tr><tr>
-      <td><button class="DiacX" title="syllabic (above)" onclick="writeSampa(event, '&#781;')">&#9676;&#781;</button></td>
+      <td><button class="Diac" title="syllabic (above)" onclick="writeSampa(event, '&#781;')">&#9676;&#781;</button></td>
       <td></td>
-      <td><button class="DiacX" title="advanced (standalone)" onclick="writeSampa(event, '&#726;')">&#9676;&#726;</button></td>
-      <td><button class="DiacX" title="retracted (standalone)" onclick="writeSampa(event, '&#727;')">&#9676;&#727;</button></td>
-      <td><button class="DiacX" title="raised (standalone)" onclick="writeSampa(event, '&#724;')">&#9676;&#724;</button></td>
-      <td><button class="DiacX" title="lowered (standalone)" onclick="writeSampa(event, '&#725;')">&#9676;&#725;</button></td>
+      <td><button class="Diac" title="advanced (standalone)" onclick="writeSampa(event, '&#726;')">&#9676;&#726;</button></td>
+      <td><button class="Diac" title="retracted (standalone)" onclick="writeSampa(event, '&#727;')">&#9676;&#727;</button></td>
+      <td><button class="Diac" title="raised (standalone)" onclick="writeSampa(event, '&#724;')">&#9676;&#724;</button></td>
+      <td><button class="Diac" title="lowered (standalone)" onclick="writeSampa(event, '&#725;')">&#9676;&#725;</button></td>
       <td></td>
       <td></td>
       <td><button class="Diac" title="mid-centralized" onclick="writeSampa(event, '&#829;')">&#9676;&#829;</button></td>
-      <td><button class="DiacX" title="voiceless (above)" onclick="writeSampa(event, '&#778;')">&#9676;&#778;</button></td>
+      <td><button class="Diac" title="voiceless (above)" onclick="writeSampa(event, '&#778;')">&#9676;&#778;</button></td>
       <td></td>
-      <td><button class="DiacX" title="more rounded (above)" onclick="writeSampa(event, '&#855;')">&#9676;&#855;</button></td>
-      <td><button class="DiacX" title="less rounded (above)" onclick="writeSampa(event, '&#849;')">&#9676;&#849;</button></td>
+      <td><button class="Diac" title="more rounded (above)" onclick="writeSampa(event, '&#855;')">&#9676;&#855;</button></td>
+      <td><button class="Diac" title="less rounded (above)" onclick="writeSampa(event, '&#849;')">&#9676;&#849;</button></td>
       <td><button class="Diac" title="whistled" onclick="writeSampa(event, '&#846;')">&#9676;&#846;</button></td>
       <td><button class="Diac" title="rhoticity" onclick="writeSampa(event, '&#734;')">&#9676;&#734;</button></td>
       <td><button class="Diac" title="velarized or pharyngealized " onclick="writeSampa(event, '&#820;')">&#9676;&#820;</button></td>
@@ -430,7 +447,7 @@
       <td><button class="Diac" title="linguolabial" onclick="writeSampa(event, '&#828;')">&#9676;&#828;</button></td>
       <td><button class="Diac" title="breathy voiced" onclick="writeSampa(event, '&#804;')">&#9676;&#804;</button></td>
       <td><button class="Diac" title="no audible release" onclick="writeSampa(event, '&#794;')">&#9676;&#794;</button></td>
-      <td><button class="DiacX" title="dental (above)" onclick="writeSampa(event, '&#838;')">&#9676;&#838;</button></td>
+      <td><button class="Diac" title="dental (above)" onclick="writeSampa(event, '&#838;')">&#9676;&#838;</button></td>
 
    </tr>
 
@@ -614,8 +631,6 @@
 <p>Made by Aevas & Co. April 2020.</p>
 <p>Updated October 2020.</p>
 </div>
-
-<p align="center"><a href="https://cbbforum.com"><img border="0" src="cbb_logo.png"></a></p>
 
 </section>
 </div>

@@ -399,8 +399,6 @@ img {
 
 
 /* --Input Stuff-- */
-
-
 #abbrvDelimiterInput,
 #abbrvInput,
 #abbrvDelimiterInput,
@@ -460,43 +458,53 @@ div .gll {
   margin-top: 10px;
   background: #f8f8f8;
 }
-
 /* Stretch editor to fit inside its containing div */
 .cm-editor {
   height: 100%;
   width: 100%;
 }
 
-/*
-.token.comment {
-  color: #029a02;
+/*Xipa stuff */
+.Cons {
+  background: #c28194;
 }
-.token.atrule, .token.attr-value, .token.keyword {
-  color: #8025d6;
-}
-.token.selector, .token.attr-name, .token.builtin {
-  color: #ed2525; 
-}
-.token.property, .token.tag, .token.boolean, .token.number, .token.constant, .token.symbol {
-  color: #be6d2b;
-}
-.token.operator, .token.entity {
-  color: #00558e;
-}
-.token.punctuation {
-  color: #999;
-}
-.token.important, .token.bold {
-  font-weight: bold;
-}
-.token.italic {
-  font-style: italic;
-}
-.token.entity {
-  cursor: help;
-}
- End of prism.js syntax highlighting */
 
+.Vowel {
+  background: #3de5ff;
+}
+
+.Supra {
+  background: #97ef00;
+}
+
+.Tone {
+  background: violet;
+}
+
+.ConsN {
+  background: #3dffbe;
+}
+
+.Other {
+  background: #c0c0ff;
+}
+
+.Diac {
+  background: #cfc9c9;
+}
+
+.xipa-table tr td{
+ padding-right: 1px;
+ width: 25px;
+ height: 25px;
+}
+.xipa-table button {
+  margin: 0 auto;
+  padding: 0;
+  width: 25px;
+  height: 25px;
+  border: none;;
+}
 
 /* --Mobile first, because that's the hipster thing to do I guess-- */
 @media only screen and (min-width: 600px) {
