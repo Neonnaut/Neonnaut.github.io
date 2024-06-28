@@ -495,14 +495,15 @@ div .gll {
 
 .xipa-table tr td{
  padding-right: 1px;
+ padding-left: 0;
  width: 25px;
- height: 25px;
+ height: 26px;
 }
 .xipa-table button {
   margin: 0 auto;
   padding: 0;
   width: 25px;
-  height: 25px;
+  height: 26px;
   border: none;;
 }
 
