@@ -466,37 +466,45 @@ div .gll {
 
 /*Xipa stuff */
 .Cons {
-  background: #c28194;
+  
+  background: #eaffc6;
 }
 
 .Vowel {
-  background: #3de5ff;
+  background: #dbdbff;
 }
 
 .Supra {
-  background: #97ef00;
+  background: #ffd2ff;
 }
 
 .Tone {
-  background: violet;
+  background: #ffdbdb;
+  
 }
 
 .ConsN {
-  background: #3dffbe;
+  background: #c6fae9;
 }
 
 .Other {
-  background: #c0c0ff;
+  background: #fffbc1;
+  
 }
 
 .Diac {
-  background: #cfc9c9;
+  background: #ffffff;
+}
+
+.xipa-table {
+  overflow-x: auto;
+  white-space: nowrap;
+  display: block;
+  padding-bottom: 3px;
 }
 
 .xipa-table tr td{
- padding-right: 1px;
- padding-left: 0;
- padding-top: 0;
+ padding: 1px 1px 0 0;
  width: 25px;
  height: 26px;
 }
@@ -505,7 +513,14 @@ div .gll {
   padding: 0;
   width: 25px;
   height: 26px;
-  border: none;;
+  border: none;
+  border-radius: 0;
+  -webkit-box-shadow: 1px 1px 3px #aaa;
+        box-shadow: 1px 1px 3px #aaa;
+}
+.xipa-table button:hover {
+  -webkit-box-shadow: 1px 1px 3px #e3e3e3;
+        box-shadow: 1px 1px 3px #e3e3e3;
 }
 
 /* --Mobile first, because that's the hipster thing to do I guess-- */

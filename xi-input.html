@@ -1,0 +1,26 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<title>IPA Chart Keyboard Input</title>
+		<meta name="author" content="Weston Ruter" />
+		<meta name="robots" content="noindex,noarchive" />
+		<link rel='stylesheet' type='text/css' href='xi-input.css?4' />
+		<script type="text/javascript" src="xi-input.js?4"></script>
+		<!-- detect if one of the fonts is installed; if not, include  -->
+	</head>
+	<body>
+		<form action="javascript:" onsubmit="return false">
+			<div id="toolbar">
+				<span id="insertEntitiesBox" title="Checking this box converts inputted Unicode characters into ASCII HTML entities">
+					<input id="insertEntities" type="checkbox" /><label for="insertEntities">&nbsp;Insert entities</label>
+				</span>
+				<input type="button" id="clearButton" onclick="clearField()" value="Clear" />
+				<span id="instructions">Click on a symbol above to have it inputted below. Enter base characters before diacritics.</span>
+				<span id="symbolsUsedLabel">Previously used:</span>
+				<span id="symbolsUsed"></span>
+			</div>
+			<div><textarea id="inputField" rows="5" cols="40"></textarea></div>
+			<!-- (Appreciate this chart? Consider purchasing an IPA Chart t-shirt or donating via PayPal&mdash;scroll down for more info)-->
+		</form>
+	</body>
+</html>
