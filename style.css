@@ -524,6 +524,19 @@ div .gll {
         box-shadow: 1px 1px 3px #e3e3e3;
 }
 
+@media only screen and (min-width: 800px) {
+  .xipa-table tr td{
+    padding: 2px 2px 0 0;
+    width: 27px;
+    height: 28px;
+   }
+   .xipa-table button {
+    width: 27px;
+    height: 28px;
+    font-size: 19px;
+  }
+}
+
 #ipa-output-toolbar {
 	background-color:#DDD;
 	padding:3px;
@@ -578,6 +591,9 @@ div .gll {
 #ipa-output #sampaBox {
   height: 15px;
 }
+
+
+
 
 /* --Mobile first, because that's the hipster thing to do I guess-- */
 @media only screen and (min-width: 600px) {
