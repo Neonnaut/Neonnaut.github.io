@@ -437,7 +437,7 @@ function i2x(tin) {
     var tout = "";
     for (i = 0; i < tin.length; i++) {
         var currentchar = tin.charCodeAt(i);
-        switch (currentchar) {
+        switch (currentchar) {///
             case 648: tout += "t`"; break;
             case 598: tout += "d`"; break;
             case 607: tout += "J\\"; break;
@@ -486,6 +486,7 @@ function i2x(tin) {
             case 451: tout += "!\\"; break;
             case 450: tout += "=\\"; break;
             case 449: tout += "|\\|\\"; break;
+            case 8252: tout += "!\\!\\"; break;
             case 595: tout += "b_<"; break;
             case 599: tout += "d_<"; break;
             case 644: tout += "J\\_<"; break;
