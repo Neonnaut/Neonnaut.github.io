@@ -129,7 +129,7 @@ function writeSampa(event, x, y) {
         // t.className = c.replace("Clicked", "");
     }
     else {
-        t.className = c + "Clicked";
+        // t.className = c + "Clicked";
     }
 }
 

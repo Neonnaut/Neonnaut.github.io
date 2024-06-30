@@ -501,6 +501,7 @@ div .gll {
   white-space: nowrap;
   display: block;
   padding-bottom: 3px;
+  font-family: "Charis SIL", "Doulos SIL", Gentium, "Arial Unicode MS","Lucida Sans Unicode", Arial, Serif;
 }
 
 .xipa-table tr td{
@@ -531,6 +532,7 @@ div .gll {
 }
 #ipa-output-toolbar input {
   font-size: 14px;
+  padding: 5px 5px 3px 5px
 }
 
 #ipa-output-toolbar #insertEntitiesBox {
@@ -557,6 +559,7 @@ div .gll {
 }
 
 #ipa-output {
+  font-family: "Charis SIL", "Doulos SIL", Gentium, "Arial Unicode MS","Lucida Sans Unicode", Arial, Serif;
   position:fixed;
   bottom: 0;
   left: 0;
@@ -570,6 +573,10 @@ div .gll {
 	width: calc(100% - 4px);
 	border:0;
   resize: none;
+}
+
+#ipa-output #sampaBox {
+  height: 15px;
 }
 
 /* --Mobile first, because that's the hipster thing to do I guess-- */

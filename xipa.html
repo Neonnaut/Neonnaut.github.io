@@ -44,7 +44,7 @@
       <td><button class="Tone" title="mid tone" onclick="writeSampa(event, '&#772;')">&#9676;&#772;</button></td>
       <td><button class="Tone" title="low tone" onclick="writeSampa(event, '&#768;')">&#9676;&#768;</button></td>
       <td><button class="Tone" title="extra low tone" onclick="writeSampa(event, '&#783;')">&#9676;&#783;</button></td>
-      <td><button class="Tone" title="downstep" onclick="writeSampa(event, '&#42780;')">&#42780;</button></td>
+      
       <td></td>
    </tr>
    <tr>
@@ -60,7 +60,7 @@
       <td><button class="Tone" title="mid tone (Chao letter)" onclick="writeSampa(event, '&#743;')">&#743;</button></td>
       <td><button class="Tone" title="low tone (Chao letter)" onclick="writeSampa(event, '&#744;')">&#744;</button></td>
       <td><button class="Tone" title="extra low tone (Chao letter)" onclick="writeSampa(event, '&#745;')">&#745;</button></td>
-      <td><button class="Tone" title="upstep" onclick="writeSampa(event, '&#42779;')">&#42779;</button></td>
+      
       <td></td>
    </tr>
    <tr>
@@ -76,7 +76,7 @@
       <td><button class="Tone" title="high rising tone" onclick="writeSampa(event, '&#7620;')">&#9676;&#7620;</button></td>
       <td><button class="Tone" title="low rising tone" onclick="writeSampa(event, '&#7622;')">&#9676;&#7622;</button></td>
       <td><button class="Tone" title="rising-falling tone" onclick="writeSampa(event, '&#7624;')">&#9676;&#7624;</button></td>
-      <td><button class="Tone" title="global rise" onclick="writeSampa(event, '&#8599;')">&#8599;</button></td>
+      
       <td></td>
    </tr>
    <tr>
@@ -92,7 +92,7 @@
       <td><button class="Tone" title="high rising tone (Chao letter)" onclick="writeSampa(event, '&#743;&#741;')">&#743;&#741;</button></td>
       <td><button class="Tone" title="low rising tone (Chao letter)" onclick="writeSampa(event, '&#745;&#743;')">&#745;&#743;</button></td>
       <td><button class="Tone" title="rising-falling tone (Chao letter)" onclick="writeSampa(event, '&#743;&#742;&#744;')">&#743;&#742;&#744;</button></td>
-      <td><button class="Tone" title="global fall" onclick="writeSampa(event, '&#8600;')">&#8600;</button></td>
+      
       <td></td>
    </tr>
    <tr>
@@ -102,7 +102,12 @@
       <td><button class="Vowel" title="open-mid central rounded vowel" onclick="writeSampa(event, '&#606;')">&#606;</button></td>
       <td><button class="Vowel" title="open-mid back unrounded vowel" onclick="writeSampa(event, '&#652;')">&#652;</button></td>
       <td><button class="Vowel" title="open-mid back rounded vowel" onclick="writeSampa(event, '&#596;')">&#596;</button></td>
-      <td></td>  <td></td> <td></td>  <td></td>  <td></td> <td></td>
+      <td></td>
+      <td><button class="Tone" title="downstep" onclick="writeSampa(event, '&#42780;')">&#42780;</button></td>
+      <td><button class="Tone" title="upstep" onclick="writeSampa(event, '&#42779;')">&#42779;</button></td>
+      <td><button class="Tone" title="global rise" onclick="writeSampa(event, '&#8599;')">&#8599;</button></td>
+      <td><button class="Tone" title="global fall" onclick="writeSampa(event, '&#8600;')">&#8600;</button></td>
+      <td></td> <td></td>  <td></td>  <td></td> <td></td>
       <td></td>  <td></td>
    </tr>
    <tr>
@@ -111,11 +116,12 @@
       <td><button class="Vowel" title="near-open central (unrounded) vowel" onclick="writeSampa(event, '&#592;')">&#592;</button></td>
       <td><button class="Vowel" title="near-open central rounded vowel" onclick="writeSampa(event, '&#606;&#798;')">&#606;&#798;</button></td>
       <td></td>    <td></td> <td></td>
-      <td><button class="Supra" title="primary stress" onclick="writeSampa(event, '&#712;')">&#712;&#9676;</button></td>
-      <td><button class="Supra" title="secondary stress" onclick="writeSampa(event, '&#716;')">&#716;&#9676;</button></td>
-      <td><button class="Supra" title="long" onclick="writeSampa(event, '&#720;')">&#9676;&#720;</button></td>
-      <td><button class="Supra" title="half-long" onclick="writeSampa(event, '&#721;')">&#9676;&#721;</button></td>
-      <td><button class="Supra" title="extra-short" onclick="writeSampa(event, '&#774;')">&#9676;&#774;</button></td>
+      <td><button class="Diac" title="long" onclick="writeSampa(event, '&#720;')">&#9676;&#720;</button></td>
+      <td><button class="Diac" title="half-long" onclick="writeSampa(event, '&#721;')">&#9676;&#721;</button></td>
+      <td><button class="Diac" title="primary stress" onclick="writeSampa(event, '&#712;')">&#712;&#9676;</button></td>
+      
+      <td><button class="Supra" title="minor (foot) group" onclick="writeSampa(event, '&#124;')">&#124;</button></td>
+      <td><button class="Supra" title="major (intonation) group" onclick="writeSampa(event, '&#8214;')">&#8214;</button></td>
       <td></td>
       <td><button class="Supra" title="superscript 1 (nonIPA)" onclick="writeSampa(event, '&#185;')">&#9676;&#185;</button></td>
    </tr>
@@ -127,12 +133,12 @@
       <td><button class="Vowel" title="open back unrounded vowel" onclick="writeSampa(event, '&#593;')">&#593;</button></td>
       <td><button class="Vowel" title="open back rounded vowel" onclick="writeSampa(event, '&#594;')">&#594;</button></td>
       <td></td>
+      <td><button class="Diac" title="extra-short" onclick="writeSampa(event, '&#774;')">&#9676;&#774;</button></td>
+      <td><button class="Diac" title="secondary stress" onclick="writeSampa(event, '&#716;')">&#716;&#9676;</button></td>
       <td><button class="Supra" title="zero (nonIPA)" onclick="writeSampa(event, '&#8709;')">&#8709;</button></td>
-      <td><button class="Supra" title="minor (foot) group" onclick="writeSampa(event, '&#124;')">&#124;</button></td>
-      <td><button class="Supra" title="major (intonation) group" onclick="writeSampa(event, '&#8214;')">&#8214;</button></td>
       <td><button class="Supra" title="syllable break" onclick="writeSampa(event, '.')">.</button></td>
       <td><button class="Supra" title="linking (absence of a break)" onclick="writeSampa(event, '&#8255;')">&#8255;</button></td>
-      <td></td>
+      
       
       <td><button class="Supra" title="superscript 2 (nonIPA)" onclick="writeSampa(event, '&#178;')">&#9676;&#178;</button></td>
 
@@ -360,7 +366,6 @@
       
       
       <td><button class="Other" title="voiceless velar fricative* (Swedish)" onclick="writeSampa(event, '&#615;')">&#615;</button></td>
-      <td></td>
       <td><button class="Diac" title="tie above" onclick="writeSampa(event, '&#865;')">&#9676;&#865;&#9676;</button></td>
       <td><button class="Diac" title="tie below" onclick="writeSampa(event, '&#860;')">&#9676;&#860;&#9676;</button></td>
         <td></td>
@@ -475,6 +480,10 @@
      <td><button class="Diac" title="voiced velar approximant (superscript)" onclick="writeSampa(event, '&#7597;')">&#9676;&#7597;</button></td>
     <td></td>  <td></td>  <td></td>  <td></td>  <td></td>  <td></td>  <td></td>
 </table>
+
+<br><br>
+
+
 
 </section>
 <section>
