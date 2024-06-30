@@ -523,6 +523,55 @@ div .gll {
         box-shadow: 1px 1px 3px #e3e3e3;
 }
 
+#ipa-output-toolbar {
+	background-color:#DDD;
+	padding:3px;
+	border-bottom:solid 2px gray;
+	white-space:nowrap;
+}
+#ipa-output-toolbar input {
+  font-size: 14px;
+}
+
+#ipa-output-toolbar #insertEntitiesBox {
+	background-color:#CCCCCC;
+	padding-right:3px;
+	border:solid 1px gray;
+	margin-right:3px;
+}
+#ipa-output-toolbar #symbolsUsed a 
+{
+	color:#000088;
+	padding-left:1ex;
+	padding-right:1ex;
+	text-decoration:none;
+}
+#ipa-output-toolbar #symbolsUsed a:hover 
+{
+	color:Red;
+	background-color:White;
+}
+#ipa-output-toolbar #symbolsUsed,
+#ipa-output-toolbar #symbolsUsedLabel {
+	display:none;
+}
+
+#ipa-output {
+  position:fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color:#DDD;
+
+}
+
+#ipa-output textarea {
+	font-size:15pt;
+	width: calc(100% - 4px);
+	border:0;
+  resize: none;
+}
+
 /* --Mobile first, because that's the hipster thing to do I guess-- */
 @media only screen and (min-width: 600px) {
   section {margin: 0 0 10px 0; padding: 30px 30px;}
