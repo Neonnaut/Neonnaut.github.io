@@ -114,7 +114,7 @@ sun     SUBJECT east    POSSESSIVE sky  LOCATIVE rise
       <p> It should be noted that this tool saves the data of the input to the "local storage" of your browser for the next time you visit this page.</p>
 
       <h3>Plain Text</h3>
-      <p>To align the plain text output properly you need to use a fixed-width font. You can do this by using a &lt;pre&gt; element. Be careful when using the small caps option, as the characters may not display correctly on all devices, especially F, S, X, and Q. My advice is to not use the small caps option using plain text, but the option is there.</p>
+      <p>To align the plain text output properly you need to use a fixed-width font. You can do this by using a <code class='example'>&lt;pre&gt;</code> element. Be careful when using the small caps option, as the characters may not display correctly on all devices, especially F, S, X, and Q. My advice is to not use the small caps option using plain text, but the option is there.</p>
 
       <h3>HTML Table</h3>
       <p>When using the HTML markup method, use the following CSS on your website to get the desired output:</p>
@@ -137,7 +137,7 @@ table tr td {
   padding-right: 3px;
 }</blockquote></pre>
 
-      <p>If you wish to style the table element, such as with italics or bold, use css classes on an individual word. If you wish to style an entire line, the best way is to add a class to &lt;tr> and add styles with CSS.</p>
+      <p>If you wish to style the table element, such as with italics or bold, use css classes on an individual word. If you wish to style an entire line, the best way is to add a class to <code class='example'>&lt;tr></code> and add styles with CSS.</p>
 
       <h3>HTML Interlinear Div</h3>
       <p>When using the 'HTML Interlinear Div' method, use the following CSS on your website to get the desired output:</p>
@@ -155,21 +155,21 @@ div .gll {
   padding-right: 10px;
 }</blockquote></pre>
 
-      <p>'Single column lines' does not work with this method. Even if you were to edit the output, a div without the .gll class will only work at the end or the beggining of a block of .gll divs.</p>
+      <p>'Single column lines' does not work with this method. Even if you were to edit the output, a div without the <code class='example'>.gll</code> class will only work at the end or the beggining of a block of <code class='example'>.gll</code> divs.</p>
 
       <h3>Latex</h3>
       <p>Using Latex's gb4e package, this method normally takes only three lines, therefore this generator only configures three lines.
-      <p>Make sure to put \usepackage{gb4e} in your preamble. And if you are using small caps, the font you are using has to support small caps.
+      <p>Make sure to put <code class='example'>\usepackage{gb4e}</code> in your preamble. And if you are using small caps, the font you are using has to support small caps.
       
       <h3>ZBB</h3>
       <p>This method outputs to the ZBB Board's gloss markup. If you provide more than two lines, the third last line must not be empty.
 
       <h3>Wiki Table</h3>
-      <p>If your wiki does not have the abbr template, you will need to create a page called template:abbr, with the following code:</p>
+      <p>If your wiki does not have the abbr template, you will need to create a page called <code class='example'>template:abbr</code>, with the following code:</p>
 
       <pre class="example"><blockquote>&lt;abbr title="{{{2}}}">{{{1|[?]}}}&lt;/abbr>&lt;noinclude>{{documentation}}&lt;/noinclude>
 </blockquote></pre>
-      <p>And after saving, if your wiki asks for documentation, paste this link: https://en.wikipedia.org/wiki/Template:Abbr</p>
+      <p>And after saving, if your wiki asks for documentation, paste this link: <code class='example'>https://en.wikipedia.org/wiki/Template:Abbr</code></p>
 
     </section>
   </div>

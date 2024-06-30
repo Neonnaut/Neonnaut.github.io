@@ -368,7 +368,9 @@
       <td></td>
       <td></td>
       <td><button class="Cons" title="voiced alveolar trill" onclick="writeSampa(event, 'r')">r</button></td>
-      <td></td>    <td></td>    <td></td>    <td></td>  <td></td>
+      <td></td>  <td></td>
+      <td><button class="Cons" title="voiced retroflex trill" onclick="writeSampa(event, '&#637;&#865;r')">&#637;&#865;r</button></td>
+      <td></td>  <td></td>
       <td><button class="Cons" title="voiced uvular trill" onclick="writeSampa(event, '&#640;')">&#640;</button></td>
       <td><button class="Cons" title="voiceless epiglottal trill" onclick="writeSampa(event, '&#668;')">&#668;</button></td>
       <td><button class="Cons" title="voiced epiglottal trill" onclick="writeSampa(event, '&#674;')">&#674;</button></td>
@@ -461,29 +463,30 @@
 <h3>Information</h3>
 <p>Type IPA chracters. Click on either the IPA icons at the top of the page, or by typing in the X-SAMPA field. Enter base characters before diacritics.</p>
 <p>To enable X-SAMPA users to convert to the IPA without limitations, or just to make some things easier, XIPA uses some additional notations that are not standard in X-SAMPA:
-<p>Ctrl + Shift + Space will copy to clipboard. </p>
+<p>'Copy' button or <code class='example'>Ctrl + Shift + Space</code> will copy IPA output to clipboard.</p>
+<p>'Clear' button or <code class='example'>Ctrl + Shift + Backspace</code> will clear all inputs. </p>
 
 <ul>
-<li>The combination <b>b\</b> gives the labial flap <b>&#11377;</b>.</li>
-<li>Round brackets <b>) (</b> are used for <i>tie above</i> and <i>tie below</i>, respectively. They are placed <i>between</i> the adjoining letters; e.g. <b>t)s</b> gives <b>t&#865;s</b>.</li>
-<li>A backslash <b>\</b> is used to move diacritics to a non-default position; e.g. <b>m_0</b> gives <b>m&#805;</b> while <b>m_0\</b> gives <b>m&#778;</b>.</li>
-<li>A backslash <b>\</b> is also used to turn tone diacritics into Chao letters; e.g. <b>a_H</b> gives <b>a&#769;</b> while <b>a_H\</b> gives <b>a&#742;</b>.</li>
-<li>A plus sign <b>+</b> is used to trigger superscript characters; e.g. <b>b+h\</b> gives <b>b&#689;</b>.</li>
-<li>The combination <b>_f</b> marks a whistled sound, e.g. <b>s_f</b> gives <b>s&#846;</b>.</li>
-<li>The combination <b>_J</b> creates alveolo-palatal characters, e.g. <b>t_J</b> gives <b>&#566;</b>. (With the exception of <b>&#597;</b> and <b>&#657;</b>, alveolo-palatal characters are non-IPA.)</li>
-<li>The combination <b>g\</b> gives the opentail letter g. The difference is however not visible in XIPA's default font.</li>
+<li>The combination <code class='example'>b\</code> gives the labial flap <code class='example'>&#11377;</code>.</li>
+<li>Round brackets <code class='example'>) (</code> are used for <i>tie above</i> and <i>tie below</i>, respectively. They are placed <i>between</i> the adjoining letters; e.g. <code class='example'>t)s</code> gives <code class='example'>t&#865;s</code>.</li>
+<li>A backslash <code class='example'>\</code> is used to move diacritics to a non-default position; e.g. <code class='example'>m_0</code> gives <code class='example'>m&#805;</code> while <code class='example'>m_0\</code> gives <code class='example'>m&#778;</code>.</li>
+<li>A backslash <code class='example'>\</code> is also used to turn tone diacritics into Chao letters; e.g. <code class='example'>a_H</code> gives <code class='example'>a&#769;</code> while <code class='example'>a_H\</code> gives <code class='example'>a&#742;</code>.</li>
+<li>A plus sign <code class='example'>+</code> is used to trigger superscript characters; e.g. <code class='example'>b+h\</code> gives <code class='example'>b&#689;</code>.</li>
+<li>The combination <code class='example'>_f</code> marks a whistled sound, e.g. <code class='example'>s_f</code> gives <code class='example'>s&#846;</code>.</li>
+<li>The combination <code class='example'>_J</code> creates alveolo-palatal characters, e.g. <code class='example'>t_J</code> gives <code class='example'>&#566;</code>. (With the exception of <code class='example'>&#597;</code> and <code class='example'>&#657;</code>, alveolo-palatal characters are non-IPA.)</li>
+<li>The combination <code class='example'>g\</code> gives the opentail letter g. The difference is however not visible in XIPA's default font.</li>
 <li>The following combinations exist in XIPA in addition to their standard notation in X-SAMPA:
 <ul>
-<li><b>p_!</b> gives the labial click <b>&#664;</b> (standard <b>O\</b>).</li>
-<li><b>t_!</b> gives the dental click <b>&#448;</b> (standard <b>|\</b>).</li>
-<li><b>t`_!</b> gives the (post)alveolar click <b>&#451;</b> (standard <b>!\</b>).</li>
-<li><b>c_!</b> gives the palatoalveolar click <b>&#450;</b> (standard <b>=\</b>).</li>
-<li><b>l_!</b> gives the alveolar lateral click <b>&#449;</b> (standard <b>|\|\</b>).</li>
-<li><b>i\</b> gives the close central unrounded vowel <b>&#616;</b> (standard <b>1</b>).</li>
-<li><b>u\</b> gives the close central rounded vowel <b>&#649;</b> (standard <b>}</b>).</li>
-<li><b>_&#715;</b> gives the retroflex marker <b>&#734;</b> (standard <b>&#715;</b>).</li>
+<li><code class='example'>p_!</code> gives the labial click <code class='example'>&#664;</code> (standard <code class='example'>O\</code>).</li>
+<li><code class='example'>t_!</code> gives the dental click <code class='example'>&#448;</code> (standard <code class='example'>|\</code>).</li>
+<li><code class='example'>t`_!</code> gives the (post)alveolar click <code class='example'>&#451;</code> (standard <code class='example'>!\</code>).</li>
+<li><code class='example'>c_!</code> gives the palatoalveolar click <code class='example'>&#450;</code> (standard <code class='example'>=\</code>).</li>
+<li><code class='example'>l_!</code> gives the alveolar lateral click <code class='example'>&#449;</code> (standard <code class='example'>|\|\</code>).</li>
+<li><code class='example'>i\</code> gives the close central unrounded vowel <code class='example'>&#616;</code> (standard <code class='example'>1</code>).</li>
+<li><code class='example'>u\</code> gives the close central rounded vowel <code class='example'>&#649;</code> (standard <code class='example'>}</code>).</li>
+<li><code class='example'>_&#715;</code> gives the retroflex marker <code class='example'>&#734;</code> (standard <code class='example'>&#715;</code>).</li>
 </ul></li>
-<li>Typing the X-Sampa retroflex marker <b>&#715;</b> after a letter that it doesn't merge with will bug the previous letter. To avoid this use <b>_&#715;</b> instead; e.g. <b>A&#715;</b> gives <b>A&#734;</b>, <b>A_&#715;</b>  gives desired <b>&#593;&#734;</b>.</li>
+<li>Typing the X-Sampa retroflex marker <code class='example'>&#715;</code> after a letter that it doesn't merge with will bug the previous letter. To avoid this use <code class='example'>_&#715;</code> instead; e.g. <code class='example'>A&#715;</code> gives <code class='example'>A&#734;</code>, <code class='example'>A_&#715;</code>  gives desired <code class='example'>&#593;&#734;</code>.</li>
 </ul></p>
 
 <hr></hr>
