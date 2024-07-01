@@ -129,8 +129,6 @@ function writeSampa(event, x, y) {
         // t.className = c.replace("Clicked", "");
     }
     else {
-        document.getElementById('symbolsUsed').style.display = 'inline'; //show used toolbar
-
         // list of used symbols
         var symbolsList = document.getElementById('symbolsList').getElementsByTagName('a');
 
