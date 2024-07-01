@@ -542,6 +542,7 @@ div .gll {
 	padding:3px;
 	border-bottom:solid 2px gray;
 	white-space:nowrap;
+  user-select: none;
 }
 #ipa-output-toolbar input {
   font-size: 14px;
