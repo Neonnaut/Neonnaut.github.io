@@ -131,8 +131,7 @@ thead {
   border-bottom-width: thin;
   flex-wrap: nowrap;
   font-size: 1.4em;
-  -moz-user-select: none; -ms-user-select: none;
-  -khtml-user-select: none; -webkit-user-select: none;
+  -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none;
   user-select: none;
 }
 .sortable thead {
@@ -251,12 +250,8 @@ label {
 	font: inherit;
 	vertical-align: baseline;
   font-family: "Segoe UI", Arial, sans-serif;
-  -webkit-touch-callout: none; /* iOS Safari */
-    -webkit-user-select: none; /* Safari */
-      -khtml-user-select: none; /* Konqueror HTML */
-        -moz-user-select: none; /* Old versions of Firefox */
-        -ms-user-select: none; /* Internet Explorer/Edge */
-          user-select: none; /* Chrome, Edge, Opera and Firefox */
+  -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none;
+  user-select: none;
 }
 fieldset {
   border: 2px ridge #aaa;
@@ -346,6 +341,7 @@ button, input[type="submit"], input[type="button"], input[type="reset"], input[t
   padding: 8px 10px 6px 10px;
   text-align: center;
   transition: all 0.1s ease-in-out;
+  -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none;
   user-select: none;
 }
 button:hover, input[type="submit"]:hover, input[type="button"]:hover, input[type="reset"]:hover, input[type="disabled"]:hover,
@@ -517,7 +513,10 @@ div .gll {
   border: none;
   border-radius: 0;
   -webkit-box-shadow: 1px 1px 3px #aaa;
-        box-shadow: 1px 1px 3px #aaa;
+  box-shadow: 1px 1px 3px #aaa;
+
+  -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none;
+  user-select: none;
 }
 .xipa-table button:hover {
   -webkit-box-shadow: 1px 1px 3px #e3e3e3;
@@ -542,6 +541,7 @@ div .gll {
 	padding:3px;
 	border-bottom:solid 2px gray;
 	white-space:nowrap;
+  -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none;
   user-select: none;
 }
 #ipa-output-toolbar input {
@@ -573,6 +573,7 @@ div .gll {
 {
   color: #fff;
   background: var(--red-colour);
+  -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none;
   user-select: none;
 }
 
