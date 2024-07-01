@@ -568,7 +568,7 @@ div .gll {
 }
 #ipa-output-toolbar #symbolsUsed,
 #ipa-output-toolbar #symbolsUsedLabel {
-	display:none;
+	display:inline;
 }
 
 #ipa-output {
