@@ -561,11 +561,20 @@ div .gll {
 	padding-right:1ex;
   cursor: pointer;
 	text-decoration:none;
+  overflow: hidden;
 }
 #ipa-output-toolbar #symbolsUsed a:hover 
 {
 	background-color:White;
 }
+
+#ipa-output-toolbar #symbolsUsed a:active
+{
+  color: #fff;
+  background: var(--red-colour);
+  user-select: none;
+}
+
 #ipa-output-toolbar #symbolsUsed,
 #ipa-output-toolbar #symbolsUsedLabel {
 	display:inline;

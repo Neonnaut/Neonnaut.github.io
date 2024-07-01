@@ -163,13 +163,11 @@ function writeSampa(event, x, y) {
             }
         }
 
-        if (newSymbolsList.children.length > 10) {
+        if (newSymbolsList.children.length > 16) {
             newSymbolsList.removeChild(newSymbolsList.lastChild)
         }
 
         document.getElementById('symbolsList').innerHTML = newSymbolsList.innerHTML
-
-
     }
 }
 
