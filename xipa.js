@@ -133,34 +133,33 @@ function writeSampa(event, x, y) {
         var symbolsList = document.getElementById('symbolsList').getElementsByTagName('a');
 
         let newSymbolsList = document.getElementById('symbolsList').cloneNode(true);
-        //newSymbolsList.innerHTML = '';
 
         if (symbolsList.length == 0) {
             let newATag = document.createElement('a');
             let newContent = document.createTextNode(t.innerHTML);
             newATag.appendChild(newContent);
             newATag.setAttribute("onclick", t.getAttribute("onclick"));
+            newATag.setAttribute("title", t.getAttribute("title"));
             newSymbolsList.appendChild(newATag); //Append new a to empty div
         } else {
             var triggered = false;
             for (var i = 0; i < symbolsList.length; i++) {
                 myList = newSymbolsList.children
 
-                if (myList[i].innerHTML != t.innerHTML && triggered == false) {
-                    // Do nothing
-                } else {
+                if (myList[i].innerHTML == t.innerHTML && triggered == false) {
                     triggered = true;
+                    newSymbolsList.removeChild(newSymbolsList.children[i]);
                 }
             }
 
-            if (triggered == false) {
-                let newATag = document.createElement('a');
-                let newContent = document.createTextNode(t.innerHTML);
-                newATag.appendChild(newContent);
-                newATag.setAttribute("onclick", t.getAttribute("onclick"));
-                //Append new a to div
-                newSymbolsList.insertBefore(newATag, newSymbolsList.firstChild);
-            }
+            let newATag = document.createElement('a');
+            let newContent = document.createTextNode(t.innerHTML);
+            newATag.appendChild(newContent);
+            newATag.setAttribute("onclick", t.getAttribute("onclick"));
+            newATag.setAttribute("title", t.getAttribute("title"));
+            //Append new a to div
+            newSymbolsList.insertBefore(newATag, newSymbolsList.firstChild);
+
         }
 
         if (newSymbolsList.children.length > 16) {

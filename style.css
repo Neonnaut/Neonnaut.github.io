@@ -537,24 +537,19 @@ div .gll {
 }
 
 #ipa-output-toolbar {
-	background-color:#DDD;
-	padding:3px;
-	border-bottom:solid 2px gray;
+	background-color:#f1f1f1;
+	padding:1px 0 2px 2px;
+	border-top:solid 2px gray;
+  border-bottom:solid 2px gray;
 	white-space:nowrap;
   -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none;
   user-select: none;
 }
 #ipa-output-toolbar input {
   font-size: 14px;
-  padding: 5px 5px 3px 5px
+  padding: 5px 5px 3px 5px;
 }
 
-#ipa-output-toolbar #insertEntitiesBox {
-	background-color:#CCCCCC;
-	padding-right:3px;
-	border:solid 1px gray;
-	margin-right:3px;
-}
 #ipa-output-toolbar #symbolsUsed a 
 {
   color: var(--red-colour);
