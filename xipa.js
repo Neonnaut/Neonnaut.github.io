@@ -131,6 +131,7 @@ function writeSampa(event, x, y) {
     else {
         // list of used symbols
         var symbolsList = document.getElementById('symbolsList').getElementsByTagName('a');
+        var thingsx = document.getElementById('symbolsList');
 
         let newSymbolsList = document.getElementById('symbolsList').cloneNode(true);
 
@@ -144,9 +145,7 @@ function writeSampa(event, x, y) {
         } else {
             var triggered = false;
             for (var i = 0; i < symbolsList.length; i++) {
-                myList = newSymbolsList.children
-
-                if (myList[i].innerHTML == t.innerHTML && triggered == false) {
+                if (thingsx.children[i].innerHTML == t.innerHTML && triggered == false) {
                     triggered = true;
                     newSymbolsList.removeChild(newSymbolsList.children[i]);
                 }
