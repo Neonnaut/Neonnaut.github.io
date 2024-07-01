@@ -556,14 +556,14 @@ div .gll {
 }
 #ipa-output-toolbar #symbolsUsed a 
 {
-	color:#000088;
+  color: var(--red-colour);
 	padding-left:1ex;
 	padding-right:1ex;
+  cursor: pointer;
 	text-decoration:none;
 }
 #ipa-output-toolbar #symbolsUsed a:hover 
 {
-	color:Red;
 	background-color:White;
 }
 #ipa-output-toolbar #symbolsUsed,

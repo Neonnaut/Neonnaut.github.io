@@ -375,8 +375,8 @@
       <td><button class="Cons" title="voiced retroflex trill" onclick="writeSampa(event, '&#637;&#865;r')">&#637;&#865;r</button></td>
       <td></td>  <td></td>
       <td><button class="Cons" title="voiced uvular trill" onclick="writeSampa(event, '&#640;')">&#640;</button></td>
-      <td><button class="Cons" title="voiceless epiglottal trill" onclick="writeSampa(event, '&#668;')">&#668;</button></td>
       <td><button class="Cons" title="voiced epiglottal trill" onclick="writeSampa(event, '&#674;')">&#674;</button></td>
+      <td><button class="Cons" title="voiceless epiglottal trill" onclick="writeSampa(event, '&#668;')">&#668;</button></td>
       <td class="seperator"></td>
       <td><button class="Diac" title="nasalized" onclick="writeSampa(event, '&#771;')">&#9676;&#771;</button></td>
       <td><button class="Diac" title="creaky voiced" onclick="writeSampa(event, '&#816;')">&#9676;&#816;</button></td>
@@ -403,8 +403,9 @@
    </tr>
    <tr>
       <td></td>    <td></td>    <td></td>    <td></td>    <td></td>
-      <td></td>    <td></td>    <td></td>    <td></td>    <td></td>
+      <td></td>    <td></td>    <td></td>    <td></td>   <td></td>
       <td></td>    <td></td>
+      
       
       <td class="seperator"></td>
       <td><button class="Diac" title="voiceless bilabial fricative (superscript)" onclick="writeSampa(event, 'ᶲ')">◌ᶲ</button></td>
@@ -504,8 +505,10 @@
       <input type="button" id="clearButton" value="Clear" onclick="ClearFields();"/>
       
       <input type="text" id="sampaBox" onkeyup="TranslateSAMPA()" placeholder="X-SAMPA">
-      <span id="symbolsUsedLabel">Previously used:</span>
-      <span id="symbolsUsed">e</span>
+      <div id="symbolsUsed">
+         <span>Previously used:</span>
+         <span id="symbolsList"></span>
+      </div>
    </div>
    <textarea class="box" rows="3" id="ipaBox" onkeyup="TranslateIPA()"></textarea>
 </div>

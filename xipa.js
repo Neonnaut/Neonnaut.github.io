@@ -129,7 +129,49 @@ function writeSampa(event, x, y) {
         // t.className = c.replace("Clicked", "");
     }
     else {
-        // t.className = c + "Clicked";
+        document.getElementById('symbolsUsed').style.display = 'inline'; //show used toolbar
+
+        // list of used symbols
+        var symbolsList = document.getElementById('symbolsList').getElementsByTagName('a');
+
+        let newSymbolsList = document.getElementById('symbolsList').cloneNode(true);
+        //newSymbolsList.innerHTML = '';
+
+        if (symbolsList.length == 0) {
+            let newATag = document.createElement('a');
+            let newContent = document.createTextNode(t.innerHTML);
+            newATag.appendChild(newContent);
+            newATag.setAttribute("onclick", t.getAttribute("onclick"));
+            newSymbolsList.appendChild(newATag); //Append new a to empty div
+        } else {
+            var triggered = false;
+            for (var i = 0; i < symbolsList.length; i++) {
+                myList = newSymbolsList.children
+
+                if (myList[i].innerHTML != t.innerHTML && triggered == false) {
+                    // Do nothing
+                } else {
+                    triggered = true;
+                }
+            }
+
+            if (triggered == false) {
+                let newATag = document.createElement('a');
+                let newContent = document.createTextNode(t.innerHTML);
+                newATag.appendChild(newContent);
+                newATag.setAttribute("onclick", t.getAttribute("onclick"));
+                //Append new a to div
+                newSymbolsList.insertBefore(newATag, newSymbolsList.firstChild);
+            }
+        }
+
+        if (newSymbolsList.children.length > 10) {
+            newSymbolsList.removeChild(newSymbolsList.lastChild)
+        }
+
+        document.getElementById('symbolsList').innerHTML = newSymbolsList.innerHTML
+
+
     }
 }
 
