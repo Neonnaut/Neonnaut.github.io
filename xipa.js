@@ -116,7 +116,7 @@ function ResetClicked() {
     }
 }
 
-function writeSampa(event, x, y) {
+function writeSampa(event, x, reorder = true) {
     var e = document.getElementById("ipaBox");
     var savePos = e.selectionStart;
     e.value = e.value.slice(0, savePos) + x + e.value.slice(savePos);
@@ -125,8 +125,8 @@ function writeSampa(event, x, y) {
     var t = event.target;
     var c = t.className;
 
-    if (c.match(/Clicked/)) {
-        // t.className = c.replace("Clicked", "");
+    if (reorder == false) {
+        // Do nothing
     }
     else {
         // list of used symbols
@@ -139,7 +139,8 @@ function writeSampa(event, x, y) {
             let newATag = document.createElement('a');
             let newContent = document.createTextNode(t.innerHTML);
             newATag.appendChild(newContent);
-            newATag.setAttribute("onclick", t.getAttribute("onclick"));
+            let newOnclick = "writeSampa(event, '" + x + "', false)";
+            newATag.setAttribute("onclick", newOnclick);
             newATag.setAttribute("title", t.getAttribute("title"));
             newSymbolsList.appendChild(newATag); //Append new a to empty div
         } else {
@@ -154,7 +155,8 @@ function writeSampa(event, x, y) {
             let newATag = document.createElement('a');
             let newContent = document.createTextNode(t.innerHTML);
             newATag.appendChild(newContent);
-            newATag.setAttribute("onclick", t.getAttribute("onclick"));
+            let newOnclick = "writeSampa(event, '" + x + "', false)";
+            newATag.setAttribute("onclick", newOnclick);
             newATag.setAttribute("title", t.getAttribute("title"));
             //Append new a to div
             newSymbolsList.insertBefore(newATag, newSymbolsList.firstChild);
