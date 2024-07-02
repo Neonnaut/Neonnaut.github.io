@@ -713,13 +713,13 @@ $L = CW # C(y)V, light syllable type
 $H = CX # C(y)VV, Heavy syllable of long vowel
 $J = CVF # C(y)V[N/Q], heavy syllable with <N> or <Q>
 
-# Where light syllable is of type (C)V, and heavy is (C)V[N/Q] or (C)VR(N/Q).
+# Where light syllable is of type (C)V, and heavy is (C)[VF/VV(F)].
 # The final two syllables are least likely to be light followed by heavy.
 # I will be sneaking in one-syllable word into the LH class as well.
 
 #words: $A$S$S $A$S$L $A$S$S$S $A$S$S$L $A$S$S$S$L $A$S$S$L$L $A$L
 
-categories: LL:30 LH-a:1 LH-b:1 HL-a:10 HL-b:10 HH-a:1 HH-b:1 HH-c:1 HH-d:1 
+categories: LL:60 LH-a:1 LH-b:2 HL-a:5 HL-b:20 HH-a:1 HH-b:1 HH-c:2 HH-d:2
 LL = $A$L$L $A$S$L$L $A$S$S$L$L $A$L
 LH-a = $S $A$L$H $A$S$L$H $A$S$S$L$H $A$H
 LH-b = $S $A$L$J $A$S$L$J $A$S$S$L$J $A$J
@@ -745,7 +745,7 @@ o  oo
 # Yotsugana: <dz> and <dj> neutralise to <z> and <j>
 %  a   i    u   e   o   ya   yu   yo
 k  ka  ki   ku  ke  ko  kya  kyu  kyo
-ɡ  ɡa  ɡi   gu  ge  go  ɡya  ɡyu  gyo
+g  ga  gi   gu  ge  go  gya  gyu  gyo
 s  sa  ši   su  se  so  ša   šu   šo
 z  za  ji   zu  ze  zo  ja   ju   jo 
 t  ta  či   cu  te  to  ča   ču   čo
