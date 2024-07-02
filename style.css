@@ -599,6 +599,6 @@ div .gll {
 
 
 /* --Mobile first, because that's the hipster thing to do I guess-- */
-@media only screen and (min-width: 600px) {
+@media only screen and (min-width: 701px) {
   section {margin: 0 0 10px 0; padding: 30px 30px;}
 }
