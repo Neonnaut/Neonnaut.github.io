@@ -34,10 +34,14 @@ section {
   color: #000;
   margin: 0 0 10px 0;
   padding: 8px;
-}
-section {
   border-radius: 3px;
 }
+section#top {
+  border-radius: 0;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
 #content,header,footer {
   max-width: 800px;
   margin: 0 auto;
@@ -323,7 +327,7 @@ textarea, input, .fake-textbox {
 button, input[type="submit"], input[type="button"], input[type="reset"], input[type="disabled"],
 .dropdown-btn {
   -webkit-appearance: none;
-  background: #e4e4e4;
+  background: #fdfdfd;
   border: 1px solid rgba(0, 0, 0, 0.4);
   box-shadow: inset 0 1px 3px rgb(0 0 0 / 40%), 0 1px rgb(0 0 0 / 10%);
   color: rgba(0, 0, 0, 0.9);
@@ -362,9 +366,20 @@ button, input[type="submit"], input[type="button"], input[type="reset"], input[t
   margin-top: 6px;
   border-radius: 3px;
   border: solid #e4e4e4;
+
+  border: none;
+  border-radius: 0;
+  -webkit-box-shadow: 1px 1px 3px #aaa;
+  box-shadow: 1px 1px 3px #aaa;
+  text-decoration: none;
+
+  -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none;
+  user-select: none;
 }
 .dropdown-group a:hover {
   cursor: pointer;
+  -webkit-box-shadow: 1px 1px 3px #e3e3e3;
+        box-shadow: 1px 1px 3px #e3e3e3;
 }
 
 /*-- Embedded content --*/
@@ -559,7 +574,6 @@ div .gll {
 
 #ipa-output-toolbar #symbolsUsed a:active
 {
-  color: #fff;
   background: var(--red-colour);
   -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none;
   user-select: none;
@@ -577,7 +591,6 @@ div .gll {
   left: 0;
   right: 0;
   background-color:#DDD;
-
 }
 
 #ipa-output textarea {
@@ -590,9 +603,6 @@ div .gll {
 #ipa-output #sampaBox {
   height: 15px;
 }
-
-
-
 
 /* --Mobile first, because that's the hipster thing to do I guess-- */
 @media only screen and (min-width: 701px) {

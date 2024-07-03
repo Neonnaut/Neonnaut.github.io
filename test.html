@@ -39,7 +39,7 @@
     </ol>
   </nav>
   <div id="content">
-    <section>
+    <section id="top">
       <h1>Testing Elements</h1>
       <ul>
         <li>
@@ -634,6 +634,54 @@
     </section>
 
     <section>
+      <h1>Linguistic Gloss Generator</h1>
+      <textarea id="input" name="input" spellcheck="false" placeholder='Astra inclinant, sed non obligant.
+[astra inkliːnant sed non obligant]
+star.ACC.PL incline.PRS.PTCP but NEG bind.3P.PRS.ACT.IND
+"The stars incline us, they do not bind us."'></textarea>
+      
+      <h2>Generate Markup</h2>
+      <div id="GMGSwitch-field" class="switch-field">
+        <input type="submit" id="plainText" value="Plain text" name="markupButton">
+        <input type="submit" id="htmlTable" value="HTML table" name="markupButton">
+        <input type="submit" id="interlinear" value="HTML div" name="markupButton">
+        <input type="submit" id="latexGloss" value="Latex" name="markupButton">
+        <input type="submit" id="zbbGloss" value="ZBB" name="markupButton">
+        <input type="submit" id="cwsGloss" value="CWS" name="markupButton">
+        <input type="submit" id="wikiTable" value="Wiki" name="markupButton">
+      </div>
+    
+      <h2>Output</h2>
+      <div id="GMGResult"></div>
+      <hr>
+
+      <fieldset id="bottom-content">
+        <legend>Options</legend>
+        <input type="checkbox" id="useAbbrv" name="useAbbrv" checked />
+        <label for="useAbbrv">Use abbreviations</label><br>
+        <input type="checkbox" id="useInputAbbrv" name="useInputAbbrv" checked />
+        <label for="useInputAbbrv">Use in-built abbreviations</label><br>
+        <input type="checkbox" id="useSmallCaps" name="useSmallCaps" />
+        <label for="useSmallCaps">Use small caps on gloss line</label><br>
+        <input type="checkbox" id="useAcknowledgement" name="useAcknowledgement" />
+        <label for="useAcknowledgement">Append an acknowledgement of this tool when using HTML options</label><br><br>
+        
+        <label for="notInterlinear">Single column lines, comma delimited</label>
+        <input id="notInterlinear" name="notInterlinear" spellcheck="false"><br><br>
+
+        <label for="abbrvInput">Glossing abbreviations, comma and line delimited</label><br>
+        <textarea id="abbrvInput" name="abbrvInput" spellcheck="false">
+ACT,actor voice
+YABRV,your abbreviation
+        </textarea><br><br>
+  
+        <label for="abbrvDelimiterInput">Glossing seperators, comma delimited</label>
+        <input id="abbrvDelimiterInput" name="abbrvDelimiterInput" value=".,-,=,›,:" spellcheck="false">
+  
+      </fieldset>
+    </section>
+
+    <section>
       <h1>Lexifer Online</h1>
 
       <details class="dropdown-group">
@@ -761,53 +809,7 @@
 
     </section>
 
-    <section>
-      <h1>Linguistic Gloss Generator</h1>
-      <textarea id="input" name="input" spellcheck="false" placeholder='Astra inclinant, sed non obligant.
-[astra inkliːnant sed non obligant]
-star.ACC.PL incline.PRS.PTCP but NEG bind.3P.PRS.ACT.IND
-"The stars incline us, they do not bind us."'></textarea>
-      
-      <h2>Generate Markup</h2>
-      <div id="GMGSwitch-field" class="switch-field">
-        <input type="submit" id="plainText" value="Plain text" name="markupButton">
-        <input type="submit" id="htmlTable" value="HTML table" name="markupButton">
-        <input type="submit" id="interlinear" value="HTML div" name="markupButton">
-        <input type="submit" id="latexGloss" value="Latex" name="markupButton">
-        <input type="submit" id="zbbGloss" value="ZBB" name="markupButton">
-        <input type="submit" id="cwsGloss" value="CWS" name="markupButton">
-        <input type="submit" id="wikiTable" value="Wiki" name="markupButton">
-      </div>
     
-      <h2>Output</h2>
-      <div id="GMGResult"></div>
-      <hr>
-
-      <fieldset id="bottom-content">
-        <legend>Options</legend>
-        <input type="checkbox" id="useAbbrv" name="useAbbrv" checked />
-        <label for="useAbbrv">Use abbreviations</label><br>
-        <input type="checkbox" id="useInputAbbrv" name="useInputAbbrv" checked />
-        <label for="useInputAbbrv">Use in-built abbreviations</label><br>
-        <input type="checkbox" id="useSmallCaps" name="useSmallCaps" />
-        <label for="useSmallCaps">Use small caps on gloss line</label><br>
-        <input type="checkbox" id="useAcknowledgement" name="useAcknowledgement" />
-        <label for="useAcknowledgement">Append an acknowledgement of this tool when using HTML options</label><br><br>
-        
-        <label for="notInterlinear">Single column lines, comma delimited</label>
-        <input id="notInterlinear" name="notInterlinear" spellcheck="false"><br><br>
-
-        <label for="abbrvInput">Glossing abbreviations, comma and line delimited</label><br>
-        <textarea id="abbrvInput" name="abbrvInput" spellcheck="false">
-ACT,actor voice
-YABRV,your abbreviation
-        </textarea><br><br>
-  
-        <label for="abbrvDelimiterInput">Glossing seperators, comma delimited</label>
-        <input id="abbrvDelimiterInput" name="abbrvDelimiterInput" value=".,-,=,›,:" spellcheck="false">
-  
-      </fieldset>
-    </section>
 
     <section>
       <h1>IPA Keyboard and X-Sampa Converter</h1>

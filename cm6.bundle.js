@@ -23605,16 +23605,16 @@ var cm6 = (function (exports) {
    const parser = LRParser.deserialize({
      version: 14,
      states: "nQYQPOOOOQO'#Ci'#CiOOQO'#Ce'#CeQYQPOOOOQO-E6c-E6c",
-     stateData: "n~O[OSPOS~ORPOSPOTPOUPOVPOWPO~O",
+     stateData: "w~O[OSPOS~ORPOSPOTPOUPOVPOWPO~OVUWSR[PS~",
      goto: "i^PPPPPPPPP_PPPeQRORSRTQOR",
      nodeNames: "⚠ LineComment Program Number Operator Directive DirectiveKeyword Filter RegExp",
      maxTerm: 13,
      skippedNodes: [0,1],
      repeatNodeCount: 1,
-     tokenData: "/r~RoXY#SYZ#S]^#Spq#Sst#etu#|uv$Rxy#|yz#|z{#|{|#|!O!P$W!Q![$i![!]$w!]!^$w!_!`$w!`!a$w!a!b#|!}#O#|#O#P#|#P#Q#|#Q#R#|#V#W$|#Y#Z(g#`#a)V#f#g)u#g#h+p#k#l/P#o#p#|#p#q#|#q#r#|~#XS[~XY#SYZ#S]^#Spq#S~#jSP~OY#eZ;'S#e;'S;=`#v<%lO#e~#yP;=`<%l#e~$ROW~~$WOV~~$ZP!Q![$^~$cQR~!Q![$^#R#S$^~$nRR~!O!P$^!Q![$i#R#S$i~$|OS~~%PQ#T#U%V#c#d&^~%YP#h#i%]~%`P#X#Y%c~%fP#Z#[%i~%lP#c#d%o~%rP#f#g%u~%xP#]#^%{~&OP#X#Y&R~&UP#g#h&X~&^OT~~&aP#f#g&d~&gP#c#d&j~&mP#b#c&p~&sP#T#U&v~&yP#`#a&|~'PP}!O'S~'VP#a#b'Y~']P#X#Y'`~'cP#h#i'f~'iP#T#U'l~'oP#h#i'r~'uP#[#]'x~'{P#X#Y(O~(RP#g#h(U~(XP#]#^([~(_P#g#h(b~(gOU~~(jP#]#^(m~(pP#`#a(s~(vP#h#i(y~(|P#X#Y)P~)SP#f#g$R~)YP#X#Y)]~)`P#h#i)c~)fP#h#i)i~)lP#X#Y)o~)rP#f#g&R~)xQ#T#U*O#X#Y+W~*RP#b#c*U~*XP#W#X*[~*_P#c#d*b~*eP#a#b*h~*kP}!O*n~*qP#f#g*t~*wP#T#U*z~*}P#h#i+Q~+TP#X#Y&X~+ZP#^#_+^~+aP#X#Y+d~+gP#V#W+j~+mP#h#i$R~+sP#h#i+v~+yP#W#X+|~,PP}!O,S~,VQ#T#U,]#]#^-q~,`P#g#h,c~,fP#g#h,i~,lP#]#^,o~,rP#a#b,u~,xP#]#^,{~-OP#`#a-R~-UP#T#U-X~-[P#h#i-_~-bP#]#^-e~-hP#c#d-k~-nP#b#c([~-tP#d#e-w~-zP#T#U-}~.QP}!O.T~.WP#Y#Z.Z~.^P#X#Y.a~.dP#T#U.g~.jP#h#i.m~.pP#i#j.s~.vP#f#g.y~.|P#X#Y([~/SQ#]#^/Y#c#d/f~/]P#h#i/`~/cP#[#]&X~/iP#f#g/l~/oP#W#X&R",
+     tokenData: "0e~RoXY#SYZ#S]^#Spq#Sst#etu#|uv$Rxy#|yz#|z{#|{|#|!O!P$^!Q![$o![!]$}!]!^$}!_!`$}!`!a$}!a!b#|!}#O#|#O#P#|#P#Q#|#Q#R#|#V#W%S#Y#Z)S#`#a)x#f#g*h#g#h,c#k#l/r#o#p#|#p#q#|#q#r#|~#XS[~XY#SYZ#S]^#Spq#S~#jSP~OY#eZ;'S#e;'S;=`#v<%lO#e~#yP;=`<%l#e~$ROW~~$UPpq$X~$^OV~~$aP!Q![$d~$iQR~!Q![$d#R#S$d~$tRR~!O!P$d!Q![$o#R#S$o~%SOS~~%VQ#T#U%]#c#d&p~%`P#h#i%c~%fP#X#Y%i~%lP#Z#[%o~%rP#c#d%u~%xP#f#g%{~&OP#]#^&R~&UP#X#Y&X~&[P#g#h&_~&bP![!]&e~&hPpq&k~&pOT~~&sP#f#g&v~&yP#c#d&|~'PP#b#c'S~'VP#T#U'Y~']P#`#a'`~'cP}!O'f~'iP#a#b'l~'oP#X#Y'r~'uP#h#i'x~'{P#T#U(O~(RP#h#i(U~(XP#[#]([~(_P#X#Y(b~(eP#g#h(h~(kP#]#^(n~(qP#g#h(t~(wQYZ(}pq(}~)SOU~~)VP#]#^)Y~)]P#`#a)`~)cP#h#i)f~)iP#X#Y)l~)oP#f#g)r~)uP![!]$R~){P#X#Y*O~*RP#h#i*U~*XP#h#i*[~*_P#X#Y*b~*eP#f#g&X~*kQ#T#U*q#X#Y+y~*tP#b#c*w~*zP#W#X*}~+QP#c#d+T~+WP#a#b+Z~+^P}!O+a~+dP#f#g+g~+jP#T#U+m~+pP#h#i+s~+vP#X#Y&_~+|P#^#_,P~,SP#X#Y,V~,YP#V#W,]~,`P#h#i)r~,fP#h#i,i~,lP#W#X,o~,rP}!O,u~,xQ#T#U-O#]#^.d~-RP#g#h-U~-XP#g#h-[~-_P#]#^-b~-eP#a#b-h~-kP#]#^-n~-qP#`#a-t~-wP#T#U-z~-}P#h#i.Q~.TP#]#^.W~.ZP#c#d.^~.aP#b#c(n~.gP#d#e.j~.mP#T#U.p~.sP}!O.v~.yP#Y#Z.|~/PP#X#Y/S~/VP#T#U/Y~/]P#h#i/`~/cP#i#j/f~/iP#f#g/l~/oP#X#Y(n~/uQ#]#^/{#c#d0X~0OP#h#i0R~0UP#[#]&_~0[P#f#g0_~0bP#W#X&X",
      tokenizers: [0],
      topRules: {"Program":[0,2]},
-     tokenPrec: 0
+     tokenPrec: 30
    });
 
    const lexiferLanguage = LRLanguage.define({
