@@ -1,5 +1,5 @@
 // Populate input fields with data in local storage on window load if it exists
-window.onload = function () {
+$(window).on('load', function () {
 	if (localStorage.hasOwnProperty('notInterlinear')) {
 		$('#input').val(localStorage.getItem('input'));
 		$('#notInterlinear').val(localStorage.getItem('notInterlinear'));
@@ -9,15 +9,18 @@ window.onload = function () {
 		// Select all text in the input
 		$('#input').focus().select();
 	}
-};
+});
 // Check for markup submit button and colour it
-$(window).load(function () {
+$(window).on('load', function () {
 	$("[name='markupButton']").click(function () {
 		glossarize($(this).attr('id'));
-		var selection = document.querySelectorAll("#switch-field input");
-		for (i = 0; i < selection.length; i++) {
-			selection[i].classList.remove('checked');
+
+		let selection = document.querySelectorAll("#GMGSwitch-field input");
+
+		for (q = 0; q < selection.length; q++) {
+			selection[q].classList.remove('checked');
 		}
+
 		$(id = $(this)).addClass("checked");
 	});
 	// Check if use abbreviations has been unchecked and disable abbreviation input
@@ -85,9 +88,9 @@ function glossarize(markup) {
 	);
 
 	convert(conv);
-	$("#result").html(conv.output);
-	$("#output").focus();
-	$("#output").select();
+	$("#GMGResult").html(conv.output);
+	$("#GMGOutput").focus();
+	$("#GMGOutput").select();
 	// Save input text in user's localstorage for next session
 	localStorage.setItem('input', $('#input').val());
 	localStorage.setItem('notInterlinear', $('#notInterlinear').val());
@@ -826,19 +829,19 @@ var Converter = function (markup, nonInterlinear, useAbbrv, abbreviations, expla
 	this.useAcknowledgement = useAcknowledgement;
 };
 Converter.prototype.finish = function (input) {
-	this.output = "<textarea id='output' spellcheck='false'>" + input + "</textarea>";
+	this.output = "<textarea id='GMGOutput' spellcheck='false'>" + input + "</textarea>";
 }
 Converter.prototype.finishAndShow = function (input) {
 	if (this.useAcknowledgement) {
 		let ack = "<i class='gmg-ack'>Gloss provided by <a href='https://neonnaut.github.io/'>Gloss My Gloss</a></i>";
-		this.output = input + ack + "<br>" + "<br><textarea id='output' spellcheck='false'>" + input + "\n" + ack + "</textarea>";
+		this.output = input + ack + "<br>" + "<br><textarea id='GMGOutput' spellcheck='false'>" + input + "\n" + ack + "</textarea>";
 	} else {
-		this.output = input + "<br><textarea id='output' spellcheck='false'>" + input + "</textarea>";
+		this.output = input + "<br><textarea id='GMGOutput' spellcheck='false'>" + input + "</textarea>";
 	}
 }
 Converter.prototype.finishPlainText = function (input) {
-	this.output = "<textarea id='output' spellcheck='false'>" + input + "</textarea>";
+	this.output = "<textarea id='GMGOutput' spellcheck='false'>" + input + "</textarea>";
 }
 Converter.prototype.finishBlock = function (input) {
-	this.output = "<textarea id='output' spellcheck='false'>`\n" + input + "`</textarea>";
+	this.output = "<textarea id='GMGOutput' spellcheck='false'>`\n" + input + "`</textarea>";
 }

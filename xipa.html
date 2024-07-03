@@ -2,25 +2,27 @@
 <html>
 
 <head>
-  <title>IPA Keyboard and X-Sampa Converter</title>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Neonnaut's website where he keeps his stuff.">
-  <meta name="keywords" content="conlangs,art">
-  <meta name="author" content="Neonnaut">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8">
+  <!-- Website information -->
+  <title>IPA Keyboard and X-Sampa Converter</title>
+  <meta name="description" content="IPA keyboard and X-Sampa converter.">
+  <meta name="keywords" content="conlangs">
+  <meta name="author" content="Neonnaut">
   <!-- Scripts and stylings -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-  <script src="xipa.js"></script>
-  <script src="breadcrumbs.js"></script>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Share+Tech">
   <link href="style.css" rel="stylesheet" type="text/css" media="all">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="breadcrumbs.js"></script>  
   <script src="sort-table.js"></script>
+
+  <script src="xipa.js"></script>
+
   <!-- Fonts -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <!--Icons 
-  <link rel="apple-touch-icon" sizes="57x57" href="../img/ico/apple-icon-57x57.png"><link rel="apple-touch-icon" sizes="60x60" href="../img/ico/apple-icon-60x60.png"><link rel="apple-touch-icon" sizes="72x72" href="../img/ico/apple-icon-72x72.png"><link rel="apple-touch-icon" sizes="76x76" href="../img/ico/apple-icon-76x76.png"><link rel="apple-touch-icon" sizes="114x114" href="../img/ico/apple-icon-114x114.png"><link rel="apple-touch-icon" sizes="120x120" href="../img/ico/apple-icon-120x120.png"><link rel="apple-touch-icon" sizes="144x144" href="../img/ico/apple-icon-144x144.png"><link rel="apple-touch-icon" sizes="152x152" href="../img/ico/apple-icon-152x152.png"><link rel="apple-touch-icon" sizes="180x180" href="../img/ico/apple-icon-180x180.png"><link rel="icon" type="image/png" sizes="192x192"  href="../img/ico/android-icon-192x192.png"><link rel="icon" type="image/png" sizes="32x32" href="../img/ico/favicon-32x32.png"><link rel="icon" type="image/png" sizes="96x96" href="../img/ico/favicon-96x96.png"><link rel="icon" type="image/png" sizes="16x16" href="../img/ico/favicon-16x16.png"><link rel="manifest" href="../img/ico/manifest.json"><meta name="msapplication-TileColor" content="#ffffff"><meta name="msapplication-TileImage" content="../img/ico/ms-icon-144x144.png"><meta name="theme-color" content="#ffffff">
-  -->
+  <!-- Icons -->
+  <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png" />
 </head>
 
 <body>
@@ -376,6 +378,19 @@
    </tr>
 </table>
 
+<div id= "ipa-output">
+   <div id="ipa-output-toolbar">
+      <input type="button" id="copyButton" value="Copy" onclick="CopyClip();" />
+      <input type="button" id="clearButton" value="Clear" onclick="ClearFields();"/>
+      
+      <input type="text" id="sampaBox" onkeyup="TranslateSAMPA()" placeholder="X-SAMPA">
+      <div id="symbolsUsed">
+         <span id="symbolsList"></span>
+      </div>
+   </div>
+   <textarea class="box" rows="3" id="ipaBox" onkeyup="TranslateIPA()"></textarea>
+</div>
+
 </section>
 <section>
 
@@ -414,20 +429,8 @@
 <p>Updated October 2020.</p>
 
 </section>
-<div id= "ipa-output">
-   <div id="ipa-output-toolbar">
-      <input type="button" id="copyButton" value="Copy" onclick="CopyClip();" />
-      <input type="button" id="clearButton" value="Clear" onclick="ClearFields();"/>
-      
-      <input type="text" id="sampaBox" onkeyup="TranslateSAMPA()" placeholder="X-SAMPA">
-      <div id="symbolsUsed">
-         <span id="symbolsList"></span>
-      </div>
-   </div>
-   <textarea class="box" rows="3" id="ipaBox" onkeyup="TranslateIPA()"></textarea>
-</div>
 
-<div style = "height: 118px;"></div>
+<div style = "height: 110px;"></div>
 
 </body>
 

@@ -1,23 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8">
+  <!-- Website information -->
   <title>Lexifer</title>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-  <script src="cm6.bundle.js"></script>
-  <script type="text/javascript" src="lexifer.js"></script>
+  <meta name="description" content="A tool to generate words.">
+  <meta name="keywords" content="conlangs">
+  <meta name="author" content="Neonnaut">
+  <!-- Scripts and stylings -->
+  <link href="style.css" rel="stylesheet" type="text/css" media="all">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="breadcrumbs.js"></script>  
+  <script src="sort-table.js"></script>
 
-  <meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1" />
+  <script src="cm6.bundle.js"></script>
+  <script src="lexifer.js"></script>
+  <script src="lexifer-examples.js"></script>
+
+  <!-- Fonts -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- Icons -->
   <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png" />
   <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet" />
-  <link href="style.css" rel="stylesheet" type="text/css" media="all" />
 </head>
 <body>
   <div id="content">
-    <section id="top">
+    <section>
       <h1>Lexifer Online</h1>
 
       <details class="dropdown-group">
@@ -56,8 +66,8 @@
           // Select all text in the input
           $('#input').focus().select();
         };
-          
-        $(window).load(function () {
+        
+        $(window).on('load', function(){
           $("[class='lexifer-example']").click(function () { //Examples
             const choice = $(this).attr('name');
             const text = lexiferExample(choice, true);
@@ -110,19 +120,19 @@
               $("#unsorted").is(":checked"),
               $("#one-per-line").is(":checked"),
             );
-            $("#result").html(
+            $("#lexiferResult").html(
               "<p class='error-message'>" + myMessage + "</p>" +
-              "<textarea id='output' spellcheck='false'>" + myWords + "</textarea>"
+              "<textarea id='lexiferOutput' spellcheck='false'>" + myWords + "</textarea>"
             );
             localStorage.setItem('lexifer', view.state.doc.toString());
-            $('#output').focus();
+            $('#lexiferOutput').focus();
           });
         });      
 
       </script>
       
 	    <div class="switch-field">
-        <input type="submit" id="genWords" name="lexiferButton" value="Generate words" name="markupButton">
+        <input type="submit" id="genWords" name="lexiferButton" value="Generate words">
         <input type="file" name="loadButton" style="display: none;" accept=".txt, .def" />
         <input type="submit" id="LoadFile" value="Load" name="fakeLoadButton">
         <input type="submit" id="saveFile" value="Save" name="saveButton"> 
@@ -141,7 +151,7 @@
       </fieldset>
       <hr>
       <h3>Output</h3>
-      <div id="result"></div>
+      <div id="lexiferResult"></div>
 
     </section>
 

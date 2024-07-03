@@ -35,11 +35,7 @@ section {
   margin: 0 0 10px 0;
   padding: 8px;
 }
-section#top {
-  border-bottom-left-radius: 3px;
-  border-bottom-right-radius: 3px;
-}
-section:not(#top) {
+section {
   border-radius: 3px;
 }
 #content,header,footer {
@@ -430,7 +426,7 @@ div .gll {
   width: 98%;
   white-space: pre;
 }
-#output {
+#lexiferOutput, #GMGOutput{
   font-family: monospace;
   height: 12em;
 }
