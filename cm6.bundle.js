@@ -23654,19 +23654,19 @@ var cm6 = (function (exports) {
        { tag: tags.number, color: "#803900" },
 
        // Operator / BLUE / = > : 
-       { tag: tags.operator, color: "#003d99" },
+       { tag: tags.operator, color: "#024bba" },
 
        // Directive / RED / words: categories: with: letters: random-rate:
        { tag: tags.className, color: "#cf006e" },
 
        // Keyword / BLUE / std-ipa-features std-assimilations coronal-metathesis
-       { tag: tags.keyword, color: "#003d99" },
+       { tag: tags.keyword, color: "#024bba" },
 
        // Filter / PURPLE / filter: reject: %
        { tag: tags.modifier, color: "#7a0099" },
 
        // RegExp / BLUE / . + * ? ^ $ | \ ( ) [ ] { }
-       { tag: tags.regexp, color: "#003d99" }
+       { tag: tags.regexp, color: "#024bba" }
    ]);
 
 

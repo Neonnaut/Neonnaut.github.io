@@ -172,7 +172,7 @@ N nč nš nc  nj nk ng ns nz nt nd nn nh mb mp mm nr nl nf  nw  ny
 
 # Phonetically, <N> word finally is [ɴ],
 # except after /i/ or /e/ is [ŋ]. Between vowel or before
-# /j, w, ɸ, s, ɕ, ç, h], is a nasalized vowel/semivowel. I'll use <'> here. 
+# /j, w, ɸ, s, ɕ, ç, h], is a nasalized vowel/semivowel. I'll use <n'> here. 
 % a    e    i    o    u    y
 N n'a  n'e  n'i  n'o  n'u  n'y
 

@@ -556,6 +556,7 @@ div .gll {
 #ipa-output-toolbar input {
   font-size: 14px;
   padding: 5px 5px 3px 5px;
+
 }
 
 #ipa-output-toolbar #symbolsUsed a 
@@ -591,6 +592,7 @@ div .gll {
   left: 0;
   right: 0;
   background-color:#DDD;
+  overflow-x: hidden;
 }
 
 #ipa-output textarea {
@@ -602,6 +604,8 @@ div .gll {
 
 #ipa-output #sampaBox {
   height: 15px;
+  width: auto;
+  max-width: 450px;
 }
 
 /* --Mobile first, because that's the hipster thing to do I guess-- */
