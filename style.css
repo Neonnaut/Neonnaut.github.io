@@ -518,10 +518,11 @@ div .gll {
  height: 26px;
 }
 .xipa-table button {
+  font-family: "Charis SIL", "Doulos SIL", Gentium, "Arial Unicode MS","Lucida Sans Unicode", Arial, Serif;
   margin: 0 auto;
   padding: 0;
-  width: 25px;
-  height: 26px;
+  width: 100%;
+  height: 100%;
   border: none;
   border-radius: 0;
   -webkit-box-shadow: 1px 1px 3px #aaa;
@@ -542,8 +543,6 @@ div .gll {
     height: 28px;
    }
    .xipa-table button {
-    width: 28px;
-    height: 29px;
     font-size: 19px;
   }
 }
