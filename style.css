@@ -514,14 +514,14 @@ div .gll {
 
 .xipa-table tr td{
  padding: 1px 1px 0 0;
- width: 25px;
+ width: 24px;
  height: 26px;
 }
 .xipa-table button {
   font-family: "Charis SIL", "Doulos SIL", Gentium, "Arial Unicode MS","Lucida Sans Unicode", Arial, Serif;
   margin: 0 auto;
   padding: 0;
-  width: 100%;
+  width: 24px;
   height: 100%;
   border: none;
   border-radius: 0;
@@ -540,10 +540,11 @@ div .gll {
   .xipa-table tr td{
     padding: 2px 2px 0 0;
     width: 27px;
-    height: 28px;
+    height: 27px;
    }
    .xipa-table button {
     font-size: 19px;
+    width: 27px;
   }
 }
 
