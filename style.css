@@ -500,6 +500,10 @@ div .gll {
   background: #ffffff;
 }
 
+.DiacX {
+  background: #fbf6f9;
+}
+
 .xipa-table {
   overflow-x: auto;
   white-space: nowrap;
@@ -556,7 +560,6 @@ div .gll {
 #ipa-output-toolbar input {
   font-size: 14px;
   padding: 5px 5px 3px 5px;
-
 }
 
 #ipa-output-toolbar #symbolsUsed a 
