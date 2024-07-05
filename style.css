@@ -606,7 +606,7 @@ div .gll {
 }
 
 #ipa-output #sampaBox {
-  height: 15px;
+  height: 100%;
   width: auto;
   max-width: 450px;
 }
