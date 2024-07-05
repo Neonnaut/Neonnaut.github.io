@@ -570,6 +570,7 @@ div .gll {
   margin: 0;
 }
 #ipa-output #sampaBox {
+  -webkit-appearance:none;
   width: auto;
   height: 22px;
   max-width: 450px;
