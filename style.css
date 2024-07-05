@@ -547,14 +547,16 @@ div .gll {
   }
 }
 
+#ipa-output {
+  border-top:solid 2px gray;
+}
+
 #ipa-output-toolbar, #ipa-output-toolbar  * {
   box-sizing: border-box;
 }
 #ipa-output-toolbar {
 	background-color:#f1f1f1;
-
-	border-top:solid 2px gray;
-  border-bottom:solid 2px gray;
+  
 	white-space:nowrap;
   -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none;
   user-select: none;
@@ -564,7 +566,7 @@ div .gll {
 
 #ipa-output-toolbar .ipa-output-button {
   font-size: 14px;
-  height: 22px;
+  height: 26px;
   padding: 4px 5px 2px 5px;
   display: inline-block;
   margin: 0;
@@ -572,9 +574,25 @@ div .gll {
 #ipa-output #sampaBox {
   -webkit-appearance:none;
   width: auto;
-  height: 22px;
+  height: 26px;
   max-width: 450px;
   display: inline-block;
+  border-radius: 0;
+  border: none;
+  outline: none;
+}
+#ipa-output #sampaBox:focus {
+  border: none;
+  outline: none;
+}
+
+#ipa-output textarea {
+	font-size:15pt;
+	width: 100%;
+	border:0;
+  border-top:solid 1px gray;
+  resize: none;
+  outline: none;
 }
 
 #ipa-output-toolbar #symbolsUsed a 
@@ -611,13 +629,6 @@ div .gll {
   right: 0;
   background-color:#DDD;
   overflow-x: hidden;
-}
-
-#ipa-output textarea {
-	font-size:15pt;
-	width: calc(100% - 4px);
-	border:0;
-  resize: none;
 }
 
 
