@@ -558,9 +558,18 @@ div .gll {
 }
 #ipa-output-toolbar input[type="button"] {
   font-size: 14px;
-  padding: 5px 5px 3px 5px;
-  display: inline;
+  height: 22px;
+  padding: 4px 5px 2px 5px;
+  display: inline-block;
   margin: 0;
+}
+
+#ipa-output #sampaBox {
+  height: 24px;
+  width: auto;
+  max-width: 450px;
+  border: none;
+  display: inline-block;
 }
 
 #ipa-output-toolbar #symbolsUsed a 
@@ -606,12 +615,7 @@ div .gll {
   resize: none;
 }
 
-#ipa-output #sampaBox {
-  height: 24px;
-  width: auto;
-  max-width: 450px;
-  border: none;
-}
+
 
 #ipa-output textarea, .xipa-table button, #ipa-output #sampaBox,
 #ipa-output-toolbar #symbolsUsed a {
