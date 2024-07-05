@@ -219,6 +219,7 @@ code.example {
   border-radius: 3px;
   font-size: 1.18em;
   white-space: pre-wrap;
+  font-weight: 600;
 }
 pre.example {
   background: var(--code-bg-colour);
@@ -546,6 +547,9 @@ div .gll {
   }
 }
 
+#ipa-output-toolbar, #ipa-output-toolbar  * {
+  box-sizing: border-box;
+}
 #ipa-output-toolbar {
 	background-color:#f1f1f1;
 
@@ -556,20 +560,18 @@ div .gll {
   user-select: none;
   height: 26px;
 }
-#ipa-output-toolbar * {
-  box-sizing: border-box;
-}
+
 
 #ipa-output-toolbar .ipa-output-button {
   font-size: 14px;
-  height: 26px;
+  height: 22px;
   padding: 4px 5px 2px 5px;
   display: inline-block;
   margin: 0;
 }
 #ipa-output #sampaBox {
   width: auto;
-  height: 26px;
+  height: 22px;
   max-width: 450px;
   display: inline-block;
 }
