@@ -381,11 +381,11 @@
 
 <div id= "ipa-output">
    <div id="ipa-output-toolbar">
-      <input type="text" id="sampaBox" onkeyup="TranslateSAMPA()" placeholder="X-SAMPA">
-      <div style="display: inline;">
-         <input type="button" id="copyButton" value="Copy" onclick="CopyClip();" />
-         <input type="button" id="clearButton" value="Clear" onclick="ClearFields();"/>
-      </div>
+      <input type="text" id="sampaBox" onkeyup="TranslateSAMPA()" placeholder="X-SAMPA"></input>
+
+      <input type="button" id="copyButton" value="Copy" onclick="CopyClip();" class="ipa-output-button"/>
+      <input type="button" id="clearButton" value="Clear" onclick="ClearFields();" class="ipa-output-button"/>
+
       
       <div id="symbolsUsed">
          <span id="symbolsList"></span>

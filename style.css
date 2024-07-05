@@ -556,16 +556,20 @@ div .gll {
   user-select: none;
   height: 26px;
 }
-#ipa-output-toolbar input[type="button"] {
+#ipa-output-toolbar * {
+  box-sizing: border-box;
+}
+
+#ipa-output-toolbar .ipa-output-button {
   font-size: 14px;
-  height: 22px;
+  height: 26px;
   padding: 4px 5px 2px 5px;
   display: inline-block;
   margin: 0;
 }
-
 #ipa-output #sampaBox {
   width: auto;
+  height: 26px;
   max-width: 450px;
   display: inline-block;
 }
