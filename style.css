@@ -607,9 +607,10 @@ div .gll {
 }
 
 #ipa-output #sampaBox {
-  height: 20px;
+  height: 24px;
   width: auto;
   max-width: 450px;
+  border: none;
 }
 
 #ipa-output textarea, .xipa-table button, #ipa-output #sampaBox,
