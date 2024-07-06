@@ -381,16 +381,19 @@
 
 <div id= "ipa-output">
    <div id="ipa-output-toolbar">
-
+      <div style="display: inline-block;">
+         <input type="button" id="copyButton" value="Copy" onclick="CopyClip();" class="ipa-output-button"/>
+         <input type="button" id="clearButton" value="Clear" onclick="ClearFields();" class="ipa-output-button"/>
+      </div>
+      
       <input type="text" id="sampaBox" onkeyup="TranslateSAMPA()" placeholder="X-SAMPA"></input>
-      <input type="button" id="copyButton" value="Copy" onclick="CopyClip();" class="ipa-output-button"/>
-      <input type="button" id="clearButton" value="Clear" onclick="ClearFields();" class="ipa-output-button"/>
+      <br>
 
       <div id="symbolsUsed">
          <span id="symbolsList"></span>
       </div>
    </div>
-   <textarea class="box" rows="3" id="ipaBox" onkeyup="TranslateIPA()"></textarea>
+   <textarea class="box" rows="2" id="ipaBox" onkeyup="TranslateIPA()"></textarea>
 </div>
 
 </section>

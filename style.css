@@ -560,7 +560,7 @@ div .gll {
 	white-space:nowrap;
   -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none;
   user-select: none;
-  height: 22px;
+
 }
 
 
@@ -576,9 +576,8 @@ div .gll {
   -webkit-appearance:none;
   width: auto;
   height: 100%;
-  font-size: 10px;
-  max-width: 450px;
-  display: inline-block;
+  font-size: 15px;
+  max-width: 400px;
   border-radius: 0;
   border: none;
   outline: none;
