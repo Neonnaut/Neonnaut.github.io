@@ -586,6 +586,8 @@ div .gll {
 #ipa-output #sampaBox:focus {
   border: none;
   outline: none;
+  margin: 0;
+  -webkit-appearance:none;
 }
 
 #ipa-output textarea {
