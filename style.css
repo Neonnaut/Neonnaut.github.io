@@ -556,13 +556,12 @@ div .gll {
 }
 #ipa-output-toolbar {
 	background-color:#f1f1f1;
-  
+  height: 22px;
 	white-space:nowrap;
   -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none;
   user-select: none;
 
 }
-
 
 #ipa-output-toolbar .ipa-output-button {
   font-size: 14px;
@@ -574,7 +573,7 @@ div .gll {
 #ipa-output #sampaBox {
   display: inline-block;
   -webkit-appearance:none;
-  width: 120px;
+  width: 100px;
   font-size: 15px;
   max-width: 400px;
   border-radius: 0;
@@ -582,7 +581,7 @@ div .gll {
   outline: none;
   border-radius: 0;
   margin: 0;
-  height: 20px;
+  height: 100%;
 }
 #ipa-output #sampaBox:focus {
   border: none;
