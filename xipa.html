@@ -91,7 +91,7 @@
       <td><button class="ConsN" title="velar ejective" onclick="writeSampa(event, 'k&#700;')">k&#700;</button></td>
       <td><button class="ConsN" title="uvular ejective" onclick="writeSampa(event, 'q&#700;')">q&#700;</button></td>
       <td></td>
-      <td><button class="ConsN" title="ejective" onclick="writeSampa(event, '&#700;')">&#700;</button></td>
+      <td><button class="ConsN" title="ejective" onclick="writeSampa(event, '&#700;')">&#9676;&#700;</button></td>
       <td class="seperator"></td> 
       <td><button class="Vowel" title="close-mid front unrounded vowel" onclick="writeSampa(event, 'e')">e</button></td>
       <td><button class="Vowel" title="close-mid front rounded vowel" onclick="writeSampa(event, '&#248;')">&#248;</button></td>
@@ -353,11 +353,12 @@
    <tr>
       <td><button class="Other" title="voiced labial-velar approximant" onclick="writeSampa(event, 'w')">w</button></td>
       <td><button class="Other" title="voiceless labial-velar approximant" onclick="writeSampa(event, '&#653;')">&#653;</button></td>
-      <td><button class="Other" title="voiced labial-palatal approximant" onclick="writeSampa(event, '&#613;')">&#613;</button></td>
-      <td><button class="Cons" title="velarized alveolar lateral approximant" onclick="writeSampa(event, '&#619;')">&#619;</button></td>
       <td><button class="Other" title="voiceless alveolo-palatal fricative" onclick="writeSampa(event, '&#597;')">&#597;</button></td>
       <td><button class="Other" title="voiced alveolo-palatal fricative" onclick="writeSampa(event, '&#657;')">&#657;</button></td>
+      <td><button class="Cons" title="velarized alveolar lateral approximant" onclick="writeSampa(event, '&#619;')">&#619;</button></td>
+      <td><button class="Other" title="voiced labial-palatal approximant" onclick="writeSampa(event, '&#613;')">&#613;</button></td>
       <td><button class="Cons" title="voiced retroflex lateral approximant" onclick="writeSampa(event, '&#621;')">&#621;</button></td>
+      
       <td><button class="Cons" title="voiced palatal lateral approximant" onclick="writeSampa(event, '&#654;')">&#654;</button></td>
       <td><button class="Cons" title="voiced velar lateral approximant" onclick="writeSampa(event, '&#671;')">&#671;</button></td>
       <td><button class="Other" title="voiceless velar fricative* (Swedish)" onclick="writeSampa(event, '&#615;')">&#615;</button></td>
@@ -387,7 +388,7 @@
          <input type="button" id="clearButton" value="Clear" onclick="ClearFields();" class="ipa-output-button"/>
       </div>
 
-      <input type="text" id="sampaBox" onkeyup="TranslateSAMPA()" placeholder="X-SAMPA"></input>
+      <textarea id="sampaBox" onkeyup="TranslateSAMPA()" placeholder="X-SAMPA"></textarea>
 
       <div id="symbolsUsed">
          <span id="symbolsList"></span>
@@ -400,12 +401,868 @@
 </section>
 <section>
 
-<h3>Information</h3>
+<h2>Information</h2>
 <p>Type IPA chracters. Click on either the IPA icons at the top of the page, or by typing in the X-SAMPA field. Enter base characters before diacritics.</p>
-<p>To enable X-SAMPA users to convert to the IPA without limitations, or just to make some things easier, XIPA uses some additional notations that are not standard in X-SAMPA:
+
 <p>'Copy' button or <code class='example'>Ctrl + Shift + Space</code> will copy IPA output to clipboard.</p>
 <p>'Clear' button or <code class='example'>Ctrl + Shift + Backspace</code> will clear all inputs. </p>
+<p>You can also select previously selected characters from a list that appears to the right of the SAMPA textbox.</p>
 
+<h3>X-SAMPA notation</h3>
+<table class="styled-table sortable" style="max-height: 300px;">
+   <thead>
+      <tr>
+         <th class="sorttable_original">X-SAMPA</th>
+         <th>IPA</th>
+         <th>Description</th>
+      </tr>
+   </thead>
+   <tfoot></tfoot>
+   <tbody>
+      <tr>
+      <td><a>b</a></td>
+      <td><a>b</a></td>
+      <td><a>voiced bilabial plosive</a></td>
+      </tr>
+      <tr>
+      <td><a>b_&lt;</a></td>
+      <td><a>ɓ</a></td>
+      <td><a>voiced bilabial implosive</a></td>
+      </tr>
+      <tr>
+      <td><a>c</a></td>
+      <td><a>c</a></td>
+      <td><a>voiceless palatal plosive</a></td>
+      </tr>
+      <tr>
+      <td><a>d</a></td>
+      <td><a>d</a></td>
+      <td><a>voiced alveolar plosive</a></td>
+      </tr>
+      <tr>
+      <td><a>d_&lt;</a></td>
+      <td><a>ɗ</a></td>
+      <td><a>voiced alveolar implosive</a></td>
+      </tr>
+      <tr>
+      <td><a>d`</a></td>
+      <td><a>ɖ</a></td>
+      <td><a>voiced retroflex plosive</a></td>
+      </tr>
+      <tr>
+      <td><a>e</a></td>
+      <td><a>e</a></td>
+      <td><a>close-mid front unrounded vowel</a></td>
+      </tr>
+      <tr>
+      <td><a>f</a></td>
+      <td><a>f</a></td>
+      <td><a>voiceless labiodental fricative</a></td>
+      </tr>
+      <tr>
+      <td><a>g</a></td>
+      <td><a>ɡ</a></td>
+      <td><a>voiced velar plosive</a></td>
+      </tr>
+      <tr>
+      <td><a>g_&lt;</a></td>
+      <td><a>ɠ</a></td>
+      <td><a>voiced velar implosive</a></td>
+      </tr>
+      <tr>
+      <td><a>h</a></td>
+      <td><a>h</a></td>
+      <td><a>voiceless glottal fricative</a></td>
+      </tr>
+      <tr>
+      <td><a>h\</a></td>
+      <td><a>ɦ</a></td>
+      <td><a>voiced glottal fricative</a></td>
+      </tr>
+      <tr>
+      <td><a>i</a></td>
+      <td><a>i</a></td>
+      <td><a>close front unrounded vowel</a></td>
+      </tr>
+      <tr>
+      <td><a>j</a></td>
+      <td><a>j</a></td>
+      <td><a>palatal approximant</a></td>
+      </tr>
+      <tr>
+      <td><a>j\</a></td>
+      <td><a>ʝ</a></td>
+      <td><a>voiced palatal fricative</a></td>
+      </tr>
+      <tr>
+      <td><a>k</a></td>
+      <td><a>k</a></td>
+      <td><a>voiceless velar plosive</a></td>
+      </tr>
+      <tr>
+      <td><a>l</a></td>
+      <td><a>l</a></td>
+      <td><a>alveolar lateral approximant</a></td>
+      </tr>
+      <tr>
+      <td><a>l\</a></td>
+      <td><a>ɺ</a></td>
+      <td><a>alveolar lateral flap</a></td>
+      </tr>
+      <tr>
+      <td><a>l`</a></td>
+      <td><a>ɭ</a></td>
+      <td><a>retroflex lateral approximant</a></td>
+      </tr>
+      <tr>
+      <td><a>m</a></td>
+      <td><a>m</a></td>
+      <td><a>bilabial nasal</a></td>
+      </tr>
+      <tr>
+      <td><a>n</a></td>
+      <td><a>n</a></td>
+      <td><a>alveolar nasal</a></td>
+      </tr>
+      <tr>
+      <td><a>n`</a></td>
+      <td><a>ɳ</a></td>
+      <td><a>retroflex nasal</a></td>
+      </tr>
+      <tr>
+      <td><a>o</a></td>
+      <td><a>o</a></td>
+      <td><a>close-mid back rounded vowel</a></td>
+      </tr>
+      <tr>
+      <td><a>p</a></td>
+      <td><a>p</a></td>
+      <td><a>voiceless bilabial plosive</a></td>
+      </tr>
+      <tr>
+      <td><a>p\</a></td>
+      <td><a>ɸ</a></td>
+      <td><a>voiceless bilabial fricative</a></td>
+      </tr>
+      <tr>
+      <td><a>q</a></td>
+      <td><a>q</a></td>
+      <td><a>voiceless uvular plosive</a></td>
+      </tr>
+      <tr>
+      <td><a>r</a></td>
+      <td><a>r</a></td>
+      <td><a>alveolar trill</a></td>
+      </tr>
+      <tr>
+      <td><a>r\</a></td>
+      <td><a>ɹ</a></td>
+      <td><a>alveolar approximant</a></td>
+      </tr>
+      <tr>
+      <td><a>r\`</a></td>
+      <td><a>ɻ</a></td>
+      <td><a>retroflex approximant</a></td>
+      </tr>
+      <tr>
+      <td><a>r`</a></td>
+      <td><a>ɽ</a></td>
+      <td><a>retroflex flap</a></td>
+      </tr>
+      <tr>
+      <td><a>s</a></td>
+      <td><a>s</a></td>
+      <td><a>voiceless alveolar fricative</a></td>
+      </tr>
+      <tr>
+      <td><a>s\</a></td>
+      <td><a>ɕ</a></td>
+      <td><a>voiceless alveolo-palatal fricative</a></td>
+      </tr>
+      <tr>
+      <td><a>s`</a></td>
+      <td><a>ʂ</a></td>
+      <td><a>voiceless retroflex fricative</a></td>
+      </tr>
+      <tr>
+      <td><a>t</a></td>
+      <td><a>t</a></td>
+      <td><a>voiceless alveolar plosive</a></td>
+      </tr>
+      <tr>
+      <td><a>t`</a></td>
+      <td><a>ʈ</a></td>
+      <td><a>voiceless retroflex plosive</a></td>
+      </tr>
+      <tr>
+      <td><a>u</a></td>
+      <td><a>u</a></td>
+      <td><a>close back rounded vowel</a></td>
+      </tr>
+      <tr>
+      <td><a>v</a></td>
+      <td><a>v</a></td>
+      <td><a>voiced labiodental fricative</a></td>
+      </tr>
+      <tr>
+      <td><a>v\ (or P)</a></td>
+      <td><a>ʋ</a></td>
+      <td><a>labiodental approximant</a></td>
+      </tr>
+      <tr>
+      <td><a>w</a></td>
+      <td><a>w</a></td>
+      <td><a>labial-velar approximant</a></td>
+      </tr>
+      <tr>
+      <td><a>x</a></td>
+      <td><a>x</a></td>
+      <td><a>voiceless velar fricative</a></td>
+      </tr>
+      <tr>
+      <td><a>x\</a></td>
+      <td><a>ɧ</a></td>
+      <td><a>voiceless palatal-velar fricative</a></td>
+      </tr>
+      <tr>
+      <td><a>y</a></td>
+      <td><a>y</a></td>
+      <td><a>close front rounded vowel</a></td>
+      </tr>
+      <tr>
+      <td><a>z</a></td>
+      <td><a>z</a></td>
+      <td><a>voiced alveolar fricative</a></td>
+      </tr>
+      <tr>
+      <td><a>z\</a></td>
+      <td><a>ʑ</a></td>
+      <td><a>voiced alveolo-palatal fricative</a></td>
+      </tr>
+      <tr>
+      <td><a>z`</a></td>
+      <td><a>ʐ</a></td>
+      <td><a>voiced retroflex fricative</a></td>
+      </tr>
+      <tr>
+      <td><a>A</a></td>
+      <td><a>ɑ</a></td>
+      <td><a>open back unrounded vowel</a></td>
+      </tr>
+      <tr>
+      <td><a>B</a></td>
+      <td><a>β</a></td>
+      <td><a>voiced bilabial fricative</a></td>
+      </tr>
+      <tr>
+      <td><a>B\</a></td>
+      <td><a>ʙ</a></td>
+      <td><a>bilabial trill</a></td>
+      </tr>
+      <tr>
+      <td><a>C</a></td>
+      <td><a>ç</a></td>
+      <td><a>voiceless palatal fricative</a></td>
+      </tr>
+      <tr>
+      <td><a>D</a></td>
+      <td><a>ð</a></td>
+      <td><a>voiced dental fricative</a></td>
+      </tr>
+      <tr>
+      <td><a>E</a></td>
+      <td><a>ɛ</a></td>
+      <td><a>open-mid front unrounded vowel</a></td>
+      </tr>
+      <tr>
+      <td><a>F</a></td>
+      <td><a>ɱ</a></td>
+      <td><a>labiodental nasal</a></td>
+      </tr>
+      <tr>
+      <td><a>G</a></td>
+      <td><a>ɣ</a></td>
+      <td><a>voiced velar fricative</a></td>
+      </tr>
+      <tr>
+      <td><a>G\</a></td>
+      <td><a>ɢ</a></td>
+      <td><a>voiced uvular plosive</a></td>
+      </tr>
+      <tr>
+      <td><a>G\_&lt;</a></td>
+      <td><a>ʛ</a></td>
+      <td><a>voiced uvular implosive</a></td>
+      </tr>
+      <tr>
+      <td><a>H</a></td>
+      <td><a>ɥ</a></td>
+      <td><a>labial-palatal approximant</a></td>
+      </tr>
+      <tr>
+      <td><a>H\</a></td>
+      <td><a>ʜ</a></td>
+      <td><a>voiceless epiglottal fricative</a></td>
+      </tr>
+      <tr>
+      <td><a>I</a></td>
+      <td><a>ɪ</a></td>
+      <td><a>near-close front unrounded vowel</a></td>
+      </tr>
+      <tr>
+      <td><a>J</a></td>
+      <td><a>ɲ</a></td>
+      <td><a>palatal nasal</a></td>
+      </tr>
+      <tr>
+      <td><a>J\</a></td>
+      <td><a>ɟ</a></td>
+      <td><a>voiced palatal plosive</a></td>
+      </tr>
+      <tr>
+      <td><a>J\_&lt;</a></td>
+      <td><a>ʄ</a></td>
+      <td><a>voiced palatal implosive</a></td>
+      </tr>
+      <tr>
+      <td><a>K</a></td>
+      <td><a>ɬ</a></td>
+      <td><a>voiceless alveolar lateral fricative</a></td>
+      </tr>
+      <tr>
+      <td><a>K\</a></td>
+      <td><a>ɮ</a></td>
+      <td><a>voiced alveolar lateral fricative</a></td>
+      </tr>
+      <tr>
+      <td><a>L</a></td>
+      <td><a>ʎ</a></td>
+      <td><a>palatal lateral approximant</a></td>
+      </tr>
+      <tr>
+      <td><a>L\</a></td>
+      <td><a>ʟ</a></td>
+      <td><a>velar lateral approximant</a></td>
+      </tr>
+      <tr>
+      <td><a>M</a></td>
+      <td><a>ɯ</a></td>
+      <td><a>close back unrounded vowel</a></td>
+      </tr>
+      <tr>
+      <td><a>M\</a></td>
+      <td><a>ɰ</a></td>
+      <td><a>velar approximant</a></td>
+      </tr>
+      <tr>
+      <td><a>N</a></td>
+      <td><a>ŋ</a></td>
+      <td><a>velar nasal</a></td>
+      </tr>
+      <tr>
+      <td><a>N\</a></td>
+      <td><a>ɴ</a></td>
+      <td><a>uvular nasal</a></td>
+      </tr>
+      <tr>
+      <td><a>O</a></td>
+      <td><a>ɔ</a></td>
+      <td><a>open-mid back rounded vowel</a></td>
+      </tr>
+      <tr>
+      <td><a>O\</a></td>
+      <td><a>ʘ</a></td>
+      <td><a>bilabial click</a></td>
+      </tr>
+      <tr>
+      <td><a>P (or v\)</a></td>
+      <td><a>ʋ</a></td>
+      <td><a>labiodental approximant</a></td>
+      </tr>
+      <tr>
+      <td><a>Q</a></td>
+      <td><a>ɒ</a></td>
+      <td><a>open back rounded vowel</a></td>
+      </tr>
+      <tr>
+      <td><a>R</a></td>
+      <td><a>ʁ</a></td>
+      <td><a>voiced uvular fricative</a></td>
+      </tr>
+      <tr>
+      <td><a>R\</a></td>
+      <td><a>ʀ</a></td>
+      <td><a>uvular trill</a></td>
+      </tr>
+      <tr>
+      <td><a>S</a></td>
+      <td><a>ʃ</a></td>
+      <td><a>voiceless postalveolar fricative</a></td>
+      </tr>
+      <tr>
+      <td><a>T</a></td>
+      <td><a>θ</a></td>
+      <td><a>voiceless dental fricative</a></td>
+      </tr>
+      <tr>
+      <td><a>U</a></td>
+      <td><a>ʊ</a></td>
+      <td><a>near-close back rounded vowel</a></td>
+      </tr>
+      <tr>
+      <td><a>U\</a></td>
+      <td><a>ᵿ</a></td>
+      <td><a>near-close central rounded vowel (non-IPA)</a></td>
+      </tr>
+      <tr>
+      <td><a>V</a></td>
+      <td><a>ʌ</a></td>
+      <td><a>open-mid back unrounded vowel</a></td>
+      </tr>
+      <tr>
+      <td><a>W</a></td>
+      <td><a>ʍ</a></td>
+      <td><a>voiceless labial-velar fricative</a></td>
+      </tr>
+      <tr>
+      <td><a>X</a></td>
+      <td><a>χ</a></td>
+      <td><a>voiceless uvular fricative</a></td>
+      </tr>
+      <tr>
+      <td><a>X\</a></td>
+      <td><a>ħ</a></td>
+      <td><a>voiceless pharyngeal fricative</a></td>
+      </tr>
+      <tr>
+      <td><a>Y</a></td>
+      <td><a>ʏ</a></td>
+      <td><a>near-close front rounded vowel</a></td>
+      </tr>
+      <tr>
+      <td><a>Z</a></td>
+      <td><a>ʒ</a></td>
+      <td><a>voiced postalveolar fricative</a></td>
+      </tr>
+      <tr>
+      <td><a>.</a></td>
+      <td><a>.</a></td>
+      <td><a>syllable break</a></td>
+      </tr>
+      <tr>
+      <td><a>&quot;</a></td>
+      <td><a>&#712;&#9676;</a></td>
+      <td><a>primary stress</a></td>
+      </tr>
+      <tr>
+      <td><a>%</a></td>
+      <td><a>&#716;&#9676;</a></td>
+      <td><a>secondary stress</a></td>
+      </tr>
+      <tr>
+      <td><a>&#39; (or _j)</a></td>
+      <td><a>&#9676;&#690;</a></td>
+      <td><a>palatalized</a></td>
+      </tr>
+      <tr>
+      <td><a>:</a></td>
+      <td><a>&#9676;&#720;</a></td>
+      <td><a>long</a></td>
+      </tr>
+      <tr>
+      <td><a>:\</a></td>
+      <td><a>&#9676;&#721;</a></td>
+      <td><a>half long</a></td>
+      </tr>
+      <tr>
+      <td><a>@</a></td>
+      <td><a>ə</a></td>
+      <td><a>schwa</a></td>
+      </tr>
+      <tr>
+      <td><a>@\</a></td>
+      <td><a>ɘ</a></td>
+      <td><a>close-mid central unrounded vowel</a></td>
+      </tr>
+      <tr>
+      <td><a>@`</a></td>
+      <td><a>ɚ</a></td>
+      <td><a>r-coloured schwa</a></td>
+      </tr>
+      <tr>
+      <td><a>{</a></td>
+      <td><a>æ</a></td>
+      <td><a>near-open front unrounded vowel</a></td>
+      </tr>
+      <tr>
+      <td><a>}</a></td>
+      <td><a>ʉ</a></td>
+      <td><a>close central rounded vowel</a></td>
+      </tr>
+      <tr>
+      <td><a>1</a></td>
+      <td><a>ɨ</a></td>
+      <td><a>close central unrounded vowel</a></td>
+      </tr>
+      <tr>
+      <td><a>2</a></td>
+      <td><a>ø</a></td>
+      <td><a>close-mid front rounded vowel</a></td>
+      </tr>
+      <tr>
+      <td><a>3</a></td>
+      <td><a>ɜ</a></td>
+      <td><a>open-mid central unrounded vowel</a></td>
+      </tr>
+      <tr>
+      <td><a>3\</a></td>
+      <td><a>ɞ</a></td>
+      <td><a>open-mid central rounded vowel</a></td>
+      </tr>
+      <tr>
+      <td><a>4</a></td>
+      <td><a>ɾ</a></td>
+      <td><a>alveolar flap</a></td>
+      </tr>
+      <tr>
+      <td><a>5</a></td>
+      <td><a>ɫ</a></td>
+      <td><a>velarized alveolar lateral approximant</a></td>
+      </tr>
+      <tr>
+      <td><a>6</a></td>
+      <td><a>ɐ</a></td>
+      <td><a>near-open central vowel</a></td>
+      </tr>
+      <tr>
+      <td><a>7</a></td>
+      <td><a>ɤ</a></td>
+      <td><a>close-mid back unrounded vowel</a></td>
+      </tr>
+      <tr>
+      <td><a>8</a></td>
+      <td><a>ɵ</a></td>
+      <td><a>close-mid central rounded vowel</a></td>
+      </tr>
+      <tr>
+      <td><a>9</a></td>
+      <td><a>œ</a></td>
+      <td><a>open-mid front rounded vowel</a></td>
+      </tr>
+      <tr>
+      <td><a>&amp;</a></td>
+      <td><a>ɶ</a></td>
+      <td><a>open front rounded vowel</a></td>
+      </tr>
+      <tr>
+      <td><a>?</a></td>
+      <td><a>ʔ</a></td>
+      <td><a>glottal stop</a></td>
+      </tr>
+      <tr>
+      <td><a>?\</a></td>
+      <td><a>ʕ</a></td>
+      <td><a>voiced pharyngeal fricative</a></td>
+      </tr>
+      <tr>
+      <td><a>&lt;\</a></td>
+      <td><a>ʢ</a></td>
+      <td><a>voiced epiglottal fricative</a></td>
+      </tr>
+      <tr>
+      <td><a>&gt;\</a></td>
+      <td><a>ʡ</a></td>
+      <td><a>epiglottal plosive</a></td>
+      </tr>
+      <tr>
+      <td><a>^</a></td>
+      <td><a>ꜛ</a></td>
+      <td><a>upstep</a></td>
+      </tr>
+      <tr>
+      <td><a>!</a></td>
+      <td><a>ꜜ</a></td>
+      <td><a>downstep</a></td>
+      </tr>
+      <tr>
+      <td><a>!\</a></td>
+      <td><a>ǃ</a></td>
+      <td><a>postalveolar click</a></td>
+      </tr>
+      <tr>
+      <td><a>|</a></td>
+      <td><a>|</a></td>
+      <td><a>minor (foot) group</a></td>
+      </tr>
+      <tr>
+      <td><a>|\</a></td>
+      <td><a>ǀ</a></td>
+      <td><a>dental click</a></td>
+      </tr>
+      <tr>
+      <td><a>||</a></td>
+      <td><a>‖</a></td>
+      <td><a>major (intonation) group</a></td>
+      </tr>
+      <tr>
+      <td><a>|\|\</a></td>
+      <td><a>ǁ</a></td>
+      <td><a>alveolar lateral click</a></td>
+      </tr>
+      <tr>
+      <td><a>=\</a></td>
+      <td><a>ǂ</a></td>
+      <td><a>palatal click</a></td>
+      </tr>
+      <tr>
+      <td><a>-\</a></td>
+      <td><a>&#8255;</a></td>
+      <td><a>linking mark</a></td>
+      </tr>
+      <tr>
+      <td><a>_&quot;</a></td>
+      <td><a>&#9676;&#776;</a></td>
+      <td><a>centralized</a></td>
+      </tr>
+      <tr>
+      <td><a>_+</a></td>
+      <td><a>&#9676;&#799;</a></td>
+      <td><a>advanced</a></td>
+      </tr>
+      <tr>
+      <td><a>_-</a></td>
+      <td><a>&#9676;&#800;</a></td>
+      <td><a>retracted</a></td>
+      </tr>
+      <tr>
+      <td><a>_/</a></td>
+      <td><a>&#9676;&#780;</a></td>
+      <td><a>rising tone</a></td>
+      </tr>
+      <tr>
+      <td><a>_0</a></td>
+      <td><a>&#9676;&#805;</a></td>
+      <td><a>voiceless</a></td>
+      </tr>
+      <tr>
+      <td><a>_&lt;</a></td>
+      <td><a></a></td>
+      <td><a>implosive</a></td>
+      </tr>
+      <tr>
+      <td><a>= (or _=)</a></td>
+      <td><a>&#9676;&#809;</a></td>
+      <td><a>syllabic</a></td>
+      </tr>
+      <tr>
+      <td><a>_&gt;</a></td>
+      <td><a>&#9676;&#700;</a></td>
+      <td><a>ejective</a></td>
+      </tr>
+      <tr>
+      <td><a>_?\</a></td>
+      <td><a>&#9676;&#740;</a></td>
+      <td><a>pharyngealized</a></td>
+      </tr>
+      <tr>
+      <td><a>_\</a></td>
+      <td><a>&#9676;&#770;</a></td>
+      <td><a>falling tone</a></td>
+      </tr>
+      <tr>
+      <td><a>_^</a></td>
+      <td><a>&#9676;&#815;</a></td>
+      <td><a>non-syllabic</a></td>
+      </tr>
+      <tr>
+      <td><a>_}</a></td>
+      <td><a>&#9676;&#794;</a></td>
+      <td><a>no audible release</a></td>
+      </tr>
+      <tr>
+      <td><a>`</a></td>
+      <td><a>&#9676;&#734;</a></td>
+      <td><a>vowel rhoticity; consonant retroflexion</a></td>
+      </tr>
+      <tr>
+      <td><a>~ (or _~)</a></td>
+      <td><a>&#9676;&#771;</a></td>
+      <td><a>anasalized</a></td>
+      </tr>
+      <tr>
+      <td><a>_A</a></td>
+      <td><a>&#9676;&#792;</a></td>
+      <td><a>advanced tongue root</a></td>
+      </tr>
+      <tr>
+      <td><a>_a</a></td>
+      <td><a>&#9676;&#826;</a></td>
+      <td><a>apical</a></td>
+      </tr>
+      <tr>
+      <td><a>_B</a></td>
+      <td><a>&#9676;&#783;</a></td>
+      <td><a>extra low tone</a></td>
+      </tr>
+      <tr>
+      <td><a>_B_L</a></td>
+      <td><a>&#9676;&#7622;</a></td>
+      <td><a>low rising tone</a></td>
+      </tr>
+      <tr>
+      <td><a>_c</a></td>
+      <td><a>&#9676;&#796;</a></td>
+      <td><a>less rounded</a></td>
+      </tr>
+      <tr>
+      <td><a>_d</a></td>
+      <td><a>&#9676;&#810;</a></td>
+      <td><a>dental</a></td>
+      </tr>
+      <tr>
+      <td><a>_e</a></td>
+      <td><a>&#9676;&#820;</a></td>
+      <td><a>velarized or pharyngealized; also see 5</a></td>
+      </tr>
+      <tr>
+      <td><a>&lt;F&gt;</a></td>
+      <td><a>↘</a></td>
+      <td><a>global fall</a></td>
+      </tr>
+      <tr>
+      <td><a>_F</a></td>
+      <td><a>&#9676;&#770;</a></td>
+      <td><a>falling tone</a></td>
+      </tr>
+      <tr>
+      <td><a>_G</a></td>
+      <td><a>◌ˠ</a></td>
+      <td><a>velarized</a></td>
+      </tr>
+      <tr>
+      <td><a>_H</a></td>
+      <td><a>&#9676;&#769;</a></td>
+      <td><a>high tone</a></td>
+      </tr>
+      <tr>
+      <td><a>_H_T</a></td>
+      <td><a>&#9676;&#7620;</a></td>
+      <td><a>high rising tone</a></td>
+      </tr>
+      <tr>
+      <td><a>_h</a></td>
+      <td><a>◌ʰ</a></td>
+      <td><a>aspirated</a></td>
+      </tr>
+      <tr>
+      <td><a>_j (or &#39;)</a></td>
+      <td><a>◌ʲ</a></td>
+      <td><a>palatalized</a></td>
+      </tr>
+      <tr>
+      <td><a>_k</a></td>
+      <td><a>&#9676;&#816;</a></td>
+      <td><a>creaky voice</a></td>
+      </tr>
+      <tr>
+      <td><a>_L</a></td>
+      <td><a>&#9676;&#768;</a></td>
+      <td><a>low tone</a></td>
+      </tr>
+      <tr>
+      <td><a>_l</a></td>
+      <td><a>◌ˡ</a></td>
+      <td><a>lateral release</a></td>
+      </tr>
+      <tr>
+      <td><a>_M</a></td>
+      <td><a>&#9676;&#772;</a></td>
+      <td><a>mid tone</a></td>
+      </tr>
+      <tr>
+      <td><a>_m</a></td>
+      <td><a>&#9676;&#827;</a></td>
+      <td><a>laminal</a></td>
+      </tr>
+      <tr>
+      <td><a>_N</a></td>
+      <td><a>&#9676;&#828;</a></td>
+      <td><a>linguolabial</a></td>
+      </tr>
+      <tr>
+      <td><a>_n</a></td>
+      <td><a>◌ⁿ</a></td>
+      <td><a>nasal release</a></td>
+      </tr>
+      <tr>
+      <td><a>_O</a></td>
+      <td><a>&#9676;&#825;</a></td>
+      <td><a>more rounded</a></td>
+      </tr>
+      <tr>
+      <td><a>_o</a></td>
+      <td><a>&#9676;&#798;</a></td>
+      <td><a>lowered</a></td>
+      </tr>
+      <tr>
+      <td><a>_q</a></td>
+      <td><a>&#9676;&#793;</a></td>
+      <td><a>retracted tongue root</a></td>
+      </tr>
+      <tr>
+      <td><a>&lt;R&gt;</a></td>
+      <td><a>↗</a></td>
+      <td><a>global rise</a></td>
+      </tr>
+      <tr>
+      <td><a>_R</a></td>
+      <td><a>&#9676;&#780;</a></td>
+      <td><a>rising tone</a></td>
+      </tr>
+      <tr>
+      <td><a>_R_F</a></td>
+      <td><a>&#9676;&#7624;</a></td>
+      <td><a>rising-falling tone</a></td>
+      </tr>
+      <tr>
+      <td><a>_r</a></td>
+      <td><a>&#9676;&#797;</a></td>
+      <td><a>raised</a></td>
+      </tr>
+      <tr>
+      <td><a>_T</a></td>
+      <td><a>&#9676;&#779;</a></td>
+      <td><a>extra high tone</a></td>
+      </tr>
+      <tr>
+      <td><a>_t</a></td>
+      <td><a>&#9676;&#804;</a></td>
+      <td><a>breathy voice</a></td>
+      </tr>
+      <tr>
+      <td><a>_v</a></td>
+      <td><a>&#9676;&#812;</a></td>
+      <td><a>voiced</a></td>
+      </tr>
+      <tr>
+      <td><a>_w</a></td>
+      <td><a>&#9676;&#695;</a></td>
+      <td><a>labialized</a></td>
+      </tr>
+      <tr>
+      <td><a>_X</a></td>
+      <td><a>&#9676;&#774;</a></td>
+      <td><a>extra-short</a></td>
+      </tr>
+      <tr>
+      <td><a>_x</a></td>
+      <td><a>&#9676;&#829;</a></td>
+      <td><a>mid-centralized</td>
+      </tr>
+   </tbody>
+</table>
+
+<p>To enable X-SAMPA users to convert to the IPA without limitations, or just to make some things easier, XIPA uses some additional notations that are not standard in X-SAMPA:
 <ul>
 <li>The combination <code class='example'>b\</code> gives the labial flap <code class='example'>&#11377;</code>.</li>
 <li>Round brackets <code class='example'>) (</code> are used for <i>tie above</i> and <i>tie below</i>, respectively. They are placed <i>between</i> the adjoining letters; e.g. <code class='example'>t)s</code> gives <code class='example'>t&#865;s</code>.</li>
@@ -415,7 +1272,7 @@
 <li>The combination <code class='example'>_f</code> marks a whistled sound, e.g. <code class='example'>s_f</code> gives <code class='example'>s&#846;</code>.</li>
 <li>The combination <code class='example'>_J</code> creates alveolo-palatal characters, e.g. <code class='example'>t_J</code> gives <code class='example'>&#566;</code>. (With the exception of <code class='example'>&#597;</code> and <code class='example'>&#657;</code>, alveolo-palatal characters are non-IPA.)</li>
 <li>The combination <code class='example'>g\</code> gives the opentail letter g. The difference is however not visible in XIPA's default font.</li>
-<li>The combination <code class='example'>!\!\</code> gives the retroflex click <code class='example'>&#x203C;&#xFE0E;</code>.</li>
+<li>The combination <code class='example'>!\!\</code> gives the retroflex click "ad hoc digraph" <code class='example'>&#x203C;&#xFE0E;</code>.</li>
 <li>The following combinations exist in XIPA in addition to their standard notation in X-SAMPA:
 <ul>
 <li><code class='example'>p_!</code> gives the labial click <code class='example'>&#664;</code> (standard <code class='example'>O\</code>).</li>
