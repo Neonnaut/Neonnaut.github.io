@@ -16,7 +16,7 @@
 
   <script src="glossmygloss.js"></script>
   <script src="cm6.bundle.js"></script>
-  <script src="lexifer.js"></script>
+  <script src="lexifer/lexifer.js"></script>
   <script src="lexifer-examples.js"></script>
   <script src="xipa.js"></script>
 
@@ -774,6 +774,7 @@ YABRV,your abbreviation
               $("#unsorted").is(":checked"),
               $("#one-per-line").is(":checked"),
             );
+            $("#lexiferResult").html("");
             $("#lexiferResult").html(
               "<p class='error-message'>" + myMessage + "</p>" +
               "<textarea id='lexiferOutput' spellcheck='false'>" + myWords + "</textarea>"

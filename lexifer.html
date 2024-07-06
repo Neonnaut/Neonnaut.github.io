@@ -15,7 +15,7 @@
   <script src="sort-table.js"></script>
 
   <script src="cm6.bundle.js"></script>
-  <script src="lexifer/index.js" type="module"></script>
+  <script src="lexifer/lexifer.js"></script>
   <script src="lexifer-examples.js"></script>
 
   <!-- Fonts -->
@@ -113,17 +113,21 @@
           });
 
           $("[name='lexiferButton']").click(function () { //Generate button
-            const [myWords, myMessage] = genWords(
+            document.getElementById('lexiferErrorMessage').innerHTML = "";
+            const myWords = genWords(
               view.state.doc.toString(), 
               parseInt($("#number").val()),
               $("#verbose").is(":checked"),
               $("#unsorted").is(":checked"),
               $("#one-per-line").is(":checked"),
+              (error) => {
+                document.getElementById('lexiferErrorMessage').innerHTML += `${error}<br>`;
+              }
             );
             $("#lexiferResult").html(
-              "<p class='error-message'>" + myMessage + "</p>" +
               "<textarea id='lexiferOutput' spellcheck='false'>" + myWords + "</textarea>"
             );
+            
             localStorage.setItem('lexifer', view.state.doc.toString());
             $('#lexiferOutput').focus();
           });
@@ -151,6 +155,7 @@
       </fieldset>
       <hr>
       <h3>Output</h3>
+      <p id="lexiferErrorMessage"></p>
       <div id="lexiferResult"></div>
 
     </section>

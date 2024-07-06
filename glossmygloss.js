@@ -13,15 +13,11 @@ $(window).on('load', function () {
 // Check for markup submit button and colour it
 $(window).on('load', function () {
 	$("[name='markupButton']").click(function () {
+
 		glossarize($(this).attr('id'));
 
-		let selection = document.querySelectorAll("#GMGSwitch-field input");
+		colourButtons(this)
 
-		for (q = 0; q < selection.length; q++) {
-			selection[q].classList.remove('checked');
-		}
-
-		$(id = $(this)).addClass("checked");
 	});
 	// Check if use abbreviations has been unchecked and disable abbreviation input
 	$("#useAbbrv").click(function () {
@@ -37,6 +33,15 @@ $(window).on('load', function () {
 	});
 });
 
+function colourButtons(click) {
+	let selection = document.querySelectorAll("#GMGSwitch-field input");
+
+	for (i = 0; i < selection.length; i++) {
+		selection[i].classList.remove('checked');
+	}
+
+	$(id = $(click)).addClass("checked");
+}
 
 function glossarize(markup) {
 

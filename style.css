@@ -432,7 +432,7 @@ div .gll {
   font-variant-numeric: oldstyle-nums;
   text-transform: lowercase;
 }
-.error-message {
+.error-message, #lexiferErrorMessage {
   color: red;
 }
 
