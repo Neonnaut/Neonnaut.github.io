@@ -589,6 +589,7 @@ div .gll {
   outline: none;
   margin: 0;
   -webkit-appearance:none;
+  vertical-align: bottom;
 }
 
 #ipa-output textarea {
