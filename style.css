@@ -611,14 +611,8 @@ div .gll {
   cursor: pointer;
 	text-decoration:none;
   overflow: hidden;
-}
-
-#ipa-output-toolbar #symbolsUsed a:active
-{
-  background: var(--red-colour);
-  color: white;
-  -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none;
   user-select: none;
+  -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none;
 }
 
 #ipa-output-toolbar #symbolsUsed,
