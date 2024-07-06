@@ -604,6 +604,8 @@ div .gll {
 
 #ipa-output-toolbar #symbolsUsed a 
 {
+  height: 100%;
+  font-size: 13px;
   color: var(--red-colour);
 	padding-left:1ex;
 	padding-right:1ex;
@@ -625,7 +627,12 @@ div .gll {
 
 #ipa-output-toolbar #symbolsUsed,
 #ipa-output-toolbar #symbolsUsedLabel {
-	display:inline;
+	display:inline-block;
+}
+
+#symbolsList {
+  display: inline-block;
+  height: 100%;
 }
 
 #ipa-output {
