@@ -605,7 +605,6 @@ div .gll {
 #ipa-output-toolbar #symbolsUsed a 
 {
   height: 100%;
-  font-size: 13px;
   color: var(--red-colour);
 	padding-left:1ex;
 	padding-right:1ex;
@@ -613,14 +612,11 @@ div .gll {
 	text-decoration:none;
   overflow: hidden;
 }
-#ipa-output-toolbar #symbolsUsed a:hover 
-{
-	background-color:White;
-}
 
 #ipa-output-toolbar #symbolsUsed a:active
 {
   background: var(--red-colour);
+  color: white;
   -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none;
   user-select: none;
 }
