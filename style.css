@@ -575,13 +575,15 @@ div .gll {
   display: inline-block;
   -webkit-appearance:none;
   width: auto;
-  height: 100%;
   font-size: 15px;
   max-width: 400px;
   border-radius: 0;
   border: none;
   outline: none;
   border-radius: 0;
+  margin: 0;
+  height: 40px;
+  vertical-align: bottom;
 }
 #ipa-output #sampaBox:focus {
   border: none;
