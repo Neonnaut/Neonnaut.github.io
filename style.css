@@ -574,7 +574,7 @@ div .gll {
 #ipa-output #sampaBox {
   display: inline-block;
   -webkit-appearance:none;
-  width: auto;
+  width: 120px;
   font-size: 15px;
   max-width: 400px;
   border-radius: 0;
@@ -582,8 +582,7 @@ div .gll {
   outline: none;
   border-radius: 0;
   margin: 0;
-  height: 40px;
-  vertical-align: bottom;
+  height: 20px;
 }
 #ipa-output #sampaBox:focus {
   border: none;
