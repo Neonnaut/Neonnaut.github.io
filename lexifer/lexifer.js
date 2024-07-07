@@ -130,6 +130,7 @@ class PhonologyDefinition {
         for (; this.defFileLineNum < this.defFileArr.length; ++this.defFileLineNum) {
             let line = this.defFileArr[this.defFileLineNum];
             line = line.replace(/#.*/u, '').trim();
+            line = line.replace(/name:.*/u, '').trim();
             if (line === '') {
                 continue;
             }
@@ -175,8 +176,7 @@ class PhonologyDefinition {
                 throw new Error('Must select a featureset.');
             }
             else if (!this.soundsys.sorter) {
-                this.stderr("Without 'letters:' cannot apply assimilations or "
-                    + 'coronal metathesis.');
+                this.stderr("Without 'letters:' cannot apply assimilations or coronal metathesis.");
             }
         }
     }
@@ -195,8 +195,7 @@ class PhonologyDefinition {
                     return true;
                 });
                 this.stderr(`A phoneme class contains '${diff.join(' ')}' `
-                    + "missing from 'letters'.  Strange word shapes are likely"
-                    + ' to result.');
+                    + "missing from 'letters'.  Strange word shapes are likely to result.");
             }
         }
     }
@@ -246,8 +245,7 @@ class PhonologyDefinition {
     }
     parseWords(line) {
         if (this.categories.length > 0 && this.categories[0] !== 'words:') {
-            throw new Error("both 'words:' and 'categories:' found. Please "
-                + 'only use one.');
+            throw new Error("both 'words:' and 'categories:' found. Please only use one.");
         }
         else if (this.categories.length === 0) {
             this.soundsys.addCategory('words:', 1);
@@ -270,8 +268,7 @@ class PhonologyDefinition {
             let weight;
             if (weighted) {
                 if (invalidItemAndWeight(rules[i])) {
-                    throw new Error(`'${rules[i]}' is not a valid pattern and `
-                        + 'weight.');
+                    throw new Error(`'${rules[i]}' is not a valid pattern and weight.`);
                 }
                 let weightStr;
                 [rule, weightStr] = rules[i].split(':');
@@ -286,15 +283,13 @@ class PhonologyDefinition {
             // warn them.
             if (!/[^?!]/u.test(rule)) {
                 throw new Error(`'${rules[i]}'`
-                    + `${cat ? ` (in category ${cat})` : ''} will only `
-                    + 'produce empty words.');
+                    + `${cat ? ` (in category ${cat})` : ''} will only produce empty words.`);
             }
             else if (/^\?*([^?!]!?\?+!?)+$/u.test(rule)) {
                 // Here, we don't know what random-rate or category weight is,
                 // so this may not even be an issue.
                 this.stderr(`'${rules[i]}'`
-                    + `${cat ? ` (in category ${cat})` : ''} may produce `
-                    + 'empty words.');
+                    + `${cat ? ` (in category ${cat})` : ''} may produce empty words.`);
             }
             rule = this.expandMacros(rule);
             this.soundsys.addRule(rule, weight, cat);
@@ -352,8 +347,7 @@ class PhonologyDefinition {
             // It's a macro. Macros can't make choices, so disallow whitespace.
             if (/\s/u.test(values)) {
                 this.stderr(`Unexpected whitespace in macro '${sclass}'. `
-                    + 'Macros cannot make choices, so this may give very '
-                    + 'unexpected output.');
+                    + 'Macros cannot make choices, so this may give very unexpected output.');
             }
             this.macros.push([
                 new RegExp(`\\${sclass}`, 'gu'),
@@ -374,16 +368,32 @@ class PhonologyDefinition {
     }
     parseCategories(line) {
         if (this.categories.includes('words:')) {
-            throw new Error("both 'words:' and 'categories:' found. Please "
-                + 'only use one.');
+            throw new Error("both 'words:' and 'categories:' found. Please only use one.");
         }
         const splitLine = line.split(/\s+/gu);
         const weighted = line.includes(':');
         for (const cat of splitLine) {
             if (weighted) {
                 if (invalidItemAndWeight(cat)) {
-                    throw new Error(`'${cat}' is not a valid category and `
-                        + 'weight.');
+                    throw new Error(`'${cat}' is not a valid category and weight.`);
+                }
+                const [name, weight] = cat.split(':');
+                this.categories.push(name);
+                this.soundsys.addCategory(name, +weight);
+            }
+            else {
+                this.categories.push(cat);
+                this.soundsys.addCategory(cat, 1);
+            }
+        }
+    }
+    parseName(line) {////
+        const splitLine = line.split(/\s+/gu);
+        const weighted = line.includes(':');
+        for (const cat of splitLine) {
+            if (weighted) {
+                if (invalidItemAndWeight(cat)) {
+                    throw new Error(`'${cat}' is not a valid category and weight.`);
                 }
                 const [name, weight] = cat.split(':');
                 this.categories.push(name);
@@ -1090,6 +1100,7 @@ class WordGenerator {
         return new GeneratedWords(this.phonDef.generate(number, false, options.unsorted), [...this.initWarnings, ...this.runWarnings]);
     }
 }
+
 // Original  -- returns a string
 const genWords = (() => {
     let hash = 0;
@@ -1126,13 +1137,11 @@ const genWords = (() => {
                     }
                     if (verbose) {
                         if (unsorted === false) {
-                            stderr("** 'Unsorted' option always enabled in "
-                                + 'verbose mode.');
+                            stderr("** 'Unsorted' option always enabled in verbose mode.");
                             unsorted = true;
                         }
                         if (onePerLine) {
-                            stderr("** 'One per line' option ignored in "
-                                + 'verbose mode.');
+                            stderr("** 'One per line' option ignored in verbose mode.");
                         }
                     }
                     const words = phonDef.generate(num, verbose, unsorted);
@@ -1140,9 +1149,7 @@ const genWords = (() => {
                         if (cat !== 'words:') {
                             ans += `\n\n${cat}:\n`;
                         }
-                        ans += words[cat].join(onePerLine || verbose
-                            ? '\n'
-                            : ' ');
+                        ans += words[cat].join(onePerLine || verbose ? '\n' : ' ');
                     }
                 }
             }
@@ -1154,15 +1161,12 @@ const genWords = (() => {
                     stderr("** 'Unsorted' option ignored in paragraph mode.");
                 }
                 if (onePerLine) {
-                    stderr("** 'One per line' option ignored in paragraph "
-                        + 'mode.');
+                    stderr("** 'One per line' option ignored in paragraph mode.");
                 }
                 ans = phonDef.paragraph();
             }
         }
-        catch (e) {
-            stderr(e);
-        }
+        catch (e) { stderr(e); }
         return ans;
     };
     lexifer.WordGenerator = WordGenerator;

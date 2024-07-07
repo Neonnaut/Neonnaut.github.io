@@ -69,7 +69,18 @@ $(window).on('load', function () {
         const text = view.state.doc.toString();
         const file = new Blob([text], { type: 'text/plain' });
         link.href = URL.createObjectURL(file);
-        link.download = "sample.def";
+
+        var filename = "lexifer_definition.def";
+        var fileLines = text.split("\n");
+
+        for (var i = 0; i < fileLines.length; i++) {
+            if (fileLines[i].trim().startsWith("name:")) {
+                filename = fileLines[i].trim().substring(5).trim();
+                filename += ".def"
+            }
+        }
+
+        link.download = filename;
         link.click();
         URL.revokeObjectURL(link.href);
         // Save input text in user's localstorage for next session

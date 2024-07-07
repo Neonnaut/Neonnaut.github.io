@@ -96,7 +96,8 @@ i i í ì ǐ
 o o ó ò ǒ
 u u ú ù ǔ`;
     } else if (example == "japanese") {
-        choice = `# Japanese-like based on interpreting wikipedia.org/wiki/Japanese_phonology 
+        choice = `name: Japanese-like 
+# Japanese-like based on interpreting wikipedia.org/wiki/Japanese_phonology 
 # and link.springer.com/content/pdf/10.3758/BF03195600.pdf
 
 # <x> gives me onsetless morae later on
@@ -185,7 +186,8 @@ filter: c> ts; č > ch; š > sh; # This was to stop <chu> becoming <cfu>.
 # between vowels. And the pitch accent. But these are dependant on dialect,
 # and are not shown in any writing system of Japanese.`;
     } else if (example == "hungarian") {
-        choice = `# This isn't quite Hungarian, but approximates it for demonstration
+        choice = `name: Hungarian-like
+# This isn't quite Hungarian, but approximates it for demonstration
 # purposes.  The cluster restrictions, in particular, are based on
 # Hungarian data:
 #
