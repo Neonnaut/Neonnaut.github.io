@@ -219,7 +219,6 @@ code.example {
   border-radius: 3px;
   font-size: 1.18em;
   white-space: pre-wrap;
-  font-weight: 600;
 }
 pre.example {
   background: var(--code-bg-colour);

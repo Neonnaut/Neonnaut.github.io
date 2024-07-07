@@ -15,9 +15,9 @@
   <script src="sort-table.js"></script>
 
   <script src="glossmygloss.js"></script>
-  <script src="cm6.bundle.js"></script>
+  <script src="lexifer/cm6.bundle.js"></script>
   <script src="lexifer/lexifer.js"></script>
-  <script src="lexifer-examples.js"></script>
+  <script src="lexifer/lexifer-examples.js"></script>
   <script src="xipa.js"></script>
 
   <!-- Fonts -->
@@ -634,7 +634,7 @@
     </section>
 
     <section>
-      <h1>Linguistic Gloss Generator</h1>
+      <h2>Linguistic Gloss Generator</h2>
       <textarea id="input" name="input" spellcheck="false" placeholder='Astra inclinant, sed non obligant.
 [astra inkliːnant sed non obligant]
 star.ACC.PL incline.PRS.PTCP but NEG bind.3P.PRS.ACT.IND
@@ -682,7 +682,7 @@ YABRV,your abbreviation
     </section>
 
     <section>
-      <h1>Lexifer Online</h1>
+      <h2>Lexifer Online</h2>
 
       <details class="dropdown-group">
         <summary class="dropdown-btn">Examples</summary>
@@ -695,96 +695,7 @@ YABRV,your abbreviation
 
       <div id="editor"></div>
       
-      <script>
-        const view = cm6.createEditorView( //Initial editor
-          cm6.createEditorState(''),
-          document.getElementById("editor")
-        );
-        lexiferExample('basic', false)
-
-        // Populate input fields with data in local storage on window load if it exists
-        window.onload = function () {
-          if (localStorage.hasOwnProperty('lexifer')) {
-            view.dispatch({changes: {
-              from: 0,
-              to: view.state.doc.length,
-              insert: localStorage.getItem('lexifer')
-            }})
-          } else {
-            view.dispatch({changes: {
-              from: 0,
-              to: view.state.doc.length,
-              insert: lexiferExample('basic', false)
-            }})
-          }
-          // Select all text in the input
-          $('#input').focus().select();
-        };
-        
-        $(window).on('load', function(){
-          $("[class='lexifer-example']").click(function () { //Examples
-            const choice = $(this).attr('name');
-            const text = lexiferExample(choice, true);
-            if (text != false) {
-              view.dispatch({changes: {
-                from: 0,
-                to: view.state.doc.length,
-                insert: text
-              }})
-            }
-            localStorage.setItem('lexifer', text);
-          });
-
-          $("[name='fakeLoadButton']").click(function () { //Load button
-            let input = document.createElement('input');
-            input.type = 'file';
-            input.onchange = _this => {
-              let file = Array.from(input.files)[0], read = new FileReader();
-              read.readAsText(file);
-              read.onloadend = function () {
-                view.dispatch({changes: {
-                  from: 0,
-                  to: view.state.doc.length,
-                  insert: read.result
-                }})
-                localStorage.setItem('lexifer', read.result);
-              }
-            };
-            input.click();
-            $("#editor").focus();
-          });
-
-          $("[name='saveButton']").click(function () { // Save button
-            const link = document.createElement("a");
-            const text = view.state.doc.toString();
-            const file = new Blob([text], { type: 'text/plain' });
-            link.href = URL.createObjectURL(file);
-            link.download = "sample.def";
-            link.click();
-            URL.revokeObjectURL(link.href);
-            // Save input text in user's localstorage for next session
-            localStorage.setItem('lexifer', text);
-          });
-
-          $("[name='lexiferButton']").click(function () { //Generate button
-            const [myWords, myMessage] = genWords(
-              view.state.doc.toString(), 
-              parseInt($("#number").val()),
-              $("#verbose").is(":checked"),
-              $("#unsorted").is(":checked"),
-              $("#one-per-line").is(":checked"),
-            );
-            $("#lexiferResult").html("");
-            $("#lexiferResult").html(
-              "<p class='error-message'>" + myMessage + "</p>" +
-              "<textarea id='lexiferOutput' spellcheck='false'>" + myWords + "</textarea>"
-            );
-            localStorage.setItem('lexifer', view.state.doc.toString());
-            $('#lexiferOutput').focus();
-          });
-        });      
-
-      </script>
+      <script src="lexifer/lexifer-buttons.js"></script>
       
 	    <div class="switch-field">
         <input type="submit" id="genWords" name="lexiferButton" value="Generate words">
@@ -806,14 +717,13 @@ YABRV,your abbreviation
       </fieldset>
       <hr>
       <h3>Output</h3>
+      <p id="lexiferErrorMessage"></p>
       <div id="lexiferResult"></div>
 
     </section>
 
-    
-
     <section>
-      <h1>IPA Keyboard and X-Sampa Converter</h1>
+      <h2>IPA Keyboard and X-Sampa Converter</h2>
       <table class="btns xipa-table" id="IPA">
         <tr>
            <td><button class="Cons" title="voiceless bilabial plosive" onclick="writeSampa(event, 'p')">p</button></td>
@@ -1160,20 +1070,23 @@ YABRV,your abbreviation
            <td></td>
            <td><button class="Supra" title="superscript 2 (nonIPA)" onclick="writeSampa(event, '&#178;')">&#9676;&#178;</button></td>
         </tr>
-     </table>
+      </table>
 
       <div id= "ipa-output" style="position: relative;">
         <div id="ipa-output-toolbar">
-           <input type="button" id="copyButton" value="Copy" onclick="CopyClip();" />
-           <input type="button" id="clearButton" value="Clear" onclick="ClearFields();"/>
-           
-           <input type="text" id="sampaBox" onkeyup="TranslateSAMPA()" placeholder="X-SAMPA">
-           <div id="symbolsUsed">
-              <span id="symbolsList"></span>
-           </div>
+          <div style="display: inline-block; vertical-align: top; height: 100%;" >
+            <input type="button" id="copyButton" value="Copy" onclick="CopyClip();" class="ipa-output-button"/>
+            <input type="button" id="clearButton" value="Clear" onclick="ClearFields();" class="ipa-output-button"/>
+          </div>
+   
+          <textarea id="sampaBox" onkeyup="TranslateSAMPA()" placeholder="X-SAMPA"></textarea>
+   
+          <div id="symbolsUsed">
+            <span id="symbolsList"></span>
+          </div>
         </div>
-        <textarea class="box" rows="3" id="ipaBox" onkeyup="TranslateIPA()"></textarea>
-     </div>
+      <textarea class="box" rows="3" id="ipaBox" onkeyup="TranslateIPA()"></textarea>
+      </div>
 
     </section>
 
