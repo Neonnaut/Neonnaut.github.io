@@ -227,7 +227,8 @@ pre.example {
   overflow-x: auto;
   overflow-y: clip;
   margin: 0;
-  padding: 4px 6px;
+  padding: 4px 10px;
+  display: inline-block;
 }
 abbr:hover {
   cursor: help;
@@ -388,6 +389,7 @@ meter::-webkit-meter-optimum-value {
 }
 meter::-moz-meter-bar {
   background: var(--red-colour);
+  border: none;
 }
 video, audio, iframe, embed, object, canvas {
   width:100%;
