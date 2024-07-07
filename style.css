@@ -384,6 +384,14 @@ button, input[type="submit"], input[type="button"], input[type="reset"], input[t
 }
 
 /*-- Embedded content --*/
+@media not all and (min-resolution:.001dpcm) { 
+  @media {
+      meter {
+          -webkit-appearance: none;
+          appearance: none;
+      }
+  }
+}
 meter::-webkit-meter-optimum-value {
   background: var(--red-colour);
 }
