@@ -13,7 +13,10 @@ body {
   margin: 0
 }
 nav {
-  background: #3f3f3f;
+  background: var(--bg-colour);
+  border-left: 1px solid #616161;
+  border-right: 1px solid #616161;
+
   max-width: 800px;
   margin: 0 auto;
   padding: 2px 0;
@@ -138,15 +141,15 @@ thead {
   cursor: default;
 }
 .sortable thead th:not(.sorttable_sorted):not(.sorttable_sorted_reverse):not(.sorttable_original):not(.sorttable_nosort):after {
-  content: "\0020\2B65";
+  content: " \2195";
   color: #c28194;
 }
 .sorttable_sorted::after, .sorttable_original::after { /*-- down arrow--*/
-  content: "\0020\2B6D";
+  content: " \2193";
   color: var(--red-colour);
 }
 .sorttable_sorted_reverse::after { /*-- up arrow--*/
-  content: "\0020\2B6B";
+  content: " \2191";
   color: var(--red-colour);
 }
 .styled-table tr:nth-child(even) {
@@ -384,14 +387,6 @@ button, input[type="submit"], input[type="button"], input[type="reset"], input[t
 }
 
 /*-- Embedded content --*/
-@media not all and (min-resolution:.001dpcm) { 
-  @media {
-      meter {
-          -webkit-appearance: none;
-          appearance: none;
-      }
-  }
-}
 meter::-webkit-meter-optimum-value {
   background: var(--red-colour);
 }

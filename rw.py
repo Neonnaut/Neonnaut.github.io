@@ -4,46 +4,74 @@ import markdown
 output = markdown.markdown(
 
     '''
-I have given some advice on con-scripting in the past in various threads, but I think it would be nice to assemble everything in one easily-accessible place and go into greater detail on all the points that I think are important. So, without further ado, here is my list of suggestions for designing a constructed script.
+<h3>Step 2: Choose your aesthetic</h3>
 
-###Step 1: Choose a direction
+In this step, you will consider the aesthetic of your script. To understand just what this means, let's look at an example. Take a look at this sample script I have just designed:
 
-Scripts can be written in a number of directions. The reason it's important to choose a direction early on is because it can affect the shape of your glyphs and how they interact with each other.
+[img]http://www.vgfun.net/lee/langpage/scripts/other/samplescript01.png[/img]
 
-The most basic directions are:
+You will note that it really sucks. But why? If you are designing something you want to be visually pleasing, it's not enough to know that it sucks, but to know why it sucks. The reason this script is so bad is because it lacks any sort of guiding aesthetic. Each letter appears as though it was designed independently, without any reference to the other glyphs. There is no consistency from glyph to glyph, and as a result, when they are arranged together in a line of text, they clash, and just look like a collection of random shapes.
 
-####left-to-right, top-to-bottom
-The majority of world scripts are written in this direction. The Roman alphabet follows this direction.
+So how can we resolve this problem?
 
-####right-to-left, top-to-bottom
-This is common in middle-eastern scripts such as Arabic and Hebrew, and many ancient scripts associated with that area.
+There is no one way to resolve it, because it is a creative endeavour. You will need to come up with your design aesthetic on your own. However, there are concrete suggestions I can give to help you in your decision.
 
-####top-to-bottom, right-to-left
-This is the traditional writing direction for East Asian languages, though nowadays, left-to-right, top-to-bottom is also very commonly used.
+[u]1. Decide which strokes appear frequently[/u]
+Looking carefully as just about any modern script will reveal that they each have certain shapes or lines or angles that appear quite frequently. Some examples:
 
-####top-to-bottom, left-to-right
-This is used for some scripts, such as Mongolian.
+The majority of Latin lower case letters are built either out of vertical lines, circles (or portions of circles), or a combination of the two. Six letters also incorporate diagonals. You will note that while the exact angles of the diagonals differ slightly, they are as close as possible to 45° while maintaining an aesthetically pleasing form.
 
-####bottom-to-top
-This is extremely uncommon, but there are existing real-world scripts that were written vertically. Both left-to-right and right-to-left examples exist.
+[url=http://www.omniglot.com/writing/georgian2.htm]Georgian[/url] is similar, but different. It also incorporates circles and vertical lines, but it has fewer vertical lines, and many more c-shaped semi-circles.
 
-If you are starting out, I recommend picking something basic from the above list. However, there are more complex directions as well, though they are all variations of the above basic forms. They include:
+Almost all [url=http://www.omniglot.com/writing/oriya.htm]Oriya[/url] letters have rounded tops. There are also a lot of circles, "n" shapes, and angled or very short straight lines
 
-####(Partially) diagonal horizontal
-The Nastaliq form of Arabic script, which is the standard form of writing Urdu, is I think unique in the world by being written in occasionally overlapping diagonals. The letters are connected to each other in a string that moves gradually downward, and when a new word is started, the beginning of the word often appears above the ending of the previous word in order to fill up space and make it more aesthetically pleasing.
+Most [url=http://www.omniglot.com/writing/thai.htm]Thai[/url] letters have a small circle or two attached to them somewhere. Also, every single letter has at least one straight vertical line in it, and most have two. Also, similar to Oriya, the majority of them have rounded tops.
 
-####Boustrophedon
-This is when lines of text are alternately written left-to-right and then right-to-left. This may be accompanied by a 180° rotation of the glyphs, a result of the writing surface having been rotated in the scribe's hands. For obvious reasons, no modern scripts are written this way, but if you are creating an ancient script, it could be an option.
+[url=http://www.omniglot.com/writing/arabic.htm]Arabic[/url] has many large cup shapes, many small vertical hooks, and of course, lots of dots.
 
-####Mixed directionality
-Some scripts are written in more than one direction at the same time. For example, Many (but by no means all) Mayan inscriptions were written left to right, but only in pairs; after two glyphs, a new line is started below the previous one, leading to columns two glyphs wide.
+Chinese has many straight vertical and horizontal lines, as well as gently-curving diagonals.
 
-[img]http://www.vgfun.net/lee/langpage/scripts/other/mayasample.jpg[/img]
+[url=http://www.omniglot.com/writing/glagolitic.htm]Glagolitic[/url] has circles and triangles [i]everywhere[/i]. Yet, oddly enough, there is no letter that is just O or Δ.
 
-Sumerian Cuneiform was similarly written with mixed directionality. Phrases or sentences were written horizontally left-to-right within cells, but the cells were arranged vertically.
+Even something like Egyptian hieroglyphics reveals common patterns. looking closely at a lot of signs will reveals many curves, including many S curves, that gradually become wider and more open or flat on one side, sort of like part of a Fibbonacci spiral.
 
-####Variable directionality
-Many scripts could be written in more than one direction. Ancient Egyptian was variably written in all sorts of directions, while Modern Chinese and Japanese are frequently written both horizontally left-to-right and vertically right-to-left.
+Mayan, by contrast, tends to favour very blunt curves. Nearly every round shape is squared off, like a square with rounded corners. As a result, there are very few real circles in Mayan, and all that do exist are small.
+
+
+[u]2. Decide which strokes appear infrequently or not at all[/u]
+It should come as no surprise that if some stroke types are frequent, others may not be so frequent, or may even be entirely absent. Let's take a look:
+
+No Latin letters have very open curves, like (. There are also very few horizontal lines: in the lower-case letters, horizontal strokes appear only in e, f and t; in upper case, only A, E, F, G, H, L, T and Z.
+
+Chinese characters entirely lack tight curves and circles
+
+[url=http://www.omniglot.com/writing/lontara.htm]Buginese[/url] entirely lacks horizontal or vertical lines of any kind. All lines are diagonals, and although the script lacks any curved lines [i]per se[/i], all corners are rounded.
+
+[url=http://www.omniglot.com/writing/runic.htm]Futhark[/url] has no curves of any kind; all strokes are completely straight lines. It also entirely lacks horizontal lines.
+
+[url=http://www.omniglot.com/writing/khmer.htm]Khmer[/url] has many small hooks, as well as flat M shapes on the tops of letters. Some letters also have W shapes on the bottom. Although these are all formed from diagonal strokes, the script lacks longer diagonal strokes that cover the height or width of a character.
+
+[url=http://www.omniglot.com/writing/tibetan.htm]Tibetan[/url] has many elongated descenders. It also has many curves that have one end lower than the other. Although many letters have horizontal lines on the tops, horizontal lines are otherwise almost entirely absent (only one letter has a horizontal anywhere other than the top). The most likely locations for non-top horizontals are instead occupied by the lopsided curves mentioned above.
+
+[url=http://www.omniglot.com/writing/japanese_hiragana.htm]Hiragana[/url] has relatively few straight lines, favouring curves for the most part.
+
+[url=http://www.omniglot.com/writing/javanese.htm]Javanese[/url] never allows an entirely vertical line to appear on the left side of a letter; it always curves in at the bottom. It is also extremely hesitant about allowing a single vertical on the right side; usually, there will be at least two verticals pretty close together on the right side (though not quite always).
+
+Some scripts don't have stroke types that they outright forbid, but there will always be a tendency toward certain strokes over others.
+
+[u]Think about it[/u]
+Look again at that sample script I made up.
+
+[img]http://www.vgfun.net/lee/langpage/scripts/other/samplescript01.png[/img]
+
+Can you apply any rule at all to it? Is there any guiding principle such as the ones we have covered so far that seems to govern the formation of the characters? The answer is no, and the reason the answer is no is because when I designed the letters, I did not make any attempt to unify them in any way, resulting in an ugly, fake-looking mess.
+
+Remember: this is a creative process here. You have to decide what you want to include, how frequent it is, what you want to eliminate, if anything, and so on. These are all just suggestions.
+
+Please continue on to [url=http://cbbforum.com/viewtopic.php?f=31&t=4502&p=178847#p178847]Addendum to Step 2: Side-effects of practical application of your script[/url] 
+
+[b]Up next: more suggestions on increasing the uniformity of your script.[/b]
+
 ''')
 
 print(output)
