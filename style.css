@@ -229,6 +229,7 @@ pre.example {
   border-radius: 3px;
   font-size: 1.18em;
   overflow-y: clip;
+  overflow-x: auto;
   margin: 0;
   padding: 8px 8px;
 }
