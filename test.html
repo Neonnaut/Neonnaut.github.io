@@ -640,7 +640,6 @@
 star.ACC.PL incline.PRS.PTCP but NEG bind.3P.PRS.ACT.IND
 "The stars incline us, they do not bind us."'></textarea>
       
-      <h2>Generate Markup</h2>
       <div id="GMGSwitch-field" class="switch-field">
         <input type="submit" id="plainText" value="Plain text" name="markupButton">
         <input type="submit" id="htmlTable" value="HTML table" name="markupButton">
@@ -651,7 +650,6 @@ star.ACC.PL incline.PRS.PTCP but NEG bind.3P.PRS.ACT.IND
         <input type="submit" id="wikiTable" value="Wiki" name="markupButton">
       </div>
     
-      <h2>Output</h2>
       <div id="GMGResult"></div>
       <hr>
 
@@ -703,7 +701,11 @@ YABRV,your abbreviation
         <input type="submit" id="LoadFile" value="Load" name="fakeLoadButton">
         <input type="submit" id="saveFile" value="Save" name="saveButton"> 
       </div>
-      <br>
+
+      <p id="lexiferErrorMessage"></p>
+      <div id="lexiferResult"></div>
+      <hr>
+
       <fieldset id="bottom-content">
         <legend>Options</legend>
         <label for="number">Number of words (leave blank for a paragraph)</label><br>
@@ -715,11 +717,6 @@ YABRV,your abbreviation
         <input type="checkbox" id="verbose" />
         <label for="verbose">Display all generation steps</label><br>
       </fieldset>
-      <hr>
-      <h3>Output</h3>
-      <p id="lexiferErrorMessage"></p>
-      <div id="lexiferResult"></div>
-
     </section>
 
     <section>
