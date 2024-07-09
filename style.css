@@ -99,9 +99,11 @@ h6 {
 }
 p {
   margin: 10px 0;
+  word-wrap: break-word;
 }
 blockquote {
   margin: 15px 0 15px 15px;
+  overflow-x: auto;
 }
 blockquote, q {
 	quotes: none;
@@ -221,17 +223,14 @@ code.example {
   color: #000;
   border-radius: 3px;
   font-size: 1.18em;
-  white-space: pre-wrap;
 }
 pre.example {
   background: var(--code-bg-colour);
   border-radius: 3px;
   font-size: 1.18em;
-  overflow-x: auto;
   overflow-y: clip;
   margin: 0;
-  padding: 4px 10px;
-  display: inline-block;
+  padding: 8px 8px;
 }
 abbr:hover {
   cursor: help;

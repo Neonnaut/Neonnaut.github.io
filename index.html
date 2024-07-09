@@ -77,7 +77,7 @@ YABRV,your abbreviation
 
       <p>This tool will format linguistic interlinear gloss into ordered columns, and also generate hover text for linguistic abbreviations.</p>
 
-      <p>If you discover any bugs or issues, please go to <a href="https://github.com/Neonnaut/Neonnaut.github.io">github.com/Neonnaut/Neonnaut.github.io</a> and create a new issue.</p>
+      <p>If you discover any bugs or issues, please go to <a href="https://github.com/Neonnaut/Neonnaut.github.io">Neonnaut.github.io</a> and create a new issue.</p>
 
       <p>Refer to the following information on interlinear gloss is and it's purpose:</p>
 
@@ -88,28 +88,27 @@ YABRV,your abbreviation
       <h3>Setting Up The Input</h3>
       <p>Be sure to provide at least three lines in the input, with your gloss on the second last line and your translation on the last line. (The ZBB option can work with just two). In this case your input would look like this:</p>
 
-      <blockquote>
-Astra inclinant, sed non obligant.<br>
-star.ACC.PL incline.PRS.PTCP but NEG bind.3P.PRS.ACT.IND<br>
-"The stars incline us, they do not bind us."<br>
-      </blockquote>
+      <pre class="example">
+Astra inclinant, sed non obligant.
+star.ACC.PL incline.PRS.PTCP but NEG bind.3P.PRS.ACT.IND
+"The stars incline us, they do not bind us."</pre>
 
       <p>Any additional lines must go above the gloss line. Any of these additional lines may be marked with the "Non alignable lines" setting. For example, if we had the following input and wanted to keep the first two lines unaligned just like the last line:</p>
 
-      <blockquote>
+      
 太陽が東の空に昇る<br>
 taiyō ga higashi no sora ni noboru
 /taijoː ŋa çiŋaɕi no soɾa nʲi noboɾɯᵝ/
 sun SUBJECT east POSSESSIVE sky LOCATIVE rise
-"The sun rises in the eastern sky."</blockquote>
+"The sun rises in the eastern sky."
 
       <p>Then "Non alignable lines" should have "1, 2". If all goes well you should have something that looks like this:</p>
 
-      <pre class="example"><blockquote>太陽が東の空に昇る
+      <pre class="example">太陽が東の空に昇る
 taiyō ga higashi no sora ni noboru
 /taijoː ŋa      çiŋaɕi  no         soɾa nʲi      noboɾɯᵝ/
 sun     SUBJECT east    POSSESSIVE sky  LOCATIVE rise
-"The sun rises in the eastern sky."</blockquote></pre>
+"The sun rises in the eastern sky."</pre>
 
       <p>You can then set up your own custom abbreviations and seperators. As many abbreviations for grammatical elements already have conflicts with each other, your new definitions will overwride any in-built definitions.</p>
 
@@ -121,7 +120,7 @@ sun     SUBJECT east    POSSESSIVE sky  LOCATIVE rise
       <h3>HTML Table</h3>
       <p>When using the HTML markup method, use the following CSS on your website to get the desired output:</p>
 
-      <pre class="example"><blockquote>.abbrv {
+      <pre class="example">.abbrv {
    cursor: help;
  }
 .sc {
@@ -137,14 +136,14 @@ table tr {
 }
 table tr td {
   padding-right: 3px;
-}</blockquote></pre>
+}</pre>
 
       <p>If you wish to style the table element, such as with italics or bold, use css classes on an individual word. If you wish to style an entire line, the best way is to add a class to <code class='example'>&lt;tr></code> and add styles with CSS.</p>
 
       <h3>HTML Interlinear Div</h3>
       <p>When using the 'HTML Interlinear Div' method, use the following CSS on your website to get the desired output:</p>
       
-      <pre class="example"><blockquote>.abbrv {
+      <pre class="example">.abbrv {
    cursor: help;
 }
 .sc {
@@ -155,7 +154,7 @@ table tr td {
 div .gll {
   display: inline-table;
   padding-right: 10px;
-}</blockquote></pre>
+}</pre>
 
       <p>'Single column lines' does not work with this method. Even if you were to edit the output, a div without the <code class='example'>.gll</code> class will only work at the end or the beggining of a block of <code class='example'>.gll</code> divs.</p>
 
@@ -169,8 +168,8 @@ div .gll {
       <h3>Wiki Table</h3>
       <p>If your wiki does not have the abbr template, you will need to create a page called <code class='example'>template:abbr</code>, with the following code:</p>
 
-      <pre class="example"><blockquote>&lt;abbr title="{{{2}}}">{{{1|[?]}}}&lt;/abbr>&lt;noinclude>{{documentation}}&lt;/noinclude>
-</blockquote></pre>
+      <pre class="example">&lt;abbr title="{{{2}}}">{{{1|[?]}}}&lt;/abbr>&lt;noinclude>{{documentation}}&lt;/noinclude>
+</pre>
       <p>And after saving, if your wiki asks for documentation, paste this link: <code class='example'>https://en.wikipedia.org/wiki/Template:Abbr</code></p>
 
     </section>
