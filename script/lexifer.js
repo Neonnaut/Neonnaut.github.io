@@ -307,7 +307,7 @@ class PhonologyDefinition {
     }
     parseClusterfield() {
         const c2list = this.defFileArr[this.defFileLineNum]
-            .trimEnd()
+            .trimEnd().trim()
             .split(/\s+/gu);
         c2list.shift();
         const rowLength = c2list.length;
@@ -315,7 +315,7 @@ class PhonologyDefinition {
             let line = this.defFileArr[++this.defFileLineNum] ?? '';
             line = line.replace(/#.*/u, '').trim();
             if (line === '') {
-                continue;
+                break;
             }
             const row = line.split(/\s+/gu);
             const c1 = row.splice(0, 1);

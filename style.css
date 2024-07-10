@@ -474,7 +474,8 @@ div .gll {
   width: 100%;
 }
 
-.cm-gutters {display: block;}
+.cm-gutters {  -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none;
+  user-select: none;}
 
 @media only screen and (max-width: 501px) {
   .cm-gutters {display: none!important;}

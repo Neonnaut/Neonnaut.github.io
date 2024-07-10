@@ -95,6 +95,72 @@ e e é è ě
 i i í ì ǐ
 o o ó ò ǒ
 u u ú ù ǔ`;
+    } else if (example == "australian") {
+        choice = `name: australian-like
+random-rate: 8
+# This does not represent a single Australian language, but produces
+# something Australian looking. The glottal stop and lack of retroflex stops
+# makes it not an 'average' Australian lang, but not unusual.
+
+# CONSONANTS:   
+# p t́ t   j k ʼ
+# m ń n   ñ ŋ
+#     r r̈ y w 
+#     l   l̃
+C = t́ t n m l r w ñ k p r̈ ŋ ń j y l̃ ʼ
+I = m p w k j ŋ ń ñ n y l̃ t́
+F = @n @ñ @l @r @r̈ @x @lq @rq @r̈q
+
+# VOWELS: a aa i ii u uu ee oo; <ee> and <oo> become margianl later on.
+V = a:25 i:19 u:17 oo:1 ee:1 aa:1 ii:1 uu:1
+
+# Syllable shapes: CV(F), CVFNCV. (C is optional word initially).
+# <l r r̈> do not occur word initially. only <n ñ l r r̈> occur word finally.
+$S = CVF?
+$T = I?VF?
+
+words: $T$S$S$S $T$S$S$S$S $T$S$S $T$S
+
+# The following consonant clusters are permissible:
+# [a homorganic nasal] + [stop sequence]
+# <l> + [a non-apical stop] / [a peripheral nasal]
+# <l> + [homorganic nonapical nasal] + [stop sequence]
+# <r> + [a peripheral stop] / [a peripheral nasal]
+# <r> + [a homorganic peripheral nasal] + [stop sequence]
+# <r̈> + [a peripheral stop] / [a non-palatal nasal]
+# <r̈> + [a homorganic non-palatal nasal] + [stop sequence]
+# <k / t> + <p>
+# <t́ / ń> + <ʼ>
+%  p   t́   t   j   k   m  ń  ŋ   n  ñ ʼ y w l̃ r r̈
+n  mp  ńt́  nt  ñj  ŋk  m  ń  ŋ   n  ñ ʼ y w l̃ r r̈
+ñ  p   t́   t   j   k   m  ń  ŋ   n  ñ ʼ y w l̃ r r̈
+l  lp  lt́  t   lj  lk  lm lń lŋ  n  ñ ʼ y w l̃ r r̈ 
+r  rp  t́   t   rj  rk  rm ń  rŋ  n  ñ ʼ y w l̃ r r̈ 
+r̈  r̈p  t́   t   r̈j  r̈k  r̈m ń  r̈ŋ  r̈n ñ ʼ y w l̃ r r̈ 
+x  p   t́ʼ  tp  j   kp  m  ńʼ ŋ   n  ñ ʼ y w l̃ r r̈ 
+lq lmp lńt́ t   lñj lŋk m  ń  ŋ   n  ñ ʼ y w l̃ r r̈ 
+rq rmp t́   t   rñj rŋk m  ń  ŋ   n  ñ ʼ y w l̃ r r̈ 
+r̈q r̈mp r̈ńt́ r̈nt j   r̈ŋk m  ń  ŋ   n  ñ ʼ y w l̃ r r̈ 
+
+# <ee> and <oo> cannot be word initial or final.
+filter: ^ee > i; ^oo > u; ee$ > i; oo$ > u
+
+# Long vowels become short before a consonant cluster or <ʼ>
+%  @ ʼ
+oo o oʼ
+ee e eʼ
+ii i iʼ
+aa a aʼ
+uu u uʼ
+
+# <yi> and <wu> become <ye> and <wo>
+filter: yii > ye; wuu > wo; yi > ye; wu > wo
+filter: ye$ > yu; wu$ > ŋu
+ 
+filter: x>!; q>!; @>!
+
+# Romaniser:
+filter: r>rr; r̈>r; ń>nh; ñ>ny; ŋ>ng; t́>th; l̃>ly;`;
     } else if (example == "japanese") {
         choice = `name: Japanese-like 
 # Japanese-like based on interpreting wikipedia.org/wiki/Japanese_phonology 

@@ -23702,6 +23702,13 @@ var cm6 = (function (exports) {
        },
        ".cm-gutter": {
            minWidth: "100%"
+       },
+       "&.cm-editor": {
+           border: "1px dotted #888;"
+       },
+       "&.cm-editor.cm-focused": {
+           outline: "none",
+           border: "1px solid #000;"
        }
    });
 
