@@ -19030,6 +19030,24 @@ var cm6 = (function (exports) {
            return new HistoryState(json.done.map(HistEvent.fromJSON), json.undone.map(HistEvent.fromJSON));
        }
    });
+   /**
+   Create a history extension with the given configuration.
+   */
+   function history(config = {}) {
+       return [
+           historyField_,
+           historyConfig.of(config),
+           EditorView.domEventHandlers({
+               beforeinput(e, view) {
+                   let command = e.inputType == "historyUndo" ? undo : e.inputType == "historyRedo" ? redo : null;
+                   if (!command)
+                       return false;
+                   e.preventDefault();
+                   return command(view);
+               }
+           })
+       ];
+   }
    function cmd(side, selection) {
        return function ({ state, dispatch }) {
            if (!selection && state.readOnly)
@@ -23692,6 +23710,7 @@ var cm6 = (function (exports) {
            lineNumbers(),
            highlightActiveLineGutter(),
            highlightSpecialChars(),
+           history(),
            drawSelection(),
            indentUnit.of("  "),
            EditorState.allowMultipleSelections.of(true),
@@ -23705,6 +23724,7 @@ var cm6 = (function (exports) {
                indentWithTab,
                ...closeBracketsKeymap,
                ...defaultKeymap,
+               ...historyKeymap,
                ...historyKeymap,
                ...foldKeymap,
                ...completionKeymap,

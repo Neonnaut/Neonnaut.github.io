@@ -474,6 +474,12 @@ div .gll {
   width: 100%;
 }
 
+.cm-gutters {display: block;}
+
+@media only screen and (max-width: 501px) {
+  .cm-gutters {display: none!important;}
+}
+
 /*Xipa stuff */
 .Cons {
   
