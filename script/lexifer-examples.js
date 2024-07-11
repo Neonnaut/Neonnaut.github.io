@@ -103,19 +103,19 @@ random-rate: 8
 # makes it not an 'average' Australian lang, but not unusual.
 
 # CONSONANTS:   
-# p t́ t   j k ʼ
+# p t́ t   j k ʻ
 # m ń n   ñ ŋ
-#     r r̈ y w 
-#     l   l̃
-C = t́ t n m l r w ñ k p r̈ ŋ ń j y l̃ ʼ
-I = m p w k j ŋ ń ñ n y l̃ t́
-F = @n @ñ @l @r @r̈ @x @lq @rq @r̈q
+#     r ɹ y w 
+#     l   ʎ
+C = t́ t n m l r w ñ k p ɹ ŋ ń j y ʎ ʻ
+I = m p w k j ŋ ń ñ n y ʎ t́
+F = @n @ñ @l @r @ɹ @x @lq @rq @ɹq
 
 # VOWELS: a aa i ii u uu ee oo; <ee> and <oo> become margianl later on.
 V = a:25 i:19 u:17 oo:1 ee:1 aa:1 ii:1 uu:1
 
 # Syllable shapes: CV(F), CVFNCV. (C is optional word initially).
-# <l r r̈> do not occur word initially. only <n ñ l r r̈> occur word finally.
+# <l r ɹ> do not occur word initially. only <n ñ l r ɹ> occur word finally.
 $S = CVF?
 $T = I?VF?
 
@@ -127,40 +127,40 @@ words: $T$S$S$S $T$S$S$S$S $T$S$S $T$S
 # <l> + [homorganic nonapical nasal] + [stop sequence]
 # <r> + [a peripheral stop] / [a peripheral nasal]
 # <r> + [a homorganic peripheral nasal] + [stop sequence]
-# <r̈> + [a peripheral stop] / [a non-palatal nasal]
-# <r̈> + [a homorganic non-palatal nasal] + [stop sequence]
+# <ɹ> + [a peripheral stop] / [a non-palatal nasal]
+# <ɹ> + [a homorganic non-palatal nasal] + [stop sequence]
 # <k / t> + <p>
-# <t́ / ń> + <ʼ>
-%  p   t́   t   j   k   m  ń  ŋ   n  ñ ʼ y w l̃ r r̈
-n  mp  ńt́  nt  ñj  ŋk  m  ń  ŋ   n  ñ ʼ y w l̃ r r̈
-ñ  p   t́   t   j   k   m  ń  ŋ   n  ñ ʼ y w l̃ r r̈
-l  lp  lt́  t   lj  lk  lm lń lŋ  n  ñ ʼ y w l̃ r r̈ 
-r  rp  t́   t   rj  rk  rm ń  rŋ  n  ñ ʼ y w l̃ r r̈ 
-r̈  r̈p  t́   t   r̈j  r̈k  r̈m ń  r̈ŋ  r̈n ñ ʼ y w l̃ r r̈ 
-x  p   t́ʼ  tp  j   kp  m  ńʼ ŋ   n  ñ ʼ y w l̃ r r̈ 
-lq lmp lńt́ t   lñj lŋk m  ń  ŋ   n  ñ ʼ y w l̃ r r̈ 
-rq rmp t́   t   rñj rŋk m  ń  ŋ   n  ñ ʼ y w l̃ r r̈ 
-r̈q r̈mp r̈ńt́ r̈nt j   r̈ŋk m  ń  ŋ   n  ñ ʼ y w l̃ r r̈ 
+# <t́ / ń> + <ʻ>
+%  p   t́   t   j   k   m  ń  ŋ   n  ñ ʻ y w ʎ r ɹ l
+n  mp  ńt́  nt  ñj  ŋk  m  ń  ŋ   n  ñ ʻ y w ʎ r ɹ l
+ñ  p   t́   t   j   k   m  ń  ŋ   n  ñ ʻ y w ʎ r ɹ l
+l  lp  lt́  t   lj  lk  lm lń lŋ  n  ñ ʻ y w ʎ r ɹ l
+r  rp  t́   t   rj  rk  rm ń  rŋ  n  ñ ʻ y w ʎ r ɹ l
+ɹ  ɹp  t́   t   ɹj  ɹk  ɹm ń  ɹŋ  ɹn ñ ʻ y w ʎ r ɹ l
+x  p   t́ʻ  tp  j   kp  m  ńʻ ŋ   n  ñ ʻ y w ʎ r ɹ l
+lq lmp lńt́ t   lñj lŋk m  ń  ŋ   n  ñ ʻ y w ʎ r ɹ l
+rq rmp t́   t   rñj rŋk m  ń  ŋ   n  ñ ʻ y w ʎ r ɹ l
+ɹq ɹmp ɹńt́ ɹnt j   ɹŋk m  ń  ŋ   n  ñ ʻ y w ʎ r ɹ l
 
 # <ee> and <oo> cannot be word initial or final.
 filter: ^ee > i; ^oo > u; ee$ > i; oo$ > u
 
-# Long vowels become short before a consonant cluster or <ʼ>
-%  @ ʼ
-oo o oʼ
-ee e eʼ
-ii i iʼ
-aa a aʼ
-uu u uʼ
+# Long vowels become short before a consonant cluster or <ʻ>
+%  @ ʻ
+oo o oʻ
+ee e eʻ
+ii i iʻ
+aa a aʻ
+uu u uʻ
 
 # <yi> and <wu> become <ye> and <wo>
 filter: yii > ye; wuu > wo; yi > ye; wu > wo
-filter: ye$ > yu; wu$ > ŋu
+filter: ye$ > yu; wo$ > ŋu
  
 filter: x>!; q>!; @>!
 
 # Romaniser:
-filter: r>rr; r̈>r; ń>nh; ñ>ny; ŋ>ng; t́>th; l̃>ly;`;
+filter: r>rr; ɹ>r; ń>nh; ñ>ny; ŋ>ng; t́>th; ʎ>ly;`;
     } else if (example == "japanese") {
         choice = `name: Japanese-like 
 # Japanese-like based on interpreting wikipedia.org/wiki/Japanese_phonology 

@@ -775,7 +775,10 @@ class Word {
     }
     applyFilter(pat, repl) {
         let newWord = last(this.forms);
+
+        // This thing
         newWord = newWord.replace(new RegExp(pat, 'gu'), repl);
+
         if (newWord.includes('REJECT')) {
             newWord = 'REJECT';
         }
