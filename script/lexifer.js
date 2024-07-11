@@ -776,7 +776,7 @@ class Word {
     applyFilter(pat, repl) {
         let newWord = last(this.forms);
 
-        // This thing
+        // This thing does not like diacritics
         newWord = newWord.replace(new RegExp(pat, 'gu'), repl);
 
         if (newWord.includes('REJECT')) {

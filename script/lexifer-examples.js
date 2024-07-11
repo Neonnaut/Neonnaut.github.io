@@ -35,7 +35,7 @@ letters: ʔ a á b ch d e g h i k l m n o p r s t u w y
 # will be picked much, much more often than the last.  The order
 # here is approximately natural for a lot of languages.  You can
 # change the character of a language a lot by shuffling which
-# phonemes occur most often, which the least.
+# phonemes occur most often, or the least.
 C = t n k m ch l ʔ s r d h w b y p g
 D = n l ʔ t k r p
 V = a i e á u o
@@ -50,7 +50,7 @@ words: V?$S$S V?$S V?$S$S$S
 
 # Rejections and filters use Javascript regular expressions.
 # 'reject:' simply throws away a word.  Filter turns certain
-# paterns into something else.
+# patterns into something else.
 reject: wu yi w$ y$ h$ ʔʔ (p|t|k|ʔ)h
 filter: nr > tr; mr > pr; ŋ > n
 
@@ -103,15 +103,15 @@ random-rate: 8
 # makes it not an 'average' Australian lang, but not unusual.
 
 # CONSONANTS:   
-# p t́ t   j k ʻ
-# m ń n   ñ ŋ
+# p ṫ t   j k ʻ
+# m ṅ n   ñ ŋ
 #     r ɹ y w 
 #     l   ʎ
-C = t́ t n m l r w ñ k p ɹ ŋ ń j y ʎ ʻ
-I = m p w k j ŋ ń ñ n y ʎ t́
+C = ṫ t n m l r w ñ k p ɹ ŋ ṅ j y ʎ ʻ
+I = m p w k j ŋ ṅ ñ n y ʎ ṫ
 F = @n @ñ @l @r @ɹ @x @lq @rq @ɹq
 
-# VOWELS: a aa i ii u uu ee oo; <ee> and <oo> become margianl later on.
+# VOWELS: a aa i ii u uu ee oo; things happen to <ee> and <oo> later on.
 V = a:25 i:19 u:17 oo:1 ee:1 aa:1 ii:1 uu:1
 
 # Syllable shapes: CV(F), CVFNCV. (C is optional word initially).
@@ -130,17 +130,17 @@ words: $T$S$S$S $T$S$S$S$S $T$S$S $T$S
 # <ɹ> + [a peripheral stop] / [a non-palatal nasal]
 # <ɹ> + [a homorganic non-palatal nasal] + [stop sequence]
 # <k / t> + <p>
-# <t́ / ń> + <ʻ>
-%  p   t́   t   j   k   m  ń  ŋ   n  ñ ʻ y w ʎ r ɹ l
-n  mp  ńt́  nt  ñj  ŋk  m  ń  ŋ   n  ñ ʻ y w ʎ r ɹ l
-ñ  p   t́   t   j   k   m  ń  ŋ   n  ñ ʻ y w ʎ r ɹ l
-l  lp  lt́  t   lj  lk  lm lń lŋ  n  ñ ʻ y w ʎ r ɹ l
-r  rp  t́   t   rj  rk  rm ń  rŋ  n  ñ ʻ y w ʎ r ɹ l
-ɹ  ɹp  t́   t   ɹj  ɹk  ɹm ń  ɹŋ  ɹn ñ ʻ y w ʎ r ɹ l
-x  p   t́ʻ  tp  j   kp  m  ńʻ ŋ   n  ñ ʻ y w ʎ r ɹ l
-lq lmp lńt́ t   lñj lŋk m  ń  ŋ   n  ñ ʻ y w ʎ r ɹ l
-rq rmp t́   t   rñj rŋk m  ń  ŋ   n  ñ ʻ y w ʎ r ɹ l
-ɹq ɹmp ɹńt́ ɹnt j   ɹŋk m  ń  ŋ   n  ñ ʻ y w ʎ r ɹ l
+# <ṫ / ṅ> + <ʻ>
+%  p   ṫ   t   j   k   m  ṅ  ŋ   n  ñ ʻ y w ʎ r ɹ l
+n  mp  ṅṫ  nt  ñj  ŋk  m  ṅ  ŋ   n  ñ ʻ y w ʎ r ɹ l
+ñ  p   ṫ   t   j   k   m  ṅ  ŋ   n  ñ ʻ y w ʎ r ɹ l
+l  lp  lṫ  t   lj  lk  lm lṅ lŋ  n  ñ ʻ y w ʎ r ɹ l
+r  rp  ṫ   t   rj  rk  rm ṅ  rŋ  n  ñ ʻ y w ʎ r ɹ l
+ɹ  ɹp  ṫ   t   ɹj  ɹk  ɹm ṅ  ɹŋ  ɹn ñ ʻ y w ʎ r ɹ l
+x  p   ṫʻ  tp  j   kp  m  ṅʻ ŋ   n  ñ ʻ y w ʎ r ɹ l
+lq lmp lṅṫ t   lñj lŋk m  ṅ  ŋ   n  ñ ʻ y w ʎ r ɹ l
+rq rmp ṫ   t   rñj rŋk m  ṅ  ŋ   n  ñ ʻ y w ʎ r ɹ l
+ɹq ɹmp ɹṅṫ ɹnt j   ɹŋk m  ṅ  ŋ   n  ñ ʻ y w ʎ r ɹ l
 
 # <ee> and <oo> cannot be word initial or final.
 filter: ^ee > i; ^oo > u; ee$ > i; oo$ > u
@@ -160,7 +160,7 @@ filter: ye$ > yu; wo$ > ŋu
 filter: x>!; q>!; @>!
 
 # Romaniser:
-filter: r>rr; ɹ>r; ń>nh; ñ>ny; ŋ>ng; t́>th; ʎ>ly;`;
+filter: r>rr; ɹ>r; ṅ>nh; ñ>ny; ŋ>ng; ṫ>th; ʎ>ly;`;
     } else if (example == "japanese") {
         choice = `name: Japanese-like 
 # Japanese-like based on interpreting wikipedia.org/wiki/Japanese_phonology 
@@ -185,7 +185,7 @@ $J = CVF # C(y)V[N/Q], heavy syllable with <N> or <Q>
 
 # Where light syllable is of type (C)V, and heavy is (C)[VF/VV(F)].
 # The final two syllables are least likely to be light followed by heavy.
-# I will be sneaking in one-syllable word into the LH class as well.
+# I will be sneaking in one-syllable words into the LH class as well.
 
 #words: $A$S$S $A$S$L $A$S$S$S $A$S$S$L $A$S$S$S$L $A$S$S$L$L $A$L
 
@@ -228,7 +228,7 @@ m  ma  mi   mu  me  mo  mya  myu  myo
 r  ra  ri   ru  re  ro  rya  ryu  ryo
 w  wa  i    wa  e   o   ya   yu   yo
 
-# Long-vowel + <Q> is ilegal.
+# Long-vowel + <Q> is illegal.
 filter: aaQ > aa; iiQ > ii; uuQ > uu; ooQ > oo; eeQ > ee;
 
 # <N> assimilation and <Q> gemination.
@@ -248,7 +248,7 @@ filter: N > n; Q > !; niga$ > nega
 filter: c> ts; č > ch; š > sh; # This was to stop <chu> becoming <cfu>.
 
 # There some other phonetic stuff such as /r/ becoming lateral/retroflex after
-# /i, e/ or at the bigginning of a word. /b/, /g/ becoming [β], [ɣ/ŋ]
+# /i, e/ or at the beginning of a word. /b/, /g/ becoming [β], [ɣ/ŋ]
 # between vowels. And the pitch accent. But these are dependant on dialect,
 # and are not shown in any writing system of Japanese.`;
     } else if (example == "hungarian") {
