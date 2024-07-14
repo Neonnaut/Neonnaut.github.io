@@ -19662,7 +19662,7 @@ var cm6 = (function (exports) {
        // Operator / BLUE / = > : 
        { tag: [tags.keyword, tags.regexp, tags.operator], color: "#90bfe4" },
        // Filter / PURPLE / filter: reject: %
-       { tag: tags.modifier, color: "#ef629c" },
+       { tag: tags.modifier, color: "#e687e4" },
    ];
    const xcodeDarkInit = (options) => {
        const { theme = 'dark', settings = {}, styles = [] } = options || {};
