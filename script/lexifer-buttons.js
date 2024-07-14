@@ -1,5 +1,5 @@
 const view = cm6.createEditorView( //Initial editor
-    cm6.createEditorState(''),
+    cm6.createEditorState('', 'light'),
     document.getElementById("editor")
 );
 lexiferExample('basic', false)
@@ -105,5 +105,13 @@ $(window).on('load', function () {
 
         localStorage.setItem('lexifer', view.state.doc.toString());
         $('#lexiferOutput').focus();
+    });
+
+    $("#lexiferDarkMode").click(function () {
+        if ($("#lexiferDarkMode").is(':checked')) {
+            cm6.changeEditorTheme(view, "dark");
+        } else {
+            cm6.changeEditorTheme(view, "light");
+        }
     });
 });

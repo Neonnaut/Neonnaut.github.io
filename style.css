@@ -2,6 +2,7 @@ html {
   font-size: 62.5%;
   --bg-colour: #333333;
   --red-colour: #d3003f;
+  --blue-colour: #0057ba;
   --bg-colour: #333333;
   --code-bg-colour: #e4e0ee;
 }
@@ -12,10 +13,8 @@ body {
   line-height: 1.2;
   margin: 0
 }
-nav {
-  background: var(--bg-colour);
-  border-left: 1px solid #616161;
-  border-right: 1px solid #616161;
+nav, footer {
+  background: #ccc;
 
   max-width: 800px;
   margin: 0 auto;
@@ -23,26 +22,30 @@ nav {
 }
 .breadcrumbs {
   font-size:1em;
+  margin: 5px 5px 5px 0;
 }
 .breadcrumbs li {
   display: inline-block;
 }
+.breadcrumbs li * {
+  display: inline-block;
+}
+.breadcrumbs li img {
+  height: 15px;
+}
 .breadcrumbs li:not(:first-child):before {
   padding: 0 5px;
-  color: #ccc;
+  color: #2f2f2f;
   content: "»";
 }
 section {
   background: #f1f0ef;
   color: #000;
-  margin: 0 0 10px 0;
+  margin: 10px 0 0 0;
   padding: 8px;
-  border-radius: 3px;
 }
 section#top {
-  border-radius: 0;
-  border-bottom-left-radius: 3px;
-  border-bottom-right-radius: 3px;
+  margin: 0;
 }
 
 #content,header,footer {
@@ -56,11 +59,11 @@ footer, header, hgroup, menu, nav, section {display: block;}
 
 /*-- Text Elements --*/
 a:link{
-  color: var(--red-colour);
+  color: var(--blue-colour);
   text-decoration: none;
 }
 a:visited{
-  color: var(--red-colour);
+  color: var(--blue-colour);
 }
 a:hover{
   text-decoration: underline;
@@ -144,7 +147,7 @@ thead {
 }
 .sortable thead th:not(.sorttable_sorted):not(.sorttable_sorted_reverse):not(.sorttable_original):not(.sorttable_nosort):after {
   content: " \2195";
-  color: #c28194;
+  color: var(--blue-colour);
 }
 .sorttable_sorted::after, .sorttable_original::after { /*-- down arrow--*/
   content: " \2193";
@@ -274,7 +277,7 @@ textarea {
   width: 98%;
 }
 textarea, input, .fake-textbox {
-  background: #Fdfbf8;
+  background: #fcfcfc;
   white-space: pre;
   text-wrap: wrap;
 }
@@ -327,7 +330,7 @@ textarea, input, .fake-textbox {
 }
 .dropdown-content a:active {
   color: #FFFFFF;
-  background: var(--red-colour);
+  background: var(--blue-colour);
 }
 button, input[type="submit"], input[type="button"], input[type="reset"], input[type="disabled"],
 .dropdown-btn {
@@ -354,7 +357,7 @@ button:hover, input[type="submit"]:hover, input[type="button"]:hover, input[type
 button:active, input[type="submit"]:active, input[type="button"]:active, input[type="reset"]:active, input[type="disabled"]:active,
 .dropdown-btn:active {
   color: #fff;
-  background: var(--red-colour);
+  background: var(--blue-colour);
 }
 button, input[type="submit"], input[type="button"], input[type="reset"], input[type="disabled"], fieldset, textarea .fake-textbox,
 .dropdown-btn {
@@ -364,7 +367,7 @@ button, input[type="submit"], input[type="button"], input[type="reset"], input[t
   width: 100px;
 }
 .dropdown-group a {
-  color: var(--red-colour);
+  color: var(--blue-colour);
   display: inline-block;
   background: #fff;
   padding: 3px;
@@ -402,7 +405,6 @@ video, audio, iframe, embed, object, canvas {
 }
 img {
   width: 100%;
-  min-width: 180px;
   max-width: 580px;
   overflow: scroll;
 }
@@ -615,7 +617,7 @@ div .gll {
 #ipa-output-toolbar #symbolsUsed a 
 {
   font-size: 12px;
-  color: var(--red-colour);
+  color: var(--blue-colour);
 	padding-left:1ex;
 	padding-right:1ex;
   cursor: pointer;
@@ -631,7 +633,7 @@ div .gll {
 
 #ipa-output-toolbar #symbolsUsed a:active
 {
-  background: var(--red-colour);
+  background: var(--blue-colour);
   color: white;
   -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none;
   user-select: none;
@@ -666,5 +668,5 @@ font-family: "Charis SIL", "Doulos SIL", Gentium, "Arial Unicode MS","Lucida San
 
 /* --Mobile first, because that's the hipster thing to do I guess-- */
 @media only screen and (min-width: 701px) {
-  section {margin: 0 0 10px 0; padding: 30px 30px;}
+  section { padding: 30px 30px;}
 }

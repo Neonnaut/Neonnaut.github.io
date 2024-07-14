@@ -2506,9 +2506,9 @@ var cm6 = (function (exports) {
        }
        return spec == tr ? tr : Transaction.create(state, tr.changes, tr.selection, spec.effects, spec.annotations, spec.scrollIntoView);
    }
-   const none$2 = [];
+   const none$1 = [];
    function asArray$1(value) {
-       return value == null ? none$2 : Array.isArray(value) ? value : [value];
+       return value == null ? none$1 : Array.isArray(value) ? value : [value];
    }
 
    /**
@@ -5325,14 +5325,14 @@ var cm6 = (function (exports) {
        }
        return target;
    }
-   const noAttrs$1 = /*@__PURE__*/Object.create(null);
+   const noAttrs = /*@__PURE__*/Object.create(null);
    function attrsEq(a, b, ignore) {
        if (a == b)
            return true;
        if (!a)
-           a = noAttrs$1;
+           a = noAttrs;
        if (!b)
-           b = noAttrs$1;
+           b = noAttrs;
        let keysA = Object.keys(a), keysB = Object.keys(b);
        if (keysA.length - (ignore && keysA.indexOf(ignore) > -1 ? 1 : 0) !=
            keysB.length - (ignore && keysB.indexOf(ignore) > -1 ? 1 : 0))
@@ -6586,7 +6586,7 @@ var cm6 = (function (exports) {
                new ScrollTarget(EditorSelection.cursor(state.doc.length), this.y, this.x, this.yMargin, this.xMargin, this.isSnapshot);
        }
    }
-   const scrollIntoView$1 = /*@__PURE__*/StateEffect.define({ map: (t, ch) => t.map(ch) });
+   const scrollIntoView = /*@__PURE__*/StateEffect.define({ map: (t, ch) => t.map(ch) });
    const setEditContextFormatting = /*@__PURE__*/StateEffect.define();
    /**
    Log or report an unhandled exception in client code. Should
@@ -10169,7 +10169,7 @@ var cm6 = (function (exports) {
            }
        });
    }
-   const baseTheme$1$1 = /*@__PURE__*/buildTheme("." + baseThemeID, {
+   const baseTheme$1 = /*@__PURE__*/buildTheme("." + baseThemeID, {
        "&": {
            position: "relative !important",
            boxSizing: "border-box",
@@ -11558,7 +11558,7 @@ var cm6 = (function (exports) {
            this.dispatch = this.dispatch.bind(this);
            this._root = (config.root || getRoot(config.parent) || document);
            this.viewState = new ViewState(config.state || EditorState.create(config));
-           if (config.scrollTo && config.scrollTo.is(scrollIntoView$1))
+           if (config.scrollTo && config.scrollTo.is(scrollIntoView))
                this.viewState.scrollTarget = config.scrollTo.value.clip(this.viewState.state);
            this.plugins = this.state.facet(viewPlugin).map(spec => new PluginInstance(spec));
            for (let plugin of this.plugins)
@@ -11644,7 +11644,7 @@ var cm6 = (function (exports) {
                        scrollTarget = new ScrollTarget(main.empty ? main : EditorSelection.cursor(main.head, main.head > main.anchor ? -1 : 1));
                    }
                    for (let e of tr.effects)
-                       if (e.is(scrollIntoView$1))
+                       if (e.is(scrollIntoView))
                            scrollTarget = e.value.clip(this.state);
                }
                this.viewState.update(update, scrollTarget);
@@ -11937,7 +11937,7 @@ var cm6 = (function (exports) {
        mountStyles() {
            this.styleModules = this.state.facet(styleModule);
            let nonce = this.state.facet(EditorView.cspNonce);
-           StyleModule.mount(this.root, this.styleModules.concat(baseTheme$1$1).reverse(), nonce ? { nonce } : undefined);
+           StyleModule.mount(this.root, this.styleModules.concat(baseTheme$1).reverse(), nonce ? { nonce } : undefined);
        }
        readMeasured() {
            if (this.updateState == 2 /* UpdateState.Updating */)
@@ -12287,7 +12287,7 @@ var cm6 = (function (exports) {
        cause it to scroll the given position or range into view.
        */
        static scrollIntoView(pos, options = {}) {
-           return scrollIntoView$1.of(new ScrollTarget(typeof pos == "number" ? EditorSelection.cursor(pos) : pos, options.y, options.x, options.yMargin, options.xMargin));
+           return scrollIntoView.of(new ScrollTarget(typeof pos == "number" ? EditorSelection.cursor(pos) : pos, options.y, options.x, options.yMargin, options.xMargin));
        }
        /**
        Return an effect that resets the editor to its current (at the
@@ -12304,7 +12304,7 @@ var cm6 = (function (exports) {
        scrollSnapshot() {
            let { scrollTop, scrollLeft } = this.scrollDOM;
            let ref = this.viewState.scrollAnchorAt(scrollTop);
-           return scrollIntoView$1.of(new ScrollTarget(EditorSelection.cursor(ref.from), "start", "start", ref.top - scrollTop, scrollLeft, true));
+           return scrollIntoView.of(new ScrollTarget(EditorSelection.cursor(ref.from), "start", "start", ref.top - scrollTop, scrollLeft, true));
        }
        /**
        Enable or disable tab-focus mode, which disables key bindings
@@ -13180,280 +13180,6 @@ var cm6 = (function (exports) {
        themeSpec[".cm-line"].caretColor = themeSpec[".cm-content"].caretColor = "transparent !important";
    const hideNativeSelection = /*@__PURE__*/Prec.highest(/*@__PURE__*/EditorView.theme(themeSpec));
 
-   function iterMatches(doc, re, from, to, f) {
-       re.lastIndex = 0;
-       for (let cursor = doc.iterRange(from, to), pos = from, m; !cursor.next().done; pos += cursor.value.length) {
-           if (!cursor.lineBreak)
-               while (m = re.exec(cursor.value))
-                   f(pos + m.index, m);
-       }
-   }
-   function matchRanges(view, maxLength) {
-       let visible = view.visibleRanges;
-       if (visible.length == 1 && visible[0].from == view.viewport.from &&
-           visible[0].to == view.viewport.to)
-           return visible;
-       let result = [];
-       for (let { from, to } of visible) {
-           from = Math.max(view.state.doc.lineAt(from).from, from - maxLength);
-           to = Math.min(view.state.doc.lineAt(to).to, to + maxLength);
-           if (result.length && result[result.length - 1].to >= from)
-               result[result.length - 1].to = to;
-           else
-               result.push({ from, to });
-       }
-       return result;
-   }
-   /**
-   Helper class used to make it easier to maintain decorations on
-   visible code that matches a given regular expression. To be used
-   in a [view plugin](https://codemirror.net/6/docs/ref/#view.ViewPlugin). Instances of this object
-   represent a matching configuration.
-   */
-   class MatchDecorator {
-       /**
-       Create a decorator.
-       */
-       constructor(config) {
-           const { regexp, decoration, decorate, boundary, maxLength = 1000 } = config;
-           if (!regexp.global)
-               throw new RangeError("The regular expression given to MatchDecorator should have its 'g' flag set");
-           this.regexp = regexp;
-           if (decorate) {
-               this.addMatch = (match, view, from, add) => decorate(add, from, from + match[0].length, match, view);
-           }
-           else if (typeof decoration == "function") {
-               this.addMatch = (match, view, from, add) => {
-                   let deco = decoration(match, view, from);
-                   if (deco)
-                       add(from, from + match[0].length, deco);
-               };
-           }
-           else if (decoration) {
-               this.addMatch = (match, _view, from, add) => add(from, from + match[0].length, decoration);
-           }
-           else {
-               throw new RangeError("Either 'decorate' or 'decoration' should be provided to MatchDecorator");
-           }
-           this.boundary = boundary;
-           this.maxLength = maxLength;
-       }
-       /**
-       Compute the full set of decorations for matches in the given
-       view's viewport. You'll want to call this when initializing your
-       plugin.
-       */
-       createDeco(view) {
-           let build = new RangeSetBuilder(), add = build.add.bind(build);
-           for (let { from, to } of matchRanges(view, this.maxLength))
-               iterMatches(view.state.doc, this.regexp, from, to, (from, m) => this.addMatch(m, view, from, add));
-           return build.finish();
-       }
-       /**
-       Update a set of decorations for a view update. `deco` _must_ be
-       the set of decorations produced by _this_ `MatchDecorator` for
-       the view state before the update.
-       */
-       updateDeco(update, deco) {
-           let changeFrom = 1e9, changeTo = -1;
-           if (update.docChanged)
-               update.changes.iterChanges((_f, _t, from, to) => {
-                   if (to > update.view.viewport.from && from < update.view.viewport.to) {
-                       changeFrom = Math.min(from, changeFrom);
-                       changeTo = Math.max(to, changeTo);
-                   }
-               });
-           if (update.viewportChanged || changeTo - changeFrom > 1000)
-               return this.createDeco(update.view);
-           if (changeTo > -1)
-               return this.updateRange(update.view, deco.map(update.changes), changeFrom, changeTo);
-           return deco;
-       }
-       updateRange(view, deco, updateFrom, updateTo) {
-           for (let r of view.visibleRanges) {
-               let from = Math.max(r.from, updateFrom), to = Math.min(r.to, updateTo);
-               if (to > from) {
-                   let fromLine = view.state.doc.lineAt(from), toLine = fromLine.to < to ? view.state.doc.lineAt(to) : fromLine;
-                   let start = Math.max(r.from, fromLine.from), end = Math.min(r.to, toLine.to);
-                   if (this.boundary) {
-                       for (; from > fromLine.from; from--)
-                           if (this.boundary.test(fromLine.text[from - 1 - fromLine.from])) {
-                               start = from;
-                               break;
-                           }
-                       for (; to < toLine.to; to++)
-                           if (this.boundary.test(toLine.text[to - toLine.from])) {
-                               end = to;
-                               break;
-                           }
-                   }
-                   let ranges = [], m;
-                   let add = (from, to, deco) => ranges.push(deco.range(from, to));
-                   if (fromLine == toLine) {
-                       this.regexp.lastIndex = start - fromLine.from;
-                       while ((m = this.regexp.exec(fromLine.text)) && m.index < end - fromLine.from)
-                           this.addMatch(m, view, m.index + fromLine.from, add);
-                   }
-                   else {
-                       iterMatches(view.state.doc, this.regexp, start, end, (from, m) => this.addMatch(m, view, from, add));
-                   }
-                   deco = deco.update({ filterFrom: start, filterTo: end, filter: (from, to) => from < start || to > end, add: ranges });
-               }
-           }
-           return deco;
-       }
-   }
-
-   const UnicodeRegexpSupport = /x/.unicode != null ? "gu" : "g";
-   const Specials = /*@__PURE__*/new RegExp("[\u0000-\u0008\u000a-\u001f\u007f-\u009f\u00ad\u061c\u200b\u200e\u200f\u2028\u2029\u202d\u202e\u2066\u2067\u2069\ufeff\ufff9-\ufffc]", UnicodeRegexpSupport);
-   const Names = {
-       0: "null",
-       7: "bell",
-       8: "backspace",
-       10: "newline",
-       11: "vertical tab",
-       13: "carriage return",
-       27: "escape",
-       8203: "zero width space",
-       8204: "zero width non-joiner",
-       8205: "zero width joiner",
-       8206: "left-to-right mark",
-       8207: "right-to-left mark",
-       8232: "line separator",
-       8237: "left-to-right override",
-       8238: "right-to-left override",
-       8294: "left-to-right isolate",
-       8295: "right-to-left isolate",
-       8297: "pop directional isolate",
-       8233: "paragraph separator",
-       65279: "zero width no-break space",
-       65532: "object replacement"
-   };
-   let _supportsTabSize = null;
-   function supportsTabSize() {
-       var _a;
-       if (_supportsTabSize == null && typeof document != "undefined" && document.body) {
-           let styles = document.body.style;
-           _supportsTabSize = ((_a = styles.tabSize) !== null && _a !== void 0 ? _a : styles.MozTabSize) != null;
-       }
-       return _supportsTabSize || false;
-   }
-   const specialCharConfig = /*@__PURE__*/Facet.define({
-       combine(configs) {
-           let config = combineConfig(configs, {
-               render: null,
-               specialChars: Specials,
-               addSpecialChars: null
-           });
-           if (config.replaceTabs = !supportsTabSize())
-               config.specialChars = new RegExp("\t|" + config.specialChars.source, UnicodeRegexpSupport);
-           if (config.addSpecialChars)
-               config.specialChars = new RegExp(config.specialChars.source + "|" + config.addSpecialChars.source, UnicodeRegexpSupport);
-           return config;
-       }
-   });
-   /**
-   Returns an extension that installs highlighting of special
-   characters.
-   */
-   function highlightSpecialChars(
-   /**
-   Configuration options.
-   */
-   config = {}) {
-       return [specialCharConfig.of(config), specialCharPlugin()];
-   }
-   let _plugin = null;
-   function specialCharPlugin() {
-       return _plugin || (_plugin = ViewPlugin.fromClass(class {
-           constructor(view) {
-               this.view = view;
-               this.decorations = Decoration.none;
-               this.decorationCache = Object.create(null);
-               this.decorator = this.makeDecorator(view.state.facet(specialCharConfig));
-               this.decorations = this.decorator.createDeco(view);
-           }
-           makeDecorator(conf) {
-               return new MatchDecorator({
-                   regexp: conf.specialChars,
-                   decoration: (m, view, pos) => {
-                       let { doc } = view.state;
-                       let code = codePointAt(m[0], 0);
-                       if (code == 9) {
-                           let line = doc.lineAt(pos);
-                           let size = view.state.tabSize, col = countColumn(line.text, size, pos - line.from);
-                           return Decoration.replace({
-                               widget: new TabWidget((size - (col % size)) * this.view.defaultCharacterWidth / this.view.scaleX)
-                           });
-                       }
-                       return this.decorationCache[code] ||
-                           (this.decorationCache[code] = Decoration.replace({ widget: new SpecialCharWidget(conf, code) }));
-                   },
-                   boundary: conf.replaceTabs ? undefined : /[^]/
-               });
-           }
-           update(update) {
-               let conf = update.state.facet(specialCharConfig);
-               if (update.startState.facet(specialCharConfig) != conf) {
-                   this.decorator = this.makeDecorator(conf);
-                   this.decorations = this.decorator.createDeco(update.view);
-               }
-               else {
-                   this.decorations = this.decorator.updateDeco(update, this.decorations);
-               }
-           }
-       }, {
-           decorations: v => v.decorations
-       }));
-   }
-   const DefaultPlaceholder = "\u2022";
-   // Assigns placeholder characters from the Control Pictures block to
-   // ASCII control characters
-   function placeholder$1(code) {
-       if (code >= 32)
-           return DefaultPlaceholder;
-       if (code == 10)
-           return "\u2424";
-       return String.fromCharCode(9216 + code);
-   }
-   class SpecialCharWidget extends WidgetType {
-       constructor(options, code) {
-           super();
-           this.options = options;
-           this.code = code;
-       }
-       eq(other) { return other.code == this.code; }
-       toDOM(view) {
-           let ph = placeholder$1(this.code);
-           let desc = view.state.phrase("Control character") + " " + (Names[this.code] || "0x" + this.code.toString(16));
-           let custom = this.options.render && this.options.render(this.code, desc, ph);
-           if (custom)
-               return custom;
-           let span = document.createElement("span");
-           span.textContent = ph;
-           span.title = desc;
-           span.setAttribute("aria-label", desc);
-           span.className = "cm-specialChar";
-           return span;
-       }
-       ignoreEvent() { return false; }
-   }
-   class TabWidget extends WidgetType {
-       constructor(width) {
-           super();
-           this.width = width;
-       }
-       eq(other) { return other.width == this.width; }
-       toDOM() {
-           let span = document.createElement("span");
-           span.textContent = "\t";
-           span.className = "cm-tab";
-           span.style.width = this.width + "px";
-           return span;
-       }
-       ignoreEvent() { return false; }
-   }
-
    /**
    Mark lines that have a cursor on them with the `"cm-activeLine"`
    DOM class.
@@ -13484,407 +13210,6 @@ var cm6 = (function (exports) {
    }, {
        decorations: v => v.decorations
    });
-
-   const Outside = "-10000px";
-   class TooltipViewManager {
-       constructor(view, facet, createTooltipView, removeTooltipView) {
-           this.facet = facet;
-           this.createTooltipView = createTooltipView;
-           this.removeTooltipView = removeTooltipView;
-           this.input = view.state.facet(facet);
-           this.tooltips = this.input.filter(t => t);
-           let prev = null;
-           this.tooltipViews = this.tooltips.map(t => prev = createTooltipView(t, prev));
-       }
-       update(update, above) {
-           var _a;
-           let input = update.state.facet(this.facet);
-           let tooltips = input.filter(x => x);
-           if (input === this.input) {
-               for (let t of this.tooltipViews)
-                   if (t.update)
-                       t.update(update);
-               return false;
-           }
-           let tooltipViews = [], newAbove = above ? [] : null;
-           for (let i = 0; i < tooltips.length; i++) {
-               let tip = tooltips[i], known = -1;
-               if (!tip)
-                   continue;
-               for (let i = 0; i < this.tooltips.length; i++) {
-                   let other = this.tooltips[i];
-                   if (other && other.create == tip.create)
-                       known = i;
-               }
-               if (known < 0) {
-                   tooltipViews[i] = this.createTooltipView(tip, i ? tooltipViews[i - 1] : null);
-                   if (newAbove)
-                       newAbove[i] = !!tip.above;
-               }
-               else {
-                   let tooltipView = tooltipViews[i] = this.tooltipViews[known];
-                   if (newAbove)
-                       newAbove[i] = above[known];
-                   if (tooltipView.update)
-                       tooltipView.update(update);
-               }
-           }
-           for (let t of this.tooltipViews)
-               if (tooltipViews.indexOf(t) < 0) {
-                   this.removeTooltipView(t);
-                   (_a = t.destroy) === null || _a === void 0 ? void 0 : _a.call(t);
-               }
-           if (above) {
-               newAbove.forEach((val, i) => above[i] = val);
-               above.length = newAbove.length;
-           }
-           this.input = input;
-           this.tooltips = tooltips;
-           this.tooltipViews = tooltipViews;
-           return true;
-       }
-   }
-   function windowSpace(view) {
-       let { win } = view;
-       return { top: 0, left: 0, bottom: win.innerHeight, right: win.innerWidth };
-   }
-   const tooltipConfig = /*@__PURE__*/Facet.define({
-       combine: values => {
-           var _a, _b, _c;
-           return ({
-               position: browser.ios ? "absolute" : ((_a = values.find(conf => conf.position)) === null || _a === void 0 ? void 0 : _a.position) || "fixed",
-               parent: ((_b = values.find(conf => conf.parent)) === null || _b === void 0 ? void 0 : _b.parent) || null,
-               tooltipSpace: ((_c = values.find(conf => conf.tooltipSpace)) === null || _c === void 0 ? void 0 : _c.tooltipSpace) || windowSpace,
-           });
-       }
-   });
-   const knownHeight = /*@__PURE__*/new WeakMap();
-   const tooltipPlugin = /*@__PURE__*/ViewPlugin.fromClass(class {
-       constructor(view) {
-           this.view = view;
-           this.above = [];
-           this.inView = true;
-           this.madeAbsolute = false;
-           this.lastTransaction = 0;
-           this.measureTimeout = -1;
-           let config = view.state.facet(tooltipConfig);
-           this.position = config.position;
-           this.parent = config.parent;
-           this.classes = view.themeClasses;
-           this.createContainer();
-           this.measureReq = { read: this.readMeasure.bind(this), write: this.writeMeasure.bind(this), key: this };
-           this.resizeObserver = typeof ResizeObserver == "function" ? new ResizeObserver(() => this.measureSoon()) : null;
-           this.manager = new TooltipViewManager(view, showTooltip, (t, p) => this.createTooltip(t, p), t => {
-               if (this.resizeObserver)
-                   this.resizeObserver.unobserve(t.dom);
-               t.dom.remove();
-           });
-           this.above = this.manager.tooltips.map(t => !!t.above);
-           this.intersectionObserver = typeof IntersectionObserver == "function" ? new IntersectionObserver(entries => {
-               if (Date.now() > this.lastTransaction - 50 &&
-                   entries.length > 0 && entries[entries.length - 1].intersectionRatio < 1)
-                   this.measureSoon();
-           }, { threshold: [1] }) : null;
-           this.observeIntersection();
-           view.win.addEventListener("resize", this.measureSoon = this.measureSoon.bind(this));
-           this.maybeMeasure();
-       }
-       createContainer() {
-           if (this.parent) {
-               this.container = document.createElement("div");
-               this.container.style.position = "relative";
-               this.container.className = this.view.themeClasses;
-               this.parent.appendChild(this.container);
-           }
-           else {
-               this.container = this.view.dom;
-           }
-       }
-       observeIntersection() {
-           if (this.intersectionObserver) {
-               this.intersectionObserver.disconnect();
-               for (let tooltip of this.manager.tooltipViews)
-                   this.intersectionObserver.observe(tooltip.dom);
-           }
-       }
-       measureSoon() {
-           if (this.measureTimeout < 0)
-               this.measureTimeout = setTimeout(() => {
-                   this.measureTimeout = -1;
-                   this.maybeMeasure();
-               }, 50);
-       }
-       update(update) {
-           if (update.transactions.length)
-               this.lastTransaction = Date.now();
-           let updated = this.manager.update(update, this.above);
-           if (updated)
-               this.observeIntersection();
-           let shouldMeasure = updated || update.geometryChanged;
-           let newConfig = update.state.facet(tooltipConfig);
-           if (newConfig.position != this.position && !this.madeAbsolute) {
-               this.position = newConfig.position;
-               for (let t of this.manager.tooltipViews)
-                   t.dom.style.position = this.position;
-               shouldMeasure = true;
-           }
-           if (newConfig.parent != this.parent) {
-               if (this.parent)
-                   this.container.remove();
-               this.parent = newConfig.parent;
-               this.createContainer();
-               for (let t of this.manager.tooltipViews)
-                   this.container.appendChild(t.dom);
-               shouldMeasure = true;
-           }
-           else if (this.parent && this.view.themeClasses != this.classes) {
-               this.classes = this.container.className = this.view.themeClasses;
-           }
-           if (shouldMeasure)
-               this.maybeMeasure();
-       }
-       createTooltip(tooltip, prev) {
-           let tooltipView = tooltip.create(this.view);
-           let before = prev ? prev.dom : null;
-           tooltipView.dom.classList.add("cm-tooltip");
-           if (tooltip.arrow && !tooltipView.dom.querySelector(".cm-tooltip > .cm-tooltip-arrow")) {
-               let arrow = document.createElement("div");
-               arrow.className = "cm-tooltip-arrow";
-               tooltipView.dom.appendChild(arrow);
-           }
-           tooltipView.dom.style.position = this.position;
-           tooltipView.dom.style.top = Outside;
-           tooltipView.dom.style.left = "0px";
-           this.container.insertBefore(tooltipView.dom, before);
-           if (tooltipView.mount)
-               tooltipView.mount(this.view);
-           if (this.resizeObserver)
-               this.resizeObserver.observe(tooltipView.dom);
-           return tooltipView;
-       }
-       destroy() {
-           var _a, _b, _c;
-           this.view.win.removeEventListener("resize", this.measureSoon);
-           for (let tooltipView of this.manager.tooltipViews) {
-               tooltipView.dom.remove();
-               (_a = tooltipView.destroy) === null || _a === void 0 ? void 0 : _a.call(tooltipView);
-           }
-           if (this.parent)
-               this.container.remove();
-           (_b = this.resizeObserver) === null || _b === void 0 ? void 0 : _b.disconnect();
-           (_c = this.intersectionObserver) === null || _c === void 0 ? void 0 : _c.disconnect();
-           clearTimeout(this.measureTimeout);
-       }
-       readMeasure() {
-           let editor = this.view.dom.getBoundingClientRect();
-           let scaleX = 1, scaleY = 1, makeAbsolute = false;
-           if (this.position == "fixed" && this.manager.tooltipViews.length) {
-               let { dom } = this.manager.tooltipViews[0];
-               if (browser.gecko) {
-                   // Firefox sets the element's `offsetParent` to the
-                   // transformed element when a transform interferes with fixed
-                   // positioning.
-                   makeAbsolute = dom.offsetParent != this.container.ownerDocument.body;
-               }
-               else if (dom.style.top == Outside && dom.style.left == "0px") {
-                   // On other browsers, we have to awkwardly try and use other
-                   // information to detect a transform.
-                   let rect = dom.getBoundingClientRect();
-                   makeAbsolute = Math.abs(rect.top + 10000) > 1 || Math.abs(rect.left) > 1;
-               }
-           }
-           if (makeAbsolute || this.position == "absolute") {
-               if (this.parent) {
-                   let rect = this.parent.getBoundingClientRect();
-                   if (rect.width && rect.height) {
-                       scaleX = rect.width / this.parent.offsetWidth;
-                       scaleY = rect.height / this.parent.offsetHeight;
-                   }
-               }
-               else {
-                   ({ scaleX, scaleY } = this.view.viewState);
-               }
-           }
-           return {
-               editor,
-               parent: this.parent ? this.container.getBoundingClientRect() : editor,
-               pos: this.manager.tooltips.map((t, i) => {
-                   let tv = this.manager.tooltipViews[i];
-                   return tv.getCoords ? tv.getCoords(t.pos) : this.view.coordsAtPos(t.pos);
-               }),
-               size: this.manager.tooltipViews.map(({ dom }) => dom.getBoundingClientRect()),
-               space: this.view.state.facet(tooltipConfig).tooltipSpace(this.view),
-               scaleX, scaleY, makeAbsolute
-           };
-       }
-       writeMeasure(measured) {
-           var _a;
-           if (measured.makeAbsolute) {
-               this.madeAbsolute = true;
-               this.position = "absolute";
-               for (let t of this.manager.tooltipViews)
-                   t.dom.style.position = "absolute";
-           }
-           let { editor, space, scaleX, scaleY } = measured;
-           let others = [];
-           for (let i = 0; i < this.manager.tooltips.length; i++) {
-               let tooltip = this.manager.tooltips[i], tView = this.manager.tooltipViews[i], { dom } = tView;
-               let pos = measured.pos[i], size = measured.size[i];
-               // Hide tooltips that are outside of the editor.
-               if (!pos || pos.bottom <= Math.max(editor.top, space.top) ||
-                   pos.top >= Math.min(editor.bottom, space.bottom) ||
-                   pos.right < Math.max(editor.left, space.left) - .1 ||
-                   pos.left > Math.min(editor.right, space.right) + .1) {
-                   dom.style.top = Outside;
-                   continue;
-               }
-               let arrow = tooltip.arrow ? tView.dom.querySelector(".cm-tooltip-arrow") : null;
-               let arrowHeight = arrow ? 7 /* Arrow.Size */ : 0;
-               let width = size.right - size.left, height = (_a = knownHeight.get(tView)) !== null && _a !== void 0 ? _a : size.bottom - size.top;
-               let offset = tView.offset || noOffset, ltr = this.view.textDirection == Direction.LTR;
-               let left = size.width > space.right - space.left ? (ltr ? space.left : space.right - size.width)
-                   : ltr ? Math.min(pos.left - (arrow ? 14 /* Arrow.Offset */ : 0) + offset.x, space.right - width)
-                       : Math.max(space.left, pos.left - width + (arrow ? 14 /* Arrow.Offset */ : 0) - offset.x);
-               let above = this.above[i];
-               if (!tooltip.strictSide && (above
-                   ? pos.top - (size.bottom - size.top) - offset.y < space.top
-                   : pos.bottom + (size.bottom - size.top) + offset.y > space.bottom) &&
-                   above == (space.bottom - pos.bottom > pos.top - space.top))
-                   above = this.above[i] = !above;
-               let spaceVert = (above ? pos.top - space.top : space.bottom - pos.bottom) - arrowHeight;
-               if (spaceVert < height && tView.resize !== false) {
-                   if (spaceVert < this.view.defaultLineHeight) {
-                       dom.style.top = Outside;
-                       continue;
-                   }
-                   knownHeight.set(tView, height);
-                   dom.style.height = (height = spaceVert) / scaleY + "px";
-               }
-               else if (dom.style.height) {
-                   dom.style.height = "";
-               }
-               let top = above ? pos.top - height - arrowHeight - offset.y : pos.bottom + arrowHeight + offset.y;
-               let right = left + width;
-               if (tView.overlap !== true)
-                   for (let r of others)
-                       if (r.left < right && r.right > left && r.top < top + height && r.bottom > top)
-                           top = above ? r.top - height - 2 - arrowHeight : r.bottom + arrowHeight + 2;
-               if (this.position == "absolute") {
-                   dom.style.top = (top - measured.parent.top) / scaleY + "px";
-                   dom.style.left = (left - measured.parent.left) / scaleX + "px";
-               }
-               else {
-                   dom.style.top = top / scaleY + "px";
-                   dom.style.left = left / scaleX + "px";
-               }
-               if (arrow) {
-                   let arrowLeft = pos.left + (ltr ? offset.x : -offset.x) - (left + 14 /* Arrow.Offset */ - 7 /* Arrow.Size */);
-                   arrow.style.left = arrowLeft / scaleX + "px";
-               }
-               if (tView.overlap !== true)
-                   others.push({ left, top, right, bottom: top + height });
-               dom.classList.toggle("cm-tooltip-above", above);
-               dom.classList.toggle("cm-tooltip-below", !above);
-               if (tView.positioned)
-                   tView.positioned(measured.space);
-           }
-       }
-       maybeMeasure() {
-           if (this.manager.tooltips.length) {
-               if (this.view.inView)
-                   this.view.requestMeasure(this.measureReq);
-               if (this.inView != this.view.inView) {
-                   this.inView = this.view.inView;
-                   if (!this.inView)
-                       for (let tv of this.manager.tooltipViews)
-                           tv.dom.style.top = Outside;
-               }
-           }
-       }
-   }, {
-       eventObservers: {
-           scroll() { this.maybeMeasure(); }
-       }
-   });
-   const baseTheme$3 = /*@__PURE__*/EditorView.baseTheme({
-       ".cm-tooltip": {
-           zIndex: 100,
-           boxSizing: "border-box"
-       },
-       "&light .cm-tooltip": {
-           border: "1px solid #bbb",
-           backgroundColor: "#f5f5f5"
-       },
-       "&light .cm-tooltip-section:not(:first-child)": {
-           borderTop: "1px solid #bbb",
-       },
-       "&dark .cm-tooltip": {
-           backgroundColor: "#333338",
-           color: "white"
-       },
-       ".cm-tooltip-arrow": {
-           height: `${7 /* Arrow.Size */}px`,
-           width: `${7 /* Arrow.Size */ * 2}px`,
-           position: "absolute",
-           zIndex: -1,
-           overflow: "hidden",
-           "&:before, &:after": {
-               content: "''",
-               position: "absolute",
-               width: 0,
-               height: 0,
-               borderLeft: `${7 /* Arrow.Size */}px solid transparent`,
-               borderRight: `${7 /* Arrow.Size */}px solid transparent`,
-           },
-           ".cm-tooltip-above &": {
-               bottom: `-${7 /* Arrow.Size */}px`,
-               "&:before": {
-                   borderTop: `${7 /* Arrow.Size */}px solid #bbb`,
-               },
-               "&:after": {
-                   borderTop: `${7 /* Arrow.Size */}px solid #f5f5f5`,
-                   bottom: "1px"
-               }
-           },
-           ".cm-tooltip-below &": {
-               top: `-${7 /* Arrow.Size */}px`,
-               "&:before": {
-                   borderBottom: `${7 /* Arrow.Size */}px solid #bbb`,
-               },
-               "&:after": {
-                   borderBottom: `${7 /* Arrow.Size */}px solid #f5f5f5`,
-                   top: "1px"
-               }
-           },
-       },
-       "&dark .cm-tooltip .cm-tooltip-arrow": {
-           "&:before": {
-               borderTopColor: "#333338",
-               borderBottomColor: "#333338"
-           },
-           "&:after": {
-               borderTopColor: "transparent",
-               borderBottomColor: "transparent"
-           }
-       }
-   });
-   const noOffset = { x: 0, y: 0 };
-   /**
-   Facet to which an extension can add a value to show a tooltip.
-   */
-   const showTooltip = /*@__PURE__*/Facet.define({
-       enables: [tooltipPlugin, baseTheme$3]
-   });
-   /**
-   Get the active tooltip view for a given tooltip, if available.
-   */
-   function getTooltip(view, tooltip) {
-       let plugin = view.plugin(tooltipPlugin);
-       if (!plugin)
-           return null;
-       let found = plugin.manager.tooltips.indexOf(tooltip);
-       return found < 0 ? null : plugin.manager.tooltipViews[found];
-   }
 
    /**
    A gutter marker represents a bit of information attached to a line
@@ -18093,58 +17418,6 @@ var cm6 = (function (exports) {
            return closed ? context.column(aligned.from) : context.column(aligned.to);
        return context.baseIndent + (closed ? 0 : context.unit * units);
    }
-   const DontIndentBeyond = 200;
-   /**
-   Enables reindentation on input. When a language defines an
-   `indentOnInput` field in its [language
-   data](https://codemirror.net/6/docs/ref/#state.EditorState.languageDataAt), which must hold a regular
-   expression, the line at the cursor will be reindented whenever new
-   text is typed and the input from the start of the line up to the
-   cursor matches that regexp.
-
-   To avoid unneccesary reindents, it is recommended to start the
-   regexp with `^` (usually followed by `\s*`), and end it with `$`.
-   For example, `/^\s*\}$/` will reindent when a closing brace is
-   added at the start of a line.
-   */
-   function indentOnInput() {
-       return EditorState.transactionFilter.of(tr => {
-           if (!tr.docChanged || !tr.isUserEvent("input.type") && !tr.isUserEvent("input.complete"))
-               return tr;
-           let rules = tr.startState.languageDataAt("indentOnInput", tr.startState.selection.main.head);
-           if (!rules.length)
-               return tr;
-           let doc = tr.newDoc, { head } = tr.newSelection.main, line = doc.lineAt(head);
-           if (head > line.from + DontIndentBeyond)
-               return tr;
-           let lineStart = doc.sliceString(line.from, head);
-           if (!rules.some(r => r.test(lineStart)))
-               return tr;
-           let { state } = tr, last = -1, changes = [];
-           for (let { head } of state.selection.ranges) {
-               let line = state.doc.lineAt(head);
-               if (line.from == last)
-                   continue;
-               last = line.from;
-               let indent = getIndentation(state, line.from);
-               if (indent == null)
-                   continue;
-               let cur = /^\s*/.exec(line.text)[0];
-               let norm = indentString(state, indent);
-               if (cur != norm)
-                   changes.push({ from: line.from, to: line.from + cur.length, insert: norm });
-           }
-           return changes.length ? [tr, { changes, sequential: true }] : tr;
-       });
-   }
-
-   /**
-   A facet that registers a code folding service. When called with
-   the extent of a line, such a function should return a foldable
-   range that starts on that line (but continues beyond it), if one
-   can be found.
-   */
-   const foldService = /*@__PURE__*/Facet.define();
    /**
    This node prop is used to associate folding information with
    syntax node types. Given a syntax node, it should check whether
@@ -18161,290 +17434,6 @@ var cm6 = (function (exports) {
        let first = node.firstChild, last = node.lastChild;
        return first && first.to < last.from ? { from: first.to, to: last.type.isError ? node.to : last.from } : null;
    }
-   function syntaxFolding(state, start, end) {
-       let tree = syntaxTree(state);
-       if (tree.length < end)
-           return null;
-       let stack = tree.resolveStack(end, 1);
-       let found = null;
-       for (let iter = stack; iter; iter = iter.next) {
-           let cur = iter.node;
-           if (cur.to <= end || cur.from > end)
-               continue;
-           if (found && cur.from < start)
-               break;
-           let prop = cur.type.prop(foldNodeProp);
-           if (prop && (cur.to < tree.length - 50 || tree.length == state.doc.length || !isUnfinished(cur))) {
-               let value = prop(cur, state);
-               if (value && value.from <= end && value.from >= start && value.to > end)
-                   found = value;
-           }
-       }
-       return found;
-   }
-   function isUnfinished(node) {
-       let ch = node.lastChild;
-       return ch && ch.to == node.to && ch.type.isError;
-   }
-   /**
-   Check whether the given line is foldable. First asks any fold
-   services registered through
-   [`foldService`](https://codemirror.net/6/docs/ref/#language.foldService), and if none of them return
-   a result, tries to query the [fold node
-   prop](https://codemirror.net/6/docs/ref/#language.foldNodeProp) of syntax nodes that cover the end
-   of the line.
-   */
-   function foldable(state, lineStart, lineEnd) {
-       for (let service of state.facet(foldService)) {
-           let result = service(state, lineStart, lineEnd);
-           if (result)
-               return result;
-       }
-       return syntaxFolding(state, lineStart, lineEnd);
-   }
-   function mapRange(range, mapping) {
-       let from = mapping.mapPos(range.from, 1), to = mapping.mapPos(range.to, -1);
-       return from >= to ? undefined : { from, to };
-   }
-   /**
-   State effect that can be attached to a transaction to fold the
-   given range. (You probably only need this in exceptional
-   circumstances—usually you'll just want to let
-   [`foldCode`](https://codemirror.net/6/docs/ref/#language.foldCode) and the [fold
-   gutter](https://codemirror.net/6/docs/ref/#language.foldGutter) create the transactions.)
-   */
-   const foldEffect = /*@__PURE__*/StateEffect.define({ map: mapRange });
-   /**
-   State effect that unfolds the given range (if it was folded).
-   */
-   const unfoldEffect = /*@__PURE__*/StateEffect.define({ map: mapRange });
-   function selectedLines(view) {
-       let lines = [];
-       for (let { head } of view.state.selection.ranges) {
-           if (lines.some(l => l.from <= head && l.to >= head))
-               continue;
-           lines.push(view.lineBlockAt(head));
-       }
-       return lines;
-   }
-   /**
-   The state field that stores the folded ranges (as a [decoration
-   set](https://codemirror.net/6/docs/ref/#view.DecorationSet)). Can be passed to
-   [`EditorState.toJSON`](https://codemirror.net/6/docs/ref/#state.EditorState.toJSON) and
-   [`fromJSON`](https://codemirror.net/6/docs/ref/#state.EditorState^fromJSON) to serialize the fold
-   state.
-   */
-   const foldState = /*@__PURE__*/StateField.define({
-       create() {
-           return Decoration.none;
-       },
-       update(folded, tr) {
-           folded = folded.map(tr.changes);
-           for (let e of tr.effects) {
-               if (e.is(foldEffect) && !foldExists(folded, e.value.from, e.value.to)) {
-                   let { preparePlaceholder } = tr.state.facet(foldConfig);
-                   let widget = !preparePlaceholder ? foldWidget :
-                       Decoration.replace({ widget: new PreparedFoldWidget(preparePlaceholder(tr.state, e.value)) });
-                   folded = folded.update({ add: [widget.range(e.value.from, e.value.to)] });
-               }
-               else if (e.is(unfoldEffect)) {
-                   folded = folded.update({ filter: (from, to) => e.value.from != from || e.value.to != to,
-                       filterFrom: e.value.from, filterTo: e.value.to });
-               }
-           }
-           // Clear folded ranges that cover the selection head
-           if (tr.selection) {
-               let onSelection = false, { head } = tr.selection.main;
-               folded.between(head, head, (a, b) => { if (a < head && b > head)
-                   onSelection = true; });
-               if (onSelection)
-                   folded = folded.update({
-                       filterFrom: head,
-                       filterTo: head,
-                       filter: (a, b) => b <= head || a >= head
-                   });
-           }
-           return folded;
-       },
-       provide: f => EditorView.decorations.from(f),
-       toJSON(folded, state) {
-           let ranges = [];
-           folded.between(0, state.doc.length, (from, to) => { ranges.push(from, to); });
-           return ranges;
-       },
-       fromJSON(value) {
-           if (!Array.isArray(value) || value.length % 2)
-               throw new RangeError("Invalid JSON for fold state");
-           let ranges = [];
-           for (let i = 0; i < value.length;) {
-               let from = value[i++], to = value[i++];
-               if (typeof from != "number" || typeof to != "number")
-                   throw new RangeError("Invalid JSON for fold state");
-               ranges.push(foldWidget.range(from, to));
-           }
-           return Decoration.set(ranges, true);
-       }
-   });
-   function findFold(state, from, to) {
-       var _a;
-       let found = null;
-       (_a = state.field(foldState, false)) === null || _a === void 0 ? void 0 : _a.between(from, to, (from, to) => {
-           if (!found || found.from > from)
-               found = { from, to };
-       });
-       return found;
-   }
-   function foldExists(folded, from, to) {
-       let found = false;
-       folded.between(from, from, (a, b) => { if (a == from && b == to)
-           found = true; });
-       return found;
-   }
-   function maybeEnable(state, other) {
-       return state.field(foldState, false) ? other : other.concat(StateEffect.appendConfig.of(codeFolding()));
-   }
-   /**
-   Fold the lines that are selected, if possible.
-   */
-   const foldCode = view => {
-       for (let line of selectedLines(view)) {
-           let range = foldable(view.state, line.from, line.to);
-           if (range) {
-               view.dispatch({ effects: maybeEnable(view.state, [foldEffect.of(range), announceFold(view, range)]) });
-               return true;
-           }
-       }
-       return false;
-   };
-   /**
-   Unfold folded ranges on selected lines.
-   */
-   const unfoldCode = view => {
-       if (!view.state.field(foldState, false))
-           return false;
-       let effects = [];
-       for (let line of selectedLines(view)) {
-           let folded = findFold(view.state, line.from, line.to);
-           if (folded)
-               effects.push(unfoldEffect.of(folded), announceFold(view, folded, false));
-       }
-       if (effects.length)
-           view.dispatch({ effects });
-       return effects.length > 0;
-   };
-   function announceFold(view, range, fold = true) {
-       let lineFrom = view.state.doc.lineAt(range.from).number, lineTo = view.state.doc.lineAt(range.to).number;
-       return EditorView.announce.of(`${view.state.phrase(fold ? "Folded lines" : "Unfolded lines")} ${lineFrom} ${view.state.phrase("to")} ${lineTo}.`);
-   }
-   /**
-   Fold all top-level foldable ranges. Note that, in most cases,
-   folding information will depend on the [syntax
-   tree](https://codemirror.net/6/docs/ref/#language.syntaxTree), and folding everything may not work
-   reliably when the document hasn't been fully parsed (either
-   because the editor state was only just initialized, or because the
-   document is so big that the parser decided not to parse it
-   entirely).
-   */
-   const foldAll = view => {
-       let { state } = view, effects = [];
-       for (let pos = 0; pos < state.doc.length;) {
-           let line = view.lineBlockAt(pos), range = foldable(state, line.from, line.to);
-           if (range)
-               effects.push(foldEffect.of(range));
-           pos = (range ? view.lineBlockAt(range.to) : line).to + 1;
-       }
-       if (effects.length)
-           view.dispatch({ effects: maybeEnable(view.state, effects) });
-       return !!effects.length;
-   };
-   /**
-   Unfold all folded code.
-   */
-   const unfoldAll = view => {
-       let field = view.state.field(foldState, false);
-       if (!field || !field.size)
-           return false;
-       let effects = [];
-       field.between(0, view.state.doc.length, (from, to) => { effects.push(unfoldEffect.of({ from, to })); });
-       view.dispatch({ effects });
-       return true;
-   };
-   /**
-   Default fold-related key bindings.
-
-    - Ctrl-Shift-[ (Cmd-Alt-[ on macOS): [`foldCode`](https://codemirror.net/6/docs/ref/#language.foldCode).
-    - Ctrl-Shift-] (Cmd-Alt-] on macOS): [`unfoldCode`](https://codemirror.net/6/docs/ref/#language.unfoldCode).
-    - Ctrl-Alt-[: [`foldAll`](https://codemirror.net/6/docs/ref/#language.foldAll).
-    - Ctrl-Alt-]: [`unfoldAll`](https://codemirror.net/6/docs/ref/#language.unfoldAll).
-   */
-   const foldKeymap = [
-       { key: "Ctrl-Shift-[", mac: "Cmd-Alt-[", run: foldCode },
-       { key: "Ctrl-Shift-]", mac: "Cmd-Alt-]", run: unfoldCode },
-       { key: "Ctrl-Alt-[", run: foldAll },
-       { key: "Ctrl-Alt-]", run: unfoldAll }
-   ];
-   const defaultConfig = {
-       placeholderDOM: null,
-       preparePlaceholder: null,
-       placeholderText: "…"
-   };
-   const foldConfig = /*@__PURE__*/Facet.define({
-       combine(values) { return combineConfig(values, defaultConfig); }
-   });
-   /**
-   Create an extension that configures code folding.
-   */
-   function codeFolding(config) {
-       let result = [foldState, baseTheme$1];
-       if (config)
-           result.push(foldConfig.of(config));
-       return result;
-   }
-   function widgetToDOM(view, prepared) {
-       let { state } = view, conf = state.facet(foldConfig);
-       let onclick = (event) => {
-           let line = view.lineBlockAt(view.posAtDOM(event.target));
-           let folded = findFold(view.state, line.from, line.to);
-           if (folded)
-               view.dispatch({ effects: unfoldEffect.of(folded) });
-           event.preventDefault();
-       };
-       if (conf.placeholderDOM)
-           return conf.placeholderDOM(view, onclick, prepared);
-       let element = document.createElement("span");
-       element.textContent = conf.placeholderText;
-       element.setAttribute("aria-label", state.phrase("folded code"));
-       element.title = state.phrase("unfold");
-       element.className = "cm-foldPlaceholder";
-       element.onclick = onclick;
-       return element;
-   }
-   const foldWidget = /*@__PURE__*/Decoration.replace({ widget: /*@__PURE__*/new class extends WidgetType {
-           toDOM(view) { return widgetToDOM(view, null); }
-       } });
-   class PreparedFoldWidget extends WidgetType {
-       constructor(value) {
-           super();
-           this.value = value;
-       }
-       eq(other) { return this.value == other.value; }
-       toDOM(view) { return widgetToDOM(view, this.value); }
-   }
-   const baseTheme$1 = /*@__PURE__*/EditorView.baseTheme({
-       ".cm-foldPlaceholder": {
-           backgroundColor: "#eee",
-           border: "1px solid #ddd",
-           color: "#888",
-           borderRadius: ".2em",
-           margin: "0 1px",
-           padding: "0 1px",
-           cursor: "pointer"
-       },
-       ".cm-foldGutter span": {
-           padding: "0 1px",
-           cursor: "pointer"
-       }
-   });
 
    /**
    A highlight style associates CSS styles with higlighting
@@ -18564,7 +17553,7 @@ var cm6 = (function (exports) {
        decorations: v => v.decorations
    }));
 
-   const baseTheme$2 = /*@__PURE__*/EditorView.baseTheme({
+   const baseTheme = /*@__PURE__*/EditorView.baseTheme({
        "&.cm-focused .cm-matchingBracket": { backgroundColor: "#328c8252" },
        "&.cm-focused .cm-nonmatchingBracket": { backgroundColor: "#bb555544" }
    });
@@ -18612,7 +17601,7 @@ var cm6 = (function (exports) {
    });
    const bracketMatchingUnique = [
        bracketMatchingState,
-       baseTheme$2
+       baseTheme
    ];
    /**
    Create an extension that enables bracket matching. Whenever the
@@ -19125,7 +18114,7 @@ var cm6 = (function (exports) {
        // transaction needs to be converted to an item. Returns null when
        // there are no changes or effects in the transaction.
        static fromTransaction(tr, selection) {
-           let effects = none$1;
+           let effects = none;
            for (let invert of tr.startState.facet(invertedEffects)) {
                let result = invert(tr);
                if (result.length)
@@ -19133,10 +18122,10 @@ var cm6 = (function (exports) {
            }
            if (!effects.length && tr.changes.empty)
                return null;
-           return new HistEvent(tr.changes.invert(tr.startState.doc), effects, undefined, selection || tr.startState.selection, none$1);
+           return new HistEvent(tr.changes.invert(tr.startState.doc), effects, undefined, selection || tr.startState.selection, none);
        }
        static selection(selections) {
-           return new HistEvent(undefined, none$1, undefined, undefined, selections);
+           return new HistEvent(undefined, none, undefined, undefined, selections);
        }
    }
    function updateBranch(branch, to, maxLen, newEvent) {
@@ -19164,7 +18153,7 @@ var cm6 = (function (exports) {
    function conc(a, b) {
        return !a.length ? b : !b.length ? a : a.concat(b);
    }
-   const none$1 = [];
+   const none = [];
    const MaxSelectionsPerEvent = 200;
    function addSelection(branch, selection) {
        if (!branch.length) {
@@ -19192,7 +18181,7 @@ var cm6 = (function (exports) {
    function addMappingToBranch(branch, mapping) {
        if (!branch.length)
            return branch;
-       let length = branch.length, selections = none$1;
+       let length = branch.length, selections = none;
        while (length) {
            let event = mapEvent(branch[length - 1], mapping, selections);
            if (event.changes && !event.changes.empty || event.effects.length) { // Event survived mapping
@@ -19206,10 +18195,10 @@ var cm6 = (function (exports) {
                selections = event.selectionsAfter;
            }
        }
-       return selections.length ? [HistEvent.selection(selections)] : none$1;
+       return selections.length ? [HistEvent.selection(selections)] : none;
    }
    function mapEvent(event, mapping, extraSelections) {
-       let selections = conc(event.selectionsAfter.length ? event.selectionsAfter.map(s => s.map(mapping)) : none$1, extraSelections);
+       let selections = conc(event.selectionsAfter.length ? event.selectionsAfter.map(s => s.map(mapping)) : none, extraSelections);
        // Change-less events don't store mappings (they are always the last event in a branch)
        if (!event.changes)
            return HistEvent.selection(selections);
@@ -19237,15 +18226,15 @@ var cm6 = (function (exports) {
                    config.joinToEvent(tr, isAdjacent(lastEvent.changes, event.changes))) ||
                    // For compose (but not compose.start) events, always join with previous event
                    userEvent == "input.type.compose")) {
-               done = updateBranch(done, done.length - 1, config.minDepth, new HistEvent(event.changes.compose(lastEvent.changes), conc(event.effects, lastEvent.effects), lastEvent.mapped, lastEvent.startSelection, none$1));
+               done = updateBranch(done, done.length - 1, config.minDepth, new HistEvent(event.changes.compose(lastEvent.changes), conc(event.effects, lastEvent.effects), lastEvent.mapped, lastEvent.startSelection, none));
            }
            else {
                done = updateBranch(done, done.length, config.minDepth, event);
            }
-           return new HistoryState(done, none$1, time, userEvent);
+           return new HistoryState(done, none, time, userEvent);
        }
        addSelection(selection, time, userEvent, newGroupDelay) {
-           let last = this.done.length ? this.done[this.done.length - 1].selectionsAfter : none$1;
+           let last = this.done.length ? this.done[this.done.length - 1].selectionsAfter : none;
            if (last.length > 0 &&
                time - this.prevTime < newGroupDelay &&
                userEvent == this.prevUserEvent && userEvent && /^select($|\.)/.test(userEvent) &&
@@ -19273,7 +18262,7 @@ var cm6 = (function (exports) {
                return null;
            }
            else {
-               let rest = branch.length == 1 ? none$1 : branch.slice(0, branch.length - 1);
+               let rest = branch.length == 1 ? none : branch.slice(0, branch.length - 1);
                if (event.mapped)
                    rest = addMappingToBranch(rest, event.mapped);
                return state.update({
@@ -19288,7 +18277,7 @@ var cm6 = (function (exports) {
            }
        }
    }
-   HistoryState.empty = /*@__PURE__*/new HistoryState(none$1, none$1);
+   HistoryState.empty = /*@__PURE__*/new HistoryState(none, none);
    /**
    Default key bindings for the undo history.
 
@@ -20226,1328 +19215,6 @@ var cm6 = (function (exports) {
    */
    const indentWithTab = { key: "Tab", run: indentMore, shift: indentLess };
 
-   /**
-   An instance of this is passed to completion source functions.
-   */
-   class CompletionContext {
-       /**
-       Create a new completion context. (Mostly useful for testing
-       completion sources—in the editor, the extension will create
-       these for you.)
-       */
-       constructor(
-       /**
-       The editor state that the completion happens in.
-       */
-       state, 
-       /**
-       The position at which the completion is happening.
-       */
-       pos, 
-       /**
-       Indicates whether completion was activated explicitly, or
-       implicitly by typing. The usual way to respond to this is to
-       only return completions when either there is part of a
-       completable entity before the cursor, or `explicit` is true.
-       */
-       explicit) {
-           this.state = state;
-           this.pos = pos;
-           this.explicit = explicit;
-           /**
-           @internal
-           */
-           this.abortListeners = [];
-       }
-       /**
-       Get the extent, content, and (if there is a token) type of the
-       token before `this.pos`.
-       */
-       tokenBefore(types) {
-           let token = syntaxTree(this.state).resolveInner(this.pos, -1);
-           while (token && types.indexOf(token.name) < 0)
-               token = token.parent;
-           return token ? { from: token.from, to: this.pos,
-               text: this.state.sliceDoc(token.from, this.pos),
-               type: token.type } : null;
-       }
-       /**
-       Get the match of the given expression directly before the
-       cursor.
-       */
-       matchBefore(expr) {
-           let line = this.state.doc.lineAt(this.pos);
-           let start = Math.max(line.from, this.pos - 250);
-           let str = line.text.slice(start - line.from, this.pos - line.from);
-           let found = str.search(ensureAnchor(expr, false));
-           return found < 0 ? null : { from: start + found, to: this.pos, text: str.slice(found) };
-       }
-       /**
-       Yields true when the query has been aborted. Can be useful in
-       asynchronous queries to avoid doing work that will be ignored.
-       */
-       get aborted() { return this.abortListeners == null; }
-       /**
-       Allows you to register abort handlers, which will be called when
-       the query is
-       [aborted](https://codemirror.net/6/docs/ref/#autocomplete.CompletionContext.aborted).
-       */
-       addEventListener(type, listener) {
-           if (type == "abort" && this.abortListeners)
-               this.abortListeners.push(listener);
-       }
-   }
-   function toSet(chars) {
-       let flat = Object.keys(chars).join("");
-       let words = /\w/.test(flat);
-       if (words)
-           flat = flat.replace(/\w/g, "");
-       return `[${words ? "\\w" : ""}${flat.replace(/[^\w\s]/g, "\\$&")}]`;
-   }
-   function prefixMatch(options) {
-       let first = Object.create(null), rest = Object.create(null);
-       for (let { label } of options) {
-           first[label[0]] = true;
-           for (let i = 1; i < label.length; i++)
-               rest[label[i]] = true;
-       }
-       let source = toSet(first) + toSet(rest) + "*$";
-       return [new RegExp("^" + source), new RegExp(source)];
-   }
-   /**
-   Given a a fixed array of options, return an autocompleter that
-   completes them.
-   */
-   function completeFromList(list) {
-       let options = list.map(o => typeof o == "string" ? { label: o } : o);
-       let [validFor, match] = options.every(o => /^\w+$/.test(o.label)) ? [/\w*$/, /\w+$/] : prefixMatch(options);
-       return (context) => {
-           let token = context.matchBefore(match);
-           return token || context.explicit ? { from: token ? token.from : context.pos, options, validFor } : null;
-       };
-   }
-   class Option {
-       constructor(completion, source, match, score) {
-           this.completion = completion;
-           this.source = source;
-           this.match = match;
-           this.score = score;
-       }
-   }
-   function cur(state) { return state.selection.main.from; }
-   // Make sure the given regexp has a $ at its end and, if `start` is
-   // true, a ^ at its start.
-   function ensureAnchor(expr, start) {
-       var _a;
-       let { source } = expr;
-       let addStart = start && source[0] != "^", addEnd = source[source.length - 1] != "$";
-       if (!addStart && !addEnd)
-           return expr;
-       return new RegExp(`${addStart ? "^" : ""}(?:${source})${addEnd ? "$" : ""}`, (_a = expr.flags) !== null && _a !== void 0 ? _a : (expr.ignoreCase ? "i" : ""));
-   }
-   /**
-   This annotation is added to transactions that are produced by
-   picking a completion.
-   */
-   const pickedCompletion = /*@__PURE__*/Annotation.define();
-   /**
-   Helper function that returns a transaction spec which inserts a
-   completion's text in the main selection range, and any other
-   selection range that has the same text in front of it.
-   */
-   function insertCompletionText(state, text, from, to) {
-       let { main } = state.selection, fromOff = from - main.from, toOff = to - main.from;
-       return Object.assign(Object.assign({}, state.changeByRange(range => {
-           if (range != main && from != to &&
-               state.sliceDoc(range.from + fromOff, range.from + toOff) != state.sliceDoc(from, to))
-               return { range };
-           return {
-               changes: { from: range.from + fromOff, to: to == main.from ? range.to : range.from + toOff, insert: text },
-               range: EditorSelection.cursor(range.from + fromOff + text.length)
-           };
-       })), { scrollIntoView: true, userEvent: "input.complete" });
-   }
-   const SourceCache = /*@__PURE__*/new WeakMap();
-   function asSource(source) {
-       if (!Array.isArray(source))
-           return source;
-       let known = SourceCache.get(source);
-       if (!known)
-           SourceCache.set(source, known = completeFromList(source));
-       return known;
-   }
-   const startCompletionEffect = /*@__PURE__*/StateEffect.define();
-   const closeCompletionEffect = /*@__PURE__*/StateEffect.define();
-
-   // A pattern matcher for fuzzy completion matching. Create an instance
-   // once for a pattern, and then use that to match any number of
-   // completions.
-   class FuzzyMatcher {
-       constructor(pattern) {
-           this.pattern = pattern;
-           this.chars = [];
-           this.folded = [];
-           // Buffers reused by calls to `match` to track matched character
-           // positions.
-           this.any = [];
-           this.precise = [];
-           this.byWord = [];
-           this.score = 0;
-           this.matched = [];
-           for (let p = 0; p < pattern.length;) {
-               let char = codePointAt(pattern, p), size = codePointSize(char);
-               this.chars.push(char);
-               let part = pattern.slice(p, p + size), upper = part.toUpperCase();
-               this.folded.push(codePointAt(upper == part ? part.toLowerCase() : upper, 0));
-               p += size;
-           }
-           this.astral = pattern.length != this.chars.length;
-       }
-       ret(score, matched) {
-           this.score = score;
-           this.matched = matched;
-           return this;
-       }
-       // Matches a given word (completion) against the pattern (input).
-       // Will return a boolean indicating whether there was a match and,
-       // on success, set `this.score` to the score, `this.matched` to an
-       // array of `from, to` pairs indicating the matched parts of `word`.
-       //
-       // The score is a number that is more negative the worse the match
-       // is. See `Penalty` above.
-       match(word) {
-           if (this.pattern.length == 0)
-               return this.ret(-100 /* Penalty.NotFull */, []);
-           if (word.length < this.pattern.length)
-               return null;
-           let { chars, folded, any, precise, byWord } = this;
-           // For single-character queries, only match when they occur right
-           // at the start
-           if (chars.length == 1) {
-               let first = codePointAt(word, 0), firstSize = codePointSize(first);
-               let score = firstSize == word.length ? 0 : -100 /* Penalty.NotFull */;
-               if (first == chars[0]) ;
-               else if (first == folded[0])
-                   score += -200 /* Penalty.CaseFold */;
-               else
-                   return null;
-               return this.ret(score, [0, firstSize]);
-           }
-           let direct = word.indexOf(this.pattern);
-           if (direct == 0)
-               return this.ret(word.length == this.pattern.length ? 0 : -100 /* Penalty.NotFull */, [0, this.pattern.length]);
-           let len = chars.length, anyTo = 0;
-           if (direct < 0) {
-               for (let i = 0, e = Math.min(word.length, 200); i < e && anyTo < len;) {
-                   let next = codePointAt(word, i);
-                   if (next == chars[anyTo] || next == folded[anyTo])
-                       any[anyTo++] = i;
-                   i += codePointSize(next);
-               }
-               // No match, exit immediately
-               if (anyTo < len)
-                   return null;
-           }
-           // This tracks the extent of the precise (non-folded, not
-           // necessarily adjacent) match
-           let preciseTo = 0;
-           // Tracks whether there is a match that hits only characters that
-           // appear to be starting words. `byWordFolded` is set to true when
-           // a case folded character is encountered in such a match
-           let byWordTo = 0, byWordFolded = false;
-           // If we've found a partial adjacent match, these track its state
-           let adjacentTo = 0, adjacentStart = -1, adjacentEnd = -1;
-           let hasLower = /[a-z]/.test(word), wordAdjacent = true;
-           // Go over the option's text, scanning for the various kinds of matches
-           for (let i = 0, e = Math.min(word.length, 200), prevType = 0 /* Tp.NonWord */; i < e && byWordTo < len;) {
-               let next = codePointAt(word, i);
-               if (direct < 0) {
-                   if (preciseTo < len && next == chars[preciseTo])
-                       precise[preciseTo++] = i;
-                   if (adjacentTo < len) {
-                       if (next == chars[adjacentTo] || next == folded[adjacentTo]) {
-                           if (adjacentTo == 0)
-                               adjacentStart = i;
-                           adjacentEnd = i + 1;
-                           adjacentTo++;
-                       }
-                       else {
-                           adjacentTo = 0;
-                       }
-                   }
-               }
-               let ch, type = next < 0xff
-                   ? (next >= 48 && next <= 57 || next >= 97 && next <= 122 ? 2 /* Tp.Lower */ : next >= 65 && next <= 90 ? 1 /* Tp.Upper */ : 0 /* Tp.NonWord */)
-                   : ((ch = fromCodePoint(next)) != ch.toLowerCase() ? 1 /* Tp.Upper */ : ch != ch.toUpperCase() ? 2 /* Tp.Lower */ : 0 /* Tp.NonWord */);
-               if (!i || type == 1 /* Tp.Upper */ && hasLower || prevType == 0 /* Tp.NonWord */ && type != 0 /* Tp.NonWord */) {
-                   if (chars[byWordTo] == next || (folded[byWordTo] == next && (byWordFolded = true)))
-                       byWord[byWordTo++] = i;
-                   else if (byWord.length)
-                       wordAdjacent = false;
-               }
-               prevType = type;
-               i += codePointSize(next);
-           }
-           if (byWordTo == len && byWord[0] == 0 && wordAdjacent)
-               return this.result(-100 /* Penalty.ByWord */ + (byWordFolded ? -200 /* Penalty.CaseFold */ : 0), byWord, word);
-           if (adjacentTo == len && adjacentStart == 0)
-               return this.ret(-200 /* Penalty.CaseFold */ - word.length + (adjacentEnd == word.length ? 0 : -100 /* Penalty.NotFull */), [0, adjacentEnd]);
-           if (direct > -1)
-               return this.ret(-700 /* Penalty.NotStart */ - word.length, [direct, direct + this.pattern.length]);
-           if (adjacentTo == len)
-               return this.ret(-200 /* Penalty.CaseFold */ + -700 /* Penalty.NotStart */ - word.length, [adjacentStart, adjacentEnd]);
-           if (byWordTo == len)
-               return this.result(-100 /* Penalty.ByWord */ + (byWordFolded ? -200 /* Penalty.CaseFold */ : 0) + -700 /* Penalty.NotStart */ +
-                   (wordAdjacent ? 0 : -1100 /* Penalty.Gap */), byWord, word);
-           return chars.length == 2 ? null
-               : this.result((any[0] ? -700 /* Penalty.NotStart */ : 0) + -200 /* Penalty.CaseFold */ + -1100 /* Penalty.Gap */, any, word);
-       }
-       result(score, positions, word) {
-           let result = [], i = 0;
-           for (let pos of positions) {
-               let to = pos + (this.astral ? codePointSize(codePointAt(word, pos)) : 1);
-               if (i && result[i - 1] == pos)
-                   result[i - 1] = to;
-               else {
-                   result[i++] = pos;
-                   result[i++] = to;
-               }
-           }
-           return this.ret(score - word.length, result);
-       }
-   }
-   class StrictMatcher {
-       constructor(pattern) {
-           this.pattern = pattern;
-           this.matched = [];
-           this.score = 0;
-           this.folded = pattern.toLowerCase();
-       }
-       match(word) {
-           if (word.length < this.pattern.length)
-               return null;
-           let start = word.slice(0, this.pattern.length);
-           let match = start == this.pattern ? 0 : start.toLowerCase() == this.folded ? -200 /* Penalty.CaseFold */ : null;
-           if (match == null)
-               return null;
-           this.matched = [0, start.length];
-           this.score = match + (word.length == this.pattern.length ? 0 : -100 /* Penalty.NotFull */);
-           return this;
-       }
-   }
-
-   const completionConfig = /*@__PURE__*/Facet.define({
-       combine(configs) {
-           return combineConfig(configs, {
-               activateOnTyping: true,
-               activateOnCompletion: () => false,
-               activateOnTypingDelay: 100,
-               selectOnOpen: true,
-               override: null,
-               closeOnBlur: true,
-               maxRenderedOptions: 100,
-               defaultKeymap: true,
-               tooltipClass: () => "",
-               optionClass: () => "",
-               aboveCursor: false,
-               icons: true,
-               addToOptions: [],
-               positionInfo: defaultPositionInfo,
-               filterStrict: false,
-               compareCompletions: (a, b) => a.label.localeCompare(b.label),
-               interactionDelay: 75,
-               updateSyncTime: 100
-           }, {
-               defaultKeymap: (a, b) => a && b,
-               closeOnBlur: (a, b) => a && b,
-               icons: (a, b) => a && b,
-               tooltipClass: (a, b) => c => joinClass(a(c), b(c)),
-               optionClass: (a, b) => c => joinClass(a(c), b(c)),
-               addToOptions: (a, b) => a.concat(b),
-               filterStrict: (a, b) => a || b,
-           });
-       }
-   });
-   function joinClass(a, b) {
-       return a ? b ? a + " " + b : a : b;
-   }
-   function defaultPositionInfo(view, list, option, info, space, tooltip) {
-       let rtl = view.textDirection == Direction.RTL, left = rtl, narrow = false;
-       let side = "top", offset, maxWidth;
-       let spaceLeft = list.left - space.left, spaceRight = space.right - list.right;
-       let infoWidth = info.right - info.left, infoHeight = info.bottom - info.top;
-       if (left && spaceLeft < Math.min(infoWidth, spaceRight))
-           left = false;
-       else if (!left && spaceRight < Math.min(infoWidth, spaceLeft))
-           left = true;
-       if (infoWidth <= (left ? spaceLeft : spaceRight)) {
-           offset = Math.max(space.top, Math.min(option.top, space.bottom - infoHeight)) - list.top;
-           maxWidth = Math.min(400 /* Info.Width */, left ? spaceLeft : spaceRight);
-       }
-       else {
-           narrow = true;
-           maxWidth = Math.min(400 /* Info.Width */, (rtl ? list.right : space.right - list.left) - 30 /* Info.Margin */);
-           let spaceBelow = space.bottom - list.bottom;
-           if (spaceBelow >= infoHeight || spaceBelow > list.top) { // Below the completion
-               offset = option.bottom - list.top;
-           }
-           else { // Above it
-               side = "bottom";
-               offset = list.bottom - option.top;
-           }
-       }
-       let scaleY = (list.bottom - list.top) / tooltip.offsetHeight;
-       let scaleX = (list.right - list.left) / tooltip.offsetWidth;
-       return {
-           style: `${side}: ${offset / scaleY}px; max-width: ${maxWidth / scaleX}px`,
-           class: "cm-completionInfo-" + (narrow ? (rtl ? "left-narrow" : "right-narrow") : left ? "left" : "right")
-       };
-   }
-
-   function optionContent(config) {
-       let content = config.addToOptions.slice();
-       if (config.icons)
-           content.push({
-               render(completion) {
-                   let icon = document.createElement("div");
-                   icon.classList.add("cm-completionIcon");
-                   if (completion.type)
-                       icon.classList.add(...completion.type.split(/\s+/g).map(cls => "cm-completionIcon-" + cls));
-                   icon.setAttribute("aria-hidden", "true");
-                   return icon;
-               },
-               position: 20
-           });
-       content.push({
-           render(completion, _s, _v, match) {
-               let labelElt = document.createElement("span");
-               labelElt.className = "cm-completionLabel";
-               let label = completion.displayLabel || completion.label, off = 0;
-               for (let j = 0; j < match.length;) {
-                   let from = match[j++], to = match[j++];
-                   if (from > off)
-                       labelElt.appendChild(document.createTextNode(label.slice(off, from)));
-                   let span = labelElt.appendChild(document.createElement("span"));
-                   span.appendChild(document.createTextNode(label.slice(from, to)));
-                   span.className = "cm-completionMatchedText";
-                   off = to;
-               }
-               if (off < label.length)
-                   labelElt.appendChild(document.createTextNode(label.slice(off)));
-               return labelElt;
-           },
-           position: 50
-       }, {
-           render(completion) {
-               if (!completion.detail)
-                   return null;
-               let detailElt = document.createElement("span");
-               detailElt.className = "cm-completionDetail";
-               detailElt.textContent = completion.detail;
-               return detailElt;
-           },
-           position: 80
-       });
-       return content.sort((a, b) => a.position - b.position).map(a => a.render);
-   }
-   function rangeAroundSelected(total, selected, max) {
-       if (total <= max)
-           return { from: 0, to: total };
-       if (selected < 0)
-           selected = 0;
-       if (selected <= (total >> 1)) {
-           let off = Math.floor(selected / max);
-           return { from: off * max, to: (off + 1) * max };
-       }
-       let off = Math.floor((total - selected) / max);
-       return { from: total - (off + 1) * max, to: total - off * max };
-   }
-   class CompletionTooltip {
-       constructor(view, stateField, applyCompletion) {
-           this.view = view;
-           this.stateField = stateField;
-           this.applyCompletion = applyCompletion;
-           this.info = null;
-           this.infoDestroy = null;
-           this.placeInfoReq = {
-               read: () => this.measureInfo(),
-               write: (pos) => this.placeInfo(pos),
-               key: this
-           };
-           this.space = null;
-           this.currentClass = "";
-           let cState = view.state.field(stateField);
-           let { options, selected } = cState.open;
-           let config = view.state.facet(completionConfig);
-           this.optionContent = optionContent(config);
-           this.optionClass = config.optionClass;
-           this.tooltipClass = config.tooltipClass;
-           this.range = rangeAroundSelected(options.length, selected, config.maxRenderedOptions);
-           this.dom = document.createElement("div");
-           this.dom.className = "cm-tooltip-autocomplete";
-           this.updateTooltipClass(view.state);
-           this.dom.addEventListener("mousedown", (e) => {
-               let { options } = view.state.field(stateField).open;
-               for (let dom = e.target, match; dom && dom != this.dom; dom = dom.parentNode) {
-                   if (dom.nodeName == "LI" && (match = /-(\d+)$/.exec(dom.id)) && +match[1] < options.length) {
-                       this.applyCompletion(view, options[+match[1]]);
-                       e.preventDefault();
-                       return;
-                   }
-               }
-           });
-           this.dom.addEventListener("focusout", (e) => {
-               let state = view.state.field(this.stateField, false);
-               if (state && state.tooltip && view.state.facet(completionConfig).closeOnBlur &&
-                   e.relatedTarget != view.contentDOM)
-                   view.dispatch({ effects: closeCompletionEffect.of(null) });
-           });
-           this.showOptions(options, cState.id);
-       }
-       mount() { this.updateSel(); }
-       showOptions(options, id) {
-           if (this.list)
-               this.list.remove();
-           this.list = this.dom.appendChild(this.createListBox(options, id, this.range));
-           this.list.addEventListener("scroll", () => {
-               if (this.info)
-                   this.view.requestMeasure(this.placeInfoReq);
-           });
-       }
-       update(update) {
-           var _a;
-           let cState = update.state.field(this.stateField);
-           let prevState = update.startState.field(this.stateField);
-           this.updateTooltipClass(update.state);
-           if (cState != prevState) {
-               let { options, selected, disabled } = cState.open;
-               if (!prevState.open || prevState.open.options != options) {
-                   this.range = rangeAroundSelected(options.length, selected, update.state.facet(completionConfig).maxRenderedOptions);
-                   this.showOptions(options, cState.id);
-               }
-               this.updateSel();
-               if (disabled != ((_a = prevState.open) === null || _a === void 0 ? void 0 : _a.disabled))
-                   this.dom.classList.toggle("cm-tooltip-autocomplete-disabled", !!disabled);
-           }
-       }
-       updateTooltipClass(state) {
-           let cls = this.tooltipClass(state);
-           if (cls != this.currentClass) {
-               for (let c of this.currentClass.split(" "))
-                   if (c)
-                       this.dom.classList.remove(c);
-               for (let c of cls.split(" "))
-                   if (c)
-                       this.dom.classList.add(c);
-               this.currentClass = cls;
-           }
-       }
-       positioned(space) {
-           this.space = space;
-           if (this.info)
-               this.view.requestMeasure(this.placeInfoReq);
-       }
-       updateSel() {
-           let cState = this.view.state.field(this.stateField), open = cState.open;
-           if (open.selected > -1 && open.selected < this.range.from || open.selected >= this.range.to) {
-               this.range = rangeAroundSelected(open.options.length, open.selected, this.view.state.facet(completionConfig).maxRenderedOptions);
-               this.showOptions(open.options, cState.id);
-           }
-           if (this.updateSelectedOption(open.selected)) {
-               this.destroyInfo();
-               let { completion } = open.options[open.selected];
-               let { info } = completion;
-               if (!info)
-                   return;
-               let infoResult = typeof info === "string" ? document.createTextNode(info) : info(completion);
-               if (!infoResult)
-                   return;
-               if ("then" in infoResult) {
-                   infoResult.then(obj => {
-                       if (obj && this.view.state.field(this.stateField, false) == cState)
-                           this.addInfoPane(obj, completion);
-                   }).catch(e => logException(this.view.state, e, "completion info"));
-               }
-               else {
-                   this.addInfoPane(infoResult, completion);
-               }
-           }
-       }
-       addInfoPane(content, completion) {
-           this.destroyInfo();
-           let wrap = this.info = document.createElement("div");
-           wrap.className = "cm-tooltip cm-completionInfo";
-           if (content.nodeType != null) {
-               wrap.appendChild(content);
-               this.infoDestroy = null;
-           }
-           else {
-               let { dom, destroy } = content;
-               wrap.appendChild(dom);
-               this.infoDestroy = destroy || null;
-           }
-           this.dom.appendChild(wrap);
-           this.view.requestMeasure(this.placeInfoReq);
-       }
-       updateSelectedOption(selected) {
-           let set = null;
-           for (let opt = this.list.firstChild, i = this.range.from; opt; opt = opt.nextSibling, i++) {
-               if (opt.nodeName != "LI" || !opt.id) {
-                   i--; // A section header
-               }
-               else if (i == selected) {
-                   if (!opt.hasAttribute("aria-selected")) {
-                       opt.setAttribute("aria-selected", "true");
-                       set = opt;
-                   }
-               }
-               else {
-                   if (opt.hasAttribute("aria-selected"))
-                       opt.removeAttribute("aria-selected");
-               }
-           }
-           if (set)
-               scrollIntoView(this.list, set);
-           return set;
-       }
-       measureInfo() {
-           let sel = this.dom.querySelector("[aria-selected]");
-           if (!sel || !this.info)
-               return null;
-           let listRect = this.dom.getBoundingClientRect();
-           let infoRect = this.info.getBoundingClientRect();
-           let selRect = sel.getBoundingClientRect();
-           let space = this.space;
-           if (!space) {
-               let win = this.dom.ownerDocument.defaultView || window;
-               space = { left: 0, top: 0, right: win.innerWidth, bottom: win.innerHeight };
-           }
-           if (selRect.top > Math.min(space.bottom, listRect.bottom) - 10 ||
-               selRect.bottom < Math.max(space.top, listRect.top) + 10)
-               return null;
-           return this.view.state.facet(completionConfig).positionInfo(this.view, listRect, selRect, infoRect, space, this.dom);
-       }
-       placeInfo(pos) {
-           if (this.info) {
-               if (pos) {
-                   if (pos.style)
-                       this.info.style.cssText = pos.style;
-                   this.info.className = "cm-tooltip cm-completionInfo " + (pos.class || "");
-               }
-               else {
-                   this.info.style.cssText = "top: -1e6px";
-               }
-           }
-       }
-       createListBox(options, id, range) {
-           const ul = document.createElement("ul");
-           ul.id = id;
-           ul.setAttribute("role", "listbox");
-           ul.setAttribute("aria-expanded", "true");
-           ul.setAttribute("aria-label", this.view.state.phrase("Completions"));
-           let curSection = null;
-           for (let i = range.from; i < range.to; i++) {
-               let { completion, match } = options[i], { section } = completion;
-               if (section) {
-                   let name = typeof section == "string" ? section : section.name;
-                   if (name != curSection && (i > range.from || range.from == 0)) {
-                       curSection = name;
-                       if (typeof section != "string" && section.header) {
-                           ul.appendChild(section.header(section));
-                       }
-                       else {
-                           let header = ul.appendChild(document.createElement("completion-section"));
-                           header.textContent = name;
-                       }
-                   }
-               }
-               const li = ul.appendChild(document.createElement("li"));
-               li.id = id + "-" + i;
-               li.setAttribute("role", "option");
-               let cls = this.optionClass(completion);
-               if (cls)
-                   li.className = cls;
-               for (let source of this.optionContent) {
-                   let node = source(completion, this.view.state, this.view, match);
-                   if (node)
-                       li.appendChild(node);
-               }
-           }
-           if (range.from)
-               ul.classList.add("cm-completionListIncompleteTop");
-           if (range.to < options.length)
-               ul.classList.add("cm-completionListIncompleteBottom");
-           return ul;
-       }
-       destroyInfo() {
-           if (this.info) {
-               if (this.infoDestroy)
-                   this.infoDestroy();
-               this.info.remove();
-               this.info = null;
-           }
-       }
-       destroy() {
-           this.destroyInfo();
-       }
-   }
-   function completionTooltip(stateField, applyCompletion) {
-       return (view) => new CompletionTooltip(view, stateField, applyCompletion);
-   }
-   function scrollIntoView(container, element) {
-       let parent = container.getBoundingClientRect();
-       let self = element.getBoundingClientRect();
-       let scaleY = parent.height / container.offsetHeight;
-       if (self.top < parent.top)
-           container.scrollTop -= (parent.top - self.top) / scaleY;
-       else if (self.bottom > parent.bottom)
-           container.scrollTop += (self.bottom - parent.bottom) / scaleY;
-   }
-
-   // Used to pick a preferred option when two options with the same
-   // label occur in the result.
-   function score(option) {
-       return (option.boost || 0) * 100 + (option.apply ? 10 : 0) + (option.info ? 5 : 0) +
-           (option.type ? 1 : 0);
-   }
-   function sortOptions(active, state) {
-       let options = [];
-       let sections = null;
-       let addOption = (option) => {
-           options.push(option);
-           let { section } = option.completion;
-           if (section) {
-               if (!sections)
-                   sections = [];
-               let name = typeof section == "string" ? section : section.name;
-               if (!sections.some(s => s.name == name))
-                   sections.push(typeof section == "string" ? { name } : section);
-           }
-       };
-       let conf = state.facet(completionConfig);
-       for (let a of active)
-           if (a.hasResult()) {
-               let getMatch = a.result.getMatch;
-               if (a.result.filter === false) {
-                   for (let option of a.result.options) {
-                       addOption(new Option(option, a.source, getMatch ? getMatch(option) : [], 1e9 - options.length));
-                   }
-               }
-               else {
-                   let pattern = state.sliceDoc(a.from, a.to), match;
-                   let matcher = conf.filterStrict ? new StrictMatcher(pattern) : new FuzzyMatcher(pattern);
-                   for (let option of a.result.options)
-                       if (match = matcher.match(option.label)) {
-                           let matched = !option.displayLabel ? match.matched : getMatch ? getMatch(option, match.matched) : [];
-                           addOption(new Option(option, a.source, matched, match.score + (option.boost || 0)));
-                       }
-               }
-           }
-       if (sections) {
-           let sectionOrder = Object.create(null), pos = 0;
-           let cmp = (a, b) => { var _a, _b; return ((_a = a.rank) !== null && _a !== void 0 ? _a : 1e9) - ((_b = b.rank) !== null && _b !== void 0 ? _b : 1e9) || (a.name < b.name ? -1 : 1); };
-           for (let s of sections.sort(cmp)) {
-               pos -= 1e5;
-               sectionOrder[s.name] = pos;
-           }
-           for (let option of options) {
-               let { section } = option.completion;
-               if (section)
-                   option.score += sectionOrder[typeof section == "string" ? section : section.name];
-           }
-       }
-       let result = [], prev = null;
-       let compare = conf.compareCompletions;
-       for (let opt of options.sort((a, b) => (b.score - a.score) || compare(a.completion, b.completion))) {
-           let cur = opt.completion;
-           if (!prev || prev.label != cur.label || prev.detail != cur.detail ||
-               (prev.type != null && cur.type != null && prev.type != cur.type) ||
-               prev.apply != cur.apply || prev.boost != cur.boost)
-               result.push(opt);
-           else if (score(opt.completion) > score(prev))
-               result[result.length - 1] = opt;
-           prev = opt.completion;
-       }
-       return result;
-   }
-   class CompletionDialog {
-       constructor(options, attrs, tooltip, timestamp, selected, disabled) {
-           this.options = options;
-           this.attrs = attrs;
-           this.tooltip = tooltip;
-           this.timestamp = timestamp;
-           this.selected = selected;
-           this.disabled = disabled;
-       }
-       setSelected(selected, id) {
-           return selected == this.selected || selected >= this.options.length ? this
-               : new CompletionDialog(this.options, makeAttrs(id, selected), this.tooltip, this.timestamp, selected, this.disabled);
-       }
-       static build(active, state, id, prev, conf) {
-           let options = sortOptions(active, state);
-           if (!options.length) {
-               return prev && active.some(a => a.state == 1 /* State.Pending */) ?
-                   new CompletionDialog(prev.options, prev.attrs, prev.tooltip, prev.timestamp, prev.selected, true) : null;
-           }
-           let selected = state.facet(completionConfig).selectOnOpen ? 0 : -1;
-           if (prev && prev.selected != selected && prev.selected != -1) {
-               let selectedValue = prev.options[prev.selected].completion;
-               for (let i = 0; i < options.length; i++)
-                   if (options[i].completion == selectedValue) {
-                       selected = i;
-                       break;
-                   }
-           }
-           return new CompletionDialog(options, makeAttrs(id, selected), {
-               pos: active.reduce((a, b) => b.hasResult() ? Math.min(a, b.from) : a, 1e8),
-               create: createTooltip,
-               above: conf.aboveCursor,
-           }, prev ? prev.timestamp : Date.now(), selected, false);
-       }
-       map(changes) {
-           return new CompletionDialog(this.options, this.attrs, Object.assign(Object.assign({}, this.tooltip), { pos: changes.mapPos(this.tooltip.pos) }), this.timestamp, this.selected, this.disabled);
-       }
-   }
-   class CompletionState {
-       constructor(active, id, open) {
-           this.active = active;
-           this.id = id;
-           this.open = open;
-       }
-       static start() {
-           return new CompletionState(none, "cm-ac-" + Math.floor(Math.random() * 2e6).toString(36), null);
-       }
-       update(tr) {
-           let { state } = tr, conf = state.facet(completionConfig);
-           let sources = conf.override ||
-               state.languageDataAt("autocomplete", cur(state)).map(asSource);
-           let active = sources.map(source => {
-               let value = this.active.find(s => s.source == source) ||
-                   new ActiveSource(source, this.active.some(a => a.state != 0 /* State.Inactive */) ? 1 /* State.Pending */ : 0 /* State.Inactive */);
-               return value.update(tr, conf);
-           });
-           if (active.length == this.active.length && active.every((a, i) => a == this.active[i]))
-               active = this.active;
-           let open = this.open;
-           if (open && tr.docChanged)
-               open = open.map(tr.changes);
-           if (tr.selection || active.some(a => a.hasResult() && tr.changes.touchesRange(a.from, a.to)) ||
-               !sameResults(active, this.active))
-               open = CompletionDialog.build(active, state, this.id, open, conf);
-           else if (open && open.disabled && !active.some(a => a.state == 1 /* State.Pending */))
-               open = null;
-           if (!open && active.every(a => a.state != 1 /* State.Pending */) && active.some(a => a.hasResult()))
-               active = active.map(a => a.hasResult() ? new ActiveSource(a.source, 0 /* State.Inactive */) : a);
-           for (let effect of tr.effects)
-               if (effect.is(setSelectedEffect))
-                   open = open && open.setSelected(effect.value, this.id);
-           return active == this.active && open == this.open ? this : new CompletionState(active, this.id, open);
-       }
-       get tooltip() { return this.open ? this.open.tooltip : null; }
-       get attrs() { return this.open ? this.open.attrs : this.active.length ? baseAttrs : noAttrs; }
-   }
-   function sameResults(a, b) {
-       if (a == b)
-           return true;
-       for (let iA = 0, iB = 0;;) {
-           while (iA < a.length && !a[iA].hasResult)
-               iA++;
-           while (iB < b.length && !b[iB].hasResult)
-               iB++;
-           let endA = iA == a.length, endB = iB == b.length;
-           if (endA || endB)
-               return endA == endB;
-           if (a[iA++].result != b[iB++].result)
-               return false;
-       }
-   }
-   const baseAttrs = {
-       "aria-autocomplete": "list"
-   };
-   const noAttrs = {};
-   function makeAttrs(id, selected) {
-       let result = {
-           "aria-autocomplete": "list",
-           "aria-haspopup": "listbox",
-           "aria-controls": id
-       };
-       if (selected > -1)
-           result["aria-activedescendant"] = id + "-" + selected;
-       return result;
-   }
-   const none = [];
-   function getUserEvent(tr, conf) {
-       if (tr.isUserEvent("input.complete")) {
-           let completion = tr.annotation(pickedCompletion);
-           if (completion && conf.activateOnCompletion(completion))
-               return "input";
-       }
-       return tr.isUserEvent("input.type") ? "input" : tr.isUserEvent("delete.backward") ? "delete" : null;
-   }
-   class ActiveSource {
-       constructor(source, state, explicitPos = -1) {
-           this.source = source;
-           this.state = state;
-           this.explicitPos = explicitPos;
-       }
-       hasResult() { return false; }
-       update(tr, conf) {
-           let event = getUserEvent(tr, conf), value = this;
-           if (event)
-               value = value.handleUserEvent(tr, event, conf);
-           else if (tr.docChanged)
-               value = value.handleChange(tr);
-           else if (tr.selection && value.state != 0 /* State.Inactive */)
-               value = new ActiveSource(value.source, 0 /* State.Inactive */);
-           for (let effect of tr.effects) {
-               if (effect.is(startCompletionEffect))
-                   value = new ActiveSource(value.source, 1 /* State.Pending */, effect.value ? cur(tr.state) : -1);
-               else if (effect.is(closeCompletionEffect))
-                   value = new ActiveSource(value.source, 0 /* State.Inactive */);
-               else if (effect.is(setActiveEffect))
-                   for (let active of effect.value)
-                       if (active.source == value.source)
-                           value = active;
-           }
-           return value;
-       }
-       handleUserEvent(tr, type, conf) {
-           return type == "delete" || !conf.activateOnTyping ? this.map(tr.changes) : new ActiveSource(this.source, 1 /* State.Pending */);
-       }
-       handleChange(tr) {
-           return tr.changes.touchesRange(cur(tr.startState)) ? new ActiveSource(this.source, 0 /* State.Inactive */) : this.map(tr.changes);
-       }
-       map(changes) {
-           return changes.empty || this.explicitPos < 0 ? this : new ActiveSource(this.source, this.state, changes.mapPos(this.explicitPos));
-       }
-   }
-   class ActiveResult extends ActiveSource {
-       constructor(source, explicitPos, result, from, to) {
-           super(source, 2 /* State.Result */, explicitPos);
-           this.result = result;
-           this.from = from;
-           this.to = to;
-       }
-       hasResult() { return true; }
-       handleUserEvent(tr, type, conf) {
-           var _a;
-           let result = this.result;
-           if (result.map && !tr.changes.empty)
-               result = result.map(result, tr.changes);
-           let from = tr.changes.mapPos(this.from), to = tr.changes.mapPos(this.to, 1);
-           let pos = cur(tr.state);
-           if ((this.explicitPos < 0 ? pos <= from : pos < this.from) ||
-               pos > to || !result ||
-               type == "delete" && cur(tr.startState) == this.from)
-               return new ActiveSource(this.source, type == "input" && conf.activateOnTyping ? 1 /* State.Pending */ : 0 /* State.Inactive */);
-           let explicitPos = this.explicitPos < 0 ? -1 : tr.changes.mapPos(this.explicitPos);
-           if (checkValid(result.validFor, tr.state, from, to))
-               return new ActiveResult(this.source, explicitPos, result, from, to);
-           if (result.update &&
-               (result = result.update(result, from, to, new CompletionContext(tr.state, pos, explicitPos >= 0))))
-               return new ActiveResult(this.source, explicitPos, result, result.from, (_a = result.to) !== null && _a !== void 0 ? _a : cur(tr.state));
-           return new ActiveSource(this.source, 1 /* State.Pending */, explicitPos);
-       }
-       handleChange(tr) {
-           return tr.changes.touchesRange(this.from, this.to) ? new ActiveSource(this.source, 0 /* State.Inactive */) : this.map(tr.changes);
-       }
-       map(mapping) {
-           if (mapping.empty)
-               return this;
-           let result = this.result.map ? this.result.map(this.result, mapping) : this.result;
-           if (!result)
-               return new ActiveSource(this.source, 0 /* State.Inactive */);
-           return new ActiveResult(this.source, this.explicitPos < 0 ? -1 : mapping.mapPos(this.explicitPos), this.result, mapping.mapPos(this.from), mapping.mapPos(this.to, 1));
-       }
-   }
-   function checkValid(validFor, state, from, to) {
-       if (!validFor)
-           return false;
-       let text = state.sliceDoc(from, to);
-       return typeof validFor == "function" ? validFor(text, from, to, state) : ensureAnchor(validFor, true).test(text);
-   }
-   const setActiveEffect = /*@__PURE__*/StateEffect.define({
-       map(sources, mapping) { return sources.map(s => s.map(mapping)); }
-   });
-   const setSelectedEffect = /*@__PURE__*/StateEffect.define();
-   const completionState = /*@__PURE__*/StateField.define({
-       create() { return CompletionState.start(); },
-       update(value, tr) { return value.update(tr); },
-       provide: f => [
-           showTooltip.from(f, val => val.tooltip),
-           EditorView.contentAttributes.from(f, state => state.attrs)
-       ]
-   });
-   function applyCompletion(view, option) {
-       const apply = option.completion.apply || option.completion.label;
-       let result = view.state.field(completionState).active.find(a => a.source == option.source);
-       if (!(result instanceof ActiveResult))
-           return false;
-       if (typeof apply == "string")
-           view.dispatch(Object.assign(Object.assign({}, insertCompletionText(view.state, apply, result.from, result.to)), { annotations: pickedCompletion.of(option.completion) }));
-       else
-           apply(view, option.completion, result.from, result.to);
-       return true;
-   }
-   const createTooltip = /*@__PURE__*/completionTooltip(completionState, applyCompletion);
-
-   /**
-   Returns a command that moves the completion selection forward or
-   backward by the given amount.
-   */
-   function moveCompletionSelection(forward, by = "option") {
-       return (view) => {
-           let cState = view.state.field(completionState, false);
-           if (!cState || !cState.open || cState.open.disabled ||
-               Date.now() - cState.open.timestamp < view.state.facet(completionConfig).interactionDelay)
-               return false;
-           let step = 1, tooltip;
-           if (by == "page" && (tooltip = getTooltip(view, cState.open.tooltip)))
-               step = Math.max(2, Math.floor(tooltip.dom.offsetHeight /
-                   tooltip.dom.querySelector("li").offsetHeight) - 1);
-           let { length } = cState.open.options;
-           let selected = cState.open.selected > -1 ? cState.open.selected + step * (forward ? 1 : -1) : forward ? 0 : length - 1;
-           if (selected < 0)
-               selected = by == "page" ? 0 : length - 1;
-           else if (selected >= length)
-               selected = by == "page" ? length - 1 : 0;
-           view.dispatch({ effects: setSelectedEffect.of(selected) });
-           return true;
-       };
-   }
-   /**
-   Accept the current completion.
-   */
-   const acceptCompletion = (view) => {
-       let cState = view.state.field(completionState, false);
-       if (view.state.readOnly || !cState || !cState.open || cState.open.selected < 0 || cState.open.disabled ||
-           Date.now() - cState.open.timestamp < view.state.facet(completionConfig).interactionDelay)
-           return false;
-       return applyCompletion(view, cState.open.options[cState.open.selected]);
-   };
-   /**
-   Explicitly start autocompletion.
-   */
-   const startCompletion = (view) => {
-       let cState = view.state.field(completionState, false);
-       if (!cState)
-           return false;
-       view.dispatch({ effects: startCompletionEffect.of(true) });
-       return true;
-   };
-   /**
-   Close the currently active completion.
-   */
-   const closeCompletion = (view) => {
-       let cState = view.state.field(completionState, false);
-       if (!cState || !cState.active.some(a => a.state != 0 /* State.Inactive */))
-           return false;
-       view.dispatch({ effects: closeCompletionEffect.of(null) });
-       return true;
-   };
-   class RunningQuery {
-       constructor(active, context) {
-           this.active = active;
-           this.context = context;
-           this.time = Date.now();
-           this.updates = [];
-           // Note that 'undefined' means 'not done yet', whereas 'null' means
-           // 'query returned null'.
-           this.done = undefined;
-       }
-   }
-   const MaxUpdateCount = 50, MinAbortTime = 1000;
-   const completionPlugin = /*@__PURE__*/ViewPlugin.fromClass(class {
-       constructor(view) {
-           this.view = view;
-           this.debounceUpdate = -1;
-           this.running = [];
-           this.debounceAccept = -1;
-           this.pendingStart = false;
-           this.composing = 0 /* CompositionState.None */;
-           for (let active of view.state.field(completionState).active)
-               if (active.state == 1 /* State.Pending */)
-                   this.startQuery(active);
-       }
-       update(update) {
-           let cState = update.state.field(completionState);
-           let conf = update.state.facet(completionConfig);
-           if (!update.selectionSet && !update.docChanged && update.startState.field(completionState) == cState)
-               return;
-           let doesReset = update.transactions.some(tr => {
-               return (tr.selection || tr.docChanged) && !getUserEvent(tr, conf);
-           });
-           for (let i = 0; i < this.running.length; i++) {
-               let query = this.running[i];
-               if (doesReset ||
-                   query.updates.length + update.transactions.length > MaxUpdateCount && Date.now() - query.time > MinAbortTime) {
-                   for (let handler of query.context.abortListeners) {
-                       try {
-                           handler();
-                       }
-                       catch (e) {
-                           logException(this.view.state, e);
-                       }
-                   }
-                   query.context.abortListeners = null;
-                   this.running.splice(i--, 1);
-               }
-               else {
-                   query.updates.push(...update.transactions);
-               }
-           }
-           if (this.debounceUpdate > -1)
-               clearTimeout(this.debounceUpdate);
-           if (update.transactions.some(tr => tr.effects.some(e => e.is(startCompletionEffect))))
-               this.pendingStart = true;
-           let delay = this.pendingStart ? 50 : conf.activateOnTypingDelay;
-           this.debounceUpdate = cState.active.some(a => a.state == 1 /* State.Pending */ && !this.running.some(q => q.active.source == a.source))
-               ? setTimeout(() => this.startUpdate(), delay) : -1;
-           if (this.composing != 0 /* CompositionState.None */)
-               for (let tr of update.transactions) {
-                   if (getUserEvent(tr, conf) == "input")
-                       this.composing = 2 /* CompositionState.Changed */;
-                   else if (this.composing == 2 /* CompositionState.Changed */ && tr.selection)
-                       this.composing = 3 /* CompositionState.ChangedAndMoved */;
-               }
-       }
-       startUpdate() {
-           this.debounceUpdate = -1;
-           this.pendingStart = false;
-           let { state } = this.view, cState = state.field(completionState);
-           for (let active of cState.active) {
-               if (active.state == 1 /* State.Pending */ && !this.running.some(r => r.active.source == active.source))
-                   this.startQuery(active);
-           }
-       }
-       startQuery(active) {
-           let { state } = this.view, pos = cur(state);
-           let context = new CompletionContext(state, pos, active.explicitPos == pos);
-           let pending = new RunningQuery(active, context);
-           this.running.push(pending);
-           Promise.resolve(active.source(context)).then(result => {
-               if (!pending.context.aborted) {
-                   pending.done = result || null;
-                   this.scheduleAccept();
-               }
-           }, err => {
-               this.view.dispatch({ effects: closeCompletionEffect.of(null) });
-               logException(this.view.state, err);
-           });
-       }
-       scheduleAccept() {
-           if (this.running.every(q => q.done !== undefined))
-               this.accept();
-           else if (this.debounceAccept < 0)
-               this.debounceAccept = setTimeout(() => this.accept(), this.view.state.facet(completionConfig).updateSyncTime);
-       }
-       // For each finished query in this.running, try to create a result
-       // or, if appropriate, restart the query.
-       accept() {
-           var _a;
-           if (this.debounceAccept > -1)
-               clearTimeout(this.debounceAccept);
-           this.debounceAccept = -1;
-           let updated = [];
-           let conf = this.view.state.facet(completionConfig);
-           for (let i = 0; i < this.running.length; i++) {
-               let query = this.running[i];
-               if (query.done === undefined)
-                   continue;
-               this.running.splice(i--, 1);
-               if (query.done) {
-                   let active = new ActiveResult(query.active.source, query.active.explicitPos, query.done, query.done.from, (_a = query.done.to) !== null && _a !== void 0 ? _a : cur(query.updates.length ? query.updates[0].startState : this.view.state));
-                   // Replay the transactions that happened since the start of
-                   // the request and see if that preserves the result
-                   for (let tr of query.updates)
-                       active = active.update(tr, conf);
-                   if (active.hasResult()) {
-                       updated.push(active);
-                       continue;
-                   }
-               }
-               let current = this.view.state.field(completionState).active.find(a => a.source == query.active.source);
-               if (current && current.state == 1 /* State.Pending */) {
-                   if (query.done == null) {
-                       // Explicitly failed. Should clear the pending status if it
-                       // hasn't been re-set in the meantime.
-                       let active = new ActiveSource(query.active.source, 0 /* State.Inactive */);
-                       for (let tr of query.updates)
-                           active = active.update(tr, conf);
-                       if (active.state != 1 /* State.Pending */)
-                           updated.push(active);
-                   }
-                   else {
-                       // Cleared by subsequent transactions. Restart.
-                       this.startQuery(current);
-                   }
-               }
-           }
-           if (updated.length)
-               this.view.dispatch({ effects: setActiveEffect.of(updated) });
-       }
-   }, {
-       eventHandlers: {
-           blur(event) {
-               let state = this.view.state.field(completionState, false);
-               if (state && state.tooltip && this.view.state.facet(completionConfig).closeOnBlur) {
-                   let dialog = state.open && getTooltip(this.view, state.open.tooltip);
-                   if (!dialog || !dialog.dom.contains(event.relatedTarget))
-                       setTimeout(() => this.view.dispatch({ effects: closeCompletionEffect.of(null) }), 10);
-               }
-           },
-           compositionstart() {
-               this.composing = 1 /* CompositionState.Started */;
-           },
-           compositionend() {
-               if (this.composing == 3 /* CompositionState.ChangedAndMoved */) {
-                   // Safari fires compositionend events synchronously, possibly
-                   // from inside an update, so dispatch asynchronously to avoid reentrancy
-                   setTimeout(() => this.view.dispatch({ effects: startCompletionEffect.of(false) }), 20);
-               }
-               this.composing = 0 /* CompositionState.None */;
-           }
-       }
-   });
-   const windows = typeof navigator == "object" && /*@__PURE__*//Win/.test(navigator.platform);
-   const commitCharacters = /*@__PURE__*/Prec.highest(/*@__PURE__*/EditorView.domEventHandlers({
-       keydown(event, view) {
-           let field = view.state.field(completionState, false);
-           if (!field || !field.open || field.open.disabled || field.open.selected < 0 ||
-               event.key.length > 1 || event.ctrlKey && !(windows && event.altKey) || event.metaKey)
-               return false;
-           let option = field.open.options[field.open.selected];
-           let result = field.active.find(a => a.source == option.source);
-           let commitChars = option.completion.commitCharacters || result.result.commitCharacters;
-           if (commitChars && commitChars.indexOf(event.key) > -1)
-               applyCompletion(view, option);
-           return false;
-       }
-   }));
-
-   const baseTheme = /*@__PURE__*/EditorView.baseTheme({
-       ".cm-tooltip.cm-tooltip-autocomplete": {
-           "& > ul": {
-               fontFamily: "monospace",
-               whiteSpace: "nowrap",
-               overflow: "hidden auto",
-               maxWidth_fallback: "700px",
-               maxWidth: "min(700px, 95vw)",
-               minWidth: "250px",
-               maxHeight: "10em",
-               height: "100%",
-               listStyle: "none",
-               margin: 0,
-               padding: 0,
-               "& > li, & > completion-section": {
-                   padding: "1px 3px",
-                   lineHeight: 1.2
-               },
-               "& > li": {
-                   overflowX: "hidden",
-                   textOverflow: "ellipsis",
-                   cursor: "pointer"
-               },
-               "& > completion-section": {
-                   display: "list-item",
-                   borderBottom: "1px solid silver",
-                   paddingLeft: "0.5em",
-                   opacity: 0.7
-               }
-           }
-       },
-       "&light .cm-tooltip-autocomplete ul li[aria-selected]": {
-           background: "#17c",
-           color: "white",
-       },
-       "&light .cm-tooltip-autocomplete-disabled ul li[aria-selected]": {
-           background: "#777",
-       },
-       "&dark .cm-tooltip-autocomplete ul li[aria-selected]": {
-           background: "#347",
-           color: "white",
-       },
-       "&dark .cm-tooltip-autocomplete-disabled ul li[aria-selected]": {
-           background: "#444",
-       },
-       ".cm-completionListIncompleteTop:before, .cm-completionListIncompleteBottom:after": {
-           content: '"···"',
-           opacity: 0.5,
-           display: "block",
-           textAlign: "center"
-       },
-       ".cm-tooltip.cm-completionInfo": {
-           position: "absolute",
-           padding: "3px 9px",
-           width: "max-content",
-           maxWidth: `${400 /* Info.Width */}px`,
-           boxSizing: "border-box"
-       },
-       ".cm-completionInfo.cm-completionInfo-left": { right: "100%" },
-       ".cm-completionInfo.cm-completionInfo-right": { left: "100%" },
-       ".cm-completionInfo.cm-completionInfo-left-narrow": { right: `${30 /* Info.Margin */}px` },
-       ".cm-completionInfo.cm-completionInfo-right-narrow": { left: `${30 /* Info.Margin */}px` },
-       "&light .cm-snippetField": { backgroundColor: "#00000022" },
-       "&dark .cm-snippetField": { backgroundColor: "#ffffff22" },
-       ".cm-snippetFieldPosition": {
-           verticalAlign: "text-top",
-           width: 0,
-           height: "1.15em",
-           display: "inline-block",
-           margin: "0 -0.7px -.7em",
-           borderLeft: "1.4px dotted #888"
-       },
-       ".cm-completionMatchedText": {
-           textDecoration: "underline"
-       },
-       ".cm-completionDetail": {
-           marginLeft: "0.5em",
-           fontStyle: "italic"
-       },
-       ".cm-completionIcon": {
-           fontSize: "90%",
-           width: ".8em",
-           display: "inline-block",
-           textAlign: "center",
-           paddingRight: ".6em",
-           opacity: "0.6",
-           boxSizing: "content-box"
-       },
-       ".cm-completionIcon-function, .cm-completionIcon-method": {
-           "&:after": { content: "'ƒ'" }
-       },
-       ".cm-completionIcon-class": {
-           "&:after": { content: "'○'" }
-       },
-       ".cm-completionIcon-interface": {
-           "&:after": { content: "'◌'" }
-       },
-       ".cm-completionIcon-variable": {
-           "&:after": { content: "'𝑥'" }
-       },
-       ".cm-completionIcon-constant": {
-           "&:after": { content: "'𝐶'" }
-       },
-       ".cm-completionIcon-type": {
-           "&:after": { content: "'𝑡'" }
-       },
-       ".cm-completionIcon-enum": {
-           "&:after": { content: "'∪'" }
-       },
-       ".cm-completionIcon-property": {
-           "&:after": { content: "'□'" }
-       },
-       ".cm-completionIcon-keyword": {
-           "&:after": { content: "'🔑\uFE0E'" } // Disable emoji rendering
-       },
-       ".cm-completionIcon-namespace": {
-           "&:after": { content: "'▢'" }
-       },
-       ".cm-completionIcon-text": {
-           "&:after": { content: "'abc'", fontSize: "50%", verticalAlign: "middle" }
-       }
-   });
-
    const defaults = {
        brackets: ["(", "[", "{", "'", '"'],
        before: ")]}:;>",
@@ -21793,40 +19460,219 @@ var cm6 = (function (exports) {
        return -1;
    }
 
-   /**
-   Returns an extension that enables autocompletion.
-   */
-   function autocompletion(config = {}) {
-       return [
-           commitCharacters,
-           completionState,
-           completionConfig.of(config),
-           completionPlugin,
-           completionKeymapExt,
-           baseTheme
-       ];
-   }
-   /**
-   Basic keybindings for autocompletion.
+   var createTheme = _ref => {
+     var {
+       theme,
+       settings = {},
+       styles = []
+     } = _ref;
+     var themeOptions = {
+       '.cm-gutters': {}
+     };
+     var baseStyle = {};
+     if (settings.background) {
+       baseStyle.backgroundColor = settings.background;
+     }
+     if (settings.backgroundImage) {
+       baseStyle.backgroundImage = settings.backgroundImage;
+     }
+     if (settings.foreground) {
+       baseStyle.color = settings.foreground;
+     }
+     if (settings.fontSize) {
+       baseStyle.fontSize = settings.fontSize;
+     }
+     if (settings.background || settings.foreground) {
+       themeOptions['&'] = baseStyle;
+     }
+     if (settings.fontFamily) {
+       themeOptions['&.cm-editor .cm-scroller'] = {
+         fontFamily: settings.fontFamily
+       };
+     }
+     if (settings.gutterBackground) {
+       themeOptions['.cm-gutters'].backgroundColor = settings.gutterBackground;
+     }
+     if (settings.gutterForeground) {
+       themeOptions['.cm-gutters'].color = settings.gutterForeground;
+     }
+     if (settings.gutterBorder) {
+       themeOptions['.cm-gutters'].borderRightColor = settings.gutterBorder;
+     }
+     if (settings.caret) {
+       themeOptions['.cm-content'] = {
+         caretColor: settings.caret
+       };
+       themeOptions['.cm-cursor, .cm-dropCursor'] = {
+         borderLeftColor: settings.caret
+       };
+     }
+     var activeLineGutterStyle = {};
+     if (settings.gutterActiveForeground) {
+       activeLineGutterStyle.color = settings.gutterActiveForeground;
+     }
+     if (settings.lineHighlight) {
+       themeOptions['.cm-activeLine'] = {
+         backgroundColor: settings.lineHighlight
+       };
+       activeLineGutterStyle.backgroundColor = settings.lineHighlight;
+     }
+     themeOptions['.cm-activeLineGutter'] = activeLineGutterStyle;
+     if (settings.selection) {
+       themeOptions['&.cm-focused .cm-selectionBackground, & .cm-line::selection, & .cm-selectionLayer .cm-selectionBackground, .cm-content ::selection'] = {
+         background: settings.selection + ' !important'
+       };
+     }
+     if (settings.selectionMatch) {
+       themeOptions['& .cm-selectionMatch'] = {
+         backgroundColor: settings.selectionMatch
+       };
+     }
+     var themeExtension = EditorView.theme(themeOptions, {
+       dark: theme === 'dark'
+     });
+     var highlightStyle = HighlightStyle.define(styles);
+     var extension = [themeExtension, syntaxHighlighting(highlightStyle)];
+     return extension;
+   };
 
-    - Ctrl-Space: [`startCompletion`](https://codemirror.net/6/docs/ref/#autocomplete.startCompletion)
-    - Escape: [`closeCompletion`](https://codemirror.net/6/docs/ref/#autocomplete.closeCompletion)
-    - ArrowDown: [`moveCompletionSelection`](https://codemirror.net/6/docs/ref/#autocomplete.moveCompletionSelection)`(true)`
-    - ArrowUp: [`moveCompletionSelection`](https://codemirror.net/6/docs/ref/#autocomplete.moveCompletionSelection)`(false)`
-    - PageDown: [`moveCompletionSelection`](https://codemirror.net/6/docs/ref/#autocomplete.moveCompletionSelection)`(true, "page")`
-    - PageDown: [`moveCompletionSelection`](https://codemirror.net/6/docs/ref/#autocomplete.moveCompletionSelection)`(true, "page")`
-    - Enter: [`acceptCompletion`](https://codemirror.net/6/docs/ref/#autocomplete.acceptCompletion)
-   */
-   const completionKeymap = [
-       { key: "Ctrl-Space", run: startCompletion },
-       { key: "Escape", run: closeCompletion },
-       { key: "ArrowDown", run: /*@__PURE__*/moveCompletionSelection(true) },
-       { key: "ArrowUp", run: /*@__PURE__*/moveCompletionSelection(false) },
-       { key: "PageDown", run: /*@__PURE__*/moveCompletionSelection(true, "page") },
-       { key: "PageUp", run: /*@__PURE__*/moveCompletionSelection(false, "page") },
-       { key: "Enter", run: acceptCompletion }
+   /**
+    * @name Xcode
+    */
+   const Darky = EditorView.theme({
+       "&": {
+           fontSize: "12pt",
+           color: '#eee'
+       },
+       ".cm-gutters": {
+           color: "#777",
+           minWidth: "25.6px",
+           userSelect: "none"
+       },
+       ".cm-gutter": {
+           minWidth: "100%"
+       },
+       "&.cm-editor": {
+           border: "1px dotted #555;",
+           height: "100%;",
+           width: "100%;"
+       },
+       "&.cm-editor.cm-focused": {
+           outline: "none",
+           border: "1px dotted #aaa;"
+       },
+       "@media only screen and (max-width: 500px)": {
+           ".cm-gutters": {
+               display: "none!important"
+           }
+       },
+       ".cm-scroller::-webkit-scrollbar": {
+           width: '10px'
+       },
+       ".cm-scroller::-webkit-scrollbar-thumb": {
+           background: '#53534e'
+       },
+       ".cm-scroller::-webkit-scrollbar-thumb:hover": {
+           background: '#6b6b65'
+       },
+       ".cm-scroller::-webkit-scrollbar-track": {
+           background: '#111'
+       }
+   }, { dark: true });
+   const Lighty = EditorView.theme({
+       "&": {
+           fontSize: "12pt",
+           color: '#000'
+       },
+       ".cm-gutters": {
+           color: "#999",
+           minWidth: "25.6px",
+           userSelect: "none"
+       },
+       ".cm-gutter": {
+           minWidth: "100%"
+       },
+       "&.cm-editor": {
+           border: "1px dotted #888;",
+           height: "100%;",
+           width: "100%;"
+       },
+       "&.cm-editor.cm-focused": {
+           outline: "none",
+           border: "1px dotted #000;"
+       },
+       "@media only screen and (max-width: 500px)": {
+           ".cm-gutters": {
+               display: "none!important"
+           }
+       }
+   });
+   const defaultSettingsXcodeLight = {
+       background: '#fff',
+       foreground: '#3D3D3D',
+       selection: '#BBDFFF',
+       selectionMatch: '#fae098',
+       gutterBackground: '#eee',
+       gutterForeground: '#AFAFAF',
+       lineHighlight: '#d5e6ff69',
+   };
+   const xcodeLightStyle = [
+       { tag: tags.variableName, color: "#000000" },
+       // Comment / GREEN / #
+       { tag: tags.comment, color: "#277022" },
+       // Number / BROWN / 6 6.6
+       { tag: tags.number, color: "#803900" },
+       // Directive / RED / words: categories: with: letters: random-rate: name:
+       { tag: [tags.className, tags.name], color: "#cf006e" },
+       // Keyword / BLUE / std-ipa-features std-assimilations coronal-metathesis
+       // RegExp / BLUE / . + * ? ^ $ | \ ( ) [ ] { }
+       // Operator / BLUE / = > : 
+       { tag: [tags.keyword, tags.regexp, tags.operator], color: "#024bba" },
+       // Filter / PURPLE / filter: reject: %
+       { tag: tags.modifier, color: "#7a0099" },
    ];
-   const completionKeymapExt = /*@__PURE__*/Prec.highest(/*@__PURE__*/keymap.computeN([completionConfig], state => state.facet(completionConfig).defaultKeymap ? [completionKeymap] : []));
+   function xcodeLightInit(options) {
+       const { theme = 'light', settings = {}, styles = [] } = options || {};
+       return createTheme({
+           theme: theme,
+           settings: Object.assign(Object.assign({}, defaultSettingsXcodeLight), settings),
+           styles: [...xcodeLightStyle, ...styles],
+       });
+   }
+   const xcodeLight = [Lighty, xcodeLightInit()];
+   const defaultSettingsXcodeDark = {
+       background: '#23272e',
+       foreground: '#23272e',
+       gutterBackground: '#1e2227',
+       caret: '#fff',
+       selection: '#22528b',
+       selectionMatch: '#594406',
+       lineHighlight: '#ffffff0f',
+   };
+   const xcodeDarkStyle = [
+       { tag: tags.variableName, color: "#eeeeee" },
+       // Comment / GREEN / #
+       { tag: tags.comment, color: "#bee79d" },
+       // Number / BROWN / 6 6.6
+       { tag: tags.number, color: "#ffcd90" },
+       // Directive / RED / words: categories: with: letters: random-rate: name:
+       { tag: [tags.className, tags.name], color: "#ef629c" },
+       // Keyword / BLUE / std-ipa-features std-assimilations coronal-metathesis
+       // RegExp / BLUE / . + * ? ^ $ | \ ( ) [ ] { }
+       // Operator / BLUE / = > : 
+       { tag: [tags.keyword, tags.regexp, tags.operator], color: "#90bfe4" },
+       // Filter / PURPLE / filter: reject: %
+       { tag: tags.modifier, color: "#ef629c" },
+   ];
+   const xcodeDarkInit = (options) => {
+       const { theme = 'dark', settings = {}, styles = [] } = options || {};
+       return createTheme({
+           theme: theme,
+           settings: Object.assign(Object.assign({}, defaultSettingsXcodeDark), settings),
+           styles: [...xcodeDarkStyle, ...styles],
+       });
+   };
+   const xcodeDark = [Darky, xcodeDarkInit()];
 
    /**
    A parse stack. These are used internally by the parser to track
@@ -23623,7 +21469,7 @@ var cm6 = (function (exports) {
    const parser = LRParser.deserialize({
      version: 14,
      states: "nQYQPOOOOQO'#Cj'#CjOOQO'#Cf'#CfQYQPOOOOQO-E6d-E6d",
-     stateData: "z~O]OSPOS~ORPOSPOTPOUPOVPOWPOXPO~OVUXSR]PS~",
+     stateData: "|~O]OSPOS~ORPOSPOTPOUPOVPOWPOXPO~OVWTUXSR]PX~",
      goto: "j_PPPPPPPPPP`PPPfQRORSRTQOR",
      nodeNames: "⚠ LineComment Program Number Operator Directive DirectiveKeyword Filter Name RegExp",
      maxTerm: 14,
@@ -23645,7 +21491,6 @@ var cm6 = (function (exports) {
                    Application: foldInside
                }),
                styleTags({
-                   //Identifier: t.variableName,
                    LineComment: tags.lineComment,
                    Name: tags.name,
                    Number: tags.number,
@@ -23665,66 +21510,18 @@ var cm6 = (function (exports) {
        return new LanguageSupport(lexiferLanguage);
    }
 
-   const myHighlightStyle = HighlightStyle.define([
-       // Comment / GREEN / #
-       { tag: tags.comment, color: "#277022" },
+   const themeConfig = new Compartment();
 
-       { tag: tags.name, color: "#cf006e" },
-
-       // Number / BROWN / 6 6.6
-       { tag: tags.number, color: "#803900" },
-
-       // Operator / BLUE / = > : 
-       { tag: tags.operator, color: "#024bba" },
-
-       // Directive / RED / words: categories: with: letters: random-rate:
-       { tag: tags.className, color: "#cf006e" },
-
-       // Keyword / BLUE / std-ipa-features std-assimilations coronal-metathesis
-       { tag: tags.keyword, color: "#024bba" },
-
-       // Filter / PURPLE / filter: reject: %
-       { tag: tags.modifier, color: "#7a0099" },
-
-       // RegExp / BLUE / . + * ? ^ $ | \ ( ) [ ] { }
-       { tag: tags.regexp, color: "#024bba" }
-   ]);
-
-
-
-   const FontSizeTheme = EditorView.theme({
-       "&": {
-           fontSize: "12pt"
-       },
-       ".cm-gutters": {
-           color: "#999",
-           minWidth: "25.6px"
-       },
-       ".cm-gutter": {
-           minWidth: "100%"
-       },
-       "&.cm-editor": {
-           border: "1px dotted #888;"
-       },
-       "&.cm-editor.cm-focused": {
-           outline: "none",
-           border: "1px solid #000;"
-       }
-   });
-
-   function createEditorState(initialContents, options = {}) {
+   function createEditorState(initialContents, myTheme) {
        let extensions = [
            lineNumbers(),
            highlightActiveLineGutter(),
-           highlightSpecialChars(),
            history(),
            drawSelection(),
            indentUnit.of("  "),
            EditorState.allowMultipleSelections.of(true),
-           indentOnInput(),
            bracketMatching(),
            closeBrackets(),
-           autocompletion(),
            highlightActiveLine(),
            highlightSelectionMatches(),
            keymap.of([
@@ -23732,16 +21529,10 @@ var cm6 = (function (exports) {
                ...closeBracketsKeymap,
                ...defaultKeymap,
                ...historyKeymap,
-               ...historyKeymap,
-               ...foldKeymap,
-               ...completionKeymap,
            ]),
-           //python(),
            lexifer(),
-           syntaxHighlighting(myHighlightStyle, { fallback: true }),
+           themeConfig.of(themeIdentifier(myTheme))
        ];
-
-       extensions.push(FontSizeTheme);
 
        return EditorState.create({
            doc: initialContents,
@@ -23753,6 +21544,24 @@ var cm6 = (function (exports) {
        return new EditorView({ state, parent });
    }
 
+   function themeIdentifier(myTheme) {
+       switch (myTheme) {
+           case 'light':
+               return xcodeLight;
+           case 'dark':
+               return xcodeDark;
+           default:
+               return xcodeLight;
+       }
+   }
+
+   function changeEditorTheme(myEditor, myTheme) {
+       myEditor.dispatch({
+           effects: themeConfig.reconfigure(themeIdentifier(myTheme))
+       });
+   }
+
+   exports.changeEditorTheme = changeEditorTheme;
    exports.createEditorState = createEditorState;
    exports.createEditorView = createEditorView;
 

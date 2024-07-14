@@ -9,6 +9,7 @@ $(document).ready(function () {
             crumbs.push('<li><a href="' + link + '">' + pageName.replace(/\.(htm[l]?|asp[x]?|php|jsp)$/, '') + '</a></li>');
         }
         crumbs.pop();
+        crumbs.push('<li><a href="#top">top</a></li>');
         $('.breadcrumbs').append(crumbs.join('\n'));
     }
 });
