@@ -510,19 +510,16 @@ div .gll {
   background: #fbf6f9;
 }
 
-.xipa-table {
+.ipa-table {
   overflow-x: auto;
   white-space: nowrap;
-  display: block;
-  padding-bottom: 3px;
 }
-
-.xipa-table tr td{
+.ipa-table tr td{
  padding: 1px 1px 0 0;
  width: 24px;
  height: 26px;
 }
-.xipa-table button {
+.ipa-table button {
   margin: 0 auto;
   padding: 0;
   width: 24px;
@@ -535,22 +532,28 @@ div .gll {
   -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none;
   user-select: none;
 }
-.xipa-table button:hover {
+.ipa-table button:hover {
   -webkit-box-shadow: 1px 1px 3px #7d7d7d;
         box-shadow: 1px 1px 3px #7d7d7d;
 }
-.xipa-table button:active {
+.ipa-table button:active {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
 
 @media only screen and (min-width: 810px) {
-  .xipa-table tr td{
+  .ipa-table tr td{
     padding: 2px 2px 0 0;
     width: 27px;
     height: 27px;
    }
-   .xipa-table button {
+   .ipa-table tr td:first-child {
+    padding-left: 1px;
+  }
+  .ipa-table tr:last-child td {
+    padding-bottom: 1px;
+  }
+   .ipa-table button {
     font-size: 19px;
     width: 27px;
   }
@@ -656,7 +659,7 @@ div .gll {
 
 
 
-#ipa-output textarea, .xipa-table button, #ipa-output #sampaBox,
+#ipa-output textarea, .ipa-table button, #ipa-output #sampaBox,
 #ipa-output-toolbar #symbolsUsed a {
 font-family: "Charis SIL", "Doulos SIL", Gentium, "Arial Unicode MS","Lucida Sans Unicode", Arial, Serif;
 }
