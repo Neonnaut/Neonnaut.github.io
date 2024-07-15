@@ -29,7 +29,7 @@
 <div id="content">
 
 <section id="top">
-<h1>IPA Keyboard and X-Sampa Converter</h1>
+<h1>IPA Keyboard</h1>
 <table class="btns ipa-table" id="IPA">
    <tr>
       <td><button class="Cons" title="voiced bilabial nasal" onclick="writeSampa(event, 'm')">m</button></td>
@@ -378,6 +378,9 @@
    </tr>
 </table>
 
+<h2>X-Sampa Converter</h2>
+<textarea rows="3" id="sampaBox" onkeyup="TranslateSAMPA()" placeholder="X-SAMPA"></textarea>
+
 <div id= "ipa-output">
    <div id="ipa-output-toolbar">
 
@@ -385,8 +388,6 @@
          <input type="button" id="copyButton" value="Copy" onclick="CopyClip();" class="ipa-output-button"/>
          <input type="button" id="clearButton" value="Clear" onclick="ClearFields();" class="ipa-output-button"/>
       </div>
-
-      <textarea rows="1" id="sampaBox" onkeyup="TranslateSAMPA()" placeholder="X-SAMPA"></textarea>
 
       <div id="symbolsUsed">
          <span id="symbolsList"></span>
@@ -404,7 +405,7 @@
 
 <p>'Copy' button or <code class='example'>Ctrl + Shift + Space</code> will copy IPA output to clipboard.</p>
 <p>'Clear' button or <code class='example'>Ctrl + Shift + Backspace</code> will clear all inputs. </p>
-<p>You can also select previously selected characters from a list that appears to the right of the SAMPA textbox.</p>
+<p>You can also select previously selected characters from a list that appears to the right of the 'Clear' button.</p>
 
 <h3>X-SAMPA notation</h3>
 <table class="styled-table sortable" style="max-height: 300px;">
