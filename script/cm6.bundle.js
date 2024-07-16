@@ -21511,6 +21511,7 @@ var cm6 = (function (exports) {
    }
 
    const themeConfig = new Compartment();
+   const lineWrapConfig = new Compartment();
 
    function createEditorState(initialContents, myTheme) {
        let extensions = [
@@ -21531,7 +21532,8 @@ var cm6 = (function (exports) {
                ...historyKeymap,
            ]),
            lexifer(),
-           themeConfig.of(themeIdentifier(myTheme))
+           themeConfig.of(themeIdentifier(myTheme)),
+           lineWrapConfig.of([])
        ];
 
        return EditorState.create({
@@ -21561,6 +21563,15 @@ var cm6 = (function (exports) {
        });
    }
 
+   function changeEditorLineWrap(myEditor, wrapping) {
+       myEditor.dispatch({
+           effects: [lineWrapConfig.reconfigure(
+               wrapping ? EditorView.lineWrapping : []
+           )]
+       });
+   }
+
+   exports.changeEditorLineWrap = changeEditorLineWrap;
    exports.changeEditorTheme = changeEditorTheme;
    exports.createEditorState = createEditorState;
    exports.createEditorView = createEditorView;

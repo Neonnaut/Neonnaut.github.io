@@ -109,9 +109,21 @@ $(window).on('load', function () {
 
     $("#lexiferDarkMode").click(function () {
         if ($("#lexiferDarkMode").is(':checked')) {
+            view.dispatch({
+                lineWrapping: true
+            })
+
+
             cm6.changeEditorTheme(view, "dark");
         } else {
             cm6.changeEditorTheme(view, "light");
+        }
+    });
+    $("#lexiferLineWrap").click(function () {
+        if ($("#lexiferLineWrap").is(':checked')) {
+            cm6.changeEditorLineWrap(view, true);
+        } else {
+            cm6.changeEditorLineWrap(view, false);
         }
     });
 });
