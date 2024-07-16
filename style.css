@@ -3,7 +3,6 @@ html {
   --bg-colour: #333333;
   --red-colour: #d3003f;
   --blue-colour: #0057ba;
-  --bg-colour: #333333;
   --code-bg-colour: #e4e0ee;
 }
 body {
@@ -11,7 +10,8 @@ body {
   font-family: 'Public Sans', Arial, sans-serif;
   font-size: 1.5em;
   line-height: 1.2;
-  margin: 0
+  margin: 0;
+  /* color-scheme: light dark; */
 }
 nav, footer {
   background: #ccc;
@@ -31,7 +31,7 @@ nav, footer {
   display: inline-block;
 }
 .breadcrumbs li img {
-  height: 15px;
+  height: 15px; width: 15px;
 }
 .breadcrumbs li:not(:first-child):before {
   padding: 0 5px;
@@ -470,18 +470,6 @@ div .gll {
   margin-top: 10px;
   background: #f8f8f8;
 }
-/* Stretch editor to fit inside its containing div */
-.cm-editor {
-  height: 100%;
-  width: 100%;
-}
-
-.cm-gutters {  -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none;
-  user-select: none;}
-
-@media only screen and (max-width: 501px) {
-  .cm-gutters {display: none!important;}
-}
 
 /*Ipa stuff */
 .Cons {
@@ -586,26 +574,6 @@ div .gll {
   display: inline-block;
   margin: 0;
 }
-#ipa-output #sampaBox {
-  padding: 0 2px 0 2px;
-  display: inline-block;
-  width: 100px;
-  font-size: 13px;
-  max-width: 400px;
-  border-radius: 0;
-  border: none;
-  outline: none;
-  border-radius: 0;
-  margin: 0;
-  height: 100%;
-  vertical-align: top;
-}
-#ipa-output #sampaBox:focus {
-  border: none;
-  outline: none;
-  margin: 0;
-  vertical-align: bottom;
-}
 
 #ipa-output textarea {
 	font-size:15pt;
@@ -667,8 +635,46 @@ div .gll {
 #ipa-output-toolbar #symbolsUsed a {
 font-family: "Charis SIL", "Doulos SIL", Gentium, "Arial Unicode MS","Lucida Sans Unicode", Arial, Serif;
 }
+.dark-mode { background: #000;}
+.dark-mode section { background: var(--bg-colour);}
+
+.dark-mode h1, .dark-mode h2, .dark-mode h3,
+.dark-mode h4, .dark-mode h5, .dark-mode h6 { color: white;}
+
+.dark-mode p { color: #f5f5f5;}
+
+.dark-mode a { color: #f5f5f5;}
+
+.dark-mode a:link{
+  color: #3de5ff;
+}
+.dark-mode a:visited{
+  color: #3de5ff
+}
+.dark-mode { color: #ffb1de; }
+
+.dark-mode li::marker {
+  color: #999
+}
+.dark-mode li, .dark-mode blockquote {
+  color: #fff
+}
+
+.dark-mode dl, .dark-mode dl dt, .dark-mode dl dd {
+  color: #f5f5f5;
+}
+
+.dark-mode * {
+  color: white;
+}
 
 /* --Mobile first, because that's the hipster thing to do I guess-- */
 @media only screen and (min-width: 701px) {
   section { padding: 30px 30px;}
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background: #000;
+  }
 }

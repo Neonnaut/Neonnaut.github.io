@@ -177,7 +177,7 @@
       <td><button class="Supra" title="major (intonation) group" onclick="writeSampa(event, '&#8214;')">&#8214;</button></td>
    </tr>
    <tr>
-      <td><button class="Cons" title="voiceless bilabial fricative" class="bilabial" onclick="writeSampa(event, '&#632;')">&#632;</button></td>
+      <td><button class="Cons" title="voiceless bilabial fricative" onclick="writeSampa(event, '&#632;')">&#632;</button></td>
       <td><button class="Cons" title="voiceless labiodental fricative" onclick="writeSampa(event, 'f')">f</button></td>
       <td><button class="Cons" title="voiceless dental fricative" onclick="writeSampa(event, '&#952;')">&#952;</button></td>
       <td><button class="Cons" title="voiceless alveolar fricative" onclick="writeSampa(event, 's')">s</button></td>
@@ -204,7 +204,7 @@
       <td><button class="Supra" title="linking (absence of a break)" onclick="writeSampa(event, '&#8255;')">&#8255;</button></td>
    </tr>
    <tr>
-      <td><button class="Cons" title="voiced bilabial fricative" class="bilabial" onclick="writeSampa(event, '&#946;')">&#946;</button></td>
+      <td><button class="Cons" title="voiced bilabial fricative" onclick="writeSampa(event, '&#946;')">&#946;</button></td>
       <td><button class="Cons" title="voiced labiodental fricative" onclick="writeSampa(event, 'v')">v</button></td>
       <td><button class="Cons" title="voiced dental fricative" onclick="writeSampa(event, '&#240;')">&#240;</button></td>
       <td><button class="Cons" title="voiced alveolar fricative" onclick="writeSampa(event, 'z')">z</button></td>
@@ -221,7 +221,7 @@
       <td></td>  <td></td>  <td></td>  <td></td>  <td></td>  <td></td>
    </tr>
    <tr>
-      <td><button class="Cons" title="voiceless bilabial affricate" class="bilabial" onclick="writeSampa(event, 'p&#865;&#632;')">p&#865;&#632;</button></td>
+      <td><button class="Cons" title="voiceless bilabial affricate" onclick="writeSampa(event, 'p&#865;&#632;')">p&#865;&#632;</button></td>
       <td><button class="Cons" title="voiceless labiodental affricate" onclick="writeSampa(event, 'p&#865;f')">p&#865;f</button></td>
       <td><button class="Cons" title="voiceless dental affricate" onclick="writeSampa(event, 't&#810;&#865;&#952;')">t&#810;&#865;&#952;</button></td>
       <td><button class="Cons" title="voiceless alveolar affricate" onclick="writeSampa(event, 't&#865;s')">t&#865;s</button></td>
@@ -247,7 +247,7 @@
       <td><button class="DiacX" title="more rounded (above)" onclick="writeSampa(event, '&#855;')">&#9676;&#855;</button></td>
    </tr> 
    <tr>
-      <td><button class="Cons" title="voiced bilabial affricate" class="bilabial" onclick="writeSampa(event, 'b&#865;&#946;')">b&#865;&#946;</button></td>
+      <td><button class="Cons" title="voiced bilabial affricate" onclick="writeSampa(event, 'b&#865;&#946;')">b&#865;&#946;</button></td>
       <td><button class="Cons" title="voiced labiodental affricate" onclick="writeSampa(event, 'b&#865;v')">b&#865;v</button></td>
       <td><button class="Cons" title="voiced dental affricate" onclick="writeSampa(event, 'd&#810;&#865;&#240;')">d&#810;&#865;&#240;</button></td>
       <td><button class="Cons" title="voiced alveolar affricate" onclick="writeSampa(event, 'd&#865;z')">d&#865;z</button></td>
@@ -394,7 +394,7 @@
       </div>
 
    </div>
-   <textarea class="box" rows="3" id="ipaBox" onkeyup="TranslateIPA()"></textarea>
+   <textarea class="box" rows="3" id="ipaBox" placeholder="IPA" onkeyup="TranslateIPA()"></textarea>
 </div>
 
 </section>
@@ -408,10 +408,10 @@
 <p>You can also select previously selected characters from a list that appears to the right of the 'Clear' button.</p>
 
 <h3>X-SAMPA notation</h3>
-<table class="styled-table sortable" style="max-height: 300px;">
+<table class="styled-table" style="max-height: 300px;">
    <thead>
       <tr>
-         <th class="sorttable_original">X-SAMPA</th>
+         <th>X-SAMPA</th>
          <th>IPA</th>
          <th>Description</th>
       </tr>
@@ -1125,7 +1125,7 @@
       </tr>
       <tr>
       <td><a>&lt;F&gt;</a></td>
-      <td><a>↘</a></td>
+      <td><a>&#8600;&#xFE0E;</a></td>
       <td><a>global fall</a></td>
       </tr>
       <tr>
@@ -1210,7 +1210,7 @@
       </tr>
       <tr>
       <td><a>&lt;R&gt;</a></td>
-      <td><a>↗</a></td>
+      <td><a>&#8599;&#xFE0E;</a></td>
       <td><a>global rise</a></td>
       </tr>
       <tr>
@@ -1256,12 +1256,12 @@
       <tr>
       <td><a>_x</a></td>
       <td><a>&#9676;&#829;</a></td>
-      <td><a>mid-centralized</td>
+      <td><a>mid-centralized</a></td>
       </tr>
    </tbody>
 </table>
 
-<p>To enable X-SAMPA users to convert to the IPA without limitations, or just to make some things easier, XIPA uses some additional notations that are not standard in X-SAMPA:
+<p>To enable X-SAMPA users to convert to the IPA without limitations, or just to make some things easier, XIPA uses some additional notations that are not standard in X-SAMPA:</p>
 <ul>
 <li>The combination <code class='example'>b\</code> gives the labial flap <code class='example'>&#11377;</code>.</li>
 <li>Round brackets <code class='example'>) (</code> are used for <i>tie above</i> and <i>tie below</i>, respectively. They are placed <i>between</i> the adjoining letters; e.g. <code class='example'>t)s</code> gives <code class='example'>t&#865;s</code>.</li>
@@ -1284,13 +1284,15 @@
 <li><code class='example'>_&#715;</code> gives the retroflex marker <code class='example'>&#734;</code> (standard <code class='example'>&#715;</code>).</li>
 </ul></li>
 <li>Typing the X-Sampa retroflex marker <code class='example'>&#715;</code> after a letter that it doesn't merge with will bug the previous letter. To avoid this use <code class='example'>_&#715;</code> instead; e.g. <code class='example'>A&#715;</code> gives <code class='example'>A&#734;</code>, <code class='example'>A_&#715;</code>  gives desired <code class='example'>&#593;&#734;</code>.</li>
-</ul></p>
+</ul>
 
-<hr></hr>
+<hr>
 <p>Made by Aevas & Co. April 2020.</p>
 <p>Updated October 2020.</p>
 
 </section>
+
+</div>
 
 <div style = "height: 110px;"></div>
 
