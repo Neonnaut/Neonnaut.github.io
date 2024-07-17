@@ -11,7 +11,6 @@ body {
   font-size: 1.5em;
   line-height: 1.2;
   margin: 0;
-  /* color-scheme: light dark; */
 }
 nav, footer {
   background: #ccc;
@@ -27,7 +26,7 @@ nav, footer {
 .breadcrumbs li {
   display: inline-block;
 }
-.breadcrumbs li * {
+.breadcrumbs li a {
   display: inline-block;
 }
 .breadcrumbs li img {
@@ -35,7 +34,7 @@ nav, footer {
 }
 .breadcrumbs li:not(:first-child):before {
   padding: 0 5px;
-  color: #2f2f2f;
+  color: #000;
   content: "»";
 }
 section {
@@ -334,7 +333,7 @@ textarea, input, .fake-textbox {
 }
 button, input[type="submit"], input[type="button"], input[type="reset"], input[type="disabled"],
 .dropdown-btn {
-  -webkit-appearance: none;
+  -webkit-appearance: none; -moz-appearance: none;
   background: #fdfdfd;
   border: 1px solid rgba(0, 0, 0, 0.4);
   box-shadow: inset 0 1px 3px rgb(0 0 0 / 40%), 0 1px rgb(0 0 0 / 10%);
@@ -372,11 +371,10 @@ button, input[type="submit"], input[type="button"], input[type="reset"], input[t
   background: #fff;
   padding: 3px;
   margin-top: 6px;
-  border-radius: 3px;
-  border: solid #e4e4e4;
 
+  border-radius: 3px;
   border: none;
-  border-radius: 0;
+
   -webkit-box-shadow: 1px 1px 3px #aaa;
   box-shadow: 1px 1px 3px #aaa;
   text-decoration: none;
@@ -496,7 +494,6 @@ div .gll {
 .Diac {
   background: #ffffff;
 }
-
 .DiacX {
   background: #fbf6f9;
 }
@@ -557,17 +554,12 @@ div .gll {
 #ipa-output {
   border-top:solid 2px gray;
 }
-
-#ipa-output-toolbar, #ipa-output-toolbar  * {
-  box-sizing: border-box;
-}
 #ipa-output-toolbar {
 	background-color:#f1f1f1;
   height: 22px;
 	white-space:nowrap;
   -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none;
   user-select: none;
-
 }
 
 #ipa-output-toolbar .ipa-output-button {
@@ -632,43 +624,117 @@ div .gll {
   overflow-x: hidden;
 }
 
-
-
 #ipa-output textarea, .ipa-table button, #ipa-output #sampaBox,
 #ipa-output-toolbar #symbolsUsed a {
 font-family: "Charis SIL", "Doulos SIL", Gentium, "Arial Unicode MS","Lucida Sans Unicode", Arial, Serif;
 }
-.dark-mode { background: #000;}
-.dark-mode section { background: var(--bg-colour);}
 
+.dark-mode .dropdown-content { color: #f5f5f5; }
+.dark-mode .dropdown-content a { background: var(--bg-colour);}
+.dark-mode .dropdown-content a:hover { background: #555555}
+
+.dark-mode { background: #000;  color-scheme: dark; }
+.dark-mode section { background: var(--bg-colour);}
 .dark-mode h1, .dark-mode h2, .dark-mode h3,
 .dark-mode h4, .dark-mode h5, .dark-mode h6 { color: white;}
-
 .dark-mode p { color: #f5f5f5;}
-
 .dark-mode a { color: #f5f5f5;}
-
-.dark-mode a:link{
-  color: #3de5ff;
-}
-.dark-mode a:visited{
-  color: #3de5ff
-}
+.dark-mode a:link{ color: #3de5ff;}
+.dark-mode a:visited{ color: #3de5ff}
 .dark-mode { color: #ffb1de; }
+.dark-mode li::marker { color: #999 }
+.dark-mode li, .dark-mode blockquote { color: #fff}
+.dark-mode dl, .dark-mode dl dt, .dark-mode dl dd { color: #f5f5f5;}
+.dark-mode figcaption { color: #f5f5f5;}
 
-.dark-mode li::marker {
-  color: #999
+.dark-mode .styled-table tr:nth-child(even) { background-color: #595959; color: #FFF;}
+
+.dark-mode summary  { color: #f5f5f5;}
+
+.dark-mode address  { color: #f5f5f5;}
+
+.dark-mode table { color: #f5f5f5;}
+
+.dark-mode pre { color: #f5f5f5;}
+
+.dark-mode legend, .dark-mode label { color: #f5f5f5;}
+
+.dark-mode .sortable thead th:not(.sorttable_sorted):not(.sorttable_sorted_reverse):not(.sorttable_original):not(.sorttable_nosort):after {
+  color: #8d9bff
 }
-.dark-mode li, .dark-mode blockquote {
-  color: #fff
+.dark-mode .sorttable_sorted::after, .sorttable_original::after { /*-- down arrow--*/
+  color: #ff4444
+}
+.dark-mode .sorttable_sorted_reverse::after { /*-- up arrow--*/
+  color: #ff4444
 }
 
-.dark-mode dl, .dark-mode dl dt, .dark-mode dl dd {
-  color: #f5f5f5;
+.dark-mode nav { background: #555555;}
+
+.dark-mode textarea, .dark-mode input, .dark-mode .fake-textbox {
+  background: #111;
 }
 
-.dark-mode * {
-  color: white;
+
+/*Ipa stuff */
+.dark-mode .Cons {
+  background: #c4d5a7;
+}
+.dark-mode .Vowel {
+  background: #cbcbec;
+}
+.dark-mode .Supra {
+  background: #e3bde3;
+}
+.dark-mode .Tone {
+  background: #e5c6c6;
+}
+.dark-mode .ConsN {
+  background: #a9d5c7;
+}
+.dark-mode .Other {
+  background: #d6d3a4;
+}
+.dark-mode .Diac {
+  background: #e5e5e5;
+}
+.dark-mode .DiacX {
+  background: #d2d0d1;
+}
+
+.dark-mode #ipa-output-toolbar, .dark-mode #ipa-output {
+	background-color:#808080;
+}
+
+
+.dark-mode button, .dark-mode input[type="submit"], .dark-mode input[type="button"],
+.dark-mode input[type="reset"], .dark-mode input[type="disabled"],
+.dark-mode .dropdown-btn {
+  background: #111;
+  color: #eee;
+}
+.dark-mode button:hover, .dark-mode input[type="submit"]:hover,
+.dark-mode input[type="button"]:hover,
+.dark-mode input[type="reset"]:hover, .dark-mode input[type="disabled"]:hover,
+.dark-mode .dropdown-btn:hover {
+  box-shadow: inset 0 1px 3px rgba(255, 255, 255, 0.15), 0 1px rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+}
+.dark-mode table:not(.ipa-table) button:active, .dark-mode input[type="submit"]:active,
+.dark-mode input[type="button"]:active, .dark-mode input[type="reset"]:active,
+.dark-mode input[type="disabled"]:active,
+.dark-mode .dropdown-btn:active {
+  color: #fff;
+  background: var(--blue-colour);
+}
+
+.dark-mode .ipa-table button {
+  color: #000;
+}
+
+.dark-mode .dropdown-group a {
+  background: #111;
+  color: #eee;
 }
 
 /* --Mobile first, because that's the hipster thing to do I guess-- */
