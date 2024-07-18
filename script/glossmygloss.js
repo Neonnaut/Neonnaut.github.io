@@ -201,7 +201,7 @@ function convert(conv) {
 				htmlOutput += "  <tr>" + parsedEntry + "</tr>" + "\n";
 				//Do something if skip line or last line
 			} else if (lines[col_num] == "") {
-				htmlOutput += "  <tr><td colspan=" + maxColumns + ">" + "<br/>" + "</td></tr>" + "\n";
+				htmlOutput += "  <tr><td colspan=" + maxColumns + ">" + "<br>" + "</td></tr>" + "\n";
 			} else if (skipline || col_num + 1 == lines.length) {
 				htmlOutput += "  <tr><td colspan=" + maxColumns + ">" + lines[col_num] + "</td></tr>" + "\n";
 				//Else do normal line
@@ -250,7 +250,7 @@ function convert(conv) {
 					interOutput += ""
 				}
 				if (row_num != noOfLines - 1) {
-					interOutput += "<br/>";
+					interOutput += "<br>";
 				}
 			}
 			interOutput += "</div>\n";
@@ -839,9 +839,9 @@ Converter.prototype.finish = function (input) {
 Converter.prototype.finishAndShow = function (input) {
 	if (this.useAcknowledgement) {
 		let ack = "<i class='gmg-ack'>Gloss provided by <a href='https://neonnaut.github.io/'>Gloss My Gloss</a></i>";
-		this.output = input + ack + "<br>" + "<br><textarea id='GMGOutput' spellcheck='false'>" + input + "\n" + ack + "</textarea>";
+		this.output = "<span>" + input + ack + "</span><br>" + "<textarea id='GMGOutput' spellcheck='false'>" + input + "\n" + ack + "</textarea>";
 	} else {
-		this.output = input + "<br><textarea id='GMGOutput' spellcheck='false'>" + input + "</textarea>";
+		this.output = "<span>" + input + "</span><br>" + "<textarea id='GMGOutput' spellcheck='false'>" + input + "</textarea>";
 	}
 }
 Converter.prototype.finishPlainText = function (input) {

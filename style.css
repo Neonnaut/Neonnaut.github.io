@@ -737,6 +737,8 @@ font-family: "Charis SIL", "Doulos SIL", Gentium, "Arial Unicode MS","Lucida San
   color: #eee;
 }
 
+.dark-mode span { color: #eee; }
+
 /* --Mobile first, because that's the hipster thing to do I guess-- */
 @media only screen and (min-width: 701px) {
   section { padding: 30px 30px;}
