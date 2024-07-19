@@ -19553,6 +19553,7 @@ var cm6 = (function (exports) {
            minWidth: "100%"
        },
        "&.cm-editor": {
+           colorScheme: "dark;",
            border: "1px dotted #555;",
            height: "100%;",
            width: "100%;"
@@ -19565,18 +19566,6 @@ var cm6 = (function (exports) {
            ".cm-gutters": {
                display: "none!important"
            }
-       },
-       ".cm-scroller::-webkit-scrollbar": {
-           width: '10px'
-       },
-       ".cm-scroller::-webkit-scrollbar-thumb": {
-           background: '#53534e'
-       },
-       ".cm-scroller::-webkit-scrollbar-thumb:hover": {
-           background: '#6b6b65'
-       },
-       ".cm-scroller::-webkit-scrollbar-track": {
-           background: '#111'
        }
    }, { dark: true });
    const Lighty = EditorView.theme({

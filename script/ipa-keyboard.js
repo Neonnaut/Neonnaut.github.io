@@ -1,3 +1,70 @@
+$(window).on('load', function () {
+    $(".ipa-button").click(function () {
+        writeSymbolFromButton($(this).attr("value"));
+        writeRecent(
+            $(this).attr("value"),
+            $(this).attr("title"),
+            $(this).html()
+        );
+    });
+
+    $(document).on("click", ".ipa-recent-button", function () {
+        writeSymbolFromButton($(this).attr("value"));
+    });
+
+    $("#copy-button").click(function () { copyClip(); });
+    $("#clear-button").click(function () { clearFields(); });
+
+    $("#sampa-box").on("keyup", function () { translateSAMPA(); });
+    $("#ipa-box").on("keyup", function () { translateIPA(); });
+});
+
+function writeSymbolFromButton(symbol) {
+    var ipaBox = document.getElementById("ipa-box");
+    var savePos = ipaBox.selectionStart;
+    ipaBox.value = ipaBox.value.slice(0, savePos) + symbol + ipaBox.value.slice(savePos);
+    translateIPA(); // Fill sampa box with sampa characters
+    setCaretPosition("ipa-box", savePos + symbol.length);
+}
+
+function writeRecent(symbol, title, face) {
+    // list of used symbols
+    var symbols = document.getElementById('symbols-list').getElementsByTagName('a');
+    var symbolsList = document.getElementById('symbols-list');
+    let newSymbolsList = document.getElementById('symbols-list').cloneNode(true);
+
+    var triggered = false;
+    for (var i = 0; i < symbols.length; i++) {
+        if (symbolsList.children[i].innerHTML == face && triggered == false) {
+            triggered = true;
+            newSymbolsList.removeChild(newSymbolsList.children[i]);
+        }
+    }
+
+    let newATag = document.createElement('a');
+    let newContent = document.createTextNode(face);
+    newATag.appendChild(newContent);
+    //let newOnclick = "writeFromRecent('" + symbol + "')";
+    //newATag.setAttribute("onclick", newOnclick);
+    newATag.setAttribute("class", "ipa-recent-button");
+    newATag.setAttribute("value", symbol);
+    newATag.setAttribute("title", title);
+    //Append new a to empty div
+    newSymbolsList.insertBefore(newATag, newSymbolsList.firstChild);
+
+    symbolsList.innerHTML = newSymbolsList.innerHTML;
+
+    //remove last elements if not visible
+    var docWidth = getDocumentWidth();
+    for (var i = symbolsList.childNodes.length - 1; i >= 0; i--) {
+        if (symbolsList.childNodes[i].offsetLeft + 30 < docWidth) {
+            break;
+        } else {
+            symbolsList.removeChild(symbolsList.childNodes[i]);
+        }
+    }
+
+}
 
 function setCaretPosition(elemId, caretPos) {
     var elem = document.getElementById(elemId);
@@ -19,169 +86,39 @@ function setCaretPosition(elemId, caretPos) {
     }
 }
 
-function hideIPA() {
-    var x = document.getElementById("IPA");
-    if (x.style.display === "none") {
-        x.style.display = "table";
-    } else {
-        x.style.display = "none";
-    }
+function getDocumentWidth() {
+    var width = 0;
+    if (self.innerWidth)
+        width = self.innerWidth;
+    else if (document.documentElement && document.documentElement.clientWidth)
+        width = document.documentElement.clientWidth;
+    else if (document.body && document.body.clientWidth)
+        width = document.body.clientWidth;
+    return width;
 }
 
-function hideIPAsuper() {
-    var x = document.getElementById("IPAsuper");
-    if (x.style.display === "block") {
-        x.style.display = "none";
-    } else {
-        x.style.display = "block";
-    }
-}
-
-function hideSAMPA() {
-    var x = document.getElementById("SAMPA");
-    if (x.style.display === "none") {
-        x.style.display = "block";
-    } else {
-        x.style.display = "none";
-    }
-}
-
-function hideInfo() {
-    var x = document.getElementById("Info");
-    if (x.style.display === "block") {
-        x.style.display = "none";
-    } else {
-        x.style.display = "block";
-    }
-}
-
-function hideLog() {
-    var x = document.getElementById("Log");
-    if (x.style.display === "block") {
-        x.style.display = "none";
-    } else {
-        x.style.display = "block";
-    }
-}
-
-function hideIssues() {
-    var x = document.getElementById("Issues");
-    if (x.style.display === "block") {
-        x.style.display = "none";
-    } else {
-        x.style.display = "block";
-    }
-}
-
-function CopyClip() {
-    var copyText = document.getElementById("ipaBox");
-
+function copyClip() {
+    var copyText = document.getElementById("ipa-box");
     copyText.select();
     copyText.setSelectionRange(0, 99999); /*For mobile devices*/
-
-    document.execCommand("copy");
-    document.getElementById("ipaBox").focus();
+    document.execCommand("copy"); // depreciated?
+    document.getElementById("ipa-box").focus();
 }
 
-
-function doc_keyUp(e) {
-    if (e.ctrlKey && e.shiftKey && e.keyCode == 8) {
-        ClearFields();
-    }
-    else if (e.ctrlKey && e.shiftKey && e.keyCode == 32) {
-        CopyClip();
-    }
-    else if (e.ctrlKey && e.shiftKey && e.keyCode == 13) {
-        ResetClicked();
-    }
-}
-document.addEventListener('keyup', doc_keyUp, false);
-
-
-function ClearFields() {
-
-    document.getElementById("sampaBox").value = "";
-    document.getElementById("ipaBox").value = "";
-    document.getElementById("ipaBox").focus();
+function clearFields() {
+    document.getElementById("sampa-box").value = "";
+    document.getElementById("ipa-box").value = "";
+    document.getElementById("ipa-box").focus();
 }
 
-var classes = ["Cons", "ConsX", "ConsN", "Vowel", "VowelX", "Other", "OtherX", "Supra", "Tone", "Diac", "DiacX"];
-
-function ResetClicked() {
-    for (j = 0; j < classes.length; j++) {
-        var elems = document.getElementsByClassName(classes[j] + "Clicked");
-        for (i = elems.length - 1; i >= 0; i--) {
-            elems[i].className = classes[j];
-        }
-    }
+function translateSAMPA() {
+    var s = document.getElementById("sampa-box").value;
+    document.getElementById("ipa-box").value = x2i(s);
 }
 
-function writeSampa(event, x, reorder = true) {
-    var e = document.getElementById("ipaBox");
-    var savePos = e.selectionStart;
-    e.value = e.value.slice(0, savePos) + x + e.value.slice(savePos);
-    TranslateIPA()
-    setCaretPosition("ipaBox", savePos + x.length);
-    var t = event.target;
-    var c = t.className;
-
-    if (reorder == false) {
-        // Do nothing
-    }
-    else {
-        // list of used symbols
-        var symbolsList = document.getElementById('symbolsList').getElementsByTagName('a');
-        var thingsx = document.getElementById('symbolsList');
-
-        let newSymbolsList = document.getElementById('symbolsList').cloneNode(true);
-
-        if (symbolsList.length == 0) {
-            let newATag = document.createElement('a');
-            let newContent = document.createTextNode(t.innerHTML);
-            newATag.appendChild(newContent);
-            let newOnclick = "writeSampa(event, '" + x + "', false)";
-            newATag.setAttribute("onclick", newOnclick);
-            newATag.setAttribute("title", t.getAttribute("title"));
-            newSymbolsList.appendChild(newATag); //Append new a to empty div
-        } else {
-            var triggered = false;
-            for (var i = 0; i < symbolsList.length; i++) {
-                if (thingsx.children[i].innerHTML == t.innerHTML && triggered == false) {
-                    triggered = true;
-                    newSymbolsList.removeChild(newSymbolsList.children[i]);
-                }
-            }
-
-            let newATag = document.createElement('a');
-            let newContent = document.createTextNode(t.innerHTML);
-            newATag.appendChild(newContent);
-            let newOnclick = "writeSampa(event, '" + x + "', false)";
-            newATag.setAttribute("onclick", newOnclick);
-            newATag.setAttribute("title", t.getAttribute("title"));
-            //Append new a to div
-            newSymbolsList.insertBefore(newATag, newSymbolsList.firstChild);
-
-        }
-
-        if (newSymbolsList.children.length > 16) {
-            newSymbolsList.removeChild(newSymbolsList.lastChild)
-        }
-
-        document.getElementById('symbolsList').innerHTML = newSymbolsList.innerHTML
-    }
-}
-
-
-function TranslateSAMPA() {
-    var s = document.getElementById("sampaBox").value;
-
-    document.getElementById("ipaBox").value = x2i(s);
-}
-
-function TranslateIPA() {
-    var s = document.getElementById("ipaBox").value;
-
-    document.getElementById("sampaBox").value = i2x(s);
+function translateIPA() {
+    var s = document.getElementById("ipa-box").value;
+    document.getElementById("sampa-box").value = i2x(s);
 }
 
 function x2i(tin) {
@@ -475,7 +412,7 @@ function i2x(tin) {
     var tout = "";
     for (i = 0; i < tin.length; i++) {
         var currentchar = tin.charCodeAt(i);
-        switch (currentchar) {///
+        switch (currentchar) {
             case 648: tout += "t`"; break;
             case 598: tout += "d`"; break;
             case 607: tout += "J\\"; break;

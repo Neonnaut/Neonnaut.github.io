@@ -466,35 +466,31 @@ div .gll {
 #editor {
   height: 500px;
   margin-top: 10px;
-  background: #f8f8f8;
-}
-.cm-editor {
-  width: 100%; height: 100%;
 }
 
 /*Ipa stuff */
-.Cons {
+.cons {
   background: #eaffc6;
 }
-.Vowel {
+.vowel {
   background: #dbdbff;
 }
-.Supra {
+.supra {
   background: #ffd2ff;
 }
-.Tone {
+.tone {
   background: #ffdbdb;
 }
-.ConsN {
+.consN {
   background: #c6fae9;
 }
-.Other {
+.other {
   background: #fffbc1;
 }
-.Diac {
+.diac {
   background: #ffffff;
 }
-.DiacX {
+.diacX {
   background: #fbf6f9;
 }
 
@@ -579,7 +575,7 @@ div .gll {
   outline: none;
 }
 
-#ipa-output-toolbar #symbolsUsed a 
+#ipa-output-toolbar #symbols-used a 
 {
   font-size: 12px;
   color: var(--blue-colour);
@@ -591,12 +587,12 @@ div .gll {
   user-select: none;
   -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none;
 }
-#ipa-output-toolbar #symbolsUsed a:hover 
+#ipa-output-toolbar #symbols-used a:hover 
 {
 	background-color:White;
 }
 
-#ipa-output-toolbar #symbolsUsed a:active
+#ipa-output-toolbar #symbols-used a:active
 {
   background: var(--blue-colour);
   color: white;
@@ -604,13 +600,11 @@ div .gll {
   user-select: none;
 }
 
-#ipa-output-toolbar #symbolsUsed,
-#ipa-output-toolbar #symbolsUsedLabel {
+#ipa-output-toolbar #symbols-used,
+#ipa-output-toolbar #symbols-list {
 	display:inline-block;
 }
-
-#symbolsList {
-  display: inline-block;
+#ipa-output-toolbar #symbols-list {
   height: 100%;
 }
 
@@ -625,7 +619,7 @@ div .gll {
 }
 
 #ipa-output textarea, .ipa-table button, #ipa-output #sampaBox,
-#ipa-output-toolbar #symbolsUsed a {
+#ipa-output-toolbar #symbols-used a {
 font-family: "Charis SIL", "Doulos SIL", Gentium, "Arial Unicode MS","Lucida Sans Unicode", Arial, Serif;
 }
 
@@ -677,28 +671,28 @@ font-family: "Charis SIL", "Doulos SIL", Gentium, "Arial Unicode MS","Lucida San
 
 
 /*Ipa stuff */
-.dark-mode .Cons {
+.dark-mode .cons {
   background: #c4d5a7;
 }
-.dark-mode .Vowel {
+.dark-mode .vowel {
   background: #cbcbec;
 }
-.dark-mode .Supra {
+.dark-mode .supra {
   background: #e3bde3;
 }
-.dark-mode .Tone {
+.dark-mode .tone {
   background: #e5c6c6;
 }
-.dark-mode .ConsN {
+.dark-mode .consN {
   background: #a9d5c7;
 }
-.dark-mode .Other {
+.dark-mode .other {
   background: #d6d3a4;
 }
-.dark-mode .Diac {
+.dark-mode .diac {
   background: #e5e5e5;
 }
-.dark-mode .DiacX {
+.dark-mode .diacX {
   background: #d2d0d1;
 }
 
@@ -710,14 +704,14 @@ font-family: "Charis SIL", "Doulos SIL", Gentium, "Arial Unicode MS","Lucida San
 .dark-mode button, .dark-mode input[type="submit"], .dark-mode input[type="button"],
 .dark-mode input[type="reset"], .dark-mode input[type="disabled"],
 .dark-mode .dropdown-btn {
-  background: #111;
+  background: #222;
   color: #eee;
 }
 .dark-mode button:hover, .dark-mode input[type="submit"]:hover,
 .dark-mode input[type="button"]:hover,
 .dark-mode input[type="reset"]:hover, .dark-mode input[type="disabled"]:hover,
 .dark-mode .dropdown-btn:hover {
-  box-shadow: inset 0 1px 3px rgba(255, 255, 255, 0.15), 0 1px rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 1px 3px rgba(255, 255, 255, 0.2), 0 1px rgba(255, 255, 255, 0.1);
   cursor: pointer;
 }
 .dark-mode table:not(.ipa-table) button:active, .dark-mode input[type="submit"]:active,
@@ -737,7 +731,21 @@ font-family: "Charis SIL", "Doulos SIL", Gentium, "Arial Unicode MS","Lucida San
   color: #eee;
 }
 
-.dark-mode span { color: #eee; }
+.dark-mode #GMGResult { color: #eee; }
+
+.dark-mode #ipa-output-toolbar #symbols-used a { color: #00A4BD;}
+.dark-mode #ipa-output-toolbar #symbols-used a:hover 
+{
+	background-color:#b1b1b1;
+  color: #0057ba;
+}
+
+.dark-mode #ipa-output-toolbar #symbols-used a:active
+{
+  background: var(--blue-colour);
+  color: white;
+}
+
 
 /* --Mobile first, because that's the hipster thing to do I guess-- */
 @media only screen and (min-width: 701px) {
