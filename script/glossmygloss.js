@@ -281,6 +281,7 @@ function convert(conv) {
 				var noDiacritics = entriesZ[row_num].normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 				noDiacritics = noDiacritics.replace(/[\u02E5-\u02E9]/g, "˥");
 				noDiacritics = noDiacritics.replace(/[\uA708-\uA716]/g, "˥");
+				noDiacritics = noDiacritics.replace(/\u02DE/g, "");
 
 				let noDiacriticsLength = noDiacritics.length
 				noDiChar = 0;
