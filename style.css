@@ -279,6 +279,7 @@ textarea, input, .fake-textbox {
   background: #fcfcfc;
   white-space: pre;
   text-wrap: wrap;
+  font-size: 16px;
 }
 .fake-textbox {
   -moz-appearance: textfield-multiline;

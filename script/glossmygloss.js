@@ -48,7 +48,7 @@ function glossarize(markup) {
 	//Get noninterlinear lines
 	var notInterlinear = $("#notInterlinear").val().split(",");
 	if (notInterlinear.some(isNaN) == true && notInterlinear.length != 0) {
-		alert("Invalid interlinear line input!");
+		alert("Invalid 'single comma lines' option!");
 		notInterlinear = [];
 	}
 
