@@ -20,7 +20,7 @@ reject: (..+)\\1+
 reject: wu yi w$ y$ h$ ʔʔ (p|t|k|ʔ)h
 filter: nr > tr; mr > pr; ŋ > n`;
     } else if (example == "basic-ex") {
-        choice = `# See the documentation linked above for full details.
+        choice = `# See the documentation below for full details.
 
 # These set up assimilations ("np" will be changed to "mp") and a few other
 # minor things.  It is possible for assimilations to produce phonemes you
@@ -98,28 +98,32 @@ u u ú ù ǔ`;
     } else if (example == "australian") {
         choice = `name: australian-like
 random-rate: 8
-# This does not represent a single Australian language, but produces
-# something Australian looking. The glottal stop and lack of retroflex stops
-# makes it not an 'average' Australian lang, but not unusual.
+# This does not represent a single Australian language, but produces something
+# Australian looking. The glottal stop and lack of retroflex stops makes it
+# not an 'average' Australian language word list, but not unusual.
 
 # CONSONANTS:   
 # p ṫ t   j k ʻ
 # m ṅ n   ñ ŋ
 #     r ɹ y w 
 #     l   ʎ
-C = ṫ t n m l r w ñ k p ɹ ŋ ṅ j y ʎ ʻ
-I = m p w k j ŋ ṅ ñ n y ʎ ṫ
+C = ṫ t n m l r w ñ k y p ɹ ŋ ṅ j ʎ ʻ
+I = S m p w k j ŋ ṅ ñ j n ʎ ṫ
 F = @n @ñ @l @r @ɹ @x @lq @rq @ɹq
 
 # VOWELS: a aa i ii u uu ee oo; things happen to <ee> and <oo> later on.
-V = a:25 i:19 u:17 oo:1 ee:1 aa:1 ii:1 uu:1
+# I use <R> for long vowels.
+V = a:45 i:39 u:37 oR:2 eR:2 aR:2 iR:2 uR:2 ai:1
 
 # Syllable shapes: CV(F), CVFNCV. (C is optional word initially).
 # <l r ɹ> do not occur word initially. only <n ñ l r ɹ> occur word finally.
 $S = CVF?
-$T = I?VF?
+$T = IVF?
 
-words: $T$S$S$S $T$S$S$S$S $T$S$S $T$S
+words: $T$S$S$S $T$S$S$S$S $T$S$S $T$S $T$S$S$S$S$S
+
+#Get onsetless vowels
+filter: S>!
 
 # The following consonant clusters are permissible:
 # [a homorganic nasal] + [stop sequence]
@@ -143,24 +147,52 @@ rq rmp ṫ   t   rñj rŋk m  ṅ  ŋ   n  ñ ʻ y w ʎ r ɹ l
 ɹq ɹmp ɹṅṫ ɹnt j   ɹŋk m  ṅ  ŋ   n  ñ ʻ y w ʎ r ɹ l
 
 # <ee> and <oo> cannot be word initial or final.
-filter: ^ee > i; ^oo > u; ee$ > i; oo$ > u
+filter: ^eR > i; ^oR > u; eR$ > i; oR$ > u
 
 # Long vowels become short before a consonant cluster or <ʻ>
-%  @ ʻ
-oo o oʻ
-ee e eʻ
-ii i iʻ
-aa a aʻ
-uu u uʻ
+%  @  ʻ
+oR o@ oʻ
+eR e@ eʻ
+iR i@ iʻ
+aR a@ aʻ
 
-# <yi> and <wu> become <ye> and <wo>
-filter: yii > ye; wuu > wo; yi > ye; wu > wo
-filter: ye$ > yu; wo$ > ŋu
+# Restrict the occurance of <ai>
+%  ʻ  j  ŋ  ñ  y  w  ʎ  r  ɹ  @ñ  @r  @l  @ɹ  @n  @x  @lq  @rq  @ɹq
+ai aʻ aj aŋ añ ay aw aʎ ar aɹ a@ñ a@r a@l a@ɹ a@n a@x a@lq a@rq a@ɹq
+
+# Long vowels become short at the beginning of a word
+filter: ^aR>a; ^iR>a; ^uR>u; ^ai>a
+
+# i → e / #C[+palatal]aC[-palatal]_
+%   pi   ṫi   ti   ki   mi   ṅi   ŋi   ni   ñi   ʻi   wi   ri   ɹi   li
+^ya yape yaṫe yate yake yame yaṅe yaŋe yane yañe yaʻe yawe yare yaɹe yale
+^ja jape jaṫe jate jake jame jaṅe jaŋe jane jañe jaʻe jawe jare jaɹe jale
+^ʎa ʎape ʎaṫe ʎate ʎake ʎame ʎaṅe ʎaŋe ʎane ʎañe ʎaʻe ʎawe ʎare ʎaɹe ʎale
+
+# a → i / #C[+palatal]V[-long]C[-palatal]_
+%   pa   ṫa   ta   ka   ma   ṅa   ŋa   na   ña   ʻa   wa   ra   ɹa   la
+^ya yapi yaṫi yati yaki yami yaṅi yaŋi yani yañi yaʻi yawi yari yaɹi yali
+^yu yupi yuṫi yuti yuki yumi yuṅi yuŋi yuni yuñi yuʻi yuwi yuri yuɹi yuli
+^ʎa ʎapi ʎaṫi ʎati ʎaki ʎami ʎaṅi ʎaŋi ʎani ʎañi ʎaʻi ʎawi ʎari ʎaɹi ʎali
+^ʎu ʎupi ʎuṫi ʎuti ʎuki ʎumi ʎuṅi ʎuŋi ʎuni ʎuñi ʎuʻi ʎuwi ʎuri ʎuɹi ʎuli
+^ja japi jaṫi jati jaki jami jaṅi jaŋi jani jañi jaʻi jawi jari jaɹi jali
+^ju jupi juṫi juti juki jumi juṅi juŋi juni juñi juʻi juwi juri juɹi juli
+^ji jipi jiṫi jiti jiki jimi jiṅi jiŋi jini jiñi jiʻi jiwi jiri jiɹi jili
+
+# a → u / #waC[-labiovelar]_
+%   pa   ṫa   ta   ka   ma   ṅa   ŋa   na   ña   ʻa   ya   ju   ʎa   ra   ɹa   la
+^wa wapu waṫu watu waku wamu waṅu waŋu wanu wañu waʻu wayu waju waʎu waru waɹu walu
+
+# <yi>, <ʎi> and <wu> become <ye> and <wo>
+filter: yiR>ye; wuR>wo; ʎiR>ʎe; yi>ye; ʎi>ʎe; wu>wo
+filter: ye$>yu; wo$>ŋu; ʎe$>ʎa;
+filter: e$>i; o$>u; eR$>i; oR$>u; 
  
-filter: x>!; q>!; @>!
+filter: x>!; q>!; @>!;
 
 # Romaniser:
-filter: r>rr; ɹ>r; ṅ>nh; ñ>ny; ŋ>ng; ṫ>th; ʎ>ly;`;
+filter: r>rr; ɹ>r; ṅ>nh; ñ>ny; ŋ>ng; ṫ>th; ʎ>ly;
+filter: oR>oo; eR>ee; iR>ii; uR>uu; aR>aa`;
     } else if (example == "japanese") {
         choice = `name: Japanese-like 
 # Japanese-like based on interpreting wikipedia.org/wiki/Japanese_phonology 

@@ -552,7 +552,7 @@ div .gll {
 }
 #ipa-output-toolbar {
 	background-color:#f1f1f1;
-  height: 22px;
+  height: 25px;
 	white-space:nowrap;
   -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none;
   user-select: none;
@@ -575,9 +575,8 @@ div .gll {
   outline: none;
 }
 
-#ipa-output-toolbar #symbols-used a 
-{
-  font-size: 12px;
+#ipa-output-toolbar #symbols-used a {
+  font-size: 17px;
   color: var(--blue-colour);
 	padding-left:1ex;
 	padding-right:1ex;
@@ -587,13 +586,11 @@ div .gll {
   user-select: none;
   -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none;
 }
-#ipa-output-toolbar #symbols-used a:hover 
-{
+#ipa-output-toolbar #symbols-used a:hover {
 	background-color:White;
 }
 
-#ipa-output-toolbar #symbols-used a:active
-{
+#ipa-output-toolbar #symbols-used a:active {
   background: var(--blue-colour);
   color: white;
   -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none;
