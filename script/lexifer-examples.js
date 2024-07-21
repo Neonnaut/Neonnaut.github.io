@@ -107,8 +107,11 @@ random-rate: 8
 # m ṅ n   ñ ŋ
 #     r ɹ y w 
 #     l   ʎ
-C = ṫ t n m l r w ñ k y p ɹ ŋ ṅ j ʎ ʻ
-I = S m p w k j ŋ ṅ ñ j n ʎ ṫ
+
+C = k m ɹ l r j p ŋ ṫ w y ṅ n t ʎ ʻ
+# Initials
+I = S k p m w ŋ y t n ṫ j ñ ṅ ʎ
+# Finals
 F = @n @ñ @l @r @ɹ @x @lq @rq @ɹq
 
 # VOWELS: a aa i ii u uu ee oo; things happen to <ee> and <oo> later on.
@@ -135,16 +138,16 @@ filter: S>!
 # <ɹ> + [a homorganic non-palatal nasal] + [stop sequence]
 # <k / t> + <p>
 # <ṫ / ṅ> + <ʻ>
-%  p   ṫ   t   j   k   m  ṅ  ŋ   n  ñ ʻ y w ʎ r ɹ l
-n  mp  ṅṫ  nt  ñj  ŋk  m  ṅ  ŋ   n  ñ ʻ y w ʎ r ɹ l
-ñ  p   ṫ   t   j   k   m  ṅ  ŋ   n  ñ ʻ y w ʎ r ɹ l
-l  lp  lṫ  t   lj  lk  lm lṅ lŋ  n  ñ ʻ y w ʎ r ɹ l
-r  rp  ṫ   t   rj  rk  rm ṅ  rŋ  n  ñ ʻ y w ʎ r ɹ l
-ɹ  ɹp  ṫ   t   ɹj  ɹk  ɹm ṅ  ɹŋ  ɹn ñ ʻ y w ʎ r ɹ l
-x  p   ṫʻ  tp  j   kp  m  ṅʻ ŋ   n  ñ ʻ y w ʎ r ɹ l
-lq lmp lṅṫ t   lñj lŋk m  ṅ  ŋ   n  ñ ʻ y w ʎ r ɹ l
-rq rmp ṫ   t   rñj rŋk m  ṅ  ŋ   n  ñ ʻ y w ʎ r ɹ l
-ɹq ɹmp ɹṅṫ ɹnt j   ɹŋk m  ṅ  ŋ   n  ñ ʻ y w ʎ r ɹ l
+%  p   ṫ   t   j   k   m  ṅ  ŋ  n  ñ ʻ y w ʎ r ɹ l
+n  mp  ṅṫ  nt  ñj  ŋk  m  ṅ  ŋ  n  ñ ʻ y w ʎ r ɹ l
+ñ  p   ṫ   t   j   k   m  ṅ  ŋ  n  ñ ʻ y w ʎ r ɹ l
+l  lp  lṫ  t   lj  lk  lm lṅ lŋ n  ñ ʻ y w ʎ r ɹ l
+r  rp  ṫ   t   rj  rk  rm ṅ  rŋ n  ñ ʻ y w ʎ r ɹ l
+ɹ  ɹp  ṫ   t   ɹj  ɹk  ɹm ṅ  ɹŋ ɹn ñ ʻ y w ʎ r ɹ l
+x  p   ṫʻ  tp  j   kp  m  ṅʻ ŋ  n  ñ ʻ y w ʎ r ɹ l
+lq lmp lṅṫ t   lñj lŋk m  ṅ  ŋ  n  ñ ʻ y w ʎ r ɹ l
+rq rmp ṫ   t   rñj rŋk m  ṅ  ŋ  n  ñ ʻ y w ʎ r ɹ l
+ɹq ɹmp ɹṅṫ ɹnt j   ɹŋk m  ṅ  ŋ  n  ñ ʻ y w ʎ r ɹ l
 
 # <ee> and <oo> cannot be word initial or final.
 filter: ^eR > i; ^oR > u; eR$ > i; oR$ > u
@@ -168,6 +171,7 @@ filter: ^aR>a; ^iR>a; ^uR>u; ^ai>a
 ^ya yape yaṫe yate yake yame yaṅe yaŋe yane yañe yaʻe yawe yare yaɹe yale
 ^ja jape jaṫe jate jake jame jaṅe jaŋe jane jañe jaʻe jawe jare jaɹe jale
 ^ʎa ʎape ʎaṫe ʎate ʎake ʎame ʎaṅe ʎaŋe ʎane ʎañe ʎaʻe ʎawe ʎare ʎaɹe ʎale
+^ña ñape ñaṫe ñate ñake ñame ñaṅe ñaŋe ñane ñañe ñaʻe ñawe ñare ñaɹe ñale
 
 # a → i / #C[+palatal]V[-long]C[-palatal]_
 %   pa   ṫa   ta   ka   ma   ṅa   ŋa   na   ña   ʻa   wa   ra   ɹa   la
@@ -178,10 +182,9 @@ filter: ^aR>a; ^iR>a; ^uR>u; ^ai>a
 ^ja japi jaṫi jati jaki jami jaṅi jaŋi jani jañi jaʻi jawi jari jaɹi jali
 ^ju jupi juṫi juti juki jumi juṅi juŋi juni juñi juʻi juwi juri juɹi juli
 ^ji jipi jiṫi jiti jiki jimi jiṅi jiŋi jini jiñi jiʻi jiwi jiri jiɹi jili
-
-# a → u / #waC[-labiovelar]_
-%   pa   ṫa   ta   ka   ma   ṅa   ŋa   na   ña   ʻa   ya   ju   ʎa   ra   ɹa   la
-^wa wapu waṫu watu waku wamu waṅu waŋu wanu wañu waʻu wayu waju waʎu waru waɹu walu
+^ña ñapi ñaṫi ñati ñaki ñami ñaṅi ñaŋi ñani ñañi ñaʻi ñawi ñari ñaɹi ñali
+^ñu ñupi ñuṫi ñuti ñuki ñumi ñuṅi ñuŋi ñuni ñuñi ñuʻi ñuwi ñuri ñuɹi ñuli
+^ñi ñipi ñiṫi ñiti ñiki ñimi ñiṅi ñiŋi ñini ñiñi ñiʻi ñiwi ñiri ñiɹi ñili
 
 # <yi>, <ʎi> and <wu> become <ye> and <wo>
 filter: yiR>ye; wuR>wo; ʎiR>ʎe; yi>ye; ʎi>ʎe; wu>wo
@@ -189,10 +192,10 @@ filter: ye$>yu; wo$>ŋu; ʎe$>ʎa;
 filter: e$>i; o$>u; eR$>i; oR$>u; 
  
 filter: x>!; q>!; @>!;
+filter: oR>oo; eR>ee; iR>ii; uR>uu; aR>aa
 
 # Romaniser:
-filter: r>rr; ɹ>r; ṅ>nh; ñ>ny; ŋ>ng; ṫ>th; ʎ>ly;
-filter: oR>oo; eR>ee; iR>ii; uR>uu; aR>aa`;
+filter: r>rr; ɹ>r; ṅ>nh; ñ>ny; ŋ>ng; ṫ>th; ʎ>ly;`;
     } else if (example == "japanese") {
         choice = `name: Japanese-like 
 # Japanese-like based on interpreting wikipedia.org/wiki/Japanese_phonology 
