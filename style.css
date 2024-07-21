@@ -273,7 +273,8 @@ select option:hover {
   color: #FFF;
 }
 textarea {
-  width: 98%;
+  box-sizing: border-box;
+  width: 100%;
 }
 textarea, input, .fake-textbox {
   background: #fcfcfc;
