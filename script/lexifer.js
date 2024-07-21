@@ -1106,27 +1106,13 @@ class WordGenerator {
 
 // Original  -- returns a string
 const genWords = (() => {
-    let hash = 0;
-    let phonDef = null;
-    const hashString = (str) => {
-        let hash = 0;
-        if (str.length === 0) {
-            return hash;
-        }
-        for (let i = 0; i < str.length; ++i) {
-            hash = Math.trunc((hash << 5) - hash + str.codePointAt(i));
-        }
-        return hash;
-    };
-    const lexifer = (file, num, verbose = false, unsorted, onePerLine = false, stderr = console.error) => {
+    const lexifer = (
+        file, num, verbose = false, unsorted, onePerLine = false,
+        stderr = console.error
+    ) => {
         let ans = '';
         try {
-            // There's no need to re-parse if nothing changed.
-            const newHash = hashString(file);
-            if (hash !== newHash || !phonDef) {
-                phonDef = new PhonologyDefinition(file, stderr);
-                hash = newHash;
-            }
+            const phonDef = new PhonologyDefinition(file, stderr);
             if (num) {
                 if (num < 0 || num === Infinity) {
                     stderr(`Cannot generate ${num} words.`);
