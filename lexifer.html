@@ -42,12 +42,12 @@
 
       <details class="dropdown-group">
         <summary class="dropdown-btn">Examples</summary>
-        <a class="lexifer-example" name="basic">Default</a>
-        <a class="lexifer-example" name="basic-ex">Default with Comments</a>
-        <a class="lexifer-example" name="tonal">Tonal</a>
-        <a class="lexifer-example" name="hungarian">(Fake) Hungarian</a>
-        <a class="lexifer-example" name="japanese">(Fake) Japanese</a>
-        <a class="lexifer-example" name="australian">Australian-like</a>
+        <a class="lexifer-example" value="basic">Default</a>
+        <a class="lexifer-example" value="basic-ex">Default with Comments</a>
+        <a class="lexifer-example" value="tonal">Tonal</a>
+        <a class="lexifer-example" value="hungarian">(Fake) Hungarian</a>
+        <a class="lexifer-example" value="japanese">(Fake) Japanese</a>
+        <a class="lexifer-example" value="australian">Australian-like</a>
       </details>
 
       <div id="editor"></div>
@@ -522,6 +522,8 @@ filter: pattern2 > replacement2</pre>
 
       <p>If you want to prevent an entire part of a word from appearing twice in a row, you can <code class="example">reject: (..+)\1</code>. This would prevent e.g. kiki from being generated, as it is just ki twice.</p>
       <p>If you're confident that it is okay to simplify such occurrences, you may instead <code class="example">filter: (..+)\1+ > $1</code>. This would simplify <i>kiki</i> into simply <i>ki</i>. This may not be desirable as it can make words that are significantly shorter than expected.</p>
+
+      <p>If you need to prevent the matching of characters without a combining diacritic to a character with a combining diacritic, you need to use <code class="example">(?=\w|$)</code> after the character. For example <code class="example">filter: o(?=\w|$)x > oy</code> will prevent <code class="example">őx</code> becoming <code class="example">oy</code>.</p>
     </section>
 
   </div>

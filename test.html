@@ -38,7 +38,6 @@
     </ol>
   </nav>
   <div id="content">
-    <button value="wiggy">foobar</button>
     <section id="top">
       <h1>Testing Elements</h1>
       <ul>
@@ -693,11 +692,12 @@ YABRV,your abbreviation
 
       <details class="dropdown-group">
         <summary class="dropdown-btn">Examples</summary>
-        <a class="lexifer-example" name="basic">Default</a>
-        <a class="lexifer-example" name="basic-ex">Default with Comments</a>
-        <a class="lexifer-example" name="tonal">Tonal</a>
-        <a class="lexifer-example" name="hungarian">(Fake) Hungarian</a>
-        <a class="lexifer-example" name="japanese">(Fake) Japanese</a>
+        <a class="lexifer-example" value="basic">Default</a>
+        <a class="lexifer-example" value="basic-ex">Default with Comments</a>
+        <a class="lexifer-example" value="tonal">Tonal</a>
+        <a class="lexifer-example" value="hungarian">(Fake) Hungarian</a>
+        <a class="lexifer-example" value="japanese">(Fake) Japanese</a>
+        <a class="lexifer-example" value="australian">Australian-like</a>
       </details>
 
       <div id="editor"></div>
@@ -1085,13 +1085,10 @@ YABRV,your abbreviation
       <h2>X-Sampa Converter</h2>
       <textarea rows="3" id="sampa-box" placeholder="X-SAMPA"></textarea>
       
-      <div id= "ipa-output">
+      <div id= "ipa-output" style="position: relative;">
          <div id="ipa-output-toolbar">
-      
-            <div style="display: inline-block; vertical-align: top; height: 100%;" >
-               <input type="button" id="copy-button" value="Copy" class="ipa-output-button">
-               <input type="button" id="clear-button" value="Clear" class="ipa-output-button">
-            </div>
+            <input type="button" id="copy-button" value="Copy" class="ipa-output-button">
+            <input type="button" id="clear-button" value="Clear" class="ipa-output-button">
       
             <div id="symbols-used">
                <span id="symbols-list"></span>

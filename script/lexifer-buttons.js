@@ -29,7 +29,7 @@ window.onload = function () {
 
 $(window).on('load', function () {
     $("[class='lexifer-example']").click(function () { //Examples
-        const choice = $(this).attr('name');
+        const choice = $(this).attr('value');
         const text = lexiferExample(choice, true);
         if (text != false) {
             view.dispatch({
