@@ -19554,15 +19554,15 @@ var cm6 = (function (exports) {
        },
        "&.cm-editor": {
            colorScheme: "dark;",
-           border: "1px dotted #555;",
+           border: "1px solid #555;",
            height: "100%;",
            width: "100%;"
        },
        "&.cm-editor.cm-focused": {
            outline: "none",
-           border: "1px dotted #aaa;"
+           border: "1px dotted #379cb0;"
        },
-       "@media only screen and (max-width: 500px)": {
+       "@media only screen and (max-width: 300px)": {
            ".cm-gutters": {
                display: "none!important"
            }
@@ -19582,15 +19582,15 @@ var cm6 = (function (exports) {
            minWidth: "100%"
        },
        "&.cm-editor": {
-           border: "1px dotted #888;",
+           border: "1px solid #ddd;",
            height: "100%;",
            width: "100%;"
        },
        "&.cm-editor.cm-focused": {
            outline: "none",
-           border: "1px dotted #000;"
+           border: "1px dotted #0018c9;"
        },
-       "@media only screen and (max-width: 500px)": {
+       "@media only screen and (max-width: 300px)": {
            ".cm-gutters": {
                display: "none!important"
            }
