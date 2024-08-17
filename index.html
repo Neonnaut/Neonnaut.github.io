@@ -21,7 +21,18 @@
   <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
 </head>
+
 <body>
+  <nav id="myNav">
+    <ol class="breadcrumbs">
+      <li>
+        <a href="https://neonnaut.neocities.org/"><img alt="neocities favicon" src="./img/neonnaut.png"></a>
+      </li>
+      <li style="float: right;">
+        <button id="main_menu"><i class="fa fa-bars"></i> Menu</button>
+      </li>
+    </ol>
+  </nav>
   <div id="content">
 
     <section id="top">
@@ -39,6 +50,7 @@ star.ACC.PL incline.PRS.PTCP but NEG bind.3P.PRS.ACT.IND
         <input type="submit" id="zbbGloss" value="ZBB" name="markupButton">
         <input type="submit" id="cwsGloss" value="CWS" name="markupButton">
         <input type="submit" id="wikiTable" value="Wiki" name="markupButton">
+        <input type="submit" id="redditTable" value="Reddit" name="markupButton">
       </div>
     
       <div id="GMGResult"></div>
@@ -80,6 +92,7 @@ YABRV,your abbreviation
       <p>Refer to the following information on interlinear gloss is and it's purpose:</p>
 
       <a href="https://www.eva.mpg.de/lingua/resources/glossing-rules.php">Lingua Glossing Rules</a>
+      <a href="https://www.eva.mpg.de/lingua/pdf/Glossing-Rules.pdf">Lingua Glossing Rules 2</a>
 
       <h3>Setting Up The Input</h3>
       <p>Be sure to provide at least three lines in the input, with your gloss on the second last line and your translation on the last line. (The ZBB option can work with just two). In this case your input would look like this:</p>
@@ -167,9 +180,20 @@ div .gll {
       <pre class="example">&lt;abbr title="{{{2}}}">{{{1|[?]}}}&lt;/abbr>&lt;noinclude>{{documentation}}&lt;/noinclude>
 </pre>
       <p>And after saving, if your wiki asks for documentation, paste this link: <code class='example'>https://en.wikipedia.org/wiki/Template:Abbr</code></p>
+      
+      <h3>Reddit Table</h3>
+      <p>This outputs to Reddit's "headerless" table format. What fun. Make sure to switch from the "Fancy Pants Editor" to "Markdown Mode" before you paste the output into that website.</p>
 
     </section>
   </div>
+
+  <footer>
+    <ol class="breadcrumbs">
+      <li>
+        <a href="#myNav">Return to top</a>
+      </li>
+    </ol>
+  </footer>
 </body>
 
 </html>
