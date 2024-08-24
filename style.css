@@ -35,10 +35,10 @@ html {
   --mark-bg: #00A4BD;
   --mark-text: #fff;
   /* TABLE */
-  --table-even-rows-bg: #585858;
+  --table-even-rows-bg: #101010;
   --table-even-rows-text: #ddd;
-  --sortable-selected: #8d9bff;
-  --sortable-unselected: #ff2f2f;
+  --sortable-selected: #ff2f2f;
+  --sortable-unselected: #8d9bff;
   /* COLOURS FOR BUTTONS */
   --pale-green: #c4d5a7;
   --dark-green: #a9d5c7;
@@ -84,8 +84,8 @@ html {
   /* TABLE */
   --table-even-rows-bg: #e2e2e2;
   --table-even-rows-text: #000;
-  --sortable-selected: #0057ba;
-  --sortable-unselected: #cc1f1f;
+  --sortable-selected: #cc1f1f;
+  --sortable-unselected: #0057ba;
   /* COLOURS FOR BUTTONS */
   --pale-green: #eaffc6;
   --dark-green: #c6fae9;
@@ -131,8 +131,8 @@ html {
   /* TABLE */
   --table-even-rows-bg: #e5e0d0;
   --table-even-rows-text: #586e75;
-  --sortable-selected: #0057ba;
-  --sortable-unselected: #cc1f1f;
+  --sortable-selected: #cc1f1f;
+  --sortable-unselected: #0057ba;
   /* COLOURS FOR BUTTONS */
   --pale-green: #d1e2b2;
   --dark-green: #b9e6d8;
@@ -212,7 +212,7 @@ h1 {
   font-style: normal;
   font-variant: normal;
   font-weight: 700;
-  line-height: 23px;
+  line-height: 35px;
 }
 h1, h2,h3,h4,h5,h6 { 
   font-family: 'Public Sans', Arial, sans-serif;
@@ -350,9 +350,6 @@ thead {
   white-space: nowrap;
   width: inherit;
 }
-.styled-table a {
-  text-decoration: none;
-}
 .fixed-header{
   width: 400px;
   table-layout: fixed;
@@ -413,6 +410,7 @@ label {
 }
 fieldset {
   border: 2px ridge var(--light-grey-border);
+  padding: 5px 5px;
   margin-bottom: 8px;
 }
 fieldset legend {
@@ -522,16 +520,18 @@ button, input[type="submit"], input[type="button"], input[type="reset"], input[t
 .dropdown-btn {
   width: 100px;
 }
+
+/* /// */
 .dropdown-group a {
   color: var(--button-text);
   display: inline-block;
   background: var(--button-bg);
-  padding: 3px;
+  padding: 5px 5px 3px 5px;
   margin-top: 6px;
   border: none;
 
-  box-shadow: inset 0 1px 3px rgba(88,88,88,0.4), 0 1px rgb(88 88 88 / 10%);
-  -webkit-box-shadow: inset 0 1px 3px rgba(88,88,88,0.4), 0 1px rgb(88 88 88 / 10%);
+  box-shadow: inset 0 1px 3px rgb(0 0 0 / 50%);
+  -webkit-box-shadow: inset 0 1px 3px rgb(0 0 0 / 50%);
   text-decoration: none;
 
   -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none;
@@ -539,8 +539,8 @@ button, input[type="submit"], input[type="button"], input[type="reset"], input[t
 }
 .dropdown-group a:hover {
   cursor: pointer;
-  -webkit-box-shadow: 1px 1px 3px var(--light-grey-shadow);
-        box-shadow: 1px 1px 3px var(--light-grey-shadow);
+  box-shadow: inset 0 1px 3px rgba(140,140,140,0.5), 0 1px rgba(140,140,140,0.2);
+  text-decoration: none;
 }
 .dropdown-group a:active {
   color: var(--select-text);
@@ -557,7 +557,7 @@ meter::-moz-meter-bar {
   background: var(--active-bg);
   border: none;
 }
-video, audio, iframe, embed, object, canvas {
+video, audio, iframe, embed, object {
   width:100%;
   border: solid var(--dark-grey-border) 1px;
   border-radius: 3px;
@@ -624,7 +624,7 @@ div .gll {
 }
 
 #editor {
-  height: 500px;
+  height: 502px;
   margin-top: 10px;
 }
 
