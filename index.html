@@ -1,39 +1,41 @@
 <!DOCTYPE html>
-<html lang="en" class="warm-mode">
+<html lang="en-AU" id="colour-target" class="dark-mode">
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta charset="UTF-8">
   <!-- Website information -->
   <title>Gloss My Gloss</title>
+  <meta name="description" content="Neonnaut's website where he keeps his stuff.">
   <meta name="description" content="A tool designed for formatting linguistic interlinear gloss">
   <meta name="keywords" content="linguistic gloss,interlinear gloss,conlang">
   <!-- Scripts and stylings -->
   <link href="style.css" rel="stylesheet" type="text/css" media="all">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> 
+  <script src="script/theme-picker.js"></script>
 
   <script src="script/glossmygloss.js"></script>
 
   <!-- Fonts -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <!-- Icons -->
-  <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png" />
 </head>
-
 <body>
   <nav id="myNav">
     <ol class="breadcrumbs">
       <li>
         <a href="https://neonnaut.neocities.org/"><img alt="neocities favicon" src="./img/neonnaut.png"></a>
       </li>
+
     </ol>
   </nav>
   <div id="content">
 
     <section id="top">
       <h1>Linguistic Gloss Generator</h1>
-      <textarea id="input" name="input" spellcheck="false" placeholder='Astra inclinant, sed non obligant.
+      <textarea  rows="6" id="input" name="input" spellcheck="false" placeholder='Astra inclinant, sed non obligant.
 [astra inkliːnant sed non obligant]
 star.ACC.PL incline.PRS.PTCP but NEG bind.3P.PRS.ACT.IND
 "The stars incline us, they do not bind us."'></textarea>
@@ -79,7 +81,9 @@ YABRV,your abbreviation
     </section>
 
     <section>
-      <p>GlossMyGloss Copyright (c) 2021 - 2023 'Neonnaut', MIT License</p>
+	  <p>GlossMyGloss Copyright (c) 2021 - 2023 'Neonnaut', MIT License</p>
+
+    <p>Linguistic Gloss Generator, "GlossMyGloss" also lives on my website <a href=https://neonnaut.neocities.org/glossmygloss>neonnaut.neocities.org/glossmygloss</a></p>
       <h2>Instructions</h2>
 
       <p>This tool will format linguistic interlinear gloss into ordered columns, and also generate hover text for linguistic abbreviations.</p>
