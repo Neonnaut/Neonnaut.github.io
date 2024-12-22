@@ -391,7 +391,7 @@ function convert(conv) {
 			}
 			plainOutput += line.join(" ") + "\n";
 		}
-		conv.finishPlainText(plainOutput);
+		conv.finishPlainText(plainOutput.trim());
 	}
 	function latexMarkup() {
 		latexOutput = "";
@@ -445,7 +445,7 @@ function convert(conv) {
 			}
 			col_num++;
 		}
-		conv.finish(zbbOutput);
+		conv.finish(zbbOutput.trim());
 	}
 	function cwsMarkup() {
 		cwsOutput = "";
@@ -677,7 +677,7 @@ function convert(conv) {
 			}
 		}
 
-		redditOutput += ">|"
+		redditOutput += "|"
 		for (let row_num = 0; row_num < maxColumns; row_num++) {
 			redditOutput += "|";
 		}
@@ -690,6 +690,7 @@ function convert(conv) {
 		for (let col_num = 0; col_num < lines.length; col_num++) {
 			var skipline = false;
 			var parsedEntry = "";
+			var lastline = '';
 
 			var toMatch = col_num + 1;
 			toMatch.toString();
@@ -701,18 +702,9 @@ function convert(conv) {
 
 			var entries = lines[col_num].split(/[ \t]+/);
 
-
-
-
-			// Do something if is the second last iteration of the array
-			if ((col_num + 2 == lines.length) && (useAbbrv || useSmallCaps)) {
-				for (let row_num = 0; row_num < entries.length; row_num++) {
-					parsedEntry += "" + splitEntryGloss(entries[row_num], conv) + "|";
-				}
-				redditOutput += parsedEntry + "\n";
 				//Do something if skip line or last line
-			} else if (col_num + 1 == lines.length) {
-				redditOutput += lines[col_num] + "\n";
+			if (col_num + 1 == lines.length) {
+				lastline = lines[col_num] + "\n";
 				//Else do normal line
 			} else {
 				for (let row_num = 0; row_num < entries.length; row_num++) {
@@ -723,9 +715,9 @@ function convert(conv) {
 			parsedEntry = "";
 		}
 
-		redditOutput = "##[](#noheader)\n" + redditOutput + "\n"
+		redditOutput = "##[](#noheader)\n" + redditOutput + "\n" + lastline;
 
-		conv.finish(redditOutput);
+		conv.finish(redditOutput.trim());
 	}
 }
 
