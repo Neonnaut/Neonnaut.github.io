@@ -939,19 +939,19 @@ var Converter = function (markup, nonInterlinear, useAbbrv, abbreviations, expla
 	this.useAcknowledgement = useAcknowledgement;
 };
 Converter.prototype.finish = function (input) {
-	this.output = "<textarea id='GMGOutput' spellcheck='false'>" + input + "</textarea>";
+	this.output = "<textarea id='GMGOutput' rows='5' spellcheck='false'>" + input + "</textarea>";
 }
 Converter.prototype.finishAndShow = function (input) {
 	if (this.useAcknowledgement) {
 		let ack = "<i class='gmg-ack'>Gloss provided by <a href='https://neonnaut.github.io/'>Gloss My Gloss</a></i>";
-		this.output = "<span>" + input + ack + "</span><br>" + "<textarea id='GMGOutput' spellcheck='false'>" + input + "\n" + ack + "</textarea>";
+		this.output = "<span>" + input + ack + "</span><br>" + "<textarea id='GMGOutput' rows='5' spellcheck='false'>" + input + "\n" + ack + "</textarea>";
 	} else {
-		this.output = "<span>" + input + "</span><br>" + "<textarea id='GMGOutput' spellcheck='false'>" + input + "</textarea>";
+		this.output = "<span>" + input + "</span><br>" + "<textarea id='GMGOutput' rows='5' spellcheck='false'>" + input + "</textarea>";
 	}
 }
 Converter.prototype.finishPlainText = function (input) {
-	this.output = "<textarea id='GMGOutput' spellcheck='false'>" + input + "</textarea>";
+	this.output = "<textarea id='GMGOutput' rows='5' spellcheck='false'>" + input + "</textarea>";
 }
 Converter.prototype.finishBlock = function (input) {
-	this.output = "<textarea id='GMGOutput' spellcheck='false'>`\n" + input + "`</textarea>";
+	this.output = "<textarea id='GMGOutput' rows='5' spellcheck='false'>`\n" + input + "`</textarea>";
 }
