@@ -134,8 +134,10 @@ function glossarize(markup: string): void {
    } = do_format(markup, pieces, options);
 
    // Output code
-   const o_code = document.getElementById("GMG-output-code") as HTMLElement;
-   o_code.textContent = formatted.code;
+   const o_code = document.getElementById(
+      "GMG-output-code",
+   ) as HTMLTextAreaElement;
+   o_code.value = formatted.code;
 
    // Output demo
    const o_demo = document.getElementById("GMG-output-demo") as HTMLElement;
