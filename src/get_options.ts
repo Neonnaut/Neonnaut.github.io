@@ -39,7 +39,7 @@ export default function get_options(
    let my_explanations = [];
    for (let i = 0; i < abbrv_lines.length; i++) {
       const temp = abbrv_lines[i].split(",");
-      if (temp[0] != "" && temp[1] != "") {
+      if (temp[0] && temp[1]) {
          my_abbreviations.push(temp[0].trim());
          my_explanations.push(temp[1].trim());
       }

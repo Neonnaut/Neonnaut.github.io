@@ -1,194 +1,194 @@
 <!DOCTYPE html>
 <html lang="en-AU" id="colour-target" class="dark-mode">
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta charset="UTF-8">
-  <!-- Website information -->
-  <title>Gloss My Gloss</title>
-  <meta name="description" content="Neonnaut's website where he keeps his stuff.">
-  <meta name="description" content="A tool designed for formatting linguistic interlinear gloss">
-  <meta name="keywords" content="linguistic gloss,interlinear gloss,conlang">
-  <!-- Scripts and stylings -->
-  <link href="style.css" rel="stylesheet" type="text/css" media="all">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta charset="UTF-8">
+   <!-- Website information -->
+   <title>Gloss My Gloss</title>
+   <meta name="description" content="Neonnaut's website where he keeps his stuff.">
+   <meta name="description" content="A tool designed for formatting linguistic interlinear gloss">
+   <meta name="keywords" content="linguistic gloss,interlinear gloss,conlang">
+   <!-- Scripts and stylings -->
+   <link href="style.css" rel="stylesheet" type="text/css" media="all">
 
-  <script src="dist/index.js" type="module"></script>
-  <!-- <script src="dist/index.js" type="module"></script> -->
+   <!-- <script src="dist/index.js" type="module"></script>-->
+   <script src="src/index.ts" type="module"></script> 
 
-  <!-- Fonts -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
-  <!-- Icons -->
-  <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png" />
-  <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png" />
-  <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png" />
+   <!-- Fonts -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+   <!-- Icons -->
+   <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png" />
+   <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png" />
+   <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png" />
 </head>
 <body>
-  <nav id="myNav">
-    <ol class="breadcrumbs">
-      <li>
-        <a href="https://neonnaut.neocities.org/"><img alt="neocities favicon" src="./img/neonnaut.png"></a>
-      </li>
+   <nav id="myNav">
+      <ol class="breadcrumbs">
+         <li>
+         <a href="https://neonnaut.neocities.org/"><img alt="neocities favicon" src="./img/neonnaut.png"></a>
+         </li>
 
-    </ol>
-  </nav>
-  <div id="content">
+      </ol>
+   </nav>
+   <div id="content">
 
-    <section id="top">
-      <h1>Gloss My Gloss</h1>
-      <textarea  rows="5" id="GMG-input" spellcheck="false" placeholder='Odadan hızlı çıktım.
-room-ABL speed-COM go.out-PFV-1sg
-"I left the room quickly."'></textarea>
+      <section id="top">
+         <h1>Gloss My Gloss</h1>
+         <textarea  rows="5" id="GMG-input" spellcheck="false" placeholder='Odadan hızlı çıktım.
+   room-ABL speed-COM go.out-PFV-1sg
+   "I left the room quickly."'></textarea>
+         
+         <div id="GMG-switch-field" class="switch-field">
+         <input type="submit" id="plain-text" class="styled-button" value="Plain text" name="markup-button">
+         <input type="submit" id="html-table" class="styled-button" value="HTML table" name="markup-button">
+         <input type="submit" id="html-div" class="styled-button" value="HTML div" name="markup-button">
+         <input type="submit" id="latex" class="styled-button" value="Latex" name="markup-button">
+         <input type="submit" id="zbb" class="styled-button" value="ZBB" name="markup-button">
+         <input type="submit" id="cws" class="styled-button" value="CWS" name="markup-button">
+         <input type="submit" id="wiki" class="styled-button" value="Wiki" name="markup-button">
+         <input type="submit" id="reddit" class="styled-button" value="Reddit" name="markup-button">
+         </div>
       
-      <div id="GMG-switch-field" class="switch-field">
-        <input type="submit" id="plain-text" class="styled-button" value="Plain text" name="markup-button">
-        <input type="submit" id="html-table" class="styled-button" value="HTML table" name="markup-button">
-        <input type="submit" id="html-div" class="styled-button" value="HTML div" name="markup-button">
-        <input type="submit" id="latex" class="styled-button" value="Latex" name="markup-button">
-      <!--  <input type="submit" id="zbb" class="styled-button" value="ZBB" name="markup-button"> -->
-        <input type="submit" id="cws" class="styled-button" value="CWS" name="markup-button">
-      <!--  <input type="submit" id="wiki" class="styled-button" value="Wiki" name="markup-button"> -->
-      <!--  <input type="submit" id="reddit" class="styled-button" value="Reddit" name="markup-button"> -->
-      </div>
-    
-      <div id="GMG-output-demo" style="border: 2px solid #000; margin-bottom: 10px; padding: 0 5px; overflow-x: auto;"></div>
-      <textarea rows="5" id="GMG-output-code" spellcheck="false" placeholder='Formatted markdown will be shown here...'></textarea>
-      <button id='copy-GMG-result' class='styled-button'><i class="fa fa-copy"></i> Copy</button>
+         <div id="GMG-output-demo" style="border: 2px solid #000; margin-bottom: 10px; padding: 0 5px; overflow-x: auto;"></div>
+         <textarea rows="5" id="GMG-output-code" spellcheck="false" placeholder='Formatted markdown will be shown here...'></textarea>
+         <button id='copy-GMG-result' class='styled-button'><i class="fa fa-copy"></i> Copy</button>
 
-      <fieldset>
-        <legend>Options</legend>
+         <fieldset>
+         <legend>Options</legend>
 
-        <input type="checkbox" id="use-inbuilt-abbrv" checked>
-        <label for="use-inbuilt-abbrv">Use in-built abbreviations</label><br>
+         <input type="checkbox" id="use-inbuilt-abbrv" checked>
+         <label for="use-inbuilt-abbrv">Use in-built abbreviations</label><br>
 
-        <input type="checkbox" id="use-smallcaps">
-        <label for="use-smallcaps">Use small caps on gloss line</label><br>
+         <input type="checkbox" id="use-smallcaps">
+         <label for="use-smallcaps">Use small caps on gloss line</label><br>
 
-        <input type="checkbox" id="use-acknowledgement">
-        <label for="use-acknowledgement">Append an acknowledgement of this tool</label><br><br>
-        
-        <label for="not-interlinear">Single column lines, comma delimited:</label><br>
-        <input type="text" id="not-interlinear" spellcheck="false"><br><br>
+         <input type="checkbox" id="use-acknowledgement">
+         <label for="use-acknowledgement">Append an acknowledgement of this tool</label><br><br>
+         
+         <label for="not-interlinear">Single column lines, comma delimited:</label><br>
+         <input type="text" id="not-interlinear" spellcheck="false"><br><br>
 
-        <label for="abbrv-input">Glossing abbreviations, line and comma delimited:</label><br>
-        <textarea id="abbrv-input" spellcheck="false" rows="5">
+         <label for="abbrv-input">Glossing abbreviations, line and comma delimited:</label><br>
+         <textarea id="abbrv-input" spellcheck="false" rows="5">
 ACT, actor voice
 YABRV, your abbreviation
-</textarea><br><br>
-  
-        <label for="abbrv-delimiter-input">Glossing separators, comma delimited:</label><br>
-        <input type="text" id="abbrv-delimiter-input" value="., -, =, ›, :" spellcheck="false">
-  
-      </fieldset>
-    </section>
+   </textarea><br><br>
+   
+         <label for="abbrv-delimiter-input">Glossing separators, comma delimited:</label><br>
+         <input type="text" id="abbrv-delimiter-input" value="., -, =, ›, :" spellcheck="false">
+   
+         </fieldset>
+      </section>
 
-    <section>
-	  <p>Gloss-My-Gloss Copyright (c) 2021 - 2026 'Neonnaut', MIT License</p>
+      <section>
+         <p>Gloss My Gloss Copyright (c) 2021 - 2026 'Neonnaut', MIT License</p>
 
-    <p>Linguistic Gloss formatter, "Gloss-My-Gloss" also lives on my website <a href=https://neonnaut.neocities.org/glossmygloss>neonnaut.neocities.org/glossmygloss</a></p>
-      <h2>Instructions</h2>
+         <p>Linguistic Gloss formatter, "Gloss My Gloss" also lives on my website <a href=https://neonnaut.neocities.org/glossmygloss>neonnaut.neocities.org/glossmygloss</a></p>
+         <h2>Instructions</h2>
 
-      <p>This tool will format linguistic interlinear gloss into ordered columns, and also assign hover text for your linguistic abbreviations.</p>
+         <p>This tool will format linguistic interlinear gloss into ordered columns, and also assign hover text for your linguistic abbreviations.</p>
 
-      <p>If you discover any bugs or issues, please go to <a href="https://github.com/Neonnaut/Neonnaut.github.io">Neonnaut.github.io</a> and create a new issue.</p>
+         <p>If you discover any bugs or issues, please go to <a href="https://github.com/Neonnaut/Neonnaut.github.io">Neonnaut.github.io</a> and create a new issue.</p>
 
-      <p>Refer to the following source on interlinear gloss: The Leipzig Glossing Rules,	Max Planck Institute for Evolutionary Anthropology Department of Linguistics.</p>
+         <p>Refer to the following source on interlinear gloss: The Leipzig Glossing Rules,	Max Planck Institute for Evolutionary Anthropology Department of Linguistics.</p>
 
-      <h3>Setting Up The Input</h3>
-      <p>Be sure to provide at least three lines in the input, with your gloss on the second last line and your translation on the last line. (The ZBB option can work with just two). In this case your input would look like this:</p>
+         <h3>Setting Up The Input</h3>
+         <p>Be sure to provide at least three lines in the input, with your gloss on the second last line and your translation on the last line. (The ZBB option can work with just two). In this case your input would look like this:</p>
 
-      <pre class="example">
-Odadan   hızlı     çıktım.
-room-ABL speed-COM go.out-PFV-1sg
-"I left the room quickly."</pre>
+         <pre class="example">
+   Odadan   hızlı     çıktım.
+   room-ABL speed-COM go.out-PFV-1sg
+   "I left the room quickly."</pre>
 
-      <p>Any additional lines must go above the gloss line. Any of these additional lines may be marked with the "Non alignable lines" setting. For example, if we had the following input and wanted to keep the first two lines unaligned just like the last line:</p>
+         <p>Any additional lines must go above the gloss line. Any of these additional lines may be marked with the "Non alignable lines" setting. For example, if we had the following input and wanted to keep the first two lines unaligned just like the last line:</p>
 
-      <pre class="example">太陽が東の空に昇る
-taiyō ga higashi no sora ni noboru
-/taijoː ga      çigaɕi  no         soɾa ni       noboɾɯ/
-sun     SUBJECT east    POSSESSIVE sky  LOCATIVE rise
-"The sun rises in the eastern sky."</pre>
+         <pre class="example">太陽が東の空に昇る
+   taiyō ga higashi no sora ni noboru
+   /taijoː ga      çigaɕi  no         soɾa ni       noboɾɯ/
+   sun     SUBJECT east    POSSESSIVE sky  LOCATIVE rise
+   "The sun rises in the eastern sky."</pre>
 
-      <p>Then "Non alignable lines" should have "1, 2".</p>
+         <p>Then "Non alignable lines" should have "1, 2".</p>
 
-      <p>You can do multiple translation pieces at a time by separating the pices with an empty line.</p>
+         <p>You can do multiple translation pieces at a time by separating the pices with an empty line.</p>
 
 
 
-      <p>You can set up your own custom abbreviations and separators. Your new definitions will overwrite any in-built definitions.</p>
+         <p>You can set up your own custom abbreviations and separators. Your new definitions will overwrite any in-built definitions.</p>
 
-      <p> It should be noted that this tool saves the data of the input to the "local storage" of your browser for the next time you visit this page.</p>
+         <p> It should be noted that this tool saves the data of the input to the "local storage" of your browser for the next time you visit this page.</p>
 
-      <h3>Plain Text</h3>
-      <p>To align the plain text output properly you need to use a fixed-width font. You can do this by using a <code class='example'>&lt;pre&gt;</code> element. Be careful when using the small caps option, as the characters may not display correctly on all devices, especially F, S, X, and Q. My advice is to not use the small caps option using plain text, but the option is there.</p>
+         <h3>Plain Text</h3>
+         <p>To align the plain text output properly you need to use a fixed-width font. You can do this by using a <code class='example'>&lt;pre&gt;</code> element. Be careful when using the small caps option, as the characters may not display correctly on all devices, especially F, S, X, and Q. My advice is to not use the small caps option using plain text, but the option is there.</p>
 
-      <h3>HTML Table</h3>
-      <p>When using the HTML markup method, use the following CSS on your website to get the desired output:</p>
+         <h3>HTML Table</h3>
+         <p>When using the HTML markup method, use the following CSS on your website to get the desired output:</p>
 
-      <pre class="example">.abbrv {
-   cursor: help;
- }
-.sc {
-  font-variant: small-caps;
-  font-variant-numeric: oldstyle-nums;
-  text-transform: lowercase;
-}
-table {
-  overflow: auto;
-}
-table tr {
-  white-space: nowrap;
-}
-table tr td {
-  padding-right: 3px;
-}</pre>
+         <pre class="example">.abbrv {
+      cursor: help;
+   }
+   .sc {
+   font-variant: small-caps;
+   font-variant-numeric: oldstyle-nums;
+   text-transform: lowercase;
+   }
+   table {
+   overflow: auto;
+   }
+   table tr {
+   white-space: nowrap;
+   }
+   table tr td {
+   padding-right: 3px;
+   }</pre>
 
-      <p>If you wish to style the table element, such as with italics or bold, use css classes on an individual word. If you wish to style an entire line, the best way is to add a class to <code class='example'>&lt;tr></code> and add styles with CSS.</p>
+         <p>If you wish to style the table element, such as with italics or bold, use css classes on an individual word. If you wish to style an entire line, the best way is to add a class to <code class='example'>&lt;tr></code> and add styles with CSS.</p>
 
-      <h3>HTML Interlinear Div</h3>
-      <p>When using the 'HTML Interlinear Div' method, use the following CSS on your website to get the desired output:</p>
-      
-      <pre class="example">.abbrv {
-   cursor: help;
-}
-.sc {
-  font-variant: small-caps;
-  font-variant-numeric: oldstyle-nums;
-  text-transform: lowercase;
-}
-div .gll {
-  display: inline-table;
-  padding-right: 10px;
-}</pre>
+         <h3>HTML Interlinear Div</h3>
+         <p>When using the 'HTML Interlinear Div' method, use the following CSS on your website to get the desired output:</p>
+         
+         <pre class="example">.abbrv {
+      cursor: help;
+   }
+   .sc {
+   font-variant: small-caps;
+   font-variant-numeric: oldstyle-nums;
+   text-transform: lowercase;
+   }
+   div .gll {
+   display: inline-table;
+   padding-right: 10px;
+   }</pre>
 
-      <p>'Single column lines' does not work with this method. Even if you were to edit the output, a div without the <code class='example'>.gll</code> class will only work at the end or the beginning of a block of <code class='example'>.gll</code> divs.</p>
+         <p>'Single column lines' does not work with this method. Even if you were to edit the output, a div without the <code class='example'>.gll</code> class will only work at the end or the beginning of a block of <code class='example'>.gll</code> divs.</p>
 
-      <h3>Latex</h3>
-      <p>Using Latex's gb4e package, this method normally takes only three lines, therefore this generator only configures three lines.</p>
-      <p>Make sure to put <code class='example'>\usepackage{gb4e}</code> in your preamble. And if you are using small caps, the font you are using has to support small caps.</p>
-      
-      <h3>ZBB</h3>
-      <p>This method generates markup that can be used on vBullitin boards such as The ZBB or CBB. If you provide more than two lines, the third last line must not be empty.</p>
+         <h3>Latex</h3>
+         <p>Using Latex's gb4e package, this method normally takes only three lines, therefore this generator only configures three lines.</p>
+         <p>Make sure to put <code class='example'>\usepackage{gb4e}</code> in your preamble. And if you are using small caps, the font you are using has to support small caps.</p>
+         
+         <h3>ZBB</h3>
+         <p>This method generates markup that can be used on vBullitin boards such as The ZBB or CBB. If you provide more than two lines, the third last line must not be empty.</p>
 
-      <h3>Wiki Table</h3>
-      <p>If your wiki does not have the abbr template, you will need to create a page called <code class='example'>template:abbr</code>, with the following code:</p>
+         <h3>Wiki Table</h3>
+         <p>If your wiki does not have the abbr template, you will need to create a page called <code class='example'>template:abbr</code>, with the following code:</p>
 
-      <pre class="example">&lt;abbr title="{{{2}}}">{{{1|[?]}}}&lt;/abbr>&lt;noinclude>{{documentation}}&lt;/noinclude>
-</pre>
-      <p>And after saving, if your wiki asks for documentation, paste this link: <code class='example'>https://en.wikipedia.org/wiki/Template:Abbr</code></p>
-      
-      <h3>Reddit Table</h3>
-      <p>This outputs to reddit.com "headerless" table format. What fun. Make sure to switch from it's so-called "Fancy Pants Editor" to "Markdown Mode" before you paste the output into that website's submission UI. This method was working as of December 2024 but perhaps something will change that will break this again.</p>
+         <pre class="example">&lt;abbr title="{{{2}}}">{{{1|[?]}}}&lt;/abbr>&lt;noinclude>{{documentation}}&lt;/noinclude>
+         </pre>
+         <p>And after saving, if your wiki asks for documentation, paste this link: <code class='example'>https://en.wikipedia.org/wiki/Template:Abbr</code></p>
+         
+         <h3>Reddit Table</h3>
+         <p>This outputs to reddit.com "headerless" table format. What fun. Make sure to switch from it's so-called "Rich Text Editor" to "Markdown Mode" before you paste the output into that website's submission UI. This method was working as of December 2024 but perhaps something will change that will break this again.</p>
 
-    </section>
-  </div>
+      </section>
+   </div>
 
-  <footer>
-    <ol class="breadcrumbs">
-      <li>
-        <a href="#myNav">Return to top</a>
-      </li>
-    </ol>
-  </footer>
+   <footer>
+      <ol class="breadcrumbs">
+         <li>
+         <a href="#myNav">Return to top</a>
+         </li>
+      </ol>
+   </footer>
 </body>
 
 </html>
