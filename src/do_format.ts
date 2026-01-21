@@ -135,7 +135,11 @@ function html_div(pieces: Piece[], options: Options): string {
                if (output_columns[column]) {
                   if (line.line_type === "gloss") {
                      output_columns[column].push(
-                        split_entry_gloss(line.words[column] || "", options, "html"),
+                        split_entry_gloss(
+                           line.words[column] || "",
+                           options,
+                           "html",
+                        ),
                      );
                   } else {
                      output_columns[column].push(line.words[column] || "");
@@ -143,7 +147,11 @@ function html_div(pieces: Piece[], options: Options): string {
                } else {
                   if (line.line_type === "gloss") {
                      output_columns[column] = [
-                        split_entry_gloss(line.words[column] || "", options, "html"),
+                        split_entry_gloss(
+                           line.words[column] || "",
+                           options,
+                           "html",
+                        ),
                      ];
                   } else {
                      output_columns[column] = [line.words[column] || ""];
@@ -172,13 +180,13 @@ function latex(pieces: Piece[], options: Options): string {
             temp += line.words.join(" ") + "\\\\";
             output_piece.push(temp);
          } else if (line.line_type === "gloss") {
-            let temp = [];
+            const temp = [];
             for (let row_num = 0; row_num < line.words.length; row_num++) {
                let wordie = line.words[row_num] || "";
                wordie = split_entry_gloss(wordie, options, "latex");
                temp.push(wordie);
             }
-            output_piece.push(temp.join(" ") + "\\\\")
+            output_piece.push(temp.join(" ") + "\\\\");
          } else if (line.line_type === "trans") {
             const temp = "\\trans " + line.words.join(" ") + "\n\\end{exe}";
             output_piece.push(temp);
@@ -201,7 +209,10 @@ function zbb(pieces: Piece[], options: Options): string {
       const output_piece: string[] = [];
       const gloss_word = [];
       for (const line of piece.lines) {
-         if (line.line_type == "not-interlinear" || line.line_type === "trans") {
+         if (
+            line.line_type == "not-interlinear" ||
+            line.line_type === "trans"
+         ) {
             output_piece.push(line.words.join(""));
          } else if (line.line_type === "normal") {
             output_piece.push(line.words.join(" "));
@@ -261,7 +272,6 @@ function cws(pieces: Piece[], options: Options): string {
 }
 function wiki(pieces: Piece[], options: Options): string {
    const output: string[] = [];
-   
 
    for (const piece of pieces) {
       const output_piece: string[] = [];
@@ -269,25 +279,34 @@ function wiki(pieces: Piece[], options: Options): string {
       const lengthie = piece.word_lengths.length || 1;
       for (const line of piece.lines) {
          if (line.line_type == "not-interlinear") {
-            output_piece.push(`|-\n| colspan='${lengthie}'|${line.words.join(" ")}`);
+            output_piece.push(
+               `|-\n| colspan='${lengthie}'|${line.words.join(" ")}`,
+            );
          } else if (line.line_type === "word" || line.line_type === "normal") {
-            output_piece.push(`|- `)
-            for (let row_num = 0; row_num < piece.word_lengths.length; row_num++) {
+            output_piece.push(`|- `);
+            for (
+               let row_num = 0;
+               row_num < piece.word_lengths.length;
+               row_num++
+            ) {
                output_piece.push(`| ${line.words[row_num] || ""} `);
             }
          } else if (line.line_type === "gloss") {
-            output_piece.push(`|- `)
-            for (let row_num = 0; row_num < piece.word_lengths.length; row_num++) {
+            output_piece.push(`|- `);
+            for (
+               let row_num = 0;
+               row_num < piece.word_lengths.length;
+               row_num++
+            ) {
                let wordie = line.words[row_num] || "";
                wordie = split_entry_gloss(wordie, options, "wiki");
 
                output_piece.push(`| ${wordie} `);
             }
          } else if (line.line_type === "trans") {
-            output_piece.push(`|-\n| colspan='${lengthie}'|${line.words.join(" ")}`);
-         } else if (line.line_type === "normal") {
-            const temp = line.words.join(" ");
-            output_piece.push(temp);
+            output_piece.push(
+               `|-\n| colspan='${lengthie}'|${line.words.join(" ")}`,
+            );
          }
       }
       output_piece.push(`|}\n</blockquote>`);
@@ -306,16 +325,16 @@ function reddit(pieces: Piece[], options: Options): string {
       output_piece.push("##[](#noheader)");
       let row_1 = "|";
       let row_2 = "";
-      for (const column of piece.word_lengths) {
+      for (let i = 0; i < piece.word_lengths.length; i++) {
          row_1 += "|";
          row_2 += "-|";
       }
       output_piece.push(row_1);
       output_piece.push(row_2);
       let is_first = true;
-      
+
       for (const line of piece.lines) {
-         let temp = ""
+         let temp = "";
          if (is_first) {
             temp += "|";
             is_first = false;
@@ -325,10 +344,12 @@ function reddit(pieces: Piece[], options: Options): string {
          } else if (line.line_type === "normal" || line.line_type === "word") {
             temp += line.words.join("|") + "";
          } else if (line.line_type === "gloss") {
-            let temp_wordies: string[] = [];
+            const temp_wordies: string[] = [];
             for (let i = 0; i < line.words.length; i++) {
-               temp_wordies.push(split_entry_gloss(line.words[i] || "", options, "default"));
-            }  
+               temp_wordies.push(
+                  split_entry_gloss(line.words[i] || "", options, "default"),
+               );
+            }
             temp += temp_wordies.join("|");
          } else if (line.line_type === "trans") {
             temp += line.words.join(" ");
@@ -397,7 +418,7 @@ export function get_abbrved_gloss(
    word: string,
    result: string,
    options: Options,
-   markup: string
+   markup: string,
 ): string {
    let glossexpl = "";
 
@@ -419,30 +440,39 @@ export function get_abbrved_gloss(
 
    // Explanation found
    switch (markup) {
-   case "latex":
-      if (word === word.toUpperCase() && options.use_smallcaps) { return (result +
-         `\\textsc{${word}}`
-      );}
-      return result + word;
-   case "wiki":
-      if (word === word.toUpperCase() && options.use_smallcaps) { return (result +
-         `{{abbr|{{sc|${word}}}|${glossexpl}}}`
-      );}
-      return result + `{{abbr|${word}|${glossexpl}}}`;
-   case "html":
-      if (word === word.toUpperCase() && options.use_smallcaps) { return (result +
-         `<abbr class='abbrv sc' title='${glossexpl}'>${word}</abbr>`
-      );}
-      return result + `<abbr class='abbrv' title='${glossexpl}'>${word}</abbr>`;
-   default:
-      if (word === word.toUpperCase() && options.use_smallcaps) { return (result +
-         get_sc_text(word)
-      );}
-      return result + word;
+      case "latex":
+         if (word === word.toUpperCase() && options.use_smallcaps) {
+            return result + `\\textsc{${word}}`;
+         }
+         return result + word;
+      case "wiki":
+         if (word === word.toUpperCase() && options.use_smallcaps) {
+            return result + `{{abbr|{{sc|${word}}}|${glossexpl}}}`;
+         }
+         return result + `{{abbr|${word}|${glossexpl}}}`;
+      case "html":
+         if (word === word.toUpperCase() && options.use_smallcaps) {
+            return (
+               result +
+               `<abbr class='abbrv sc' title='${glossexpl}'>${word}</abbr>`
+            );
+         }
+         return (
+            result + `<abbr class='abbrv' title='${glossexpl}'>${word}</abbr>`
+         );
+      default:
+         if (word === word.toUpperCase() && options.use_smallcaps) {
+            return result + get_sc_text(word);
+         }
+         return result + word;
    }
 }
 
-function split_entry_gloss(entry: string, options: Options, markup:string = "default"): string {
+function split_entry_gloss(
+   entry: string,
+   options: Options,
+   markup: string = "default",
+): string {
    let result = "";
    let word = "";
 
@@ -468,5 +498,5 @@ function split_entry_gloss(entry: string, options: Options, markup:string = "def
 }
 
 function get_sc_text(word: string): string {
-	return word === word.toUpperCase() ? to_small_caps(word) : word;
+   return word === word.toUpperCase() ? to_small_caps(word) : word;
 }
