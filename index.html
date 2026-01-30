@@ -96,17 +96,17 @@ YABRV, your abbreviation
          <p>Be sure to provide at least three lines in the input, with your gloss on the second last line and your translation on the last line. (The ZBB option can work with just two). In this case your input would look like this:</p>
 
          <pre class="example">
-   Odadan   hızlı     çıktım.
-   room-ABL speed-COM go.out-PFV-1sg
-   "I left the room quickly."</pre>
+Odadan   hızlı     çıktım.
+room-ABL speed-COM go.out-PFV-1sg
+"I left the room quickly."</pre>
 
          <p>Any additional lines must go above the gloss line. Any of these additional lines may be marked with the "Non alignable lines" setting. For example, if we had the following input and wanted to keep the first two lines unaligned just like the last line:</p>
 
          <pre class="example">太陽が東の空に昇る
-   taiyō ga higashi no sora ni noboru
-   /taijoː ga      çigaɕi  no         soɾa ni       noboɾɯ/
-   sun     SUBJECT east    POSSESSIVE sky  LOCATIVE rise
-   "The sun rises in the eastern sky."</pre>
+taiyō ga higashi no sora ni noboru
+/taijoː ga      çigaɕi  no         soɾa ni       noboɾɯ/
+sun     SUBJECT east    POSSESSIVE sky  LOCATIVE rise
+"The sun rises in the eastern sky."</pre>
 
          <p>Then "Non alignable lines" should have "1, 2".</p>
 
@@ -125,22 +125,22 @@ YABRV, your abbreviation
          <p>When using the HTML markup method, use the following CSS on your website to get the desired output:</p>
 
          <pre class="example">.abbrv {
-      cursor: help;
-   }
-   .sc {
+   cursor: help;
+}
+.sc {
    font-variant: small-caps;
    font-variant-numeric: oldstyle-nums;
    text-transform: lowercase;
-   }
-   table {
+}
+table {
    overflow: auto;
-   }
-   table tr {
+}
+table tr {
    white-space: nowrap;
-   }
-   table tr td {
+}
+table tr td {
    padding-right: 3px;
-   }</pre>
+}</pre>
 
          <p>If you wish to style the table element, such as with italics or bold, use css classes on an individual word. If you wish to style an entire line, the best way is to add a class to <code class='example'>&lt;tr></code> and add styles with CSS.</p>
 
@@ -148,17 +148,17 @@ YABRV, your abbreviation
          <p>When using the 'HTML Interlinear Div' method, use the following CSS on your website to get the desired output:</p>
          
          <pre class="example">.abbrv {
-      cursor: help;
-   }
-   .sc {
+   cursor: help;
+}
+.sc {
    font-variant: small-caps;
    font-variant-numeric: oldstyle-nums;
    text-transform: lowercase;
-   }
-   div .gll {
+}
+div .gll {
    display: inline-table;
    padding-right: 10px;
-   }</pre>
+}</pre>
 
          <p>'Single column lines' does not work with this method. Even if you were to edit the output, a div without the <code class='example'>.gll</code> class will only work at the end or the beginning of a block of <code class='example'>.gll</code> divs.</p>
 
@@ -172,8 +172,7 @@ YABRV, your abbreviation
          <h3>Wiki Table</h3>
          <p>If your wiki does not have the abbr template, you will need to create a page called <code class='example'>template:abbr</code>, with the following code:</p>
 
-         <pre class="example">&lt;abbr title="{{{2}}}">{{{1|[?]}}}&lt;/abbr>&lt;noinclude>{{documentation}}&lt;/noinclude>
-         </pre>
+         <pre class="example">&lt;abbr title="{{{2}}}">{{{1|[?]}}}&lt;/abbr>&lt;noinclude>{{documentation}}&lt;/noinclude></pre>
          <p>And after saving, if your wiki asks for documentation, paste this link: <code class='example'>https://en.wikipedia.org/wiki/Template:Abbr</code></p>
          
          <h3>Reddit Table</h3>

@@ -410,7 +410,7 @@ function get_ack(is_html: boolean = false) {
    if (is_html) {
       return `<i class='gmg-ack'>Gloss provided by <a href='https://neonnaut.github.io/'>Gloss My Gloss</a></i>`;
    } else {
-      return `Generated with Gloss My Gloss.`;
+      return `Gloss provided by Gloss My Gloss.`;
    }
 }
 
