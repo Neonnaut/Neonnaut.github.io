@@ -920,7 +920,7 @@ div .gll {
    white-space: pre;
 }
 #voc-output-words-field,
-#GMGOutput {
+#GMG-output-code {
    font-family: monospace;
 }
 #out {
