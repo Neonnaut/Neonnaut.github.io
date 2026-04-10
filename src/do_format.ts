@@ -1,4 +1,5 @@
 import type { Options, Piece } from "./types.js";
+import { get_real_string_length } from "./get_pieces.js";
 
 export default function do_format(
    markup: string,
@@ -51,9 +52,11 @@ function plain_text(pieces: Piece[], options: Options): string {
             output_piece.push(line.words.join(" "));
          } else {
             for (let row_num = 0; row_num < line.words.length; row_num++) {
+               let wrd = get_real_string_length(line.words[row_num]);
                const lengthie = piece.word_lengths[row_num];
-               while (line.words[row_num].length < lengthie) {
+               while (wrd < lengthie) {
                   line.words[row_num] += " ";
+                  wrd++;
                }
             }
             let temp_line = line.words.join(" ");

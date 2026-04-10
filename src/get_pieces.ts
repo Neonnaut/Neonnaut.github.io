@@ -76,7 +76,7 @@ function split_line(line: string): string[] {
    return line.trim().split(/\s+/).filter(Boolean);
 }
 
-function get_real_string_length(s: string): number {
+export function get_real_string_length(s: string): number {
    let noDiacritics = s.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
    noDiacritics = noDiacritics.replace(/[\u02E5-\u02E9]/g, "˥");
    noDiacritics = noDiacritics.replace(/[\uA708-\uA716]/g, "˥");
